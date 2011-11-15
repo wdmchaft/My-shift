@@ -1,0 +1,284 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
+		29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
+		29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */; };
+		29B9E1BC1472C1D700DB2E1F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1BB1472C1D700DB2E1F /* CoreData.framework */; };
+		29B9E1C21472C1D700DB2E1F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1C01472C1D700DB2E1F /* InfoPlist.strings */; };
+		29B9E1C41472C1D700DB2E1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C31472C1D700DB2E1F /* main.m */; };
+		29B9E1C81472C1D700DB2E1F /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */; };
+		29B9E1CB1472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B9E1B51472C1D700DB2E1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		29B9E1B71472C1D700DB2E1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		29B9E1BB1472C1D700DB2E1F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		29B9E1BF1472C1D700DB2E1F /* ShiftScheduler-Info.plist */ = {isa = PBXFileReference; path = "ShiftScheduler-Info.plist"; sourceTree = "<group>"; };
+		29B9E1C11472C1D700DB2E1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		29B9E1C31472C1D700DB2E1F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B9E1C51472C1D700DB2E1F /* ShiftScheduler-Prefix.pch */ = {isa = PBXFileReference; path = "ShiftScheduler-Prefix.pch"; sourceTree = "<group>"; };
+		29B9E1C61472C1D700DB2E1F /* SSAppDelegate.h */ = {isa = PBXFileReference; path = SSAppDelegate.h; sourceTree = "<group>"; };
+		29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAppDelegate.m; sourceTree = "<group>"; };
+		29B9E1CA1472C1D700DB2E1F /* ShiftScheduler.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShiftScheduler.xcdatamodel; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		29B9E1AE1472C1D700DB2E1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */,
+				29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */,
+				29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */,
+				29B9E1BC1472C1D700DB2E1F /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		29B9E1A61472C1D700DB2E1F = {
+			isa = PBXGroup;
+			children = (
+				29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */,
+				29B9E1B41472C1D700DB2E1F /* Frameworks */,
+				29B9E1B21472C1D700DB2E1F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		29B9E1B21472C1D700DB2E1F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B9E1B41472C1D700DB2E1F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B9E1B51472C1D700DB2E1F /* UIKit.framework */,
+				29B9E1B71472C1D700DB2E1F /* Foundation.framework */,
+				29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */,
+				29B9E1BB1472C1D700DB2E1F /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */ = {
+			isa = PBXGroup;
+			children = (
+				29B9E1C61472C1D700DB2E1F /* SSAppDelegate.h */,
+				29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */,
+				29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */,
+				29B9E1BE1472C1D700DB2E1F /* Supporting Files */,
+			);
+			path = ShiftScheduler;
+			sourceTree = "<group>";
+		};
+		29B9E1BE1472C1D700DB2E1F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				29B9E1BF1472C1D700DB2E1F /* ShiftScheduler-Info.plist */,
+				29B9E1C01472C1D700DB2E1F /* InfoPlist.strings */,
+				29B9E1C31472C1D700DB2E1F /* main.m */,
+				29B9E1C51472C1D700DB2E1F /* ShiftScheduler-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		29B9E1B01472C1D700DB2E1F /* ShiftScheduler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29B9E1CE1472C1D700DB2E1F /* Build configuration list for PBXNativeTarget "ShiftScheduler" */;
+			buildPhases = (
+				29B9E1AD1472C1D700DB2E1F /* Sources */,
+				29B9E1AE1472C1D700DB2E1F /* Frameworks */,
+				29B9E1AF1472C1D700DB2E1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShiftScheduler;
+			productName = ShiftScheduler;
+			productReference = 29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B9E1A81472C1D700DB2E1F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 29B9E1AB1472C1D700DB2E1F /* Build configuration list for PBXProject "ShiftScheduler" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 29B9E1A61472C1D700DB2E1F;
+			productRefGroup = 29B9E1B21472C1D700DB2E1F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29B9E1B01472C1D700DB2E1F /* ShiftScheduler */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		29B9E1AF1472C1D700DB2E1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B9E1C21472C1D700DB2E1F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29B9E1AD1472C1D700DB2E1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B9E1C41472C1D700DB2E1F /* main.m in Sources */,
+				29B9E1C81472C1D700DB2E1F /* SSAppDelegate.m in Sources */,
+				29B9E1CB1472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		29B9E1C01472C1D700DB2E1F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B9E1C11472C1D700DB2E1F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		29B9E1CC1472C1D700DB2E1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		29B9E1CD1472C1D700DB2E1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		29B9E1CF1472C1D700DB2E1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShiftScheduler/ShiftScheduler-Prefix.pch";
+				INFOPLIST_FILE = "ShiftScheduler/ShiftScheduler-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		29B9E1D01472C1D700DB2E1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShiftScheduler/ShiftScheduler-Prefix.pch";
+				INFOPLIST_FILE = "ShiftScheduler/ShiftScheduler-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		29B9E1AB1472C1D700DB2E1F /* Build configuration list for PBXProject "ShiftScheduler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29B9E1CC1472C1D700DB2E1F /* Debug */,
+				29B9E1CD1472C1D700DB2E1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29B9E1CE1472C1D700DB2E1F /* Build configuration list for PBXNativeTarget "ShiftScheduler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29B9E1CF1472C1D700DB2E1F /* Debug */,
+				29B9E1D01472C1D700DB2E1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				29B9E1CA1472C1D700DB2E1F /* ShiftScheduler.xcdatamodel */,
+			);
+			currentVersion = 29B9E1CA1472C1D700DB2E1F /* ShiftScheduler.xcdatamodel */;
+			path = ShiftScheduler.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 29B9E1A81472C1D700DB2E1F /* Project object */;
+}
