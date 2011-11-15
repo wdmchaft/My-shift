@@ -7,6 +7,8 @@
 //
 
 #import "SSAppDelegate.h"
+#import "WorkdayDataSource.h"
+#import "Kal.h"
 
 @implementation SSAppDelegate
 
@@ -15,8 +17,19 @@
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
+// --
+@synthesize profileView;
+@synthesize navController;
+@synthesize tabBarVC;
+
+
 - (void)dealloc
 {
+    [kal release];
+    [dataSource release];
+    [navController release];
+    [profileView release];
+
     [_window release];
     [__managedObjectContext release];
     [__managedObjectModel release];
@@ -26,13 +39,81 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    /*
+     *    Kal Initialization
+     *
+     * When the calendar is first displayed to the user, Kal will automatically select today's date.
+     * If your application requires an arbitrary starting date, use -[KalViewController initWithSelectedDate:]
+     * instead of -[KalViewController init].
+     */
+    kal = [[KalViewController alloc] init];
+    kal.title = NSLocalizedString(@"Job Scheduer", "application title");
+    
+    kal.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] 
+                                              initWithTitle:NSLocalizedString (@"Today", "today") 
+                                              style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectToday)] autorelease];
+    
+    
+//    kal.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle: @"Profile" style:
+//                                             UIBarButtonItemStyleBordered target:self
+//                                                                            action:@selector(showAddOrChangeProfile)] autorelease];
+    
+
+    NSString *identifier = [[NSLocale currentLocale] localeIdentifier];
+    NSString *displayName = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:identifier];
+    NSLog(@"%@ %@", identifier, displayName);
+    
+    kal.delegate = self;
+    WorkdayDataSource *wds = [[WorkdayDataSource alloc] initWithManagedContext:self.managedObjectContext];
+    dataSource  = wds;
+    kal.dataSource = dataSource;
+    
+    self.profileView = [[ProfilesViewController alloc] initWithManagedContext:self.managedObjectContext];
+
+    // Setup the navigation stack and display it.
+    navController = [[UINavigationController alloc] initWithRootViewController:kal];
+    self.navController = navController;
+    [kal release];
+    
+    [self.tabBarVC = [UITabBarController alloc] initWithNibName:@"tabbarVC" bundle:nil];
+    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:self.profileView];
+    self.tabBarVC.viewControllers = [NSArray arrayWithObjects:navController, navController2, nil];
+    
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    [self.window addSubview:tabBarVC.view];
+    [self.window makeKeyAndVisible];
+    // Override point for customization after application launch.
+    [self.window makeKeyAndVisible];
+    
+  /*
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
+*/  
     return YES;
 }
+
+- (void)showAddOrChangeProfile
+{
+    [self.navController pushViewController:self.profileView animated:YES];   
+}
+
+// Action handler for the navigation bar's right bar button item.
+- (void)showAndSelectToday
+{
+    [kal showAndSelectDate:[NSDate date]];
+}
+
+#pragma mark UITableViewDelegate protocol conformance
+
+// Display a details screen for the selected holiday/row.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

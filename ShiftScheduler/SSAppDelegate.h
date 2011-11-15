@@ -7,14 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProfilesViewController.h"
+#import "KalViewController.h"
 
-@interface SSAppDelegate : UIResponder <UIApplicationDelegate>
+
+@interface SSAppDelegate : UIResponder <UIApplicationDelegate, UITableViewDelegate>
+{
+    UINavigationController *navController;
+    KalViewController *kal;
+    ProfilesViewController *profileView;
+    UITabBarController *tabBarVC;
+
+    id dataSource;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+
+// --
+@property (strong) UINavigationController *navController;				@property (nonatomic, strong)       UITabBarController *tabBarVC;
+@property (nonatomic, retain) ProfilesViewController *profileView;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

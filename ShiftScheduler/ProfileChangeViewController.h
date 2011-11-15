@@ -28,8 +28,8 @@
      UIDatePicker *datePicker;
      UIPickerView *picker;
     NSArray *itemsArray;
-    UIBarButtonItem *cancelButton;
     UIBarButtonItem *saveButton;
+    UIBarButtonItem *cancelButton;
     NSDateFormatter *dateFormatter;
     NSManagedObjectContext *managedObjectContext;
     id<ProfileViewDelegate> profileDelegate;
@@ -40,8 +40,8 @@
 @property (nonatomic, retain) IBOutlet UIPickerView *picker;
 @property (nonatomic, retain) NSArray *itemsArray;
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
-@property (nonatomic, retain) UIBarButtonItem *cancelButton;
-@property (nonatomic, retain) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) UIBarButtonItem *cancelButton;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (retain) NSManagedObjectContext *managedObjectContext;
 @property (assign, nonatomic)    id<ProfileViewDelegate> profileDelegate;
 

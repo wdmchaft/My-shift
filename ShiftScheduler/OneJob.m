@@ -79,7 +79,7 @@
                          lengthOfArray: (int) lengthOfArray
                               withName:(NSString *)name
 {
-    [self init];
+    self = [self init];
 
     self.jobName = name;
     self.jobOnDays = [NSNumber numberWithInt:workdaylength];
