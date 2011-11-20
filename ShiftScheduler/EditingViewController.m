@@ -52,7 +52,7 @@
 - (IBAction)save {
 
     if (textField.text.length == 0 || [textField.text compare:@""] == NSOrderedSame ) {
-        [[[[UIAlertView alloc] initWithTitle:@"Error" message:NSLocalizedString(@"Please Input Name", "empty name is not allow in profile view") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", "OK") otherButtonTitles:nil, nil] autorelease] show];
+        [[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", Nil) message:NSLocalizedString(@"Please Input Name", "empty name is not allow in profile view") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", "OK") otherButtonTitles:nil, nil] autorelease] show];
         return;
     }
 	

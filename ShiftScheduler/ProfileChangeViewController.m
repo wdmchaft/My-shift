@@ -186,7 +186,7 @@
     NSString *item = [self.itemsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = item;
     if ([item isEqualToString:NAME_ITEM_STRING]) {
-        if (self.viewMode == PCVC_EDITING_MODE) {
+        if (self.viewMode == PCVC_EDITING_MODE && self.theJob.jobName == @"") {
             cell.detailTextLabel.text = @"No Name";
         } else
             cell.detailTextLabel.text = self.theJob.jobName;
@@ -230,7 +230,8 @@
     if (self.viewMode == PCVC_ADDING_MODE)
         return NO;
 
-    return YES;
+   // return YES;
+    return NO;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -241,7 +242,7 @@
 
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleInsert | UITableViewCellEditingStyleDelete;
+    return UITableViewCellEditingStyleNone;
 }
 
 
