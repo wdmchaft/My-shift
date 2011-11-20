@@ -29,6 +29,11 @@
 		29B9E2071472C95800DB2E1F /* libKal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E2061472C94C00DB2E1F /* libKal.a */; };
 		29B9E2181472D21000DB2E1F /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E2171472D21000DB2E1F /* NSDateAdditions.m */; };
 		29B9E21B1472D6FE00DB2E1F /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */; };
+		29E128C41476C861008DDB53 /* calendar-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C11476C861008DDB53 /* calendar-2.png */; };
+		29E128C51476C861008DDB53 /* calendar-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C21476C861008DDB53 /* calendar-1.png */; };
+		29E128C61476C861008DDB53 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C31476C861008DDB53 /* calendar.png */; };
+		29E128C81476CB53008DDB53 /* calendar-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C71476CB53008DDB53 /* calendar-57x57.png */; };
+		29E128CA1476CBCA008DDB53 /* calendar-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C91476CBC9008DDB53 /* calendar-114x114.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +90,13 @@
 		29B9E2171472D21000DB2E1F /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDateAdditions.m; path = ../../Kal/src/NSDateAdditions.m; sourceTree = "<group>"; };
 		29B9E2191472D6FD00DB2E1F /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewAdditions.h; path = ../../Kal/src/UIViewAdditions.h; sourceTree = "<group>"; };
 		29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewAdditions.m; path = ../../Kal/src/UIViewAdditions.m; sourceTree = "<group>"; };
+		29E128C11476C861008DDB53 /* calendar-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-2.png"; path = "ShiftScheduler/calendar-2.png"; sourceTree = "<group>"; };
+		29E128C21476C861008DDB53 /* calendar-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-1.png"; path = "ShiftScheduler/calendar-1.png"; sourceTree = "<group>"; };
+		29E128C31476C861008DDB53 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calendar.png; path = ShiftScheduler/calendar.png; sourceTree = "<group>"; };
+		29E128C71476CB53008DDB53 /* calendar-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-57x57.png"; sourceTree = "<group>"; };
+		29E128C91476CBC9008DDB53 /* calendar-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-114x114.png"; sourceTree = "<group>"; };
+		29E128CB1476D408008DDB53 /* KalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KalViewController.h; path = ../../Kal/src/KalViewController.h; sourceTree = "<group>"; };
+		29E128CC1476D431008DDB53 /* Kal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kal.h; path = ../../Kal/src/Kal.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +118,13 @@
 		29B9E1A61472C1D700DB2E1F = {
 			isa = PBXGroup;
 			children = (
+				29E128CB1476D408008DDB53 /* KalViewController.h */,
+				29E128CC1476D431008DDB53 /* Kal.h */,
+				29E128C91476CBC9008DDB53 /* calendar-114x114.png */,
+				29E128C71476CB53008DDB53 /* calendar-57x57.png */,
+				29E128C11476C861008DDB53 /* calendar-2.png */,
+				29E128C21476C861008DDB53 /* calendar-1.png */,
+				29E128C31476C861008DDB53 /* calendar.png */,
 				29B9E2161472D21000DB2E1F /* NSDateAdditions.h */,
 				29B9E2191472D6FD00DB2E1F /* UIViewAdditions.h */,
 				29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */,
@@ -185,6 +204,16 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		29E128CD1476DA7F008DDB53 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		29B9E1B01472C1D700DB2E1F /* ShiftScheduler */ = {
 			isa = PBXNativeTarget;
@@ -193,6 +222,7 @@
 				29B9E1AE1472C1D700DB2E1F /* Frameworks */,
 				29B9E1AD1472C1D700DB2E1F /* Sources */,
 				29B9E1AF1472C1D700DB2E1F /* Resources */,
+				29E128CD1476DA7F008DDB53 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -257,6 +287,11 @@
 				29B9E1E81472C39F00DB2E1F /* EditingView.xib in Resources */,
 				29B9E1EE1472C39F00DB2E1F /* ProfileChangeViewController.xib in Resources */,
 				29B9E1F01472C39F00DB2E1F /* tabBarVC.xib in Resources */,
+				29E128C41476C861008DDB53 /* calendar-2.png in Resources */,
+				29E128C51476C861008DDB53 /* calendar-1.png in Resources */,
+				29E128C61476C861008DDB53 /* calendar.png in Resources */,
+				29E128C81476CB53008DDB53 /* calendar-57x57.png in Resources */,
+				29E128CA1476CBCA008DDB53 /* calendar-114x114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +353,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -333,7 +369,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -343,7 +381,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -352,7 +391,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -366,6 +408,7 @@
 				INFOPLIST_FILE = "ShiftScheduler/ShiftScheduler-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
@@ -380,6 +423,7 @@
 				INFOPLIST_FILE = "ShiftScheduler/ShiftScheduler-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
@@ -406,6 +450,7 @@
 				29B9E1D01472C1D700DB2E1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
