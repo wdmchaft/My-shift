@@ -339,7 +339,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    id t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
+    id t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
     if ([t isKindOfClass:[OneJob class]]) {
         OneJob *j = t;
         cell.textLabel.text = j.jobName;
