@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "OneJob.h"
-#import "EditingViewController.h"
 #import "ProfilesViewController.h"
 
 #define PCVC_EDITING_MODE 0
@@ -21,11 +20,13 @@
 #define PICKER_VIEW_ON 1
 #define PICKER_VIEW_OFF 2
 
-@interface ProfileChangeViewController : UITableViewController  <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface ProfileChangeViewController : UITableViewController  <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 {
     int viewMode;
     int lastChoosePicker;
      UIDatePicker *datePicker;
+    UITextField *nameField;
+    UILabel *nameLable;
      UIPickerView *picker;
     NSArray *itemsArray;
     UIBarButtonItem *saveButton;
@@ -43,6 +44,7 @@
 @property (nonatomic, strong) UIBarButtonItem *cancelButton;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) UITextField *nameField;
 @property (assign, nonatomic)    id<ProfileViewDelegate> profileDelegate;
 
 @property int viewMode;

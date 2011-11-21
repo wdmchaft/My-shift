@@ -53,6 +53,7 @@
     NSError *error = 0;
     self.fetchedRequestController = frc;
     [self.fetchedRequestController performFetch:&error];
+    [frc release];
     if (error)
         NSLog(@"fetch request error:%@", error.userInfo);
     self.fetchedRequestController.delegate = self;

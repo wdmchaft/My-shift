@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		299D8D1A147968E400E20DAE /* NameEditingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 299D8D18147968E300E20DAE /* NameEditingCell.h */; };
+		299D8D1B147968E400E20DAE /* NameEditingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 299D8D19147968E400E20DAE /* NameEditingCell.m */; };
 		29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
 		29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
 		29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */; };
@@ -16,8 +18,6 @@
 		29B9E1C81472C1D700DB2E1F /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */; };
 		29B9E1CB1472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */; };
 		29B9E1D41472C2B000DB2E1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1D61472C2B000DB2E1F /* Localizable.strings */; };
-		29B9E1E81472C39F00DB2E1F /* EditingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1D81472C39E00DB2E1F /* EditingView.xib */; };
-		29B9E1E91472C39F00DB2E1F /* EditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1DA1472C39E00DB2E1F /* EditingViewController.m */; };
 		29B9E1EA1472C39F00DB2E1F /* NSDate+JobInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1DC1472C39F00DB2E1F /* NSDate+JobInfo.m */; };
 		29B9E1EB1472C39F00DB2E1F /* OneJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1DE1472C39F00DB2E1F /* OneJob.m */; };
 		29B9E1ED1472C39F00DB2E1F /* ProfileChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */; };
@@ -54,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		299D8D18147968E300E20DAE /* NameEditingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameEditingCell.h; sourceTree = "<group>"; };
+		299D8D19147968E400E20DAE /* NameEditingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameEditingCell.m; sourceTree = "<group>"; };
 		29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B9E1B51472C1D700DB2E1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B9E1B71472C1D700DB2E1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,9 +71,6 @@
 		29B9E1D31472C2A800DB2E1F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		29B9E1D51472C2B000DB2E1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29B9E1D71472C2B600DB2E1F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		29B9E1D81472C39E00DB2E1F /* EditingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditingView.xib; sourceTree = "<group>"; };
-		29B9E1D91472C39E00DB2E1F /* EditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingViewController.h; sourceTree = "<group>"; };
-		29B9E1DA1472C39E00DB2E1F /* EditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingViewController.m; sourceTree = "<group>"; };
 		29B9E1DB1472C39E00DB2E1F /* NSDate+JobInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+JobInfo.h"; sourceTree = "<group>"; };
 		29B9E1DC1472C39F00DB2E1F /* NSDate+JobInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+JobInfo.m"; sourceTree = "<group>"; };
 		29B9E1DD1472C39F00DB2E1F /* OneJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneJob.h; sourceTree = "<group>"; };
@@ -90,11 +89,11 @@
 		29B9E2171472D21000DB2E1F /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDateAdditions.m; path = ../../Kal/src/NSDateAdditions.m; sourceTree = "<group>"; };
 		29B9E2191472D6FD00DB2E1F /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewAdditions.h; path = ../../Kal/src/UIViewAdditions.h; sourceTree = "<group>"; };
 		29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewAdditions.m; path = ../../Kal/src/UIViewAdditions.m; sourceTree = "<group>"; };
-		29E128C11476C861008DDB53 /* calendar-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-2.png"; path = "ShiftScheduler/calendar-2.png"; sourceTree = "<group>"; };
-		29E128C21476C861008DDB53 /* calendar-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-1.png"; path = "ShiftScheduler/calendar-1.png"; sourceTree = "<group>"; };
-		29E128C31476C861008DDB53 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calendar.png; path = ShiftScheduler/calendar.png; sourceTree = "<group>"; };
-		29E128C71476CB53008DDB53 /* calendar-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-57x57.png"; sourceTree = "<group>"; };
-		29E128C91476CBC9008DDB53 /* calendar-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-114x114.png"; sourceTree = "<group>"; };
+		29E128C11476C861008DDB53 /* calendar-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-2.png"; sourceTree = "<group>"; };
+		29E128C21476C861008DDB53 /* calendar-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-1.png"; sourceTree = "<group>"; };
+		29E128C31476C861008DDB53 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
+		29E128C71476CB53008DDB53 /* calendar-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-57x57.png"; path = "../calendar-57x57.png"; sourceTree = "<group>"; };
+		29E128C91476CBC9008DDB53 /* calendar-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-114x114.png"; path = "../calendar-114x114.png"; sourceTree = "<group>"; };
 		29E128CB1476D408008DDB53 /* KalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KalViewController.h; path = ../../Kal/src/KalViewController.h; sourceTree = "<group>"; };
 		29E128CC1476D431008DDB53 /* Kal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kal.h; path = ../../Kal/src/Kal.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,16 +114,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		299D8D0D147948B900E20DAE /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				29B9E1E01472C39F00DB2E1F /* ProfileChangeViewController.h */,
+				29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */,
+				299D8D18147968E300E20DAE /* NameEditingCell.h */,
+				299D8D19147968E400E20DAE /* NameEditingCell.m */,
+				29B9E1E21472C39F00DB2E1F /* ProfileChangeViewController.xib */,
+				29B9E1E31472C39F00DB2E1F /* ProfilesViewController.h */,
+				29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */,
+			);
+			name = ProfileView;
+			sourceTree = "<group>";
+		};
 		29B9E1A61472C1D700DB2E1F = {
 			isa = PBXGroup;
 			children = (
 				29E128CB1476D408008DDB53 /* KalViewController.h */,
 				29E128CC1476D431008DDB53 /* Kal.h */,
-				29E128C91476CBC9008DDB53 /* calendar-114x114.png */,
-				29E128C71476CB53008DDB53 /* calendar-57x57.png */,
-				29E128C11476C861008DDB53 /* calendar-2.png */,
-				29E128C21476C861008DDB53 /* calendar-1.png */,
-				29E128C31476C861008DDB53 /* calendar.png */,
 				29B9E2161472D21000DB2E1F /* NSDateAdditions.h */,
 				29B9E2191472D6FD00DB2E1F /* UIViewAdditions.h */,
 				29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */,
@@ -159,20 +167,13 @@
 		29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				299D8D0D147948B900E20DAE /* ProfileView */,
 				29B9E1C61472C1D700DB2E1F /* SSAppDelegate.h */,
 				29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */,
-				29B9E1D81472C39E00DB2E1F /* EditingView.xib */,
-				29B9E1D91472C39E00DB2E1F /* EditingViewController.h */,
-				29B9E1DA1472C39E00DB2E1F /* EditingViewController.m */,
 				29B9E1DB1472C39E00DB2E1F /* NSDate+JobInfo.h */,
 				29B9E1DC1472C39F00DB2E1F /* NSDate+JobInfo.m */,
 				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
 				29B9E1DE1472C39F00DB2E1F /* OneJob.m */,
-				29B9E1E01472C39F00DB2E1F /* ProfileChangeViewController.h */,
-				29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */,
-				29B9E1E21472C39F00DB2E1F /* ProfileChangeViewController.xib */,
-				29B9E1E31472C39F00DB2E1F /* ProfilesViewController.h */,
-				29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */,
 				29B9E1E51472C39F00DB2E1F /* tabBarVC.xib */,
 				29B9E1E61472C39F00DB2E1F /* WorkdayDataSource.h */,
 				29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */,
@@ -185,6 +186,11 @@
 		29B9E1BE1472C1D700DB2E1F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				29E128C91476CBC9008DDB53 /* calendar-114x114.png */,
+				29E128C71476CB53008DDB53 /* calendar-57x57.png */,
+				29E128C11476C861008DDB53 /* calendar-2.png */,
+				29E128C21476C861008DDB53 /* calendar-1.png */,
+				29E128C31476C861008DDB53 /* calendar.png */,
 				29B9E1D61472C2B000DB2E1F /* Localizable.strings */,
 				29B9E1BF1472C1D700DB2E1F /* ShiftScheduler-Info.plist */,
 				29B9E1C01472C1D700DB2E1F /* InfoPlist.strings */,
@@ -209,6 +215,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				299D8D1A147968E400E20DAE /* NameEditingCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +291,6 @@
 				29B9E1FB1472C72000DB2E1F /* Kal.bundle in Resources */,
 				29B9E1C21472C1D700DB2E1F /* InfoPlist.strings in Resources */,
 				29B9E1D41472C2B000DB2E1F /* Localizable.strings in Resources */,
-				29B9E1E81472C39F00DB2E1F /* EditingView.xib in Resources */,
 				29B9E1EE1472C39F00DB2E1F /* ProfileChangeViewController.xib in Resources */,
 				29B9E1F01472C39F00DB2E1F /* tabBarVC.xib in Resources */,
 				29E128C41476C861008DDB53 /* calendar-2.png in Resources */,
@@ -305,7 +311,6 @@
 				29B9E1C41472C1D700DB2E1F /* main.m in Sources */,
 				29B9E1C81472C1D700DB2E1F /* SSAppDelegate.m in Sources */,
 				29B9E1CB1472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld in Sources */,
-				29B9E1E91472C39F00DB2E1F /* EditingViewController.m in Sources */,
 				29B9E1EA1472C39F00DB2E1F /* NSDate+JobInfo.m in Sources */,
 				29B9E1EB1472C39F00DB2E1F /* OneJob.m in Sources */,
 				29B9E1ED1472C39F00DB2E1F /* ProfileChangeViewController.m in Sources */,
@@ -313,6 +318,7 @@
 				29B9E1F11472C39F00DB2E1F /* WorkdayDataSource.m in Sources */,
 				29B9E2181472D21000DB2E1F /* NSDateAdditions.m in Sources */,
 				29B9E21B1472D6FE00DB2E1F /* UIViewAdditions.m in Sources */,
+				299D8D1B147968E400E20DAE /* NameEditingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

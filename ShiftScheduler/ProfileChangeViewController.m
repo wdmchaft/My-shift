@@ -14,6 +14,7 @@
 @synthesize itemsArray, saveButton, dateFormatter, cancelButton;
 @synthesize theJob, viewMode;
 @synthesize managedObjectContext, profileDelegate;
+@synthesize  nameField;
 
 
 #pragma mark - "init values"
@@ -69,6 +70,51 @@
     return dateFormatter;
 }
 
+#define kTextFieldWidth	200.0
+// for general screen
+#define kLeftMargin             90.0
+#define kTopMargin				20.0
+#define kRightMargin			20.0
+#define kTweenMargin			10.0
+
+#define kTextFieldHeight		30.0
+#define kViewTag 1
+- (UITextField *)nameField
+{
+	if (nameField == nil)
+	{
+		CGRect frame = CGRectMake(kLeftMargin, 8.0, kTextFieldWidth, kTextFieldHeight);
+		nameField = [[UITextField alloc] initWithFrame:frame];
+		nameField.textColor = [UIColor blackColor];
+		nameField.placeholder = NSLocalizedString(@"Name of Job", nil);
+		nameField.autocorrectionType = UITextAutocorrectionTypeNo;	// no auto correction support
+		
+		nameField.keyboardType = UIKeyboardTypeDefault;	// use the default type input method (entire keyboard)
+		nameField.returnKeyType = UIReturnKeyDone;
+		nameField.borderStyle = UITextBorderStyleNone;
+		nameField.clearButtonMode = UITextFieldViewModeWhileEditing;	// has a clear 'x' button to the right
+		
+		nameField.tag = kViewTag;		// tag this control so we can remove it later for recycled cells
+		
+		nameField.delegate = self;	// let us be the delegate so we know when the keyboard's "Done" button is pressed
+		
+		// Add an accessibility label that describes what the text field is for.
+	}	
+	return nameField;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)sender
+{
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.theJob.jobName = textField.text;
+}
+
+
+
 - (void) dealloc 
 {
     [itemsArray release];
@@ -109,7 +155,8 @@
     if (self.viewMode == PCVC_ADDING_MODE) {
         self.navigationItem.rightBarButtonItem = self.saveButton;
     } else {
-        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+        // not support profile editing yet!
+//        self.navigationItem.rightBarButtonItem = self.editButtonItem;
     }
     
     self.navigationItem.leftBarButtonItem = self.cancelButton;
@@ -186,9 +233,12 @@
     NSString *item = [self.itemsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = item;
     if ([item isEqualToString:NAME_ITEM_STRING]) {
-        if (self.viewMode == PCVC_EDITING_MODE && self.theJob.jobName == @"") {
-            cell.detailTextLabel.text = @"No Name";
-        } else
+        if (self.viewMode == PCVC_ADDING_MODE) {
+            nameField.delegate = self;
+            nameLable.text = NSLocalizedString(@"Job Name", nil);
+//            [cell.contentView addSubview:nameLable];
+            [cell.contentView addSubview:self.nameField];
+        }
             cell.detailTextLabel.text = self.theJob.jobName;
    
     
@@ -256,16 +306,15 @@
 {
     
     UITableViewCell *targetCell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    if (indexPath.row == 0) {
-        EditingViewController *evc = [[EditingViewController alloc]initWithNibName:@"EditingView" bundle:nil];
-        evc.editedFieldKey = @"jobName";
-        evc.editedObject = self.theJob;
-        evc.editedFieldName = NSLocalizedString(@"title", @"name of the job");
-        evc.editingDate = NO;
-        [self.navigationController pushViewController:evc animated:YES];
-        [evc release];
+
+    if ([self.nameField isFirstResponder]) { // release, in case other need ui.
+        [self.nameField resignFirstResponder];
     }
+            
+    if (indexPath.row == 0) {
+        [self.nameField becomeFirstResponder];
+    }
+    
     
     if (indexPath.row == PICKER_VIEW_ON || indexPath.row == PICKER_VIEW_OFF) {
         lastChoosePicker = indexPath.row;
