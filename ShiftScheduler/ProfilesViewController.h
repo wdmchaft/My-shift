@@ -11,9 +11,14 @@
 #import "OneJob.h"
 
 @class ProfileChangeViewController;
+
 @protocol ProfileViewDelegate
 - (void) didChangeProfile:(ProfileChangeViewController *) addController
         didFinishWithSave:(BOOL) finishWithSave;
+@end
+
+@protocol ProfileEditFinishDelegate
+- (void) didFinishEditingSetting;
 @end
 
 
@@ -24,12 +29,16 @@
 	NSFetchedResultsController *fetchedResultsController;
 	UIBarButtonItem *addButton;
 	UIBarButtonItem *oldLeftItem;
+    id <ProfileEditFinishDelegate> parentViewDelegate;
 }
 
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (retain, nonatomic) NSManagedObjectContext *addingManagedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController
 *fetchedResultsController;
+
+@property (retain, nonatomic)     id <ProfileEditFinishDelegate> parentViewDelegate;
+
 
 - (id)initWithManagedContext:(NSManagedObjectContext *)context;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath ;

@@ -15,6 +15,7 @@
 @implementation ProfilesViewController
 
 @synthesize managedObjectContext, addingManagedObjectContext, fetchedResultsController;
+@synthesize parentViewDelegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -48,6 +49,12 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void) returnToHome
+{
+    [self.parentViewDelegate didFinishEditingSetting];
+}
+
+
 - (IBAction)insertNewProfile:(id) sender
 {
     ProfileChangeViewController *addViewController = [[ProfileChangeViewController alloc] initWithNibName:@"ProfileChangeViewController" bundle:nil];
@@ -70,8 +77,6 @@
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addViewController];
     [self.navigationController presentModalViewController:navController animated:YES];
-//    [self.navigationController pushViewController:addViewController animated:YES];
-//    [self.navigationController presentModalViewController:navController animated:YES];
     
 	[addViewController release];
 	[navController release];
@@ -180,8 +185,13 @@
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewProfile:)];
     addButton = [button retain];
 
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.leftBarButtonItem = addButton;
+//    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+//    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:addButton,
+//                                              self.editButtonItem, nil];
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:addButton,nil];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Home", @"return to home in profile view") style:UIBarButtonItemStylePlain target:self action:@selector(returnToHome)];
     
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
@@ -388,4 +398,7 @@
 }
 
 
+
 @end
+
+

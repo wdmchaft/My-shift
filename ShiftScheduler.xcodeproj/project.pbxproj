@@ -23,7 +23,6 @@
 		29B9E1ED1472C39F00DB2E1F /* ProfileChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */; };
 		29B9E1EE1472C39F00DB2E1F /* ProfileChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1E21472C39F00DB2E1F /* ProfileChangeViewController.xib */; };
 		29B9E1EF1472C39F00DB2E1F /* ProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */; };
-		29B9E1F01472C39F00DB2E1F /* tabBarVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1E51472C39F00DB2E1F /* tabBarVC.xib */; };
 		29B9E1F11472C39F00DB2E1F /* WorkdayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */; };
 		29B9E1FB1472C72000DB2E1F /* Kal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1FA1472C72000DB2E1F /* Kal.bundle */; };
 		29B9E2071472C95800DB2E1F /* libKal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E2061472C94C00DB2E1F /* libKal.a */; };
@@ -80,7 +79,6 @@
 		29B9E1E21472C39F00DB2E1F /* ProfileChangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileChangeViewController.xib; sourceTree = "<group>"; };
 		29B9E1E31472C39F00DB2E1F /* ProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilesViewController.h; sourceTree = "<group>"; };
 		29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesViewController.m; sourceTree = "<group>"; };
-		29B9E1E51472C39F00DB2E1F /* tabBarVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tabBarVC.xib; sourceTree = "<group>"; };
 		29B9E1E61472C39F00DB2E1F /* WorkdayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkdayDataSource.h; sourceTree = "<group>"; };
 		29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkdayDataSource.m; sourceTree = "<group>"; };
 		29B9E1FA1472C72000DB2E1F /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Kal.bundle; path = ../../Kal/src/Kal.bundle; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				29B9E1DC1472C39F00DB2E1F /* NSDate+JobInfo.m */,
 				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
 				29B9E1DE1472C39F00DB2E1F /* OneJob.m */,
-				29B9E1E51472C39F00DB2E1F /* tabBarVC.xib */,
 				29B9E1E61472C39F00DB2E1F /* WorkdayDataSource.h */,
 				29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */,
 				29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */,
@@ -292,7 +289,6 @@
 				29B9E1C21472C1D700DB2E1F /* InfoPlist.strings in Resources */,
 				29B9E1D41472C2B000DB2E1F /* Localizable.strings in Resources */,
 				29B9E1EE1472C39F00DB2E1F /* ProfileChangeViewController.xib in Resources */,
-				29B9E1F01472C39F00DB2E1F /* tabBarVC.xib in Resources */,
 				29E128C41476C861008DDB53 /* calendar-2.png in Resources */,
 				29E128C51476C861008DDB53 /* calendar-1.png in Resources */,
 				29E128C61476C861008DDB53 /* calendar.png in Resources */,

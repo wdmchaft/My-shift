@@ -11,9 +11,12 @@
 #import "KalViewController.h"
 
 
-@interface SSAppDelegate : UIResponder <UIApplicationDelegate, UITableViewDelegate>
+@interface SSAppDelegate : UIResponder <UIApplicationDelegate, 
+UITableViewDelegate, 
+ProfileEditFinishDelegate>
 {
     UINavigationController *navController;
+    UINavigationController *profileNVC;
     KalViewController *kal;
     ProfilesViewController *profileView;
     UITabBarController *tabBarVC;
@@ -29,10 +32,12 @@
 
 
 // --
-@property (strong) UINavigationController *navController;				@property (nonatomic, strong)       UITabBarController *tabBarVC;
+@property (strong) UINavigationController *navController;				
 @property (nonatomic, retain) ProfilesViewController *profileView;
+@property (nonatomic, retain) UINavigationController *profileNVC;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void) didFinishEditingSetting;
 
 @end

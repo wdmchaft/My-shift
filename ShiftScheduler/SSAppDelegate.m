@@ -20,7 +20,7 @@
 // --
 @synthesize profileView;
 @synthesize navController;
-@synthesize tabBarVC;
+@synthesize profileNVC;
 
 
 - (void)dealloc
@@ -70,40 +70,45 @@
     kal.dataSource = dataSource;
     
     self.profileView = [[ProfilesViewController alloc] initWithManagedContext:self.managedObjectContext];
+    self.profileView.parentViewDelegate = self;
+    
+    self.profileNVC = [[UINavigationController alloc] initWithRootViewController:self.profileView];
 
     // Setup the navigation stack and display it.
     navController = [[UINavigationController alloc] initWithRootViewController:kal];
     self.navController = navController;
+    self.navController.modalPresentationStyle = UIModalPresentationFullScreen;
+    
     [kal release];
     
-    [self.tabBarVC = [UITabBarController alloc] initWithNibName:@"tabbarVC" bundle:nil];
-    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:self.profileView];
-    self.tabBarVC.viewControllers = [NSArray arrayWithObjects:navController, navController2, nil];
+    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Setting", "") style:UIBarButtonItemStylePlain target:self action:@selector(showSettingView)];
+    
+    [kal.navigationItem setLeftBarButtonItem:settingItem];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    [self.window addSubview:tabBarVC.view];
+
+    [self.window addSubview:self.navController.view];
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
     
-  /*
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-*/  
     return YES;
 }
 
-- (void)showAddOrChangeProfile
+- (void)showSettingView
 {
-    [self.navController pushViewController:self.profileView animated:YES];   
+    [self.navController presentModalViewController:self.profileNVC animated:YES];
 }
 
 // Action handler for the navigation bar's right bar button item.
 - (void)showAndSelectToday
 {
     [kal showAndSelectDate:[NSDate date]];
+}
+
+- (void) didFinishEditingSetting
+{
+    [self.navController dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark UITableViewDelegate protocol conformance
