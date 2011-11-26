@@ -16,16 +16,16 @@
     
 @private
 }
-@property (nonatomic, retain) NSString * jobName;       // the job's name
-@property (nonatomic, retain) NSString * jobDescription; //the detail describe of this job
-@property (nonatomic, retain) NSNumber * jobOnDays; // how long works once
-@property (nonatomic, retain) NSNumber * jobOffDays; // how long rest once.
-@property (nonatomic, retain) NSDate * jobStartDate;
-@property (nonatomic, retain) NSDate * jobFinishDate;
-@property (nonatomic, retain) NSData * jobGeneratedData;
-@property (nonatomic, retain) NSArray * workdays;
+@property (nonatomic, strong) NSString * jobName;       // the job's name
+@property (nonatomic, strong) NSString * jobDescription; //the detail describe of this job
+@property (nonatomic, strong) NSNumber * jobOnDays; // how long works once
+@property (nonatomic, strong) NSNumber * jobOffDays; // how long rest once.
+@property (nonatomic, strong) NSDate * jobStartDate;
+@property (nonatomic, strong) NSDate * jobFinishDate;
+@property (nonatomic, strong) NSData * jobGeneratedData;
+@property (nonatomic, strong) NSArray * workdays;
 
-@property (nonatomic, retain) NSCalendar *curCalender;
+@property (nonatomic, strong) NSCalendar *curCalender;
 
 
 // init the work date generator with these input.

@@ -33,8 +33,8 @@ ProfileEditFinishDelegate>
 
 // --
 @property (strong) UINavigationController *navController;				
-@property (nonatomic, retain) ProfilesViewController *profileView;
-@property (nonatomic, retain) UINavigationController *profileNVC;
+@property (nonatomic, strong) ProfilesViewController *profileView;
+@property (nonatomic, strong) UINavigationController *profileNVC;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

@@ -20,8 +20,8 @@
     id<KalDataSourceCallbacks> callback;
 }
 
-@property (retain, nonatomic) NSArray *theJobNameArray;
-@property (nonatomic, retain) NSFetchedResultsController
+@property (strong, nonatomic) NSArray *theJobNameArray;
+@property (nonatomic, strong) NSFetchedResultsController
 *fetchedRequestController;
 - (id) initWithManagedContext:(NSManagedObjectContext *)thecontext;
 - (NSArray *) returnArrayBetweenDate: (NSDate *)from toDate:(NSDate *)to;

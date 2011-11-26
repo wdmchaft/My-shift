@@ -33,7 +33,7 @@
     UIBarButtonItem *cancelButton;
     NSDateFormatter *dateFormatter;
     NSManagedObjectContext *managedObjectContext;
-    id<ProfileViewDelegate> profileDelegate;
+    id<ProfileViewDelegate>  __unsafe_unretained profileDelegate;
     OneJob *theJob;
 }
 

@@ -32,9 +32,9 @@
     id <ProfileEditFinishDelegate> parentViewDelegate;
 }
 
-@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (retain, nonatomic) NSManagedObjectContext *addingManagedObjectContext;
-@property (nonatomic, retain) NSFetchedResultsController
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *addingManagedObjectContext;
+@property (nonatomic, strong) NSFetchedResultsController
 *fetchedResultsController;
 
 @property (retain, nonatomic)     id <ProfileEditFinishDelegate> parentViewDelegate;

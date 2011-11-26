@@ -35,12 +35,6 @@
     return self;
 }
 
-- (void) dealloc 
-{
-    [super release];
-}
-
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -63,7 +57,6 @@
     // Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
     NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
     self.addingManagedObjectContext = addingContext;
-    [addingContext release];
     [addingManagedObjectContext setPersistentStoreCoordinator:[[self.fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
     
     addViewController.managedObjectContext = addingContext;
@@ -77,9 +70,6 @@
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addViewController];
     [self.navigationController presentModalViewController:navController animated:YES];
-    
-	[addViewController release];
-	[navController release];
 }
 
 #pragma mark -
@@ -107,7 +97,6 @@
                                        managedObjectContext:managedObjectContext
                                        sectionNameKeyPath:@"jobName" 
                                        cacheName:PROFILE_CACHE_INDIFITER];
-    [request release];
     fetchedResultsController = frc;
     return frc;
 }
@@ -183,14 +172,18 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewProfile:)];
-    addButton = [button retain];
+    addButton = button;
 
 //    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
 //    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:addButton,
 //                                              self.editButtonItem, nil];
     
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:addButton,nil];
+    if ([self.navigationItem respondsToSelector:@selector(setRightBarButtonItems:)])
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:addButton,nil]];
+    else
+        [self.navigationItem setRightBarButtonItem:addButton];
+
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Home", @"return to home in profile view") style:UIBarButtonItemStylePlain target:self action:@selector(returnToHome)];
     
     NSError *error;
@@ -200,8 +193,6 @@
 		exit(-1);  // Fail
     }
     self.fetchedResultsController.delegate = self;
-    [button release];
-
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -275,7 +266,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]; 
     }
     
     // Configure the cell...
@@ -336,7 +327,6 @@
     pcvc.theJob = [self.fetchedResultsController objectAtIndexPath:indexPath];
     pcvc.profileDelegate = self;
     [self.navigationController pushViewController:pcvc animated:YES];
-    [pcvc release];
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];

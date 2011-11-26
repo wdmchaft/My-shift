@@ -113,16 +113,6 @@
     self.theJob.jobName = textField.text;
 }
 
-
-
-- (void) dealloc 
-{
-    [itemsArray release];
-    [saveButton release];
-    [dateFormatter release];
-    [super dealloc];
-}
-
 #pragma mark - "controller start init"
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -225,7 +215,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
         cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     }
@@ -434,22 +424,22 @@
 
 - (void)saveProfile:(id) sender
 {
-//    OneJob *job = [NSEntityDescription insertNewObjectForEntityForName:@"OneJob" /inManagedObjectContext:self.managedObjectContext];
-//    job.jobName = self.theJob.jobName;
-//    job.jobOffDays = self.theJob.jobOffDays;
-//    job.jobOnDays = self.theJob.jobOnDays;
-//    job.jobStartDate = self.theJob.jobStartDate;
-
     if (self.theJob.jobName == nil || self.theJob.jobName.length == 0) {
-        [[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Input Job Name", "alart title in editing profile view")
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Input Job Name", "alart title in editing profile view")
 				     message:NSLocalizedString(@"Please input Job Name", "alert string in editing profile view to let user input job name")
 				    delegate:self
-			   cancelButtonTitle:NSLocalizedString(@"I Know", @"I Know") otherButtonTitles:nil, nil] autorelease] show];
+			   cancelButtonTitle:NSLocalizedString(@"I Know", @"I Know") otherButtonTitles:nil, nil] show];
         return;
     }
     NSError *error = nil;
-    if (self.theJob.jobStartDate == nil)
-        self.theJob.jobStartDate = [NSDate date];
+    if (self.theJob.jobStartDate == nil) {
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"incomplete input", "alart title start profile view")
+                                    message:NSLocalizedString(@"Please choose start date", "alert string in editing profile view let user choose start date")
+                                   delegate:self
+                          cancelButtonTitle:NSLocalizedString(@"I Know", @"I Know") otherButtonTitles:nil, nil] show];
+        return;
+    }
+        
     
     [self.profileDelegate didChangeProfile:self didFinishWithSave:YES];
     [self.managedObjectContext save:&error];

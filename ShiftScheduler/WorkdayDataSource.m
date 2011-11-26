@@ -31,8 +31,7 @@
 {
     self = [self init];
     objectContext = thecontext;
-    [objectContext retain];
-    
+
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"OneJob" 
                                               inManagedObjectContext:objectContext];
@@ -49,11 +48,9 @@
                                        managedObjectContext:objectContext
                                        sectionNameKeyPath:@"jobName" 
                                        cacheName:JOB_CACHE_INDEFITER];
-    [request release];
     NSError *error = 0;
     self.fetchedRequestController = frc;
     [self.fetchedRequestController performFetch:&error];
-    [frc release];
     if (error)
         NSLog(@"fetch request error:%@", error.userInfo);
     self.fetchedRequestController.delegate = self;
@@ -88,16 +85,7 @@
    if (error) {
         NSLog(@"get job name list failed)");
    }
-    [request release];
     return theJobNameArray;
-}
-
-- (void)dealloc
-{
-    [fetchedRequestController release];
-    [objectContext release];
-    [items release];
-    [super dealloc];
 }
 
 #pragma mark UITableViewDataSource protocol conformance
@@ -111,7 +99,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WorkCell"];
     if (!cell) {
-	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WorkCell"] autorelease];
+	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WorkCell"];
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
@@ -158,7 +146,7 @@
     for (OneJob *j in self.theJobNameArray) {
         [markedDayArray addObjectsFromArray:[j returnWorkdaysWithInStartDate:fromDate endDate:toDate]];
     }
-    return  [markedDayArray autorelease];
+    return  markedDayArray;
 }
 
 - (NSArray *) returnArrayBetweenDate: (NSDate *)from toDate:(NSDate *)to

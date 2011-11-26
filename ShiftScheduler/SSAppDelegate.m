@@ -23,20 +23,6 @@
 @synthesize profileNVC;
 
 
-- (void)dealloc
-{
-    [kal release];
-    [dataSource release];
-    [navController release];
-    [profileView release];
-
-    [_window release];
-    [__managedObjectContext release];
-    [__managedObjectModel release];
-    [__persistentStoreCoordinator release];
-    [super dealloc];
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
@@ -50,9 +36,9 @@
     kal = [[KalViewController alloc] init];
     kal.title = NSLocalizedString(@"Job Scheduer", "application title");
     
-    kal.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] 
+    kal.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] 
                                               initWithTitle:NSLocalizedString (@"Today", "today") 
-                                              style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectToday)] autorelease];
+                                              style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectToday)];
     
     
 //    kal.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle: @"Profile" style:
@@ -79,13 +65,11 @@
     self.navController = navController;
     self.navController.modalPresentationStyle = UIModalPresentationFullScreen;
     
-    [kal release];
-    
     UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Setting", "") style:UIBarButtonItemStylePlain target:self action:@selector(showSettingView)];
     
     [kal.navigationItem setLeftBarButtonItem:settingItem];
     
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     [self.window addSubview:self.navController.view];
     [self.window makeKeyAndVisible];

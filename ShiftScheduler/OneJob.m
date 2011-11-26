@@ -20,7 +20,7 @@
 }
 
 @property int dayType;
-@property (retain) NSDate *theDate;
+@property (strong) NSDate *theDate;
 @end
 
 @implementation WorkDay
@@ -46,7 +46,6 @@
 {
     if (!workdays || [workdays count] == 0) {
         workdays = [self JobDayArray];
-        [workdays retain];
     }
 
     return workdays;
@@ -55,7 +54,7 @@
 - (NSCalendar *) curCalender
 {
     if (!curCalender) {
-        curCalender = [[NSCalendar currentCalendar] retain];
+        curCalender = [NSCalendar currentCalendar];
     }
     return curCalender;
 }
@@ -90,18 +89,13 @@
     return self;
 }
 
-- (void) dealloc
-{
-    [curCalender release];
-}
-
 #define DEFAULT_ARRAY_LENGTH 365
 
 - (NSArray *) JobDayArray 
 {
     NSMutableArray *daysArray = [NSMutableArray array];
     for (int i = 0; i < DEFAULT_ARRAY_LENGTH; i++) {
-        WorkDay *the_day = [[[WorkDay alloc] init] autorelease];
+        WorkDay *the_day = [[WorkDay alloc] init];
         int t_worktype = WORKDAY_TYPE_FULL;
         //    if ((i % (workdaylength + restdayLength)) >= workdaylength)
         if (( i % ([self.jobOnDays intValue] + [self.jobOffDays intValue])) >= [self.jobOnDays intValue])
@@ -112,8 +106,7 @@
         //        the_day.theDate = [NSDate dateWithTimeInterval:i * DAY_TO_SECONDS sinceDate:thestartDate];
         the_day.theDate = [NSDate dateWithTimeInterval: i * DAY_TO_SECONDS sinceDate:self.jobStartDate];
         // hack to test function!!!
-        the_day.theDate.jobType = WORKDAY_TYPE_HALF;
-        
+//        the_day.theDate.jobType = WORKDAY_TYPE_HALF;
         [daysArray addObject:the_day];
     }
     return daysArray;

@@ -26,8 +26,9 @@
 		29B9E1F11472C39F00DB2E1F /* WorkdayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */; };
 		29B9E1FB1472C72000DB2E1F /* Kal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1FA1472C72000DB2E1F /* Kal.bundle */; };
 		29B9E2071472C95800DB2E1F /* libKal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E2061472C94C00DB2E1F /* libKal.a */; };
-		29B9E2181472D21000DB2E1F /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E2171472D21000DB2E1F /* NSDateAdditions.m */; };
 		29B9E21B1472D6FE00DB2E1F /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */; };
+		29DDDAC314808F94004DC703 /* NSDateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 29DDDAC114808F94004DC703 /* NSDateAdditions.h */; };
+		29DDDAC414808F94004DC703 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DDDAC214808F94004DC703 /* NSDateAdditions.m */; };
 		29E128C41476C861008DDB53 /* calendar-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C11476C861008DDB53 /* calendar-2.png */; };
 		29E128C51476C861008DDB53 /* calendar-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C21476C861008DDB53 /* calendar-1.png */; };
 		29E128C61476C861008DDB53 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C31476C861008DDB53 /* calendar.png */; };
@@ -83,10 +84,10 @@
 		29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkdayDataSource.m; sourceTree = "<group>"; };
 		29B9E1FA1472C72000DB2E1F /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Kal.bundle; path = ../../Kal/src/Kal.bundle; sourceTree = "<group>"; };
 		29B9E1FE1472C94C00DB2E1F /* Kal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Kal.xcodeproj; path = ../../Kal/src/Kal.xcodeproj; sourceTree = "<group>"; };
-		29B9E2161472D21000DB2E1F /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDateAdditions.h; path = ../../Kal/src/NSDateAdditions.h; sourceTree = "<group>"; };
-		29B9E2171472D21000DB2E1F /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDateAdditions.m; path = ../../Kal/src/NSDateAdditions.m; sourceTree = "<group>"; };
 		29B9E2191472D6FD00DB2E1F /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewAdditions.h; path = ../../Kal/src/UIViewAdditions.h; sourceTree = "<group>"; };
 		29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewAdditions.m; path = ../../Kal/src/UIViewAdditions.m; sourceTree = "<group>"; };
+		29DDDAC114808F94004DC703 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateAdditions.h; sourceTree = "<group>"; };
+		29DDDAC214808F94004DC703 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
 		29E128C11476C861008DDB53 /* calendar-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-2.png"; sourceTree = "<group>"; };
 		29E128C21476C861008DDB53 /* calendar-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-1.png"; sourceTree = "<group>"; };
 		29E128C31476C861008DDB53 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
@@ -112,6 +113,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		293994B5147D25D30007320C /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */,
+				29B9E1DC1472C39F00DB2E1F /* NSDate+JobInfo.m */,
+				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
+				29B9E1DE1472C39F00DB2E1F /* OneJob.m */,
+				29B9E1DB1472C39E00DB2E1F /* NSDate+JobInfo.h */,
+			);
+			name = Module;
+			sourceTree = "<group>";
+		};
 		299D8D0D147948B900E20DAE /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,10 +144,10 @@
 			children = (
 				29E128CB1476D408008DDB53 /* KalViewController.h */,
 				29E128CC1476D431008DDB53 /* Kal.h */,
-				29B9E2161472D21000DB2E1F /* NSDateAdditions.h */,
 				29B9E2191472D6FD00DB2E1F /* UIViewAdditions.h */,
 				29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */,
-				29B9E2171472D21000DB2E1F /* NSDateAdditions.m */,
+				29DDDAC114808F94004DC703 /* NSDateAdditions.h */,
+				29DDDAC214808F94004DC703 /* NSDateAdditions.m */,
 				29B9E1FE1472C94C00DB2E1F /* Kal.xcodeproj */,
 				29B9E1FA1472C72000DB2E1F /* Kal.bundle */,
 				29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */,
@@ -165,16 +178,12 @@
 		29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				293994B5147D25D30007320C /* Module */,
 				299D8D0D147948B900E20DAE /* ProfileView */,
 				29B9E1C61472C1D700DB2E1F /* SSAppDelegate.h */,
 				29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */,
-				29B9E1DB1472C39E00DB2E1F /* NSDate+JobInfo.h */,
-				29B9E1DC1472C39F00DB2E1F /* NSDate+JobInfo.m */,
-				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
-				29B9E1DE1472C39F00DB2E1F /* OneJob.m */,
 				29B9E1E61472C39F00DB2E1F /* WorkdayDataSource.h */,
 				29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */,
-				29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */,
 				29B9E1BE1472C1D700DB2E1F /* Supporting Files */,
 			);
 			path = ShiftScheduler;
@@ -213,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				299D8D1A147968E400E20DAE /* NameEditingCell.h in Headers */,
+				29DDDAC314808F94004DC703 /* NSDateAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,9 +322,9 @@
 				29B9E1ED1472C39F00DB2E1F /* ProfileChangeViewController.m in Sources */,
 				29B9E1EF1472C39F00DB2E1F /* ProfilesViewController.m in Sources */,
 				29B9E1F11472C39F00DB2E1F /* WorkdayDataSource.m in Sources */,
-				29B9E2181472D21000DB2E1F /* NSDateAdditions.m in Sources */,
 				29B9E21B1472D6FE00DB2E1F /* UIViewAdditions.m in Sources */,
 				299D8D1B147968E400E20DAE /* NameEditingCell.m in Sources */,
+				29DDDAC414808F94004DC703 /* NSDateAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +365,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -383,6 +394,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
@@ -405,6 +417,7 @@
 		29B9E1CF1472C1D700DB2E1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShiftScheduler/ShiftScheduler-Prefix.pch";
 				INFOPLIST_FILE = "ShiftScheduler/ShiftScheduler-Info.plist";
@@ -420,6 +433,7 @@
 		29B9E1D01472C1D700DB2E1F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShiftScheduler/ShiftScheduler-Prefix.pch";
 				INFOPLIST_FILE = "ShiftScheduler/ShiftScheduler-Info.plist";
