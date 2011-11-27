@@ -11,10 +11,9 @@
 
 
 @interface OneJob : NSManagedObject {
-    NSArray *workdays;
-    NSCalendar *curCalender;
+     NSCalendar *curCalender;
+    NSCalendar *timezoneCalender;
     
-@private
 }
 @property (nonatomic, strong) NSString * jobName;       // the job's name
 @property (nonatomic, strong) NSString * jobDescription; //the detail describe of this job
@@ -22,8 +21,6 @@
 @property (nonatomic, strong) NSNumber * jobOffDays; // how long rest once.
 @property (nonatomic, strong) NSDate * jobStartDate;
 @property (nonatomic, strong) NSDate * jobFinishDate;
-@property (nonatomic, strong) NSData * jobGeneratedData;
-@property (nonatomic, strong) NSArray * workdays;
 
 @property (nonatomic, strong) NSCalendar *curCalender;
 
@@ -35,12 +32,10 @@
                          lengthOfArray: (int) lengthOfArray
                               withName: (NSString *)name;
 
-// return a array with nsdata object between a range of date
 - (NSArray *) returnWorkdaysWithInStartDate:(NSDate *) startDate endDate: (NSDate *) endDate;
 - (BOOL) isDayWorkingDay:(NSDate *)theDate;
-- (void) generateJobArrayWithArray;
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
-- (NSArray *) JobDayArray;
+- (NSInteger)daysBetweenDateV2:(NSDate *)fromDateTime andDate:(NSDate *)toDateTime;
 
 
 @end
