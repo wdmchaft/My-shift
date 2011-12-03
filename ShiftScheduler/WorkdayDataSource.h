@@ -24,7 +24,6 @@
 @property (nonatomic, strong) NSFetchedResultsController
 *fetchedRequestController;
 - (id) initWithManagedContext:(NSManagedObjectContext *)thecontext;
-- (NSArray *) returnArrayBetweenDate: (NSDate *)from toDate:(NSDate *)to;
 
 
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="OneJob" representedClassName="OneJob">
+        <attribute name="jobDescription" optional="YES" attributeType="String"/>
+        <attribute name="jobFinishDate" optional="YES" attributeType="Date"/>
+        <attribute name="jobGeneratedData" optional="YES" attributeType="Binary"/>
+        <attribute name="jobName" optional="YES" attributeType="String"/>
+        <attribute name="jobOffDays" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="jobOnDays" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="jobStartDate" optional="YES" attributeType="Date"/>
+    </entity>
+    <elements>
+        <element name="OneJob" positionX="160" positionY="192" width="128" height="150"/>
+    </elements>
+</model>

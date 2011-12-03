@@ -149,31 +149,17 @@
     return  markedDayArray;
 }
 
-- (NSArray *) returnArrayBetweenDate: (NSDate *)from toDate:(NSDate *)to
-{
-    NSMutableArray *dateArray = [NSMutableArray array];
-    
-    int days = [[self.theJobNameArray lastObject] daysBetweenDate:from andDate:to];
-    
-    if (days == 0) { // from and to are same day!
-        [dateArray addObject:from];
-        return dateArray;
-    }
-    
-    NSAssert(days > 0, @"dates should > 0", nil);
-    for ( int i = 0;i < days; i++) {
-        [dateArray addObject:[NSDate dateWithTimeInterval: i * 24*60*60 sinceDate:from]];
-    }
-    return dateArray;
-}
+
 
 - (void)loadItemsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate
 {
-    NSArray *datesBetween = [self returnArrayBetweenDate:fromDate toDate:toDate];
-
-    for (NSDate *day in datesBetween) {
+    
+    NSDate *nextday;
+    for (nextday = fromDate; [nextday timeIntervalSinceDate:toDate] < 0; 
+         nextday = 
+         [nextday dateByAddingTimeInterval:24*60*60]) {
         for (OneJob *job in self.theJobNameArray) {
-            if ([job isDayWorkingDay:day]) {
+            if ([job isDayWorkingDay:nextday]) {
                 [items addObject:job];
             }
         }

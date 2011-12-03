@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		299D8D1A147968E400E20DAE /* NameEditingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 299D8D18147968E300E20DAE /* NameEditingCell.h */; };
-		299D8D1B147968E400E20DAE /* NameEditingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 299D8D19147968E400E20DAE /* NameEditingCell.m */; };
 		29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
 		29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
 		29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */; };
@@ -54,8 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		299D8D18147968E300E20DAE /* NameEditingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameEditingCell.h; sourceTree = "<group>"; };
-		299D8D19147968E400E20DAE /* NameEditingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameEditingCell.m; sourceTree = "<group>"; };
+		2900DEC11483E44E00E588EE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "/Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
+		2900DEC21483E44E00E588EE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "/Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/zh-Hant.lproj/Localizable.strings"; sourceTree = "<absolute>"; };
+		2900DEC31483EEA100E588EE /* ShiftSchedulerModelBasic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShiftSchedulerModelBasic.xcdatamodel; sourceTree = "<group>"; };
 		29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B9E1B51472C1D700DB2E1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B9E1B71472C1D700DB2E1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,8 +129,6 @@
 			children = (
 				29B9E1E01472C39F00DB2E1F /* ProfileChangeViewController.h */,
 				29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */,
-				299D8D18147968E300E20DAE /* NameEditingCell.h */,
-				299D8D19147968E400E20DAE /* NameEditingCell.m */,
 				29B9E1E21472C39F00DB2E1F /* ProfileChangeViewController.xib */,
 				29B9E1E31472C39F00DB2E1F /* ProfilesViewController.h */,
 				29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */,
@@ -221,7 +218,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				299D8D1A147968E400E20DAE /* NameEditingCell.h in Headers */,
 				29DDDAC314808F94004DC703 /* NSDateAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,7 +319,6 @@
 				29B9E1EF1472C39F00DB2E1F /* ProfilesViewController.m in Sources */,
 				29B9E1F11472C39F00DB2E1F /* WorkdayDataSource.m in Sources */,
 				29B9E21B1472D6FE00DB2E1F /* UIViewAdditions.m in Sources */,
-				299D8D1B147968E400E20DAE /* NameEditingCell.m in Sources */,
 				29DDDAC414808F94004DC703 /* NSDateAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +339,7 @@
 			children = (
 				29B9E1C11472C1D700DB2E1F /* en */,
 				29B9E1D31472C2A800DB2E1F /* zh-Hans */,
+				2900DEC11483E44E00E588EE /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -353,6 +349,7 @@
 			children = (
 				29B9E1D51472C2B000DB2E1F /* en */,
 				29B9E1D71472C2B600DB2E1F /* zh-Hans */,
+				2900DEC21483E44E00E588EE /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -474,6 +471,7 @@
 		29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				2900DEC31483EEA100E588EE /* ShiftSchedulerModelBasic.xcdatamodel */,
 				29B9E1CA1472C1D700DB2E1F /* ShiftScheduler.xcdatamodel */,
 			);
 			currentVersion = 29B9E1CA1472C1D700DB2E1F /* ShiftScheduler.xcdatamodel */;

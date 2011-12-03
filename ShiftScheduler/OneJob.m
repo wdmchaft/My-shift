@@ -81,20 +81,6 @@ static BOOL IsDateBetweenInclusive(NSDate *date, NSDate *begin, NSDate *end)
     return [date compare:begin] != NSOrderedAscending && [date compare:end] != NSOrderedDescending;
 }
 
-- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
-{
-    NSDate *fromDate;
-    NSDate *toDate;
-    
-    fromDate = [fromDateTime cc_dateByMovingToBeginningOfDayWithCalender:self.curCalender];
-    toDate = [[toDateTime cc_dateByMovingToEndOfDayWithCalender:self.curCalender] dateByAddingTimeInterval:100];
-    // Add 100 seconds to make two day more than 24 Hour. 
-    
-    NSDateComponents *difference = [self.curCalender components:NSDayCalendarUnit
-                                          fromDate:fromDate toDate:toDate options:0];
-
-    return [difference day];
-}
 
 - (NSInteger)daysBetweenDateV2:(NSDate *)fromDateTime andDate:(NSDate *)toDateTime
 {
