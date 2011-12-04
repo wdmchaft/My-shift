@@ -129,6 +129,7 @@
 				29B9E1DB1472C39E00DB2E1F /* NSDate+JobInfo.h */,
 			);
 			name = Module;
+			path = ShiftScheduler;
 			sourceTree = "<group>";
 		};
 		299D8D0D147948B900E20DAE /* ProfileView */ = {
@@ -141,11 +142,15 @@
 				29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */,
 			);
 			name = ProfileView;
+			path = ShiftScheduler;
 			sourceTree = "<group>";
 		};
 		29B9E1A61472C1D700DB2E1F = {
 			isa = PBXGroup;
 			children = (
+				29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */,
+				293994B5147D25D30007320C /* Module */,
+				299D8D0D147948B900E20DAE /* ProfileView */,
 				29E128CB1476D408008DDB53 /* KalViewController.h */,
 				29E128CC1476D431008DDB53 /* Kal.h */,
 				29B9E2191472D6FD00DB2E1F /* UIViewAdditions.h */,
@@ -154,7 +159,6 @@
 				29DDDAC214808F94004DC703 /* NSDateAdditions.m */,
 				29B9E1FE1472C94C00DB2E1F /* Kal.xcodeproj */,
 				29B9E1FA1472C72000DB2E1F /* Kal.bundle */,
-				29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */,
 				29B9E1B41472C1D700DB2E1F /* Frameworks */,
 				29B9E1B21472C1D700DB2E1F /* Products */,
 			);
@@ -182,8 +186,6 @@
 		29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */ = {
 			isa = PBXGroup;
 			children = (
-				293994B5147D25D30007320C /* Module */,
-				299D8D0D147948B900E20DAE /* ProfileView */,
 				29B9E1C61472C1D700DB2E1F /* SSAppDelegate.h */,
 				29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */,
 				29B9E1E61472C39F00DB2E1F /* WorkdayDataSource.h */,

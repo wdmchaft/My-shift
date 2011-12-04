@@ -13,6 +13,7 @@
 
 @interface SSAppDelegate : UIResponder <UIApplicationDelegate, 
 UITableViewDelegate, 
+UIActionSheetDelegate,
 ProfileEditFinishDelegate>
 {
     UINavigationController *navController;
@@ -20,12 +21,12 @@ ProfileEditFinishDelegate>
     KalViewController *kal;
     ProfilesViewController *profileView;
     UITabBarController *tabBarVC;
-
+    UIActionSheet *rightAS;
     id dataSource;
+    
 }
 
 @property (strong, nonatomic) UIWindow *window;
-
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -35,9 +36,11 @@ ProfileEditFinishDelegate>
 @property (strong) UINavigationController *navController;				
 @property (nonatomic, strong) ProfilesViewController *profileView;
 @property (nonatomic, strong) UINavigationController *profileNVC;
+@property (nonatomic, strong) UIActionSheet *rightAS;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 - (void) didFinishEditingSetting;
+- (void)showRightActionSheet;
 
 @end

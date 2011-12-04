@@ -20,8 +20,7 @@
 // --
 @synthesize profileView;
 @synthesize navController;
-@synthesize profileNVC;
-
+@synthesize profileNVC, rightAS;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -36,19 +35,9 @@
     kal = [[KalViewController alloc] init];
     kal.title = NSLocalizedString(@"Job Scheduer", "application title");
     
-    kal.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] 
+    kal.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] 
                                               initWithTitle:NSLocalizedString (@"Today", "today") 
                                               style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectToday)];
-    
-    
-//    kal.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle: @"Profile" style:
-//                                             UIBarButtonItemStyleBordered target:self
-//                                                                            action:@selector(showAddOrChangeProfile)] autorelease];
-    
-
-    NSString *identifier = [[NSLocale currentLocale] localeIdentifier];
-    NSString *displayName = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:identifier];
-    NSLog(@"%@ %@", identifier, displayName);
     
     kal.delegate = self;
     WorkdayDataSource *wds = [[WorkdayDataSource alloc] initWithManagedContext:self.managedObjectContext];
@@ -65,10 +54,18 @@
     self.navController = navController;
     self.navController.modalPresentationStyle = UIModalPresentationFullScreen;
     
-    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Setting", "") style:UIBarButtonItemStylePlain target:self action:@selector(showSettingView)];
     
-    [kal.navigationItem setLeftBarButtonItem:settingItem];
+    // Setup Action Sheet
+    self.rightAS = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"More", "more in action sheet") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "cancel") destructiveButtonTitle:nil 
+                                 otherButtonTitles:
+               NSLocalizedString(@"change shift" , "change shift"), 
+               NSLocalizedString(@"manage shift", "manage shift"),
+               NSLocalizedString(@"Setting", "setting in action shift"),
+               nil];
+    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"More", "more") style:UIBarButtonItemStylePlain target:self action:@selector(showRightActionSheet)];
     
+    [kal.navigationItem setRightBarButtonItem:settingItem];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     [self.window addSubview:self.navController.view];
@@ -79,7 +76,14 @@
     return YES;
 }
 
-- (void)showSettingView
+- (void)showRightActionSheet
+{
+    // friendly for iPAD
+    [self.rightAS showFromBarButtonItem: kal.navigationItem.rightBarButtonItem animated:YES];
+}
+
+
+- (void)showManageView
 {
     [self.navController presentModalViewController:self.profileNVC animated:YES];
 }
@@ -90,10 +94,36 @@
     [kal showAndSelectDate:[NSDate date]];
 }
 
+- (void)actionSheet:(UIAlertView *)sender clickedButtonAtIndex:(NSInteger)index
+{
+    switch (index) {
+        case 0:
+            // change shift
+            
+            break;
+        case 1:
+            // manage shift
+            [self showManageView];
+            break;
+        case 2:
+            // setting view
+            break;
+        default:
+            break;
+    }
+}
+
+
 - (void) didFinishEditingSetting
 {
     [self.navController dismissModalViewControllerAnimated:YES];
 }
+
+//#pragma mark - KalViewControllerDelegate protocol.
+//- (void) KalViewController:(KalViewController *)sender selectDate:(NSDate *)date
+//{
+//    NSLog(@"Selected Day:%@", date);
+//}
 
 #pragma mark UITableViewDelegate protocol conformance
 
@@ -114,6 +144,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    
+    [self.rightAS dismissWithClickedButtonIndex:self.rightAS.numberOfButtons - 1 animated:YES];
     /*
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.

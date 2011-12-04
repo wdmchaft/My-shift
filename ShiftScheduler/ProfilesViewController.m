@@ -29,7 +29,7 @@
 - (id)initWithManagedContext:(NSManagedObjectContext *)context
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
-    self.title = NSLocalizedString(@"Setting", "setting for profiles");
+    self.title = NSLocalizedString(@"Management Shift", "shift management view");
     self.managedObjectContext = context;
     [self.fetchedResultsController fetchRequest];
     return self;

@@ -8,15 +8,17 @@
         <attribute name="jobOffDays" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
         <attribute name="jobOnDays" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
         <attribute name="jobStartDate" optional="YES" attributeType="Date"/>
-        <relationship name="shiftdays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShiftDay" syncable="YES"/>
+        <relationship name="shiftdays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShiftDay" inverseName="whatJob" inverseEntity="ShiftDay" syncable="YES"/>
     </entity>
     <entity name="ShiftDay" representedClassName="ShiftDay" syncable="YES">
         <attribute name="otherInfo" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="shiftFromDay" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="shiftToDay" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="whatJob" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OneJob" inverseName="shiftdays" inverseEntity="OneJob" syncable="YES"/>
     </entity>
     <elements>
         <element name="OneJob" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="ShiftDay" positionX="-560" positionY="207" width="128" height="90"/>
+        <element name="ShiftDay" positionX="-560" positionY="207" width="128" height="120"/>
     </elements>
 </model>
