@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#include "ShiftDay.h"
+
 
 @interface OneJob : NSManagedObject {
      NSCalendar *curCalender;
@@ -25,6 +27,7 @@
 @property (nonatomic, strong) NSCalendar *curCalender;
 
 
+
 // init the work date generator with these input.
 - (id) initWithWorkConfigWithStartDate: (NSDate *) startDate
                      workdayLengthWith: (int) workdaylength
@@ -36,5 +39,17 @@
 - (BOOL) isDayWorkingDay:(NSDate *)theDate;
 - (NSInteger)daysBetweenDateV2:(NSDate *)fromDateTime andDate:(NSDate *)toDateTime;
 
+@property (nonatomic, strong) NSSet *shiftdays;
+@end
+
+@interface OneJob (CoreDataGeneratedAccessors)
+
+- (void)addShiftdaysObject:(ShiftDay *)value;
+- (void)removeShiftdaysObject:(ShiftDay *)value;
+- (void)addShiftdays:(NSSet *)values;
+- (void)removeShiftdays:(NSSet *)values;
 
 @end
+
+
+

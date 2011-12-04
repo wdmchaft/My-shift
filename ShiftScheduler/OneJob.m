@@ -36,6 +36,7 @@
 @dynamic jobOffDays;
 @dynamic jobStartDate;
 @dynamic jobFinishDate;
+@dynamic shiftdays;
 
 @synthesize curCalender;
 

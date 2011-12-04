@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		294E2902148B302700E6ED45 /* ShiftDay.h in Headers */ = {isa = PBXBuildFile; fileRef = 294E2900148B302700E6ED45 /* ShiftDay.h */; };
+		294E2903148B302700E6ED45 /* ShiftDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E2901148B302700E6ED45 /* ShiftDay.m */; };
 		29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
 		29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
 		29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */; };
@@ -55,6 +57,9 @@
 		2900DEC11483E44E00E588EE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "/Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		2900DEC21483E44E00E588EE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "/Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/zh-Hant.lproj/Localizable.strings"; sourceTree = "<absolute>"; };
 		2900DEC31483EEA100E588EE /* ShiftSchedulerModelBasic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShiftSchedulerModelBasic.xcdatamodel; sourceTree = "<group>"; };
+		294E28FF148B2F3A00E6ED45 /* ShiftScheduler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 2.xcdatamodel"; sourceTree = "<group>"; };
+		294E2900148B302700E6ED45 /* ShiftDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftDay.h; sourceTree = "<group>"; };
+		294E2901148B302700E6ED45 /* ShiftDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftDay.m; sourceTree = "<group>"; };
 		29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B9E1B51472C1D700DB2E1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B9E1B71472C1D700DB2E1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -116,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */,
+				294E2900148B302700E6ED45 /* ShiftDay.h */,
+				294E2901148B302700E6ED45 /* ShiftDay.m */,
 				29B9E1DC1472C39F00DB2E1F /* NSDate+JobInfo.m */,
 				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
 				29B9E1DE1472C39F00DB2E1F /* OneJob.m */,
@@ -219,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29DDDAC314808F94004DC703 /* NSDateAdditions.h in Headers */,
+				294E2902148B302700E6ED45 /* ShiftDay.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +328,7 @@
 				29B9E1F11472C39F00DB2E1F /* WorkdayDataSource.m in Sources */,
 				29B9E21B1472D6FE00DB2E1F /* UIViewAdditions.m in Sources */,
 				29DDDAC414808F94004DC703 /* NSDateAdditions.m in Sources */,
+				294E2903148B302700E6ED45 /* ShiftDay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,10 +480,11 @@
 		29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				294E28FF148B2F3A00E6ED45 /* ShiftScheduler 2.xcdatamodel */,
 				2900DEC31483EEA100E588EE /* ShiftSchedulerModelBasic.xcdatamodel */,
 				29B9E1CA1472C1D700DB2E1F /* ShiftScheduler.xcdatamodel */,
 			);
-			currentVersion = 29B9E1CA1472C1D700DB2E1F /* ShiftScheduler.xcdatamodel */;
+			currentVersion = 294E28FF148B2F3A00E6ED45 /* ShiftScheduler 2.xcdatamodel */;
 			path = ShiftScheduler.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
