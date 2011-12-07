@@ -14,5 +14,8 @@
 @dynamic shiftFromDay;
 @dynamic shiftToDay;
 @dynamic otherInfo;
+@dynamic type;
+@dynamic notes;
+@dynamic whatJob;
 
 @end

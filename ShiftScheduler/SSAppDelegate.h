@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProfilesViewController.h"
 #import "KalViewController.h"
+#import "ShfitChangeList.h"
 
 
 @interface SSAppDelegate : UIResponder <UIApplicationDelegate, 
@@ -20,6 +21,7 @@ ProfileEditFinishDelegate>
     UINavigationController *profileNVC;
     KalViewController *kal;
     ProfilesViewController *profileView;
+    ShfitChangeList *changelistVC;
     UITabBarController *tabBarVC;
     UIActionSheet *rightAS;
     id dataSource;
@@ -36,6 +38,7 @@ ProfileEditFinishDelegate>
 @property (strong) UINavigationController *navController;				
 @property (nonatomic, strong) ProfilesViewController *profileView;
 @property (nonatomic, strong) UINavigationController *profileNVC;
+@property (nonatomic, strong) ShfitChangeList *changelistVC;
 @property (nonatomic, strong) UIActionSheet *rightAS;
 
 - (void)saveContext;

@@ -11,6 +11,7 @@
         <relationship name="shiftdays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShiftDay" inverseName="whatJob" inverseEntity="ShiftDay" syncable="YES"/>
     </entity>
     <entity name="ShiftDay" representedClassName="ShiftDay" syncable="YES">
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="otherInfo" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="shiftFromDay" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="shiftToDay" optional="YES" attributeType="Date" syncable="YES"/>

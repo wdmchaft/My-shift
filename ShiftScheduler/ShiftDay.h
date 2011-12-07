@@ -10,10 +10,15 @@
 #import <CoreData/CoreData.h>
 
 
+@class OneJob;
 @interface ShiftDay : NSManagedObject
 
 @property (nonatomic, retain) NSDate * shiftFromDay;
 @property (nonatomic, retain) NSDate * shiftToDay;
 @property (nonatomic, retain) NSNumber * otherInfo;
+@property (nonatomic, retain) NSString * notes;
+
+@property (nonatomic, retain) NSNumber * type;
+@property (nonatomic, retain) OneJob *whatJob;
 
 @end

@@ -20,7 +20,7 @@
 // --
 @synthesize profileView;
 @synthesize navController;
-@synthesize profileNVC, rightAS;
+@synthesize profileNVC, rightAS, changelistVC;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -94,10 +94,27 @@
     [kal showAndSelectDate:[NSDate date]];
 }
 
+- (ShfitChangeList *)changelistVC
+{
+    if (changelistVC)
+        return changelistVC;
+    changelistVC = [[ShfitChangeList alloc] initWithNibName:nil bundle:nil];
+    changelistVC.managedObjectContext = self.managedObjectContext;
+    return changelistVC;
+}
+
+- (void) showShiftChangeView
+{
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:self.changelistVC];
+    [self.navController presentModalViewController:nvc animated:YES];
+}
+
+
 - (void)actionSheet:(UIAlertView *)sender clickedButtonAtIndex:(NSInteger)index
 {
     switch (index) {
         case 0:
+            [self showShiftChangeView];
             // change shift
             
             break;
@@ -145,7 +162,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     
-    [self.rightAS dismissWithClickedButtonIndex:self.rightAS.numberOfButtons - 1 animated:YES];
+    [self.rightAS dismissWithClickedButtonIndex:self.rightAS.cancelButtonIndex animated:NO];
     /*
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
