@@ -12,7 +12,7 @@
 
 @implementation ShfitChangeList
 
-@synthesize managedObjectContext,addingManagedObjectContext,fetchedResultsController;
+@synthesize managedObjectContext,addingManagedObjectContext,fetchedResultsController, dateFormatter;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,11 +25,23 @@
 
 - (id)initWithManagedContext:(NSManagedObjectContext *)context
 {
+    self = [super init];
     self.title = NSLocalizedString(@"Shift Changes", "shift changes list view");
     self.managedObjectContext = context;
     [self.fetchedResultsController fetchRequest];
     return self;
 }
+
+- (NSDateFormatter *) dateFormatter
+{
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    }
+    return dateFormatter;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,7 +65,8 @@
     request.predicate = nil;
     request.fetchBatchSize = 20;
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
-                                       initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:@"whatJob" cacheName:@"shiftdaycache"];
+                                       initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"shiftdaycache"];
+        // @"whatJob"
     
         //    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
         //					  initWithFetchRequest:request
@@ -67,15 +80,6 @@
 /**
  Delegate methods of NSFetchedResultsController to respond to additions, removals and so on.
  */
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    id t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
-    if ([t isKindOfClass:[ShiftDay class]]) {
-        ShiftDay *day = (ShiftDay *)t;
-        cell.textLabel.text = [[NSDateFormatter alloc] stringFromDate:day.shiftFromDay];
-    }
-}
 
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
@@ -124,11 +128,21 @@
 	}
 }
 
-
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    
 	[self.tableView endUpdates];
+    
+    
+    if (self.fetchedResultsController.fetchedObjects.count > 0) {
+        emptyplaceholder.hidden = YES;
+    } else {
+        emptyplaceholder.hidden = NO;
+    }
+    
+    NSLog(@"count: %d ", 
+          [self.fetchedResultsController.fetchedObjects count]);
+    
+
 }
 
 
@@ -145,6 +159,7 @@
     addvc.listDelegate = self;
 
     UINavigationController *navvc = [[UINavigationController alloc] initWithRootViewController:addvc];
+
     [navvc setToolbarHidden:NO];
     [self.navigationController presentModalViewController:navvc animated:YES];
 }
@@ -157,7 +172,7 @@
 	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
         // Merging changes causes the fetched results controller to update its results
 	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
-    [context save:nil];
+	[context save:nil];
 }
 
 
@@ -204,20 +219,27 @@
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewShiftChange)];
     [self.navigationItem setRightBarButtonItem:button];
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Home", "")
-									     style:UIBarButtonItemStylePlain
-									    target:self
-									    action:@selector(returnToHome)];
-
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Home", "")
+//									     style:UIBarButtonItemStylePlain
+//									    target:self
+//									    action:@selector(returnToHome)];
+    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Home", "home");
     NSError *error;
-        if (![self.fetchedResultsController performFetch:&error]) {
+    if (![self.fetchedResultsController performFetch:&error]) {
 		// Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		exit(-1);  // Fail
     }
     self.fetchedResultsController.delegate = self;
+    
+    emptyplaceholder = [[UILabel alloc] initWithFrame:CGRectMake(80, 100, 640, 100)];
+    emptyplaceholder.text = NSLocalizedString(@"No shitf changes...", "no shift changes");
+    emptyplaceholder.alpha = 0.2;
+    emptyplaceholder.hidden = YES;
+    [self.view addSubview:emptyplaceholder];
 
 }
+
 
 - (void)viewDidUnload
 {
@@ -256,25 +278,48 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    //       return [self.fetchedResultsController.sections count];
+    return  1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.fetchedResultsController.fetchedObjects count];
 }
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    id t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
+    if ([t isKindOfClass:[ShiftDay class]]) {
+        ShiftDay *day = (ShiftDay *)t;
+            //cell.textLabel.text = [[NSDateFormatter alloc] stringFromDate:day.shiftFromDay];
+        cell.textLabel.text = [ShiftDay returnStringForType:day.type];
+        
+        if (day.type.intValue == TYPE_EXCAHNGE) {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ -> %@\n %@",
+                                         [self.dateFormatter stringFromDate:day.shiftFromDay],
+                                         [self.dateFormatter stringFromDate:day.shiftToDay], 
+                                         day.notes ? day.notes : @""];
+        } else {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@",
+                                         [self.dateFormatter stringFromDate:day.shiftFromDay],
+                                         day.notes ? day.notes :@""];
+        }
+        cell.detailTextLabel.numberOfLines = 2;
+    }
+}
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"CellShiftChange";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
     }
     
     [self configureCell:cell atIndexPath:indexPath];

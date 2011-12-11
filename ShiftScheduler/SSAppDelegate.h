@@ -46,4 +46,5 @@ ProfileEditFinishDelegate>
 - (void) didFinishEditingSetting;
 - (void)showRightActionSheet;
 
+
 @end

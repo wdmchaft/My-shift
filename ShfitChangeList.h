@@ -20,13 +20,18 @@
 	NSManagedObjectContext *managedObjectContext;
 	NSFetchedResultsController *fetchedResultsController;
 	NSManagedObjectContext *addingManagedObjectContext;
+    NSDateFormatter * dateFormatter;
 
+    UILabel *emptyplaceholder;
 }
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectContext *addingManagedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong)     NSDateFormatter * dateFormatter;
+
 
 - (id)initWithManagedContext:(NSManagedObjectContext *)context;			      
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 			      
 @end

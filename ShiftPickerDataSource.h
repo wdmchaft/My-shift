@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OneJob.h"
 
-@interface ShiftPickerViewDataSource {
+@interface ShiftPickerViewDataSource :NSObject <UIPickerViewDataSource> {
     NSArray *fetchResults;
     NSManagedObjectContext *managedcontext;
+    
 }
 
 @property (nonatomic, strong) NSArray *fetchResults;
+- initWithContext:(NSManagedObjectContext *)context;
+- (NSInteger) count;
+- (OneJob *) retrunOneJob;
+- (OneJob *) returnJobAt:(NSInteger) n;
+
 @end

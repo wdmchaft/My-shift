@@ -29,7 +29,7 @@
     
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] 
                                        initWithFetchRequest:request
-                                       managedObjectContext:context
+                                       managedObjectContext:managedcontext
                                        sectionNameKeyPath:@"jobName" 
                                        cacheName:Nil];
     NSError *error;
@@ -37,8 +37,10 @@
     [frc performFetch:&error];
 
     fetchResults = [frc.fetchedObjects copy];    
-    
+    return fetchResults;
 }
+
+
 - initWithContext:(NSManagedObjectContext *)context
 {
     managedcontext = context;
@@ -46,11 +48,22 @@
     return self;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+- (NSInteger) count
 {
-    OneJob *job = [fetchResults objectAtIndex:row];
-    return job.jobName;
+    return self.fetchResults.count;
 }
+
+- (OneJob *) retrunOneJob
+{
+    return [self.fetchResults lastObject];
+}
+
+- (OneJob *) returnJobAt:(NSInteger) n
+{
+    OneJob *job = [fetchResults objectAtIndex:n];
+    return job;
+}
+
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {

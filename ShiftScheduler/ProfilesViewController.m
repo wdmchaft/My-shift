@@ -184,7 +184,7 @@
     else
         [self.navigationItem setRightBarButtonItem:addButton];
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Home", @"return to home in profile view") style:UIBarButtonItemStylePlain target:self action:@selector(returnToHome)];
+        //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Home", @"return to home in profile view") style:UIBarButtonItemStylePlain target:self action:@selector(returnToHome)];
     
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
@@ -356,7 +356,7 @@
 	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
 	// Merging changes causes the fetched results controller to update its results
 	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
-    [context save:nil];
+	[context save:nil];
 }
 
 

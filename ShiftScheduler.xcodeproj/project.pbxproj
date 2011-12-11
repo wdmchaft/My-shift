@@ -40,6 +40,9 @@
 		29E128C61476C861008DDB53 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C31476C861008DDB53 /* calendar.png */; };
 		29E128C81476CB53008DDB53 /* calendar-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C71476CB53008DDB53 /* calendar-57x57.png */; };
 		29E128CA1476CBCA008DDB53 /* calendar-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C91476CBC9008DDB53 /* calendar-114x114.png */; };
+		29FC4D3A1494B93100B9A006 /* DatePickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29FC4D371494B93100B9A006 /* DatePickerViewController.h */; };
+		29FC4D3B1494B93100B9A006 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC4D381494B93100B9A006 /* DatePickerViewController.m */; };
+		29FC4D3C1494B93100B9A006 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29FC4D391494B93100B9A006 /* DatePickerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +116,9 @@
 		29E128C91476CBC9008DDB53 /* calendar-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-114x114.png"; path = "../calendar-114x114.png"; sourceTree = "<group>"; };
 		29E128CB1476D408008DDB53 /* KalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KalViewController.h; path = ../../Kal/src/KalViewController.h; sourceTree = "<group>"; };
 		29E128CC1476D431008DDB53 /* Kal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kal.h; path = ../../Kal/src/Kal.h; sourceTree = "<group>"; };
+		29FC4D371494B93100B9A006 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		29FC4D381494B93100B9A006 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
+		29FC4D391494B93100B9A006 /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,9 +174,12 @@
 				290474CB148E7A4E0089A432 /* ShfitChangeList.xib */,
 				290474CF148E7A7C0089A432 /* ShiftChangeAddVC.h */,
 				290474D0148E7A7C0089A432 /* ShiftChangeAddVC.m */,
+				290474D1148E7A7C0089A432 /* ShiftChangeAddVC.xib */,
 				290474E7148FC6DA0089A432 /* ShiftPickerDataSource.h */,
 				290474E8148FC6DB0089A432 /* ShiftPickerDataSource.m */,
-				290474D1148E7A7C0089A432 /* ShiftChangeAddVC.xib */,
+				29FC4D371494B93100B9A006 /* DatePickerViewController.h */,
+				29FC4D381494B93100B9A006 /* DatePickerViewController.m */,
+				29FC4D391494B93100B9A006 /* DatePickerViewController.xib */,
 			);
 			name = ChangeShiftView;
 			sourceTree = "<group>";
@@ -269,6 +278,7 @@
 				29DDDAC314808F94004DC703 /* NSDateAdditions.h in Headers */,
 				294E2902148B302700E6ED45 /* ShiftDay.h in Headers */,
 				290474E9148FC6DB0089A432 /* ShiftPickerDataSource.h in Headers */,
+				29FC4D3A1494B93100B9A006 /* DatePickerViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +362,7 @@
 				29E128CA1476CBCA008DDB53 /* calendar-114x114.png in Resources */,
 				290474CE148E7A4E0089A432 /* ShfitChangeList.xib in Resources */,
 				290474D4148E7A7C0089A432 /* ShiftChangeAddVC.xib in Resources */,
+				29FC4D3C1494B93100B9A006 /* DatePickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +387,7 @@
 				290474CD148E7A4E0089A432 /* ShfitChangeList.m in Sources */,
 				290474D3148E7A7C0089A432 /* ShiftChangeAddVC.m in Sources */,
 				290474EA148FC6DB0089A432 /* ShiftPickerDataSource.m in Sources */,
+				29FC4D3B1494B93100B9A006 /* DatePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

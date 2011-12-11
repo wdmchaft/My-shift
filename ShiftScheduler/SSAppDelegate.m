@@ -72,7 +72,7 @@
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
-    
+    [self.managedObjectContext save:NULL];
     return YES;
 }
 
@@ -85,7 +85,8 @@
 
 - (void)showManageView
 {
-    [self.navController presentModalViewController:self.profileNVC animated:YES];
+        //    [self.navController presentModalViewController:self.profileNVC animated:YES];
+    [self.navController pushViewController:self.profileView animated:YES];
 }
 
 // Action handler for the navigation bar's right bar button item.
@@ -98,15 +99,15 @@
 {
     if (changelistVC)
         return changelistVC;
-    changelistVC = [[ShfitChangeList alloc] initWithNibName:nil bundle:nil];
-    changelistVC.managedObjectContext = self.managedObjectContext;
+    changelistVC = [[ShfitChangeList alloc] initWithManagedContext:self.managedObjectContext];
     return changelistVC;
 }
 
 - (void) showShiftChangeView
 {
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:self.changelistVC];
-    [self.navController presentModalViewController:nvc animated:YES];
+        //    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:self.changelistVC];
+        //   [self.navController presentModalViewController:nvc animated:YES];
+    [self.navController pushViewController:self.changelistVC animated:YES];
 }
 
 

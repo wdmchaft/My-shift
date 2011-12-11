@@ -11,7 +11,59 @@
 
 @implementation ShiftChangeAddVC
 
-@synthesize changeShiftSegmentControl, managedObjectContext, listDelegate, theShiftChange;
+@synthesize changeShiftSegmentControl, managedObjectContext,listDelegate, 
+            theShiftChange, notesTextFiled, shiftPicker, datePicker, dateFormatter;
+
+- (UITextField *)notesTextFiled
+{
+    if (notesTextFiled)
+        return notesTextFiled;
+    notesTextFiled =  [[UITextField alloc]                                                       initWithFrame:CGRectMake(10, 10, 600, 50)];
+    notesTextFiled.placeholder = NSLocalizedString(@"Please input notes here (optional)", "please input notes here");
+    notesTextFiled.delegate = self;
+    return notesTextFiled;
+}
+
+- (UIDatePicker *)datePicker
+{
+    if (datePicker)
+        return datePicker;
+    datePicker = [[UIDatePicker alloc] init];
+    datePicker.date = [NSDate date];
+    
+    
+    return  datePicker;
+}
+
+- (NSDateFormatter *) dateFormatter
+{
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    }
+    return dateFormatter;
+}
+
+- (UIPickerView *)shiftPicker
+{
+    if (shiftPicker)
+        return shiftPicker;
+    
+    shiftPicker = [[UIPickerView alloc] init];
+
+    shiftPicker.dataSource = shiftPickerDataSource;
+    shiftPicker.delegate = self;
+    CGSize pickerSize = [self.shiftPicker sizeThatFits:CGSizeZero];
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    CGRect pickerRect = CGRectMake(0, 
+                                   screenRect.origin.y + screenRect.size.height - pickerSize.height,
+                                   pickerSize.width,
+                                   pickerSize.height);
+    self.shiftPicker.frame = pickerRect;
+    self.shiftPicker.showsSelectionIndicator = YES;
+    return shiftPicker;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,22 +83,14 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#define CHANGE_SHIFT_TYPE_EXCHANGE NSLocalizedString(@"Exchange", "exchange type in shift change")
-#define CHANGE_SHIFT_TYPE_OVERWORK NSLocalizedString(@"Overwork", "overwork type in shift change")
-#define CHANGE_SHIFT_TYPE_VACATION NSLocalizedString(@"Vacation", "vacation type in shift change")
-
-#define TYPE_EXCAHNGE 0
-#define TYPE_OVERWORK 1
-#define TYPE_VACATION 2
-
 - (UISegmentedControl *)changeShiftSegmentControl
 {
     if (changeShiftSegmentControl)
         return changeShiftSegmentControl;
     NSArray *changeShiftTypes = [[NSArray alloc] initWithObjects:
-                                 CHANGE_SHIFT_TYPE_EXCHANGE,
-                                 CHANGE_SHIFT_TYPE_OVERWORK,
-                                 CHANGE_SHIFT_TYPE_VACATION, nil];
+                                 [ShiftDay returnStringForType:[NSNumber numberWithInt:TYPE_EXCAHNGE]],
+                                 [ShiftDay returnStringForType:[NSNumber numberWithInt:TYPE_OVERWORK]],
+                                 [ShiftDay returnStringForType:[NSNumber numberWithInt:TYPE_VACATION]],nil ];
     UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:changeShiftTypes];
     control.selectedSegmentIndex = 0;
     control.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -60,6 +104,40 @@
 {
     // shift change type changed.
     self.theShiftChange.type = [NSNumber numberWithInt:sender.selectedSegmentIndex];
+    [self shiftPickerShow:NO];
+    [self datePickerShow:NO];
+    [self.tableView reloadData];
+}
+
+
+- (BOOL) isInputEnough
+{
+    if (self.theShiftChange.type == nil)
+        return NO;
+    if (self.theShiftChange.whatJob == nil)
+        return  NO;
+    if (self.theShiftChange.shiftFromDay == nil)
+        return NO;
+    if (self.theShiftChange.type.intValue != TYPE_EXCAHNGE
+        && self.theShiftChange.shiftToDay == nil)
+        return NO;
+    return YES;
+}
+
+- (void)cancelButtonClicked
+{
+    [listDelegate didChangeShift:self didFinishWithSave:NO];
+}
+
+
+
+- (void)doneButtonClicked
+{
+    if ([self isInputEnough])
+        [listDelegate didChangeShift:self didFinishWithSave:YES];
+    else
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Can't Save", "")
+                                    message:@"Can't save due to not enough input" delegate:self cancelButtonTitle:NSLocalizedString(@"I Know", "") otherButtonTitles:nil, nil] show];
 }
 
 #pragma mark - View lifecycle
@@ -67,12 +145,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+        // Uncomment the following line to preserve selection between presentations.
+        // self.clearsSelectionOnViewWillAppear = NO;
+    
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.navigationItem.prompt = NSLocalizedString(@"Choose a type of shift change", "");
+    
     self.navigationItem.titleView = self.changeShiftSegmentControl;
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonClicked)];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -81,17 +162,14 @@
     [self setToolbarItems:a];
     
     self.theShiftChange = [NSEntityDescription insertNewObjectForEntityForName:@"ShiftDay" inManagedObjectContext:self.managedObjectContext];
+    
+    shiftPickerDataSource = [[ShiftPickerViewDataSource alloc] initWithContext:self.managedObjectContext];
+    
+    self.view.autoresizesSubviews = YES;
+    self.tableView.allowsMultipleSelection = NO;
+    
 }
 
-- (void)cancelButtonClicked
-{
-    [listDelegate didChangeShift:self didFinishWithSave:NO];
-}
-
-- (void)doneButtonClicked
-{
-    [listDelegate didChangeShift:self didFinishWithSave:YES];
-}
 
 - (void)viewDidUnload
 {
@@ -146,7 +224,7 @@
     // Return the number of rows in the section.
     if (section == 0 && section == 2)
         return 1;
-    if (section == 1 && theShiftChange.type == TYPE_EXCAHNGE)
+    if (section == 1 && theShiftChange.type.intValue == TYPE_EXCAHNGE)
         return 2;
     else
         return 1;
@@ -155,70 +233,244 @@
     return 1;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *title = nil;
+        // Return a title or nil as appropriate for the section.
+    switch (section) {
+        case 0:
+            title = NSLocalizedString(@"Shift", "choose which shift");
+            break;
+        case 1:
+            title = NSLocalizedString(@"Date", "choose date in shift change add");
+            break;
+        case 2:
+            title = NSLocalizedString(@"Notes", "notes of shift change add view");
+        default:
+            break;
+    }
+    return title;;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell...
+    int type = theShiftChange.type.intValue;
     
+        //which shift
+    if (indexPath.section == 0) {
+        
+            // 这里一开始显示提示选择，如果只有一种班，就直接选择那一种， 不提示。
+            // 如果有两种， 就提示选择， 并且在选择以后就不加alpha了。
+        cell.textLabel.text = NSLocalizedString(@"Shift", "shift in shift add view");
+        if (shiftPickerDataSource.count > 1 && theShiftChange.whatJob == nil) {
+            cell.detailTextLabel.text = NSLocalizedString(@"Choose shift", "choose shift");
+            cell.detailTextLabel.alpha = .3;
+        } else {
+                // if only one job there, just show that shift's name
+            OneJob *j = [shiftPickerDataSource retrunOneJob];
+            cell.detailTextLabel.text = j.jobName;
+            theShiftChange.whatJob = j;
+        }
+        
+        if (theShiftChange.whatJob != nil) {
+            cell.detailTextLabel.text = theShiftChange.whatJob.jobName;
+            cell.detailTextLabel.alpha = 1;
+        }
+    }
+        //date
+    if (indexPath.section == 1) {
+        
+        if (type == TYPE_EXCAHNGE) // two date
+        {
+            if (indexPath.row == 0) // choose From
+            {
+                cell.textLabel.text = NSLocalizedString(@"From", "From in shift add view");
+            } else {
+                cell.textLabel.text = NSLocalizedString(@"To", "change to in shift change view");
+            }
+            cell.detailTextLabel.text = NSLocalizedString(@"choose date ", "choose data");
+            cell.detailTextLabel.alpha = 0.3;
+        }
+        if (type == TYPE_OVERWORK || type == TYPE_VACATION) 
+        {
+            cell.textLabel.text = NSLocalizedString(@"When", "when day of overwork or vacation");
+            cell.detailTextLabel.text = NSLocalizedString(@"choose date", "choose data");
+            cell.detailTextLabel.alpha = .3;
+        }
+            // fill in date if have some date;
+        if (indexPath.row == 0 && self.theShiftChange.shiftFromDay != nil) {
+            cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.theShiftChange.shiftFromDay];
+            cell.detailTextLabel.alpha = 1;
+        }
+        
+        if (indexPath.row == 1 && self.theShiftChange.shiftToDay != nil) {
+            cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.theShiftChange.shiftToDay];
+            cell.detailTextLabel.alpha = 1;
+        }
+    }
+    
+        // notes
+    if (indexPath.section == 2) {
+        cell.textLabel.text = nil;
+        cell.detailTextLabel.text = nil;
+        [self.notesTextFiled removeFromSuperview];
+        [cell.contentView addSubview:self.notesTextFiled];
+
+    }
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
+- (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    choosenIndex = indexPath;
+    if (indexPath.section != 2)
+        return indexPath;
+    else  {
+        [self tableView:tv didSelectRowAtIndexPath:indexPath];
+        return  nil;
+    }
+}
+
+- (void) shiftPickerShow:(BOOL)show
+{
+    if (show) {
+        self.shiftPicker.alpha = 0;
+        [self.navigationController.view addSubview:self.shiftPicker];
+        [self.navigationController setToolbarHidden:YES animated:YES];
+        [UIView animateWithDuration:0.3 animations:^{self.shiftPicker.alpha = 1.0; self.datePicker.alpha = 0;}];
+    } else {
+        [UIView animateWithDuration:0.3 animations:^{self.shiftPicker.alpha = 0;}
+        completion:^(BOOL finish){
+            if (finish) {[self.shiftPicker removeFromSuperview];
+                [self.navigationController setToolbarHidden:NO animated:YES];
+            }
+        }];
+
+    }
+}
+
+- (void) datePickerShow:(BOOL) show
+{
+    if (show) {
+        self.datePicker.alpha = 0;
+         [self.navigationController.view addSubview:self.datePicker];
+        self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        [self.navigationController setToolbarHidden:YES];
+        [UIView animateWithDuration:0.3 
+                         animations:^{self.datePicker.alpha = 1; self.shiftPicker.alpha = 0;} completion:nil];
+    } else {
+        [UIView animateWithDuration:0.3 animations:^{self.datePicker.alpha = 0;} 
+                         completion:^(BOOL finish) {
+                             if (finish) {
+                                 [self.datePicker removeFromSuperview];
+                                 [self.navigationController setToolbarHidden:NO animated:YES];
+                             }
+                         }];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    
+    [self.notesTextFiled resignFirstResponder];
+    if (indexPath.section == 0) // shift
+    {
+        [self.datePicker removeFromSuperview];
+            // if only one shift, don't show
+        if (shiftPickerDataSource.count == 1)
+            return;
+        else {
+            if (self.shiftPicker.superview != nil)
+                [self shiftPickerShow:NO];
+            else
+                [self shiftPickerShow:YES];
+        }
+    }
+    
+    if (indexPath.section == 1) // date
+    {
+        [self.shiftPicker removeFromSuperview];
+        if (self.datePicker.superview != nil) {
+            [self datePickerShow:NO];
+        } else {
+            
+            CGSize pickerSize = [self.datePicker sizeThatFits:CGSizeZero];
+                //            CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+            CGRect screenRect = [self.view frame];
+            
+                //            CGRect screenRect = [self.tableView frame];
+            CGRect pickerRect = CGRectMake(0.0,
+                                           screenRect.origin.y + screenRect.size.height - pickerSize.height,
+                                           pickerSize.width,
+                                           pickerSize.height);
+    
+            self.datePicker.frame = pickerRect;
+
+            [self datePickerShow:YES];
+
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.shiftPicker.superview != nil) {
+        [self shiftPickerShow:NO];
+    }
+    if (self.datePicker.superview != nil) {
+        [self datePickerShow:NO];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField              // called when 'return' key pressed. return NO to ignore.
+{
+    self.theShiftChange.notes = textField.text;
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark - "Date/Number Picker Save events"
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.theShiftChange.whatJob = [shiftPickerDataSource returnJobAt:row];
+    
+        // BUG: don't change when after shift change !!!
+    [self.managedObjectContext save:nil];
+    NSLog(@" change to %@", theShiftChange.whatJob.jobName);
+    
+    [self.tableView reloadData];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [shiftPickerDataSource returnJobAt:row].jobName;
+}
+
+
+- (IBAction)datePickerValueChanged:(id)sender
+{
+    NSInteger choosedRow = choosenIndex.row;
+    
+    UIDatePicker *picker = sender;
+    
+    if (choosedRow == 0) {
+        self.theShiftChange.shiftFromDay = picker.date;
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:choosenIndex] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    
+    if (choosedRow == 1) {
+        self.theShiftChange.shiftToDay = picker.date;
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:choosenIndex] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 @end

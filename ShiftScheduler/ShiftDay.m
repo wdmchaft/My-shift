@@ -18,4 +18,15 @@
 @dynamic notes;
 @dynamic whatJob;
 
++ (NSString *) returnStringForType:(NSNumber *)type
+{
+    if (type.intValue == TYPE_EXCAHNGE)
+        return NSLocalizedString(@"Exchange", "Exchange");
+    if (type.intValue == TYPE_OVERWORK)
+        return NSLocalizedString(@"OverWork", "OverWork");
+    if (type.intValue == TYPE_VACATION)
+        return NSLocalizedString(@"Vacation", "Vacation");
+    return nil;
+}
+
 @end

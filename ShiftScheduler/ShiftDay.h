@@ -21,4 +21,12 @@
 @property (nonatomic, retain) NSNumber * type;
 @property (nonatomic, retain) OneJob *whatJob;
 
++ (NSString *) returnStringForType:(NSNumber *)type;
+
+
+#define TYPE_EXCAHNGE 0
+#define TYPE_OVERWORK 1
+#define TYPE_VACATION 2
+
+
 @end
