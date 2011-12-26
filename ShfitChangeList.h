@@ -8,11 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+#define USE_OLD_ADDVC
+
+
 @class ShiftChangeAddVC;
+@class ShiftChangeAddViewController;
 
 @protocol ShiftChangeListDelegate
+
+#ifdef USE_OLD_ADDVC
 - (void) didChangeShift :(ShiftChangeAddVC *) addController
        didFinishWithSave:(BOOL) finishWithSave;
+#else
+
+- (void) didChangeShift :(ShiftChangeAddViewController *) addController
+       didFinishWithSave:(BOOL) finishWithSave;
+#endif
 @end
 
 @interface ShfitChangeList : UITableViewController <NSFetchedResultsControllerDelegate>

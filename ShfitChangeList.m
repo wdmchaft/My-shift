@@ -8,7 +8,12 @@
 
 #import "ShfitChangeList.h"
 #import "ShiftDay.h"
+
+#ifdef USE_OLD_ADDVC
 #import "ShiftChangeAddVC.h"
+#else
+#import "ShiftChangeAddViewController.h"
+#endif
 
 @implementation ShfitChangeList
 
@@ -148,9 +153,15 @@
 
 - (void)insertNewShiftChange
 {
+    
+#ifdef USE_OLD_ADDVC 
     ShiftChangeAddVC *addvc = [[ShiftChangeAddVC alloc] initWithNibName:@"ShiftChangeAddVC" bundle:nil];
 
     // Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
+#else
+    ShiftChangeAddViewController *addvc = [[ShiftChangeAddViewController alloc] initWithNibName:@"ShiftChangeAddViewController" bundle:nil];
+    
+#endif
     NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
     self.addingManagedObjectContext = addingContext;
     [self.addingManagedObjectContext setPersistentStoreCoordinator:[[self.fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
@@ -158,10 +169,13 @@
     addvc.managedObjectContext = addingContext;
     addvc.listDelegate = self;
 
+
+
     UINavigationController *navvc = [[UINavigationController alloc] initWithRootViewController:addvc];
 
     [navvc setToolbarHidden:NO];
     [self.navigationController presentModalViewController:navvc animated:YES];
+
 }
 
 /**
@@ -177,7 +191,7 @@
 
 
 
-- (void) didChangeShift :(ShiftChangeAddVC *) addController
+- (void) didChangeShift :(ShiftChangeAddViewController *) addController
          didFinishWithSave:(BOOL) finishWithSave
 {
     if (finishWithSave) {
@@ -201,6 +215,7 @@
     
         // Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
+    [self.tableView reloadData];
 }
 
 
