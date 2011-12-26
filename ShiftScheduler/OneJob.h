@@ -44,7 +44,17 @@
 
 @interface OneJob (CoreDataGeneratedAccessors)
 
-- (void)addShiftdaysObject:(ShiftDay *)value;
+//  should check whether the shiftday is allowed. if the shift day is now allowed, return -Error Code;
+
+//  eg, if the shift day is exchange shift day, one of "From" or "To" must has one "on day"
+//      in a overwork shift day: it must added to a "off day"
+//      in a vacation shift day: it must be on a "on day"
+
+// return value:
+// failed: return -X; is error number
+// success: return 0;
+- (NSInteger)addShiftdaysObject:(ShiftDay *)value;
+
 - (void)removeShiftdaysObject:(ShiftDay *)value;
 - (void)addShiftdays:(NSSet *)values;
 - (void)removeShiftdays:(NSSet *)values;

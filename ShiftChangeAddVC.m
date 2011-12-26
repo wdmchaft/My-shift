@@ -8,6 +8,7 @@
 
 #import "ShiftChangeAddVC.h"
 #import "ShfitChangeList.h"
+#import "DatePickerViewController2.h"
 
 @implementation ShiftChangeAddVC
 
@@ -24,6 +25,7 @@
     return notesTextFiled;
 }
 
+#ifndef USE_ANOTHER_VC_CHOOSEDATA
 - (UIDatePicker *)datePicker
 {
     if (datePicker)
@@ -34,6 +36,7 @@
     
     return  datePicker;
 }
+#endif
 
 - (NSDateFormatter *) dateFormatter
 {
@@ -181,6 +184,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    [self.navigationController setToolbarHidden:NO animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -191,6 +196,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self shiftPickerShow:NO];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -297,6 +304,9 @@
             }
             cell.detailTextLabel.text = NSLocalizedString(@"choose date ", "choose data");
             cell.detailTextLabel.alpha = 0.3;
+#ifdef USE_ANOTHER_VC_CHOOSEDATA
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+#endif
         }
         if (type == TYPE_OVERWORK || type == TYPE_VACATION) 
         {
@@ -399,26 +409,54 @@
     
     if (indexPath.section == 1) // date
     {
-        [self.shiftPicker removeFromSuperview];
-        if (self.datePicker.superview != nil) {
-            [self datePickerShow:NO];
-        } else {
+	int type = theShiftChange.type.intValue;
+        NSArray *namelist, *typeList, *placeholderList;
+        if (type == TYPE_EXCAHNGE) {
             
-            CGSize pickerSize = [self.datePicker sizeThatFits:CGSizeZero];
-                //            CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-            CGRect screenRect = [self.view frame];
+            namelist = [NSArray arrayWithObjects:
+				    NSLocalizedString(@"Origin Shift", "From in shift add view"),
+				NSLocalizedString(@"New Shift", "change to in shift change view"),
+				nil];
+            typeList = [NSArray arrayWithObjects:
+				    [NSNumber numberWithInt:UIDatePickerModeDate], [NSNumber numberWithInt:UIDatePickerModeDate], nil];
+            placeholderList = [NSArray arrayWithObjects:
+					   NSLocalizedString(@"Choose shift date", "choose data"),
+				       NSLocalizedString(@"Choose shift date", "choose data"),
+				       nil];
             
-                //            CGRect screenRect = [self.tableView frame];
-            CGRect pickerRect = CGRectMake(0.0,
-                                           screenRect.origin.y + screenRect.size.height - pickerSize.height,
-                                           pickerSize.width,
-                                           pickerSize.height);
-    
-            self.datePicker.frame = pickerRect;
-
-            [self datePickerShow:YES];
-
         }
+
+	if (type == TYPE_OVERWORK) {
+	    namelist = [NSArray arrayWithObjects:
+				    NSLocalizedString(@"OverWork", "Choose OverWork day"),
+				nil];
+	    typeList = [NSArray arrayWithObjects:
+				    [NSNumber numberWithInt:UIDatePickerModeDate],
+				nil];
+	    placeholderList = [NSArray arrayWithObjects:
+					   NSLocalizedString(@"overwork date","overwork date in place holder"),
+				       nil];
+	}
+	
+	if (type == TYPE_VACATION) {
+	    namelist = [NSArray arrayWithObjects:
+				    NSLocalizedString(@"Vacation", "Choose OverWork day"),
+				nil];
+	    typeList = [NSArray arrayWithObjects:
+				    [NSNumber numberWithInt:UIDatePickerModeDate],
+				nil];
+	    placeholderList = [NSArray arrayWithObjects:
+					   NSLocalizedString(@"Choose a date, have fun!","Vacation date in place holder"),
+				       nil];
+	}
+				
+        DatePickerViewController2 *dpvc = [[DatePickerViewController2 alloc] initWithDateNameList:namelist withTypeList:typeList];
+        dpvc.placeholderStringList = placeholderList;
+        dpvc.delegateToDatePicker = self;
+        
+        self.navigationController.toolbarHidden = YES;
+        [self.navigationController pushViewController:dpvc animated:YES];
+
     }
 }
 
@@ -472,5 +510,39 @@
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:choosenIndex] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
+
+- (BOOL) DatePickerController: (DatePickerViewController2 *)sender finishDatePicker: (BOOL) save withResults:(NSArray *)results withAlert: (UIAlertView *)alert
+{
+    
+    if (!save)
+        return YES;
+        
+        // need check whether this value is accept by me.
+    if (self.theShiftChange.type == [NSNumber numberWithInt:TYPE_EXCAHNGE]) {
+        NSAssert(results.count == 2, @"Result length should be 2 in exchange mode");
+        if ([[results objectAtIndex:0] isKindOfClass:[NSDate class]]
+            && [[results objectAtIndex:1] isKindOfClass:[NSDate class]]) {
+            self.theShiftChange.shiftFromDay = [results objectAtIndex:0];
+            self.theShiftChange.shiftToDay = [results objectAtIndex:1];
+        }
+    }
+    
+    if (self.theShiftChange.type == [NSNumber numberWithInt:TYPE_OVERWORK]) {
+        NSAssert(results.count == 1, @"Result length should be 1 in exchange mode");
+        if ([[results objectAtIndex:0] isKindOfClass:[NSDate class]])
+            self.theShiftChange.shiftFromDay =  [results objectAtIndex:0];
+    }
+    
+    if (self.theShiftChange.type == [NSNumber numberWithInt:TYPE_VACATION]) {
+        NSAssert(results.count == 1, @"Results length should be 1 in exchange mode");
+        if ([[results objectAtIndex:0] isKindOfClass:[NSDate class]])
+            self.theShiftChange.shiftFromDay = [results objectAtIndex:0];
+    }
+    
+    [self.tableView reloadData];
+    
+    return  YES;
+}
+
 
 @end

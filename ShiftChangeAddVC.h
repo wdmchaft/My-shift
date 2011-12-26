@@ -9,16 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "ShiftDay.h"
 #import "ShiftPickerDataSource.h"
+#import "DatePickerViewController2.h"
 @protocol ShiftChangeListDelegate;
 
-@interface ShiftChangeAddVC : UITableViewController <UIPickerViewDelegate, UITextFieldDelegate>
+#define USE_ANOTHER_VC_CHOOSEDATA
+
+@interface ShiftChangeAddVC : UITableViewController <UIPickerViewDelegate, 
+    DatePickerViewController2Delegate, UITextFieldDelegate>
 {
     UISegmentedControl *changeShiftSegmentControl;
     NSManagedObjectContext *managedObjectContext;
     id<ShiftChangeListDelegate> listDelegate;
     UITextField *notesTextFiled;
     UIPickerView *shiftPicker;
+#ifndef USE_ANOTHER_VC_CHOOSEDATA
     IBOutlet UIDatePicker *datePicker;
+#endif
     ShiftPickerViewDataSource *shiftPickerDataSource;
     ShiftDay *theShiftChange;
     NSDateFormatter *dateFormatter;

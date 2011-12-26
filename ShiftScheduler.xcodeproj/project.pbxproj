@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		290474CD148E7A4E0089A432 /* ShfitChangeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 290474CA148E7A4E0089A432 /* ShfitChangeList.m */; };
 		290474CE148E7A4E0089A432 /* ShfitChangeList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 290474CB148E7A4E0089A432 /* ShfitChangeList.xib */; };
-		290474D3148E7A7C0089A432 /* ShiftChangeAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 290474D0148E7A7C0089A432 /* ShiftChangeAddVC.m */; };
-		290474D4148E7A7C0089A432 /* ShiftChangeAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 290474D1148E7A7C0089A432 /* ShiftChangeAddVC.xib */; };
 		290474E9148FC6DB0089A432 /* ShiftPickerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 290474E7148FC6DA0089A432 /* ShiftPickerDataSource.h */; };
 		290474EA148FC6DB0089A432 /* ShiftPickerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 290474E8148FC6DB0089A432 /* ShiftPickerDataSource.m */; };
+		2919033C14A8CA2200EE1F32 /* ShiftChangeAddVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 2919033914A8CA2200EE1F32 /* ShiftChangeAddVC.h */; };
+		2919033D14A8CA2200EE1F32 /* ShiftChangeAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2919033A14A8CA2200EE1F32 /* ShiftChangeAddVC.m */; };
+		2919033E14A8CA2200EE1F32 /* ShiftChangeAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2919033B14A8CA2200EE1F32 /* ShiftChangeAddVC.xib */; };
 		294E2902148B302700E6ED45 /* ShiftDay.h in Headers */ = {isa = PBXBuildFile; fileRef = 294E2900148B302700E6ED45 /* ShiftDay.h */; };
 		294E2903148B302700E6ED45 /* ShiftDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E2901148B302700E6ED45 /* ShiftDay.m */; };
+		2987381F149917C300A2617F /* DatePickerViewController2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2987381C149917C200A2617F /* DatePickerViewController2.h */; };
+		29873820149917C300A2617F /* DatePickerViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2987381D149917C200A2617F /* DatePickerViewController2.m */; };
+		29873821149917C300A2617F /* DatePickerViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2987381E149917C300A2617F /* DatePickerViewController2.xib */; };
 		29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
 		29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
 		29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */; };
@@ -40,9 +44,6 @@
 		29E128C61476C861008DDB53 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C31476C861008DDB53 /* calendar.png */; };
 		29E128C81476CB53008DDB53 /* calendar-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C71476CB53008DDB53 /* calendar-57x57.png */; };
 		29E128CA1476CBCA008DDB53 /* calendar-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C91476CBC9008DDB53 /* calendar-114x114.png */; };
-		29FC4D3A1494B93100B9A006 /* DatePickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29FC4D371494B93100B9A006 /* DatePickerViewController.h */; };
-		29FC4D3B1494B93100B9A006 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC4D381494B93100B9A006 /* DatePickerViewController.m */; };
-		29FC4D3C1494B93100B9A006 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29FC4D391494B93100B9A006 /* DatePickerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,14 +70,17 @@
 		290474C9148E7A4E0089A432 /* ShfitChangeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShfitChangeList.h; sourceTree = "<group>"; };
 		290474CA148E7A4E0089A432 /* ShfitChangeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShfitChangeList.m; sourceTree = "<group>"; };
 		290474CB148E7A4E0089A432 /* ShfitChangeList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShfitChangeList.xib; sourceTree = "<group>"; };
-		290474CF148E7A7C0089A432 /* ShiftChangeAddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftChangeAddVC.h; sourceTree = "<group>"; };
-		290474D0148E7A7C0089A432 /* ShiftChangeAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftChangeAddVC.m; sourceTree = "<group>"; };
-		290474D1148E7A7C0089A432 /* ShiftChangeAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShiftChangeAddVC.xib; sourceTree = "<group>"; };
 		290474E7148FC6DA0089A432 /* ShiftPickerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftPickerDataSource.h; sourceTree = "<group>"; };
 		290474E8148FC6DB0089A432 /* ShiftPickerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftPickerDataSource.m; sourceTree = "<group>"; };
+		2919033914A8CA2200EE1F32 /* ShiftChangeAddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftChangeAddVC.h; sourceTree = "<group>"; };
+		2919033A14A8CA2200EE1F32 /* ShiftChangeAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftChangeAddVC.m; sourceTree = "<group>"; };
+		2919033B14A8CA2200EE1F32 /* ShiftChangeAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShiftChangeAddVC.xib; sourceTree = "<group>"; };
 		294E28FF148B2F3A00E6ED45 /* ShiftScheduler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 2.xcdatamodel"; sourceTree = "<group>"; };
 		294E2900148B302700E6ED45 /* ShiftDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftDay.h; sourceTree = "<group>"; };
 		294E2901148B302700E6ED45 /* ShiftDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftDay.m; sourceTree = "<group>"; };
+		2987381C149917C200A2617F /* DatePickerViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController2.h; sourceTree = "<group>"; };
+		2987381D149917C200A2617F /* DatePickerViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController2.m; sourceTree = "<group>"; };
+		2987381E149917C300A2617F /* DatePickerViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController2.xib; sourceTree = "<group>"; };
 		29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B9E1B51472C1D700DB2E1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B9E1B71472C1D700DB2E1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -116,9 +120,6 @@
 		29E128C91476CBC9008DDB53 /* calendar-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-114x114.png"; path = "../calendar-114x114.png"; sourceTree = "<group>"; };
 		29E128CB1476D408008DDB53 /* KalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KalViewController.h; path = ../../Kal/src/KalViewController.h; sourceTree = "<group>"; };
 		29E128CC1476D431008DDB53 /* Kal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kal.h; path = ../../Kal/src/Kal.h; sourceTree = "<group>"; };
-		29FC4D371494B93100B9A006 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
-		29FC4D381494B93100B9A006 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
-		29FC4D391494B93100B9A006 /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,14 +173,14 @@
 				290474C9148E7A4E0089A432 /* ShfitChangeList.h */,
 				290474CA148E7A4E0089A432 /* ShfitChangeList.m */,
 				290474CB148E7A4E0089A432 /* ShfitChangeList.xib */,
-				290474CF148E7A7C0089A432 /* ShiftChangeAddVC.h */,
-				290474D0148E7A7C0089A432 /* ShiftChangeAddVC.m */,
-				290474D1148E7A7C0089A432 /* ShiftChangeAddVC.xib */,
+				2919033914A8CA2200EE1F32 /* ShiftChangeAddVC.h */,
+				2919033A14A8CA2200EE1F32 /* ShiftChangeAddVC.m */,
+				2919033B14A8CA2200EE1F32 /* ShiftChangeAddVC.xib */,
 				290474E7148FC6DA0089A432 /* ShiftPickerDataSource.h */,
 				290474E8148FC6DB0089A432 /* ShiftPickerDataSource.m */,
-				29FC4D371494B93100B9A006 /* DatePickerViewController.h */,
-				29FC4D381494B93100B9A006 /* DatePickerViewController.m */,
-				29FC4D391494B93100B9A006 /* DatePickerViewController.xib */,
+				2987381C149917C200A2617F /* DatePickerViewController2.h */,
+				2987381D149917C200A2617F /* DatePickerViewController2.m */,
+				2987381E149917C300A2617F /* DatePickerViewController2.xib */,
 			);
 			name = ChangeShiftView;
 			sourceTree = "<group>";
@@ -278,7 +279,8 @@
 				29DDDAC314808F94004DC703 /* NSDateAdditions.h in Headers */,
 				294E2902148B302700E6ED45 /* ShiftDay.h in Headers */,
 				290474E9148FC6DB0089A432 /* ShiftPickerDataSource.h in Headers */,
-				29FC4D3A1494B93100B9A006 /* DatePickerViewController.h in Headers */,
+				2987381F149917C300A2617F /* DatePickerViewController2.h in Headers */,
+				2919033C14A8CA2200EE1F32 /* ShiftChangeAddVC.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,8 +363,8 @@
 				29E128C81476CB53008DDB53 /* calendar-57x57.png in Resources */,
 				29E128CA1476CBCA008DDB53 /* calendar-114x114.png in Resources */,
 				290474CE148E7A4E0089A432 /* ShfitChangeList.xib in Resources */,
-				290474D4148E7A7C0089A432 /* ShiftChangeAddVC.xib in Resources */,
-				29FC4D3C1494B93100B9A006 /* DatePickerViewController.xib in Resources */,
+				29873821149917C300A2617F /* DatePickerViewController2.xib in Resources */,
+				2919033E14A8CA2200EE1F32 /* ShiftChangeAddVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,9 +387,9 @@
 				29DDDAC414808F94004DC703 /* NSDateAdditions.m in Sources */,
 				294E2903148B302700E6ED45 /* ShiftDay.m in Sources */,
 				290474CD148E7A4E0089A432 /* ShfitChangeList.m in Sources */,
-				290474D3148E7A7C0089A432 /* ShiftChangeAddVC.m in Sources */,
 				290474EA148FC6DB0089A432 /* ShiftPickerDataSource.m in Sources */,
-				29FC4D3B1494B93100B9A006 /* DatePickerViewController.m in Sources */,
+				29873820149917C300A2617F /* DatePickerViewController2.m in Sources */,
+				2919033D14A8CA2200EE1F32 /* ShiftChangeAddVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
