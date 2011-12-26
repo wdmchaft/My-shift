@@ -30,6 +30,7 @@
 - (id)initWithDateNameList: (NSArray *) NameList withTypeList:(NSArray *) typeList; 
 - (IBAction)datePickerValueChanged:(id)sender;
 
+
 @property (copy, nonatomic) NSArray * dateNameList;
 @property (copy, nonatomic) NSArray * typeList;
 @property (copy, nonatomic) NSArray * placeholderStringList;
