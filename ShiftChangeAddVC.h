@@ -19,7 +19,7 @@
 {
     UISegmentedControl *changeShiftSegmentControl;
     NSManagedObjectContext *managedObjectContext;
-    id<ShiftChangeListDelegate> listDelegate;
+    id<ShiftChangeListDelegate>  listDelegate;
     UITextField *notesTextFiled;
     UIPickerView *shiftPicker;
 #ifndef USE_ANOTHER_VC_CHOOSEDATA

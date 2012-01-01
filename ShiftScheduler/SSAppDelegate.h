@@ -10,10 +10,10 @@
 #import "ProfilesViewController.h"
 #import "KalViewController.h"
 #import "ShfitChangeList.h"
+#import "SSKalDelegate.h"
 
 
 @interface SSAppDelegate : UIResponder <UIApplicationDelegate, 
-UITableViewDelegate, 
 UIActionSheetDelegate,
 ProfileEditFinishDelegate>
 {
@@ -22,6 +22,7 @@ ProfileEditFinishDelegate>
     KalViewController *kal;
     ProfilesViewController *profileView;
     ShfitChangeList *changelistVC;
+    SSKalDelegate *sskalDelegate;
     UITabBarController *tabBarVC;
     UIActionSheet *rightAS;
     id dataSource;
@@ -40,6 +41,7 @@ ProfileEditFinishDelegate>
 @property (nonatomic, strong) UINavigationController *profileNVC;
 @property (nonatomic, strong) ShfitChangeList *changelistVC;
 @property (nonatomic, strong) UIActionSheet *rightAS;
+@property (nonatomic, strong) SSKalDelegate *sskalDelegate;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

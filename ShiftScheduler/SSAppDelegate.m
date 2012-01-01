@@ -8,6 +8,7 @@
 
 #import "SSAppDelegate.h"
 #import "WorkdayDataSource.h"
+#import "SSKalDelegate.h"
 #import "Kal.h"
 
 @implementation SSAppDelegate
@@ -20,7 +21,7 @@
 // --
 @synthesize profileView;
 @synthesize navController;
-@synthesize profileNVC, rightAS, changelistVC;
+@synthesize profileNVC, rightAS, changelistVC, sskalDelegate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -38,8 +39,11 @@
     kal.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] 
                                               initWithTitle:NSLocalizedString (@"Today", "today") 
                                               style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectToday)];
-    
-    kal.delegate = self;
+
+    SSKalDelegate *kalDelegate = [[SSKalDelegate alloc] init];
+    self.sskalDelegate = kalDelegate;
+    kal.delegate = self.sskalDelegate;
+    kal.vcdelegate = self.sskalDelegate;
     WorkdayDataSource *wds = [[WorkdayDataSource alloc] initWithManagedContext:self.managedObjectContext];
     dataSource  = wds;
     kal.dataSource = dataSource;
@@ -137,19 +141,6 @@
     [self.navController dismissModalViewControllerAnimated:YES];
 }
 
-//#pragma mark - KalViewControllerDelegate protocol.
-//- (void) KalViewController:(KalViewController *)sender selectDate:(NSDate *)date
-//{
-//    NSLog(@"Selected Day:%@", date);
-//}
-
-#pragma mark UITableViewDelegate protocol conformance
-
-// Display a details screen for the selected holiday/row.
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -76,7 +76,8 @@
                                               inManagedObjectContext:objectContext];
     [request setEntity:entity];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor 
-                                                        sortDescriptorWithKey:@"jobName"  
+                                                        sortDescriptorWithKey:
+							       @"jobName"  
                                                         ascending:YES]];
     request.predicate = nil;
     request.fetchBatchSize = 20;
@@ -95,11 +96,13 @@
     return [items objectAtIndex:indexPath.row];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+	 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WorkCell"];
     if (!cell) {
-	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WorkCell"];
+	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+				      reuseIdentifier:@"WorkCell"];
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
@@ -118,7 +121,8 @@
 
 #pragma mark KalDataSource protocol conformance
 
-- (void)presentingDatesFrom:(NSDate *)fromDate to:(NSDate *)toDate delegate:(id<KalDataSourceCallbacks>)delegate
+- (void)presentingDatesFrom:(NSDate *)fromDate to:(NSDate *)toDate 
+		   delegate:(id<KalDataSourceCallbacks>)delegate
 {
     [delegate loadedDataSource:self];
     callback = delegate;
@@ -129,22 +133,25 @@
 - (NSArray *)markedDatesFrom:(NSDate *)fromDate to:(NSDate *)toDate
 {
 
-//    return [self.generator returnWorkdaysWithInStartDate:fromDate endDate: toDate];
-//    return [[self.jobsArray lastObject] returnWorkdaysWithInStartDate:fromDate endDate:toDate];
+//    return [self.generator returnWorkdaysWithInStartDate:fromDate
+//    endDate: toDate]; return [[self.jobsArray lastObject]
+//    returnWorkdaysWithInStartDate:fromDate endDate:toDate];
     
     // first, use fetchrequest controller get all Job Info
     
     // got the information about all jobs, work or not, each in an array.
     // or each add an generator.
     
-    // (have a API to generator, let him know which data will be show, so it needs more calulating more days.
+    // (have a API to generator, let him know which data will be show,
+    // so it needs more calulating more days.
     
     // merge the genrator's result together.
 
     NSMutableArray *markedDayArray = [[NSMutableArray alloc] init];
     
     for (OneJob *j in self.theJobNameArray) {
-        [markedDayArray addObjectsFromArray:[j returnWorkdaysWithInStartDate:fromDate endDate:toDate]];
+        [markedDayArray addObjectsFromArray:[j returnWorkdaysWithInStartDate:fromDate 
+								     endDate:toDate]];
     }
     return  markedDayArray;
 }
@@ -173,11 +180,13 @@
 #pragma make - FetchedResultController 
 
 /**
- Delegate methods of NSFetchedResultsController to respond to additions, removals and so on.
+ Delegate methods of NSFetchedResultsController to respond to
+ additions, removals and so on.
  */
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-	// The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+	// The fetch controller is about to start sending change
+	// notifications, so prepare the table view for updates.
 }
 
 
@@ -193,7 +202,9 @@
 
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+	// The fetch controller has sent all current change
+	// notifications, so tell the table view to process all
+	// updates.
     
 }
 
