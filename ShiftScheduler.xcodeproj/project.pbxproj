@@ -90,6 +90,9 @@
 		2919033914A8CA2200EE1F32 /* ShiftChangeAddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftChangeAddVC.h; sourceTree = "<group>"; };
 		2919033A14A8CA2200EE1F32 /* ShiftChangeAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftChangeAddVC.m; sourceTree = "<group>"; };
 		2919033B14A8CA2200EE1F32 /* ShiftChangeAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShiftChangeAddVC.xib; sourceTree = "<group>"; };
+		2932F71514B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftSchedulerTest/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
+		2932F71614B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
+		2932F71714B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/ja.lproj/Localizable.strings; sourceTree = "<absolute>"; };
 		294E28FF148B2F3A00E6ED45 /* ShiftScheduler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 2.xcdatamodel"; sourceTree = "<group>"; };
 		294E2900148B302700E6ED45 /* ShiftDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftDay.h; sourceTree = "<group>"; };
 		294E2901148B302700E6ED45 /* ShiftDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftDay.m; sourceTree = "<group>"; };
@@ -529,6 +532,7 @@
 				29B9E1C11472C1D700DB2E1F /* en */,
 				29B9E1D31472C2A800DB2E1F /* zh-Hans */,
 				2900DEC11483E44E00E588EE /* zh-Hant */,
+				2932F71614B2237E00BE7A9E /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -539,6 +543,7 @@
 				29B9E1D51472C2B000DB2E1F /* en */,
 				29B9E1D71472C2B600DB2E1F /* zh-Hans */,
 				2900DEC21483E44E00E588EE /* zh-Hant */,
+				2932F71714B2237E00BE7A9E /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -547,6 +552,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				29ECA46714B0537300B3832D /* en */,
+				2932F71514B2237E00BE7A9E /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -707,6 +713,7 @@
 				29ECA46F14B0537300B3832D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
