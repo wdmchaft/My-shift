@@ -326,6 +326,8 @@
     ProfileChangeViewController *pcvc = [[ProfileChangeViewController alloc] initWithNibName:@"ProfileChangeViewController" bundle:nil];
     pcvc.theJob = [self.fetchedResultsController objectAtIndexPath:indexPath];
     pcvc.profileDelegate = self;
+    pcvc.managedObjectContext = self.managedObjectContext;
+    pcvc.viewMode = PCVC_EDITING_MODE;
     [self.navigationController pushViewController:pcvc animated:YES];
     // Navigation logic may go here. Create and push another view controller.
     /*

@@ -141,15 +141,18 @@
 
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
+    self.tableView.allowsSelectionDuringEditing = YES;
  
     if (self.viewMode == PCVC_ADDING_MODE) {
         self.navigationItem.rightBarButtonItem = self.saveButton;
     } else {
         // not support profile editing yet!
-//        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
     }
     
-    self.navigationItem.leftBarButtonItem = self.cancelButton;
+    if (self.viewMode == PCVC_ADDING_MODE) 
+        self.navigationItem.leftBarButtonItem = self.cancelButton;
+    // in editing mode, only show return.
     
     picker.delegate = self;
     picker.dataSource = self;
@@ -270,8 +273,23 @@
     if (self.viewMode == PCVC_ADDING_MODE)
         return NO;
 
-   // return YES;
-    return NO;
+    if (indexPath.row == 0) // can't edit name ?
+        return NO; 
+    return YES;
+
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animate
+{
+    [super setEditing:editing animated:animate];
+    if (!editing)
+    {
+        NSError *error;
+        [self.managedObjectContext save:&error];
+
+        [self.datePicker removeFromSuperview];
+        [self.picker removeFromSuperview];
+    }
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -285,10 +303,11 @@
     return UITableViewCellEditingStyleNone;
 }
 
-
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL) tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return NO;
 }
+
 
 #pragma mark - Table view delegate
 
