@@ -23,6 +23,8 @@
 @synthesize navController;
 @synthesize profileNVC, rightAS, changelistVC, sskalDelegate;
 
+//#define CONFIG_SS_ENABLE_SHIFT_CHANGE_FUNCTION
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
@@ -62,7 +64,9 @@
     // Setup Action Sheet
     self.rightAS = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"More", "more in action sheet") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "cancel") destructiveButtonTitle:nil 
                                  otherButtonTitles:
+#ifdef CONFIG_SS_ENABLE_SHIFT_CHANGE_FUNCTION
                NSLocalizedString(@"change shift" , "change shift"), 
+#endif
                NSLocalizedString(@"manage shift", "manage shift"),
                NSLocalizedString(@"Setting", "setting in action shift"),
                nil];
@@ -117,17 +121,25 @@
 
 - (void)actionSheet:(UIAlertView *)sender clickedButtonAtIndex:(NSInteger)index
 {
+#ifdef CONFIG_SS_ENABLE_SHIFT_CHANGE_FUNCTION
+#define MANAGEMENT_START_OFFSET 1
+#else
+#define MANAGEMENT_START_OFFSET 0
+#endif
     switch (index) {
+            
+#ifdef CONFIG_SS_ENABLE_SHIFT_CHANGE_FUNCTION
         case 0:
             [self showShiftChangeView];
             // change shift
             
             break;
-        case 1:
+#endif
+        case MANAGEMENT_START_OFFSET:
             // manage shift
             [self showManageView];
             break;
-        case 2:
+        case MANAGEMENT_START_OFFSET + 1:
             // setting view
             break;
         default:
