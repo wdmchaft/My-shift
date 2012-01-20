@@ -231,6 +231,9 @@
             nameLable.text = NSLocalizedString(@"Job Name", nil);
 //            [cell.contentView addSubview:nameLable];
             [cell.contentView addSubview:self.nameField];
+            
+            // auto become the first reponstor in adding mode.
+            [self.nameField becomeFirstResponder];
         }
             cell.detailTextLabel.text = self.theJob.jobName;
    
