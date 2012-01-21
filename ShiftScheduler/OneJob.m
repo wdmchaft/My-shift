@@ -8,7 +8,6 @@
 
 #import "OneJob.h"
 #import "NSDateAdditions.h"
-#import "NSDate+JobInfo.h"
 
 #define WORKDAY_TYPE_FULL 0
 #define WORKDAY_TYPE_NOT  1
@@ -37,6 +36,8 @@
 @dynamic jobStartDate;
 @dynamic jobFinishDate;
 @dynamic shiftdays;
+@dynamic jobOnColorID;
+@dynamic jobOnIconID;
 
 @synthesize curCalender;
 
@@ -46,6 +47,38 @@
         curCalender = [NSCalendar currentCalendar];
     }
     return curCalender;
+}
+
+- (UIImage *) iconImage
+{
+    if (!iconImage) {
+        NSString *iconPath =[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/%@", @"jobicons.bundle", self.jobOnIconID] ofType:nil];
+
+#if 1
+        NSString *demo_icon_path = [[NSBundle mainBundle] pathForResource:@"jobicons.bundle/190-bank.png" ofType:nil];
+
+        iconImage = [UIImage imageWithContentsOfFile:demo_icon_path];
+#warning "quick shift to read icon image picker"
+#else
+        iconImage = [UIImage imageWithContentsOfFile:iconPath];
+
+#endif
+        if (!iconImage) {
+            NSLog(@"ICON: can't found icon %@", iconPath);
+        }
+        
+    }
+    return iconImage;
+}
+
+- (UIColor *) iconColor
+{
+#warning  add color profile later
+    if (!iconColor) {
+        iconColor = [[UIColor alloc] initWithRed:0.1 green:.8 blue:.5 alpha:.9];
+    }
+    
+    return iconColor;
 }
 
 - (id)init

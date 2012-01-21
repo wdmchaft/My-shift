@@ -14,6 +14,7 @@
 		2919033C14A8CA2200EE1F32 /* ShiftChangeAddVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 2919033914A8CA2200EE1F32 /* ShiftChangeAddVC.h */; };
 		2919033D14A8CA2200EE1F32 /* ShiftChangeAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2919033A14A8CA2200EE1F32 /* ShiftChangeAddVC.m */; };
 		2919033E14A8CA2200EE1F32 /* ShiftChangeAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2919033B14A8CA2200EE1F32 /* ShiftChangeAddVC.xib */; };
+		292DBC8114C952B300C87A70 /* jobicons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 292DBC8014C952B300C87A70 /* jobicons.bundle */; };
 		294E2902148B302700E6ED45 /* ShiftDay.h in Headers */ = {isa = PBXBuildFile; fileRef = 294E2900148B302700E6ED45 /* ShiftDay.h */; };
 		294E2903148B302700E6ED45 /* ShiftDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E2901148B302700E6ED45 /* ShiftDay.m */; };
 		2987381F149917C300A2617F /* DatePickerViewController2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2987381C149917C200A2617F /* DatePickerViewController2.h */; };
@@ -28,7 +29,6 @@
 		29B9E1C81472C1D700DB2E1F /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */; };
 		29B9E1CB1472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */; };
 		29B9E1D41472C2B000DB2E1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1D61472C2B000DB2E1F /* Localizable.strings */; };
-		29B9E1EA1472C39F00DB2E1F /* NSDate+JobInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1DC1472C39F00DB2E1F /* NSDate+JobInfo.m */; };
 		29B9E1EB1472C39F00DB2E1F /* OneJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1DE1472C39F00DB2E1F /* OneJob.m */; };
 		29B9E1ED1472C39F00DB2E1F /* ProfileChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */; };
 		29B9E1EE1472C39F00DB2E1F /* ProfileChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1E21472C39F00DB2E1F /* ProfileChangeViewController.xib */; };
@@ -90,6 +90,7 @@
 		2919033914A8CA2200EE1F32 /* ShiftChangeAddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftChangeAddVC.h; sourceTree = "<group>"; };
 		2919033A14A8CA2200EE1F32 /* ShiftChangeAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftChangeAddVC.m; sourceTree = "<group>"; };
 		2919033B14A8CA2200EE1F32 /* ShiftChangeAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShiftChangeAddVC.xib; sourceTree = "<group>"; };
+		292DBC8014C952B300C87A70 /* jobicons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = jobicons.bundle; sourceTree = "<group>"; };
 		2932F71514B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftSchedulerTest/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
 		2932F71614B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
 		2932F71714B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/ja.lproj/Localizable.strings; sourceTree = "<absolute>"; };
@@ -114,8 +115,6 @@
 		29B9E1D31472C2A800DB2E1F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		29B9E1D51472C2B000DB2E1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29B9E1D71472C2B600DB2E1F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		29B9E1DB1472C39E00DB2E1F /* NSDate+JobInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+JobInfo.h"; sourceTree = "<group>"; };
-		29B9E1DC1472C39F00DB2E1F /* NSDate+JobInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+JobInfo.m"; sourceTree = "<group>"; };
 		29B9E1DD1472C39F00DB2E1F /* OneJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneJob.h; sourceTree = "<group>"; };
 		29B9E1DE1472C39F00DB2E1F /* OneJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneJob.m; sourceTree = "<group>"; };
 		29B9E1E01472C39F00DB2E1F /* ProfileChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileChangeViewController.h; sourceTree = "<group>"; };
@@ -186,10 +185,8 @@
 				294E2901148B302700E6ED45 /* ShiftDay.m */,
 				29ECA44F14B04CFC00B3832D /* SSKalDelegate.h */,
 				29ECA45014B04CFC00B3832D /* SSKalDelegate.m */,
-				29B9E1DC1472C39F00DB2E1F /* NSDate+JobInfo.m */,
 				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
 				29B9E1DE1472C39F00DB2E1F /* OneJob.m */,
-				29B9E1DB1472C39E00DB2E1F /* NSDate+JobInfo.h */,
 			);
 			name = Module;
 			path = ShiftScheduler;
@@ -279,6 +276,7 @@
 		29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				292DBC8014C952B300C87A70 /* jobicons.bundle */,
 				298B0167148B941900C013F5 /* Compile Need files */,
 				29B9E1C61472C1D700DB2E1F /* SSAppDelegate.h */,
 				29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */,
@@ -449,6 +447,7 @@
 				290474CE148E7A4E0089A432 /* ShfitChangeList.xib in Resources */,
 				29873821149917C300A2617F /* DatePickerViewController2.xib in Resources */,
 				2919033E14A8CA2200EE1F32 /* ShiftChangeAddVC.xib in Resources */,
+				292DBC8114C952B300C87A70 /* jobicons.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,7 +485,6 @@
 				29B9E1C41472C1D700DB2E1F /* main.m in Sources */,
 				29B9E1C81472C1D700DB2E1F /* SSAppDelegate.m in Sources */,
 				29B9E1CB1472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld in Sources */,
-				29B9E1EA1472C39F00DB2E1F /* NSDate+JobInfo.m in Sources */,
 				29B9E1EB1472C39F00DB2E1F /* OneJob.m in Sources */,
 				29B9E1ED1472C39F00DB2E1F /* ProfileChangeViewController.m in Sources */,
 				29B9E1EF1472C39F00DB2E1F /* ProfilesViewController.m in Sources */,

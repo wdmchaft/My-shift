@@ -46,9 +46,13 @@
     self.sskalDelegate = kalDelegate;
     kal.delegate = self.sskalDelegate;
     kal.vcdelegate = self.sskalDelegate;
+
     WorkdayDataSource *wds = [[WorkdayDataSource alloc] initWithManagedContext:self.managedObjectContext];
     dataSource  = wds;
     kal.dataSource = dataSource;
+    
+    kal.tileDelegate = dataSource;
+    // setup tile view delegate, provides tile icon information.
     
     self.profileView = [[ProfilesViewController alloc] initWithManagedContext:self.managedObjectContext];
     self.profileView.parentViewDelegate = self;

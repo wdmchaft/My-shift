@@ -13,8 +13,6 @@
 #pragma mark - KalViewControllerDelegate protocol.
 - (void) KalViewController:(KalViewController *)sender selectDate:(NSDate *)date
 {
-    NSLog(@"Selected Day:%@", date);
-    NSLog(@"%g", [date timeIntervalSince1970]);
 }
 
 #pragma mark UITableViewDelegate protocol conformance

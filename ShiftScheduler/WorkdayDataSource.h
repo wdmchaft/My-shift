@@ -9,7 +9,7 @@
 #import "Kal.h"
 #import "OneJob.h"
 
-@interface WorkdayDataSource : NSObject  <KalDataSource, NSFetchedResultsControllerDelegate>
+@interface WorkdayDataSource : NSObject  <KalDataSource, NSFetchedResultsControllerDelegate, KalTileIconDelegate>
 {
     //WorkDateGenerator *generator;
     //NSArray *jobsArray;
@@ -21,9 +21,13 @@
 }
 
 @property (strong, nonatomic) NSArray *theJobNameArray;
-@property (nonatomic, strong) NSFetchedResultsController
-*fetchedRequestController;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedRequestController;
+
 - (id) initWithManagedContext:(NSManagedObjectContext *)thecontext;
+
+// Tile View Icon delegate
+- (NSArray *) KalTileDrawDelegate: (KalTileView *) sender getIconDrawInfoWithDate: (NSDate *) date;
+
 
 
 

@@ -13,8 +13,11 @@
 
 
 @interface OneJob : NSManagedObject {
-     NSCalendar *curCalender;
+    NSCalendar *curCalender;
     NSCalendar *timezoneCalender;
+    
+    UIImage *iconImage;
+    UIColor *iconColor;
     
 }
 @property (nonatomic, strong) NSString * jobName;       // the job's name
@@ -23,9 +26,13 @@
 @property (nonatomic, strong) NSNumber * jobOffDays; // how long rest once.
 @property (nonatomic, strong) NSDate * jobStartDate;
 @property (nonatomic, strong) NSDate * jobFinishDate;
+@property (nonatomic, retain) NSString * jobOnColorID;
+@property (nonatomic, retain) NSString * jobOnIconID;
+
 
 @property (nonatomic, strong) NSCalendar *curCalender;
-
+@property (nonatomic, readonly) UIImage  *iconImage;
+@property (nonatomic, readonly) UIColor  *iconColor;
 
 
 // init the work date generator with these input.

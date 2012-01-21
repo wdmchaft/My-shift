@@ -161,28 +161,60 @@
     return  markedDayArray;
 }
 
-
-
-- (void)loadItemsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate
+- (void) loadItemsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate toArray: (NSMutableArray *)array
 {
-    
     NSDate *nextday;
     for (nextday = fromDate; [nextday timeIntervalSinceDate:toDate] < 0; 
          nextday = 
          [nextday dateByAddingTimeInterval:24*60*60]) {
         for (OneJob *job in self.theJobNameArray) {
             if ([job isDayWorkingDay:nextday]) {
-                [items addObject:job];
+                [array addObject:job];
             }
         }
-    }
+    }    
 }
+
+
+- (void)loadItemsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate
+{
+    [self loadItemsFromDate:fromDate toDate:toDate toArray:items];
+}
+
 - (void)removeAllItems
 {
     [items removeAllObjects];
 }
 
-#pragma make - FetchedResultController 
+#pragma mark - TileViewIconDelegate
+
+// Tile View Icon delegate
+- (NSArray *) KalTileDrawDelegate: (KalTileView *) sender getIconDrawInfoWithDate: (NSDate *) date
+{
+    NSMutableArray *resultArray = [[NSMutableArray alloc] init];
+    
+    NSMutableArray *tjobArray = [[NSMutableArray alloc] init];
+    
+    NSDate *from = [date cc_dateByMovingToBeginningOfDay];
+    NSDate *to = [date cc_dateByMovingToEndOfDay];
+    
+    [self loadItemsFromDate:from toDate:to toArray:tjobArray];
+    if (tjobArray.count == 0) 
+        return nil;
+    for (id j in tjobArray) {
+        if (j && [j isKindOfClass:[OneJob class]]) {
+            OneJob *job = j;
+            NSDictionary *entry = [NSDictionary dictionaryWithObjectsAndKeys: 
+                                   [NSNumber numberWithInt:KAL_TILE_DRAW_METHOD_MONO_ICON_FILL_COLOR],  KAL_TILE_ICON_DRAW_TYPE_KEY, 
+                                   job.iconImage, KAL_TILE_ICON_IMAGE_KEY, 
+                                   job.iconColor, KAL_TILE_ICON_COLOR_KEY, nil];
+            [resultArray addObject:entry];
+        }
+    }
+    return resultArray;   
+}
+
+#pragma mark - FetchedResultController 
 
 /**
  Delegate methods of NSFetchedResultsController to respond to
@@ -210,6 +242,7 @@
 	// The fetch controller has sent all current change
 	// notifications, so tell the table view to process all
 	// updates.
+    
     
 }
 
