@@ -26,7 +26,7 @@
 #endif
 @end
 
-@interface ShfitChangeList : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface ShfitChangeList : UITableViewController <NSFetchedResultsControllerDelegate, ShiftChangeListDelegate>
 {
 	NSManagedObjectContext *managedObjectContext;
 	NSFetchedResultsController *fetchedResultsController;

@@ -27,7 +27,7 @@
 
 - (void) testOneJobModule
 {
-    NSDate *startDate = [[NSDate alloc] init];
+    //    NSDate *startDate = [[NSDate alloc] init];
     
 //    for ICBC as an example
 //    NSDate *startDate = [[NSDate alloc] initWithTimeIntervalSince1970:<#(NSTimeInterval)#>

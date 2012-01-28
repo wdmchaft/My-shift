@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "OneJob.h"
 #import "ProfilesViewController.h"
+#import "ProfileIconPickerDataSource.h"
+#import "InfColorPickerController.h"
 
 #define PCVC_EDITING_MODE 0
 #define PCVC_ADDING_MODE 1
@@ -17,28 +19,33 @@
 #define PCVC_DEFAULT_OFF_DAYS 2
 #define PCVC_DEFAULT_ON_DAYS 5        
 
-#define PICKER_VIEW_ON 1
-#define PICKER_VIEW_OFF 2
+#define PICKER_VIEW_ON 4
+#define PICKER_VIEW_OFF 5
 
-@interface ProfileChangeViewController : UITableViewController  <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
+@interface ProfileChangeViewController : UITableViewController  <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, JPImagePickerControllerDelegate, InfColorPickerControllerDelegate>
 {
     int viewMode;
     int lastChoosePicker;
-     UIDatePicker *datePicker;
+    UIDatePicker *datePicker;
     UITextField *nameField;
     UILabel *nameLable;
-     UIPickerView *picker;
+    UISwitch *colorEnableSwitch;
+    UIPickerView *picker;
     NSArray *itemsArray;
     UIBarButtonItem *saveButton;
     UIBarButtonItem *cancelButton;
     NSDateFormatter *dateFormatter;
     NSManagedObjectContext *managedObjectContext;
+    NSIndexPath *colorChooseCellIndexPath;
     id<ProfileViewDelegate>  __unsafe_unretained profileDelegate;
+    ProfileIconPickerDataSource *iconDateSource;
+    JPImagePickerController *imagePickerVC;
     OneJob *theJob;
 }
 
 @property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic, retain) IBOutlet UIPickerView *picker;
+@property (nonatomic, strong) UISwitch *colorEnableSwitch;
 @property (nonatomic, retain) NSArray *itemsArray;
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
 @property (nonatomic, strong) UIBarButtonItem *cancelButton;
@@ -46,6 +53,8 @@
 @property (retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) UITextField *nameField;
 @property (assign, nonatomic)    id<ProfileViewDelegate> profileDelegate;
+
+@property (nonatomic, retain) ProfileIconPickerDataSource *iconDateSource;
 
 @property int viewMode;
 

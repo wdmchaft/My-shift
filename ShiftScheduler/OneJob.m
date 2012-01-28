@@ -8,6 +8,7 @@
 
 #import "OneJob.h"
 #import "NSDateAdditions.h"
+#import "UIColor+HexCoding.h"
 
 #define WORKDAY_TYPE_FULL 0
 #define WORKDAY_TYPE_NOT  1
@@ -36,7 +37,7 @@
 @dynamic jobStartDate;
 @dynamic jobFinishDate;
 @dynamic shiftdays;
-@dynamic jobOnColorID;
+@dynamic jobOnColorID,jobOnIconColorOn;
 @dynamic jobOnIconID;
 
 @synthesize curCalender;
@@ -51,33 +52,70 @@
 
 - (UIImage *) iconImage
 {
-    if (!iconImage) {
-        NSString *iconPath =[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/%@", @"jobicons.bundle", self.jobOnIconID] ofType:nil];
-
-#if 1
-        NSString *demo_icon_path = [[NSBundle mainBundle] pathForResource:@"jobicons.bundle/190-bank.png" ofType:nil];
-
-        iconImage = [UIImage imageWithContentsOfFile:demo_icon_path];
-#warning "quick shift to read icon image picker"
-#else
-        iconImage = [UIImage imageWithContentsOfFile:iconPath];
-
-#endif
-        if (!iconImage) {
-            NSLog(@"ICON: can't found icon %@", iconPath);
+    if (!iconImage 
+        || ![cachedJobOnIconID isEqualToString:self.jobOnIconID]
+        || ![cachedJobOnIconColorOn isEqualToNumber:self.jobOnIconColorOn]) {
+        NSString *iconpath = self.jobOnIconID;
+        if (iconpath == nil) {
+            iconpath = [[NSBundle mainBundle] pathForResource:@"jobicons.bundle/smile32.png" ofType:nil];
         }
-        
+        iconImage = [UIImage imageWithContentsOfFile:iconpath];
+        cachedJobOnIconID = iconpath;
+        if (!iconImage) {
+            NSLog(@"ICON: can't found icon %@", self.jobOnIconID);
+        }
+        cachedJobOnIconColorOn = self.jobOnIconColorOn;
+        if (self.jobOnIconColorOn.intValue == TRUE) {
+            iconImage = [OneJob processIconImage:iconImage withColor:self.iconColor];
+        }
     }
     return iconImage;
 }
 
++ (UIImage *) processIconImage: (UIImage *)icon withColor: (UIColor *)color
+{
+    UIImage *finishImage;
+    CGImageRef alphaImage = CGImageRetain(icon.CGImage);
+    CGColorRef colorref = CGColorRetain(color.CGColor);
+    
+    UIGraphicsBeginImageContext(icon.size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGRect imageArea = CGRectMake (0, 0,
+                              icon.size.width, icon.size.height);
+
+    //
+    CGFloat height = icon.size.height;
+	CGContextTranslateCTM(ctx, 0.0, height);
+	CGContextScaleCTM(ctx, 1.0, -1.0);
+
+    CGContextClipToMask(ctx, imageArea , alphaImage);
+
+    CGContextSetFillColorWithColor(ctx, colorref);
+    CGContextFillRect(ctx, imageArea);
+    CGImageRelease(icon.CGImage);
+    CGColorRelease(color.CGColor);
+
+    finishImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return finishImage;
+}
+
+
+
+
 - (UIColor *) iconColor
 {
-#warning  add color profile later
-    if (!iconColor) {
-        iconColor = [[UIColor alloc] initWithRed:0.1 green:.8 blue:.5 alpha:.9];
+    if (!iconColor || ![cachedJonOnIconColor isEqualToString:self.jobOnColorID]) {
+        if (self.jobOnColorID == nil)
+            return nil;
+        iconColor = [UIColor colorWithHexString:self.jobOnColorID withAlpha:0.9f];
+        cachedJonOnIconColor = self.jobOnColorID;
     }
     
+    if (self.jobOnIconColorOn.intValue == FALSE)
+        return nil;
+
     return iconColor;
 }
 

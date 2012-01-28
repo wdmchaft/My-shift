@@ -19,7 +19,7 @@
 {
     UISegmentedControl *changeShiftSegmentControl;
     NSManagedObjectContext *managedObjectContext;
-    id<ShiftChangeListDelegate>  listDelegate;
+    id<ShiftChangeListDelegate>  __unsafe_unretained listDelegate;
     UITextField *notesTextFiled;
     UIPickerView *shiftPicker;
 #ifndef USE_ANOTHER_VC_CHOOSEDATA
@@ -33,7 +33,7 @@
 
 @property (nonatomic, strong) UISegmentedControl *changeShiftSegmentControl;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong)   id<ShiftChangeListDelegate> listDelegate;
+@property (nonatomic, unsafe_unretained)   id<ShiftChangeListDelegate> listDelegate;
 @property (strong) ShiftDay  *theShiftChange;
 @property (nonatomic, strong) UITextField *notesTextFiled;
 @property (nonatomic, strong) UIPickerView *shiftPicker;

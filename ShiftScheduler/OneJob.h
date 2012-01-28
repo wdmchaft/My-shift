@@ -18,6 +18,9 @@
     
     UIImage *iconImage;
     UIColor *iconColor;
+    NSString *cachedJobOnIconID;
+    NSString *cachedJonOnIconColor;
+    NSNumber *cachedJobOnIconColorOn;
     
 }
 @property (nonatomic, strong) NSString * jobName;       // the job's name
@@ -29,6 +32,7 @@
 @property (nonatomic, retain) NSString * jobOnColorID;
 @property (nonatomic, retain) NSString * jobOnIconID;
 
+@property (nonatomic, retain) NSNumber * jobOnIconColorOn;
 
 @property (nonatomic, strong) NSCalendar *curCalender;
 @property (nonatomic, readonly) UIImage  *iconImage;
@@ -65,6 +69,7 @@
 - (void)removeShiftdaysObject:(ShiftDay *)value;
 - (void)addShiftdays:(NSSet *)values;
 - (void)removeShiftdays:(NSSet *)values;
++ (UIImage *) processIconImage: (UIImage *)icon withColor: (UIColor *)color;
 
 @end
 

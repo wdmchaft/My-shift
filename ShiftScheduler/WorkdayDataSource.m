@@ -204,8 +204,14 @@
     for (id j in tjobArray) {
         if (j && [j isKindOfClass:[OneJob class]]) {
             OneJob *job = j;
+            int drawType;
+            if (job.iconColor == nil)
+                drawType = KAL_TILE_DRAW_METHOD_COLOR_ICON;
+            else
+                drawType = KAL_TILE_DRAW_METHOD_MONO_ICON_FILL_COLOR;
+
             NSDictionary *entry = [NSDictionary dictionaryWithObjectsAndKeys: 
-                                   [NSNumber numberWithInt:KAL_TILE_DRAW_METHOD_MONO_ICON_FILL_COLOR],  KAL_TILE_ICON_DRAW_TYPE_KEY, 
+                                   [NSNumber numberWithInt:drawType],  KAL_TILE_ICON_DRAW_TYPE_KEY, 
                                    job.iconImage, KAL_TILE_ICON_IMAGE_KEY, 
                                    job.iconColor, KAL_TILE_ICON_COLOR_KEY, nil];
             [resultArray addObject:entry];
