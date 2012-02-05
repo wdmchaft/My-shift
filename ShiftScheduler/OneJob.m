@@ -42,6 +42,8 @@
 
 @synthesize curCalender;
 
+
+
 - (NSCalendar *) curCalender
 {
     if (!curCalender) {
@@ -50,29 +52,39 @@
     return curCalender;
 }
 
+#define DEFAULT_ICON_FILE @"jobicons.bundle/smile32.png"
+
 - (UIImage *) iconImage
 {
     if (!iconImage 
         || ![cachedJobOnIconID isEqualToString:self.jobOnIconID]
         || ![cachedJobOnIconColorOn isEqualToNumber:self.jobOnIconColorOn]) {
+        //NSString *iconpath = [NSString stringWithFormat:@"jobicons.bundle/%@",self.jobOnIconID];
         NSString *iconpath = self.jobOnIconID;
         if (iconpath == nil) {
-            iconpath = [[NSBundle mainBundle] pathForResource:@"jobicons.bundle/smile32.png" ofType:nil];
+            iconpath = [[NSBundle mainBundle] pathForResource:DEFAULT_ICON_FILE ofType:nil];
         }
         iconImage = [UIImage imageWithContentsOfFile:iconpath];
         cachedJobOnIconID = iconpath;
         if (!iconImage) {
             NSLog(@"ICON: can't found icon %@", self.jobOnIconID);
         }
+        
+        // disable cholor enable or not choose by user;
+#ifdef ENABLE_COLOR_ENABLE_CHOOSE
         cachedJobOnIconColorOn = self.jobOnIconColorOn;
-        if (self.jobOnIconColorOn.intValue == TRUE) {
-            iconImage = [OneJob processIconImage:iconImage withColor:self.iconColor];
+       if (self.jobOnIconColorOn.intValue == TRUE) {
+            iconImage = [OneJob processIconImageWithColor:iconImage withColor:self.iconColor];
         }
+#else
+        iconImage = [OneJob processIconImageWithColor:iconImage withColor:self.iconColor];
+#endif
     }
     return iconImage;
 }
 
-+ (UIImage *) processIconImage: (UIImage *)icon withColor: (UIColor *)color
+
++ (UIImage *) processIconImageWithColor: (UIImage *)icon withColor: (UIColor *)color
 {
     UIImage *finishImage;
     CGImageRef alphaImage = CGImageRetain(icon.CGImage);
@@ -84,7 +96,9 @@
     CGRect imageArea = CGRectMake (0, 0,
                               icon.size.width, icon.size.height);
 
-    //
+    // Don't know why if I don't translate the CTM, the image will be a *bottom* up
+    // aka, head on bottom shape, so I need use TranlateCTM and ScaleCTM to let
+    // all y-axis to be rotated.
     CGFloat height = icon.size.height;
 	CGContextTranslateCTM(ctx, 0.0, height);
 	CGContextScaleCTM(ctx, 1.0, -1.0);
@@ -101,28 +115,40 @@
     return finishImage;
 }
 
+// Always have a color of Icon,
+// for this application, color can use to notice different tasks,
+// so different color make sense, no color not make sense.
+// instread of return NULL, Return a default COLOR
 
+#define DEFAULT_ALPHA_VALUE_OF_JOB_ICON 0.9f
 
+- (UIColor *) defaultIconColor
+{
+    if (defaultIconColor == nil) {
+        // 39814c is green one
+        // B674C2 is light purple one
+        defaultIconColor = [UIColor colorWithHexString:@"B674C2" withAlpha:DEFAULT_ALPHA_VALUE_OF_JOB_ICON];
+    }
+    return defaultIconColor;
+}
 
 - (UIColor *) iconColor
 {
     if (!iconColor || ![cachedJonOnIconColor isEqualToString:self.jobOnColorID]) {
         if (self.jobOnColorID == nil)
-            return nil;
-        iconColor = [UIColor colorWithHexString:self.jobOnColorID withAlpha:0.9f];
+            return self.defaultIconColor;
+        NSLog(@"%@", self.jobOnColorID);
+        iconColor = [UIColor colorWithHexString:self.jobOnColorID 
+                                      withAlpha:DEFAULT_ALPHA_VALUE_OF_JOB_ICON];
         cachedJonOnIconColor = self.jobOnColorID;
     }
     
+#ifdef ENABLE_COLOR_ENABLE_CHOOSE
     if (self.jobOnIconColorOn.intValue == FALSE)
-        return nil;
+       return nil;
+#endif
 
     return iconColor;
-}
-
-- (id)init
-{
-    self = [super init];
-    return self;
 }
 
 #define DAY_TO_SECONDS 60*60*24

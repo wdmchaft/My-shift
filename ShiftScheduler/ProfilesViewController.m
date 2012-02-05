@@ -345,6 +345,7 @@
     if ([t isKindOfClass:[OneJob class]]) {
         OneJob *j = t;
         cell.textLabel.text = j.jobName;
+        cell.imageView.image = j.iconImage;
     }
 }
 

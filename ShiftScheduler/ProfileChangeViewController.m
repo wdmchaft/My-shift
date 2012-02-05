@@ -21,10 +21,14 @@
 
 #pragma mark - "init values"
 
+
+#define PICKER_VIEW_ON 3
+#define PICKER_VIEW_OFF 4
+
 #define NAME_ITEM_STRING  NSLocalizedString(@"Job Name", "job name")
-#define ICON_ITEM_STRING  NSLocalizedString(@"Choose an icon", "choose a icon")
+#define ICON_ITEM_STRING  NSLocalizedString(@"Change Icon", "choose a icon")
 #define COLOR_ENABLE_STRING NSLocalizedString(@"Enable color icon", "enable color icon")
-#define COLOR_PICKER_STRING NSLocalizedString(@"Choose a color", "choose a color to show icon")
+#define COLOR_PICKER_STRING NSLocalizedString(@"Change Color", "choose a color to show icon")
 #define WORKLEN_ITEM_STRING NSLocalizedString(@"Work Length", "how long work days")
 #define RESTLEN_ITEM_STRING NSLocalizedString(@"Rest Length", "how long rest days")
 #define STARTWITH_ITEM_STRING NSLocalizedString(@"Start With", "start with this date")
@@ -35,7 +39,7 @@
     if (!itemsArray) {
         itemsArray = [[NSArray alloc] initWithObjects:NAME_ITEM_STRING,
                       ICON_ITEM_STRING,
-                      COLOR_ENABLE_STRING,
+//                      COLOR_ENABLE_STRING,
                       COLOR_PICKER_STRING,
 				      WORKLEN_ITEM_STRING,
 				      RESTLEN_ITEM_STRING,
@@ -83,7 +87,7 @@
     return  iconDateSource;
 }
 
-#define kTextFieldWidth	120.0
+#define kTextFieldWidth	150.0
 // for general screen
 #define kLeftMargin             150.0
 #define kTopMargin				20.0
@@ -100,7 +104,7 @@
 		nameField = [[UITextField alloc] initWithFrame:frame];
 		nameField.textColor = [UIColor blackColor];
 		nameField.placeholder = NSLocalizedString(@"Name of Job", nil);
-		nameField.autocorrectionType = UITextAutocorrectionTypeNo;	// no auto correction support
+		nameField.autocorrectionType = UITextAutocorrectionTypeDefault;	// no auto correction support
 		
 		nameField.keyboardType = UIKeyboardTypeDefault;	// use the default type input method (entire keyboard)
 		nameField.returnKeyType = UIReturnKeyDone;
@@ -118,12 +122,29 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField*)sender
 {
+    if (self.theJob.jobName.length > 0) {
+       [self.nameField resignFirstResponder];
+        return YES;
+    } else
+        return  NO;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+        return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    // update the name every tpying.
+    self.theJob.jobName = [textField.text stringByReplacingCharactersInRange:range withString:string];
     return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.theJob.jobName = textField.text;
+    [textField resignFirstResponder];
 }
 
 
@@ -218,6 +239,7 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    self.editing = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -247,13 +269,42 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    if (index <= 2) {
+        return  0;
+    } else {
+        return  1;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+        return @"Name and Icon";
+    else
+        return @"Shift Detail";
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.itemsArray count];
+    if (section == 0)
+        return  3;
+    else
+        return [self.itemsArray count] - 3;
+}
+
+- (NSString *) returnItemByIndexPath: (NSIndexPath *)indexPath
+{
+    NSString *item;
+    if (indexPath.section == 0)
+        item = [self.itemsArray objectAtIndex:indexPath.row];
+    else
+        item = [self.itemsArray objectAtIndex:(indexPath.row + 3)];
+    return item;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -267,7 +318,9 @@
 
     }
     
-    NSString *item = [self.itemsArray objectAtIndex:indexPath.row];
+    NSString *item;
+    item =  [self returnItemByIndexPath:indexPath];
+            
     cell.textLabel.text = item;
     
     if ([item isEqualToString:ICON_ITEM_STRING]) {
@@ -282,24 +335,23 @@
     }
     
     if ([item isEqualToString:NAME_ITEM_STRING]) {
+
+        cell.imageView.image = self.theJob.iconImage;
+
         if (self.viewMode == PCVC_ADDING_MODE) {
             nameField.delegate = self;
             nameLable.text = NSLocalizedString(@"Job Name", nil);
             [cell.contentView addSubview:self.nameField];
-            
-            // auto become the first reponstor in adding mode.
-            [self.nameField becomeFirstResponder];
-        }
-        cell.imageView.image = self.theJob.iconImage;
-        cell.detailTextLabel.text = self.theJob.jobName;
+        } else             // only one place needs display name
+            cell.detailTextLabel.text = self.theJob.jobName;
+
     } else if ([item isEqualToString:WORKLEN_ITEM_STRING]) {
         if (self.viewMode == PCVC_ADDING_MODE 
             && self.theJob.jobOnDays == [NSNumber numberWithInt:0])  {
             // change default value ony if not changed.
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", PCVC_DEFAULT_ON_DAYS];
             self.theJob.jobOnDays = [NSNumber numberWithInt:PCVC_DEFAULT_ON_DAYS];
-        }
-        else
+        } else
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", [self.theJob.jobOnDays intValue]];
     } else if ([item isEqualToString:RESTLEN_ITEM_STRING]) {
         if (self.viewMode == PCVC_ADDING_MODE 
@@ -323,10 +375,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    if (self.viewMode == PCVC_ADDING_MODE)
-        return NO;
-
-    if (indexPath.row == 0) // can't edit name ?
+    if (indexPath.section == 0 && indexPath.row == 0) // can't edit name ?
         return NO; 
     return YES;
 
@@ -368,7 +417,7 @@
     
     UITableViewCell *targetCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    NSString *item = [self.itemsArray objectAtIndex:indexPath.row];
+    NSString *item = [self returnItemByIndexPath:indexPath];
 
     if ([self.nameField isFirstResponder]) { // release, in case other need ui.
         [self.nameField resignFirstResponder];
@@ -562,8 +611,11 @@
 
 - (void)imagePicker:(JPImagePickerController *)picker didFinishPickingWithImageNumber:(NSInteger)imageNumber
 {
-    NSLog(@"choose icon :%@", [self.iconDateSource.iconList objectAtIndex:imageNumber]);
+
+    // only store last path component
     self.theJob.jobOnIconID = [self.iconDateSource.iconList objectAtIndex:imageNumber];
+    NSLog(@"choose icon :%@ saveIconPath:%@ lastPath %@", [self.iconDateSource.iconList objectAtIndex:imageNumber]
+          , self.theJob.jobOnColorID, [self.theJob.jobOnColorID lastPathComponent]);
     
     [self.tableView reloadData];
     [self.modalViewController dismissModalViewControllerAnimated:YES];

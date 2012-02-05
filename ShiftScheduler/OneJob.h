@@ -18,6 +18,7 @@
     
     UIImage *iconImage;
     UIColor *iconColor;
+    UIColor *defaultIconColor;
     NSString *cachedJobOnIconID;
     NSString *cachedJonOnIconColor;
     NSNumber *cachedJobOnIconColorOn;
@@ -37,6 +38,7 @@
 @property (nonatomic, strong) NSCalendar *curCalender;
 @property (nonatomic, readonly) UIImage  *iconImage;
 @property (nonatomic, readonly) UIColor  *iconColor;
+@property (nonatomic, readonly)  UIColor *defaultIconColor;
 
 
 // init the work date generator with these input.
@@ -49,6 +51,13 @@
 - (NSArray *) returnWorkdaysWithInStartDate:(NSDate *) startDate endDate: (NSDate *) endDate;
 - (BOOL) isDayWorkingDay:(NSDate *)theDate;
 - (NSInteger)daysBetweenDateV2:(NSDate *)fromDateTime andDate:(NSDate *)toDateTime;
+
+// This function create a Image Context and draw the image with mask
+// then clip the context to mask
+// then fill the color user choosed.
+// that can create a image shape with specify color icon.
++ (UIImage *) processIconImageWithColor: (UIImage *)icon withColor: (UIColor *)color;
+
 
 @property (nonatomic, strong) NSSet *shiftdays;
 @end
@@ -69,7 +78,7 @@
 - (void)removeShiftdaysObject:(ShiftDay *)value;
 - (void)addShiftdays:(NSSet *)values;
 - (void)removeShiftdays:(NSSet *)values;
-+ (UIImage *) processIconImage: (UIImage *)icon withColor: (UIColor *)color;
+
 
 @end
 

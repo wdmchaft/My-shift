@@ -19,8 +19,6 @@
 #define PCVC_DEFAULT_OFF_DAYS 2
 #define PCVC_DEFAULT_ON_DAYS 5        
 
-#define PICKER_VIEW_ON 4
-#define PICKER_VIEW_OFF 5
 
 @interface ProfileChangeViewController : UITableViewController  <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, JPImagePickerControllerDelegate, InfColorPickerControllerDelegate>
 {
@@ -63,4 +61,8 @@
 - (IBAction)datePickerValueChanged:(id)sender;
 - (void) cancel:(id)sender;
 - (void) saveProfile:(id) sender;
+
+- (void)textFieldDidEndEditing:(UITextField *)textField;
+-(BOOL)textFieldShouldReturn:(UITextField*)sender;
+
 @end
