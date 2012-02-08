@@ -20,15 +20,12 @@
 #define PCVC_DEFAULT_ON_DAYS 5        
 
 
-@interface ProfileChangeViewController : UITableViewController  <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, JPImagePickerControllerDelegate, InfColorPickerControllerDelegate>
+@interface ProfileChangeViewController : UITableViewController  <UITextFieldDelegate, JPImagePickerControllerDelegate, InfColorPickerControllerDelegate>
 {
     int viewMode;
-    int lastChoosePicker;
-    UIDatePicker *datePicker;
     UITextField *nameField;
     UILabel *nameLable;
     UISwitch *colorEnableSwitch;
-    UIPickerView *picker;
     NSArray *itemsArray;
     UIBarButtonItem *saveButton;
     UIBarButtonItem *cancelButton;
@@ -41,8 +38,6 @@
     OneJob *theJob;
 }
 
-@property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
-@property (nonatomic, retain) IBOutlet UIPickerView *picker;
 @property (nonatomic, strong) UISwitch *colorEnableSwitch;
 @property (nonatomic, retain) NSArray *itemsArray;
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
@@ -58,7 +53,6 @@
 
 @property (retain) OneJob *theJob;
 
-- (IBAction)datePickerValueChanged:(id)sender;
 - (void) cancel:(id)sender;
 - (void) saveProfile:(id) sender;
 

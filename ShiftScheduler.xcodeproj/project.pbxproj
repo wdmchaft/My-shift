@@ -41,6 +41,10 @@
 		292DBCB114CA943F00C87A70 /* JPImagePickerOverviewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 292DBCA714CA943F00C87A70 /* JPImagePickerOverviewController.xib */; };
 		292DBCB214CA943F00C87A70 /* UIImageResizing.h in Headers */ = {isa = PBXBuildFile; fileRef = 292DBCA814CA943F00C87A70 /* UIImageResizing.h */; };
 		292DBCB314CA943F00C87A70 /* UIImageResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 292DBCA914CA943F00C87A70 /* UIImageResizing.m */; };
+		2935514414E2BABA004D8FAC /* SSTurnShiftTVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 2935514114E2BABA004D8FAC /* SSTurnShiftTVC.h */; };
+		2935514514E2BABA004D8FAC /* SSTurnShiftTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */; };
+		2935514614E2BABA004D8FAC /* SSTurnShiftTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */; };
+		2935514814E2DDB0004D8FAC /* ProfileChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935514714E2DDB0004D8FAC /* ProfileChangeViewController.xib */; };
 		294E2902148B302700E6ED45 /* ShiftDay.h in Headers */ = {isa = PBXBuildFile; fileRef = 294E2900148B302700E6ED45 /* ShiftDay.h */; };
 		294E2903148B302700E6ED45 /* ShiftDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E2901148B302700E6ED45 /* ShiftDay.m */; };
 		2987381F149917C300A2617F /* DatePickerViewController2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2987381C149917C200A2617F /* DatePickerViewController2.h */; };
@@ -57,7 +61,6 @@
 		29B9E1D41472C2B000DB2E1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1D61472C2B000DB2E1F /* Localizable.strings */; };
 		29B9E1EB1472C39F00DB2E1F /* OneJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1DE1472C39F00DB2E1F /* OneJob.m */; };
 		29B9E1ED1472C39F00DB2E1F /* ProfileChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */; };
-		29B9E1EE1472C39F00DB2E1F /* ProfileChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1E21472C39F00DB2E1F /* ProfileChangeViewController.xib */; };
 		29B9E1EF1472C39F00DB2E1F /* ProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */; };
 		29B9E1F11472C39F00DB2E1F /* WorkdayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */; };
 		29B9E1FB1472C72000DB2E1F /* Kal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1FA1472C72000DB2E1F /* Kal.bundle */; };
@@ -148,6 +151,10 @@
 		2932F71514B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftSchedulerTest/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
 		2932F71614B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
 		2932F71714B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/ja.lproj/Localizable.strings; sourceTree = "<absolute>"; };
+		2935514114E2BABA004D8FAC /* SSTurnShiftTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTurnShiftTVC.h; sourceTree = "<group>"; };
+		2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTurnShiftTVC.m; sourceTree = "<group>"; };
+		2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSTurnShiftTVC.xib; sourceTree = "<group>"; };
+		2935514714E2DDB0004D8FAC /* ProfileChangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileChangeViewController.xib; sourceTree = "<group>"; };
 		294E28FF148B2F3A00E6ED45 /* ShiftScheduler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 2.xcdatamodel"; sourceTree = "<group>"; };
 		294E2900148B302700E6ED45 /* ShiftDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftDay.h; sourceTree = "<group>"; };
 		294E2901148B302700E6ED45 /* ShiftDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftDay.m; sourceTree = "<group>"; };
@@ -173,7 +180,6 @@
 		29B9E1DE1472C39F00DB2E1F /* OneJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneJob.m; sourceTree = "<group>"; };
 		29B9E1E01472C39F00DB2E1F /* ProfileChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileChangeViewController.h; sourceTree = "<group>"; };
 		29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileChangeViewController.m; sourceTree = "<group>"; };
-		29B9E1E21472C39F00DB2E1F /* ProfileChangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileChangeViewController.xib; sourceTree = "<group>"; };
 		29B9E1E31472C39F00DB2E1F /* ProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilesViewController.h; sourceTree = "<group>"; };
 		29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesViewController.m; sourceTree = "<group>"; };
 		29B9E1E61472C39F00DB2E1F /* WorkdayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkdayDataSource.h; sourceTree = "<group>"; };
@@ -326,8 +332,11 @@
 				29E339D214CA955A0036EAED /* ProfileIconPickerDataSource.h */,
 				29E339D314CA955A0036EAED /* ProfileIconPickerDataSource.m */,
 				29B9E1E01472C39F00DB2E1F /* ProfileChangeViewController.h */,
+				2935514714E2DDB0004D8FAC /* ProfileChangeViewController.xib */,
 				29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */,
-				29B9E1E21472C39F00DB2E1F /* ProfileChangeViewController.xib */,
+				2935514114E2BABA004D8FAC /* SSTurnShiftTVC.h */,
+				2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */,
+				2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */,
 				29B9E1E31472C39F00DB2E1F /* ProfilesViewController.h */,
 				29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */,
 			);
@@ -456,6 +465,7 @@
 				2929A44E14D04B360059728D /* InfHSBSupport.h in Headers */,
 				2929A45014D04B360059728D /* InfSourceColorView.h in Headers */,
 				2929A45614D04C7B0059728D /* UIColor+HexCoding.h in Headers */,
+				2935514414E2BABA004D8FAC /* SSTurnShiftTVC.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +561,6 @@
 				29B9E1FB1472C72000DB2E1F /* Kal.bundle in Resources */,
 				29B9E1C21472C1D700DB2E1F /* InfoPlist.strings in Resources */,
 				29B9E1D41472C2B000DB2E1F /* Localizable.strings in Resources */,
-				29B9E1EE1472C39F00DB2E1F /* ProfileChangeViewController.xib in Resources */,
 				29E128C41476C861008DDB53 /* calendar-2.png in Resources */,
 				29E128C51476C861008DDB53 /* calendar-1.png in Resources */,
 				29E128C61476C861008DDB53 /* calendar.png in Resources */,
@@ -564,6 +573,8 @@
 				292DBCAE14CA943F00C87A70 /* JPImagePickerDetailController.xib in Resources */,
 				292DBCB114CA943F00C87A70 /* JPImagePickerOverviewController.xib in Resources */,
 				2929A44B14D04B360059728D /* InfColorPickerView.xib in Resources */,
+				2935514614E2BABA004D8FAC /* SSTurnShiftTVC.xib in Resources */,
+				2935514814E2DDB0004D8FAC /* ProfileChangeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +636,7 @@
 				2929A44F14D04B360059728D /* InfHSBSupport.m in Sources */,
 				2929A45114D04B360059728D /* InfSourceColorView.m in Sources */,
 				2929A45714D04C7B0059728D /* UIColor+HexCoding.m in Sources */,
+				2935514514E2BABA004D8FAC /* SSTurnShiftTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

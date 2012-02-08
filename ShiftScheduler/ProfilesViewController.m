@@ -95,7 +95,7 @@
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] 
                                        initWithFetchRequest:request 
                                        managedObjectContext:managedObjectContext
-                                       sectionNameKeyPath:@"jobName" 
+                                       sectionNameKeyPath:nil 
                                        cacheName:PROFILE_CACHE_INDIFITER];
     fetchedResultsController = frc;
     return frc;
@@ -171,6 +171,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+#if 0
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewProfile:)];
     addButton = button;
 
@@ -183,6 +184,9 @@
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:addButton,nil]];
     else
         [self.navigationItem setRightBarButtonItem:addButton];
+#else
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+#endif
 
         //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Home", @"return to home in profile view") style:UIBarButtonItemStylePlain target:self action:@selector(returnToHome)];
     
@@ -250,19 +254,41 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return [[self.fetchedResultsController sections] count] + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-	return [sectionInfo numberOfObjects];
+    
+    if (section == [self numberOfSectionsInTableView:self.tableView] - 1) { // last section
+        return 1;
+    } else {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+        return [sectionInfo numberOfObjects];
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if ([self.fetchedResultsController.fetchedObjects count] > 0 && section == 0) {
+        return NSLocalizedString(@"Management Shift", "");
+    }
+    return  [NSString string] ;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if ([self.fetchedResultsController.fetchedObjects count] > 0 && section == 0) {
+        return NSLocalizedString(@"choose to change shift detail", "");
+    }
+    return  [NSString string] ;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"CellOfProfileCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -270,8 +296,12 @@
     }
     
     // Configure the cell...
-    [self configureCell:cell atIndexPath:indexPath];
-    
+    if (indexPath.section == [self numberOfSectionsInTableView:self.tableView] - 1) { // last section
+        cell.textLabel.text = NSLocalizedString(@"Adding new shift...", "add new shift");
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+    } else {
+        [self configureCell:cell atIndexPath:indexPath];
+    }
     
     return cell;
 }
@@ -282,7 +312,13 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    
+    
+    if (indexPath.section == [self numberOfSectionsInTableView:self.tableView] - 1) { // last section
+        return  NO;
+    } else {
+        return YES;
+    }
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -323,12 +359,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProfileChangeViewController *pcvc = [[ProfileChangeViewController alloc] initWithNibName:@"ProfileChangeViewController" bundle:nil];
-    pcvc.theJob = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    pcvc.profileDelegate = self;
-    pcvc.managedObjectContext = self.managedObjectContext;
-    pcvc.viewMode = PCVC_EDITING_MODE;
-    [self.navigationController pushViewController:pcvc animated:YES];
+    
+    if (indexPath.section == [self numberOfSectionsInTableView:self.tableView] - 1) { // last section
+        [self insertNewProfile:nil];
+    } else {
+        ProfileChangeViewController *pcvc = [[ProfileChangeViewController alloc] initWithNibName:@"ProfileChangeViewController" bundle:nil];
+        pcvc.theJob = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        pcvc.profileDelegate = self;
+        pcvc.managedObjectContext = self.managedObjectContext;
+        pcvc.viewMode = PCVC_EDITING_MODE;
+        [self.navigationController pushViewController:pcvc animated:YES];
+    }
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -341,7 +382,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    id t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
+    id t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
     if ([t isKindOfClass:[OneJob class]]) {
         OneJob *j = t;
         cell.textLabel.text = j.jobName;

@@ -9,10 +9,10 @@
 #import "ProfileChangeViewController.h"
 #import "UIColor+HexCoding.h"
 #import "InfColorPicker.h"
+#import "SSTurnShiftTVC.h"
 
 @implementation ProfileChangeViewController
 
-@synthesize datePicker, picker;
 @synthesize itemsArray, saveButton, dateFormatter, cancelButton;
 @synthesize theJob, viewMode;
 @synthesize managedObjectContext, profileDelegate, iconDateSource, colorEnableSwitch;
@@ -20,10 +20,6 @@
 
 
 #pragma mark - "init values"
-
-
-#define PICKER_VIEW_ON 3
-#define PICKER_VIEW_OFF 4
 
 #define NAME_ITEM_STRING  NSLocalizedString(@"Job Name", "job name")
 #define ICON_ITEM_STRING  NSLocalizedString(@"Change Icon", "choose a icon")
@@ -87,7 +83,7 @@
     return  iconDateSource;
 }
 
-#define kTextFieldWidth	150.0
+#define kTextFieldWidth	130.0
 // for general screen
 #define kLeftMargin             150.0
 #define kTopMargin				20.0
@@ -109,13 +105,10 @@
 		nameField.keyboardType = UIKeyboardTypeDefault;	// use the default type input method (entire keyboard)
 		nameField.returnKeyType = UIReturnKeyDone;
 		nameField.borderStyle = UITextBorderStyleNone;
-		nameField.clearButtonMode = UITextFieldViewModeWhileEditing;	// has a clear 'x' button to the right
-		
+        //		nameField.clearButtonMode = UITextFieldViewModeWhileEditing;	// has a clear 'x' button to the right
+        nameField.clearButtonMode = UITextFieldViewModeNever;
 		nameField.tag = kViewTag;		// tag this control so we can remove it later for recycled cells
-		
-		nameField.delegate = self;	// let us be the delegate so we know when the keyboard's "Done" button is pressed
-		
-		// Add an accessibility label that describes what the text field is for.
+        nameField.textAlignment = UITextAlignmentRight;
 	}	
 	return nameField;
 }
@@ -217,9 +210,6 @@
         self.navigationItem.leftBarButtonItem = self.cancelButton;
     // in editing mode, only show return.
     
-    picker.delegate = self;
-    picker.dataSource = self;
-    
     [self.colorEnableSwitch setOn:self.theJob.jobOnIconColorOn.intValue];
 //    [self setUpUndoManager];
 }
@@ -227,8 +217,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.picker = nil;
-    self.datePicker = nil;
     self.cancelButton = nil;
     // Release any retained subviews of the main view.
 //    [self cleanUpunDoManager];
@@ -250,8 +238,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.picker removeFromSuperview];
-    [self.datePicker removeFromSuperview];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -284,9 +270,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0)
-        return @"Name and Icon";
+        return NSLocalizedString(@"Name and Icon", "name and icon title");
     else
-        return @"Shift Detail";
+        return  NSLocalizedString(@"Shift Detail", "Shift detail title");
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -318,56 +304,46 @@
 
     }
     
+    // setup the default value of on and off days;
+    if (self.viewMode == PCVC_ADDING_MODE) {
+        if (self.theJob.jobOnDays == nil 
+            || self.theJob.jobOnDays == [NSNumber numberWithInt:0]) {
+            self.theJob.jobOnDays = [NSNumber numberWithInt:PCVC_DEFAULT_ON_DAYS];
+        }
+        if (self.theJob.jobOnDays == nil
+            || [self.theJob jobOffDays] == [NSNumber numberWithInt:0]) {
+            self.theJob.jobOffDays = [NSNumber numberWithInt:PCVC_DEFAULT_OFF_DAYS];
+        }
+        
+        if (self.theJob.jobStartDate == nil) {
+            self.theJob.jobStartDate = [NSDate date];
+        }
+    }
+    
+    // setup cell text by index path
     NSString *item;
     item =  [self returnItemByIndexPath:indexPath];
-            
     cell.textLabel.text = item;
     
-    if ([item isEqualToString:ICON_ITEM_STRING]) {
-    }
-    
-    if ([item isEqualToString:COLOR_ENABLE_STRING]) {
-        [cell.contentView addSubview:self.colorEnableSwitch];
-    }
-    
-    if ([item isEqualToString:COLOR_PICKER_STRING]) {
-        colorChooseCellIndexPath = indexPath;
-    }
+//    if ([item isEqualToString:COLOR_ENABLE_STRING]) {
+//        [cell.contentView addSubview:self.colorEnableSwitch];
+//    }
     
     if ([item isEqualToString:NAME_ITEM_STRING]) {
-
         cell.imageView.image = self.theJob.iconImage;
-
-        if (self.viewMode == PCVC_ADDING_MODE) {
-            nameField.delegate = self;
-            nameLable.text = NSLocalizedString(@"Job Name", nil);
-            [cell.contentView addSubview:self.nameField];
-        } else             // only one place needs display name
-            cell.detailTextLabel.text = self.theJob.jobName;
+        self.nameField.delegate = self;
+        [self.nameField setText:self.theJob.jobName];
+        [cell.contentView addSubview:self.nameField];
 
     } else if ([item isEqualToString:WORKLEN_ITEM_STRING]) {
-        if (self.viewMode == PCVC_ADDING_MODE 
-            && self.theJob.jobOnDays == [NSNumber numberWithInt:0])  {
-            // change default value ony if not changed.
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", PCVC_DEFAULT_ON_DAYS];
-            self.theJob.jobOnDays = [NSNumber numberWithInt:PCVC_DEFAULT_ON_DAYS];
-        } else
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", [self.theJob.jobOnDays intValue]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", [self.theJob.jobOnDays intValue]];
     } else if ([item isEqualToString:RESTLEN_ITEM_STRING]) {
-        if (self.viewMode == PCVC_ADDING_MODE 
-            && [self.theJob jobOffDays] == [NSNumber numberWithInt:0]) {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", PCVC_DEFAULT_OFF_DAYS];
-            self.theJob.jobOffDays = [NSNumber numberWithInt:PCVC_DEFAULT_OFF_DAYS];
-        } else
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", [self.theJob.jobOffDays intValue]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", [self.theJob.jobOffDays intValue]];
         
     } else if ([item isEqualToString:STARTWITH_ITEM_STRING]) {
-        if (self.viewMode == PCVC_ADDING_MODE) {
-            cell.detailTextLabel.text = [self.dateFormatter stringFromDate:[NSDate date]];
-            self.theJob.jobStartDate = [NSDate date];
-        } else
-            cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.theJob.jobStartDate];
+        cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.theJob.jobStartDate];
     }
+
     return cell;
 }
 
@@ -386,13 +362,12 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animate
 {
     [super setEditing:editing animated:animate];
+
     if (!editing)
     {
         NSError *error;
         [self.managedObjectContext save:&error];
-
-        [self.datePicker removeFromSuperview];
-        [self.picker removeFromSuperview];
+        [self.nameField resignFirstResponder];
     }
 }
 
@@ -415,8 +390,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *targetCell = [tableView cellForRowAtIndexPath:indexPath];
-    
     NSString *item = [self returnItemByIndexPath:indexPath];
 
     if ([self.nameField isFirstResponder]) { // release, in case other need ui.
@@ -432,7 +405,7 @@
 		
 		imagePickerController.delegate = self;
 		imagePickerController.dataSource = self.iconDateSource;
-		imagePickerController.imagePickerTitle = @"Choose Icon";
+		imagePickerController.imagePickerTitle = NSLocalizedString(@"Choose Icon", "title of choose icon view");
 		
 		[self.navigationController presentModalViewController:imagePickerController animated:YES];
     }
@@ -448,115 +421,15 @@
     }
     
     
-    if ([item isEqualToString:WORKLEN_ITEM_STRING] || [item isEqualToString:RESTLEN_ITEM_STRING]) {
-        lastChoosePicker = indexPath.row;
-        [self.datePicker removeFromSuperview];
-        NSInteger n  =  [targetCell.detailTextLabel.text intValue];
-        if (self.picker.superview == nil) {
-            CGSize pickerSize = [self.picker sizeThatFits:CGSizeZero];
-            CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-            CGRect pickerRect = CGRectMake(0.0,
-                                           screenRect.origin.y + screenRect.size.height - pickerSize.height,
-                                           pickerSize.width,
-                                           pickerSize.height);
-            
-            self.picker.frame = pickerRect;
-            self.picker.hidden = NO;
-            [self.view.superview addSubview: self.picker];
-        }
-        // since picker already +1 to the row number;
-        [self.picker selectRow:n-1 inComponent:0 animated:YES];
-    } else
-        [self.picker removeFromSuperview];
-
-    if ([item isEqualToString:STARTWITH_ITEM_STRING]) {
-        [self.picker removeFromSuperview];
-        self.datePicker.date = [self.dateFormatter dateFromString:targetCell.detailTextLabel.text];
-        
-        if (self.datePicker.superview == nil) {
-            CGSize pickerSize = [self.datePicker sizeThatFits:CGSizeZero];
-            CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-            CGRect pickerRect = CGRectMake(0.0,
-                                           screenRect.origin.y + screenRect.size.height - pickerSize.height,
-                                           pickerSize.width,
-                                           pickerSize.height);
-            
-            self.datePicker.frame = pickerRect;
-            [self.view.superview addSubview: self.datePicker];
-        } else {
-            [self.datePicker removeFromSuperview];
-        }
-    }
-
-}
-
-
-#pragma mark -
-#pragma mark UIPickerViewDataSource
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSString *returnStr = @"";
-	
-    // note: custom picker doesn't care about titles, it uses custom views
-    // don't return 0
-    returnStr = [[NSNumber numberWithInt:(row + 1)] stringValue];
+    if ([item isEqualToString:WORKLEN_ITEM_STRING]
+	|| [item isEqualToString:RESTLEN_ITEM_STRING]
+	|| [item isEqualToString:STARTWITH_ITEM_STRING]) 
+	{
+	    SSTurnShiftTVC *tstvc = [[SSTurnShiftTVC alloc] initWithNibName:@"SSTurnShiftTVC" bundle:nil];
+        tstvc.theJob = self.theJob;
+        [self.navigationController pushViewController:tstvc animated:YES];
+	}
     
-    return returnStr;
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
-{
-    CGFloat componentWidth = 0.0;
-    
-    componentWidth = 40.0;	// first column size is wider to hold names
-    return componentWidth;
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 40.0;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return 30;
-}
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-#pragma mark - "Date/Number Picker Save events"
-
-- (IBAction)datePickerValueChanged:(id)sender
-{
-    UIDatePicker *p = sender;
-    self.theJob.jobStartDate = p.date;
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.theJob.jobStartDate];
-    NSLog(@"date changed: %@", [self.dateFormatter stringFromDate:p.date]);
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    // If the user chooses a new row, update the label accordingly.
-    NSAssert((lastChoosePicker == PICKER_VIEW_ON || lastChoosePicker == PICKER_VIEW_OFF),
-           @"last Choose Picker in wrong state!");
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    
-    int value = row + 1;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", value];
-    [cell setSelected:YES];
-
-    if (indexPath.row == PICKER_VIEW_ON) // on day
-        self.theJob.jobOnDays = [NSNumber numberWithInt:value];
-    
-    if (indexPath.row == PICKER_VIEW_OFF) //off day
-        self.theJob.jobOffDays = [NSNumber numberWithInt:value];
 }
 
 - (IBAction)jobNameEditingDone:(id)sender
