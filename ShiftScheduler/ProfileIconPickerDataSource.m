@@ -23,7 +23,6 @@
 {
     if (iconList == nil) {
         iconList = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:@"jobicons.bundle"];
-        //        iconList = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"png" subdirectory:@"jobicons.bundle"];
     }
     NSLog(@"%@", iconList);
     return iconList;
@@ -36,7 +35,7 @@
 
 - (UIImage *)imagePicker:(JPImagePickerController *)picker thumbnailForImageNumber:(NSInteger)imageNumber
 {
-    return [UIImage imageWithContentsOfFile:[self.iconList objectAtIndex:imageNumber]];
+    return [UIImage imageWithContentsOfFile: [self.iconList objectAtIndex:imageNumber]];
 }
 
 - (UIImage *)imagePicker:(JPImagePickerController *)picker imageForImageNumber:(NSInteger)imageNumber

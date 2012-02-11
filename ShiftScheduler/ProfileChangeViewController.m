@@ -486,9 +486,8 @@
 {
 
     // only store last path component
-    self.theJob.jobOnIconID = [self.iconDateSource.iconList objectAtIndex:imageNumber];
-    NSLog(@"choose icon :%@ saveIconPath:%@ lastPath %@", [self.iconDateSource.iconList objectAtIndex:imageNumber]
-          , self.theJob.jobOnColorID, [self.theJob.jobOnColorID lastPathComponent]);
+    self.theJob.jobOnIconID = [[self.iconDateSource.iconList objectAtIndex:imageNumber] lastPathComponent];
+    NSLog(@"choose icon :%@",self.theJob.jobOnIconID);
     
     [self.tableView reloadData];
     [self.modalViewController dismissModalViewControllerAnimated:YES];

@@ -59,11 +59,13 @@
     if (!iconImage 
         || ![cachedJobOnIconID isEqualToString:self.jobOnIconID]
         || ![cachedJobOnIconColorOn isEqualToNumber:self.jobOnIconColorOn]) {
-        //NSString *iconpath = [NSString stringWithFormat:@"jobicons.bundle/%@",self.jobOnIconID];
-        NSString *iconpath = self.jobOnIconID;
+        NSString *iconpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"jobicons.bundle/%@", self.jobOnIconID] ofType:nil];
+        NSLog(@"show ing :%@", iconpath);
+        
         if (iconpath == nil) {
             iconpath = [[NSBundle mainBundle] pathForResource:DEFAULT_ICON_FILE ofType:nil];
         }
+        
         iconImage = [UIImage imageWithContentsOfFile:iconpath];
         cachedJobOnIconID = iconpath;
         if (!iconImage) {
