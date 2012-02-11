@@ -11,6 +11,7 @@
 #import "KalViewController.h"
 #import "ShfitChangeList.h"
 #import "SSKalDelegate.h"
+#import "SSSettingTVC.h"
 
 
 @interface SSAppDelegate : UIResponder <UIApplicationDelegate, 
@@ -23,6 +24,7 @@ ProfileEditFinishDelegate>
     ProfilesViewController *profileView;
     ShfitChangeList *changelistVC;
     SSKalDelegate *sskalDelegate;
+    SSSettingTVC *settingVC;
     UITabBarController *tabBarVC;
     UIActionSheet *rightAS;
     id dataSource;
@@ -38,6 +40,7 @@ ProfileEditFinishDelegate>
 // --
 @property (strong) UINavigationController *navController;				
 @property (nonatomic, strong) ProfilesViewController *profileView;
+@property (nonatomic, strong) SSSettingTVC *settingVC;
 @property (nonatomic, strong) UINavigationController *profileNVC;
 @property (nonatomic, strong) ShfitChangeList *changelistVC;
 @property (nonatomic, strong) UIActionSheet *rightAS;

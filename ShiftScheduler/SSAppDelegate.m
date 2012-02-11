@@ -21,7 +21,7 @@
 // --
 @synthesize profileView;
 @synthesize navController;
-@synthesize profileNVC, rightAS, changelistVC, sskalDelegate;
+@synthesize profileNVC, rightAS, changelistVC, settingVC, sskalDelegate;
 
 //#define CONFIG_SS_ENABLE_SHIFT_CHANGE_FUNCTION
 
@@ -88,6 +88,8 @@
     return YES;
 }
 
+
+
 - (void)showRightActionSheet
 {
     // friendly for iPAD
@@ -122,6 +124,21 @@
     [self.navController pushViewController:self.changelistVC animated:YES];
 }
 
+- (SSSettingTVC *) settingVC
+
+{
+    if (settingVC == nil)
+    {
+        settingVC = [[SSSettingTVC alloc] initWithNibName:@"SSSettingTVC" bundle:nil];
+    }
+    return settingVC;
+}
+
+- (void) showSettingView
+{
+    [self.navController pushViewController:self.settingVC animated:YES];
+}
+
 
 - (void)actionSheet:(UIAlertView *)sender clickedButtonAtIndex:(NSInteger)index
 {
@@ -145,6 +162,7 @@
             break;
         case MANAGEMENT_START_OFFSET + 1:
             // setting view
+            [self showSettingView];
             break;
         default:
             break;

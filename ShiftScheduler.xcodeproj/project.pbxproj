@@ -45,6 +45,9 @@
 		2935514514E2BABA004D8FAC /* SSTurnShiftTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */; };
 		2935514614E2BABA004D8FAC /* SSTurnShiftTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */; };
 		2935514814E2DDB0004D8FAC /* ProfileChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935514714E2DDB0004D8FAC /* ProfileChangeViewController.xib */; };
+		2935514D14E2E61F004D8FAC /* SSSettingTVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 2935514A14E2E61F004D8FAC /* SSSettingTVC.h */; };
+		2935514E14E2E61F004D8FAC /* SSSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935514B14E2E61F004D8FAC /* SSSettingTVC.m */; };
+		2935514F14E2E61F004D8FAC /* SSSettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935514C14E2E61F004D8FAC /* SSSettingTVC.xib */; };
 		294E2902148B302700E6ED45 /* ShiftDay.h in Headers */ = {isa = PBXBuildFile; fileRef = 294E2900148B302700E6ED45 /* ShiftDay.h */; };
 		294E2903148B302700E6ED45 /* ShiftDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E2901148B302700E6ED45 /* ShiftDay.m */; };
 		2987381F149917C300A2617F /* DatePickerViewController2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2987381C149917C200A2617F /* DatePickerViewController2.h */; };
@@ -155,6 +158,9 @@
 		2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTurnShiftTVC.m; sourceTree = "<group>"; };
 		2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSTurnShiftTVC.xib; sourceTree = "<group>"; };
 		2935514714E2DDB0004D8FAC /* ProfileChangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileChangeViewController.xib; sourceTree = "<group>"; };
+		2935514A14E2E61F004D8FAC /* SSSettingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSSettingTVC.h; sourceTree = "<group>"; };
+		2935514B14E2E61F004D8FAC /* SSSettingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSSettingTVC.m; sourceTree = "<group>"; };
+		2935514C14E2E61F004D8FAC /* SSSettingTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSSettingTVC.xib; sourceTree = "<group>"; };
 		294E28FF148B2F3A00E6ED45 /* ShiftScheduler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 2.xcdatamodel"; sourceTree = "<group>"; };
 		294E2900148B302700E6ED45 /* ShiftDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftDay.h; sourceTree = "<group>"; };
 		294E2901148B302700E6ED45 /* ShiftDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftDay.m; sourceTree = "<group>"; };
@@ -275,6 +281,16 @@
 			name = JPImagePicker;
 			sourceTree = "<group>";
 		};
+		2935514914E2E5EB004D8FAC /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				2935514A14E2E61F004D8FAC /* SSSettingTVC.h */,
+				2935514B14E2E61F004D8FAC /* SSSettingTVC.m */,
+				2935514C14E2E61F004D8FAC /* SSSettingTVC.xib */,
+			);
+			name = SettingView;
+			sourceTree = "<group>";
+		};
 		293994B5147D25D30007320C /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +365,7 @@
 			children = (
 				29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */,
 				293994B5147D25D30007320C /* Module */,
+				2935514914E2E5EB004D8FAC /* SettingView */,
 				299D8D0D147948B900E20DAE /* ProfileView */,
 				298B0168148B946500C013F5 /* ChangeShiftView */,
 				29B9E1FA1472C72000DB2E1F /* Kal.bundle */,
@@ -466,6 +483,7 @@
 				2929A45014D04B360059728D /* InfSourceColorView.h in Headers */,
 				2929A45614D04C7B0059728D /* UIColor+HexCoding.h in Headers */,
 				2935514414E2BABA004D8FAC /* SSTurnShiftTVC.h in Headers */,
+				2935514D14E2E61F004D8FAC /* SSSettingTVC.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +593,7 @@
 				2929A44B14D04B360059728D /* InfColorPickerView.xib in Resources */,
 				2935514614E2BABA004D8FAC /* SSTurnShiftTVC.xib in Resources */,
 				2935514814E2DDB0004D8FAC /* ProfileChangeViewController.xib in Resources */,
+				2935514F14E2E61F004D8FAC /* SSSettingTVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +656,7 @@
 				2929A45114D04B360059728D /* InfSourceColorView.m in Sources */,
 				2929A45714D04C7B0059728D /* UIColor+HexCoding.m in Sources */,
 				2935514514E2BABA004D8FAC /* SSTurnShiftTVC.m in Sources */,
+				2935514E14E2E61F004D8FAC /* SSSettingTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
