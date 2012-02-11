@@ -406,6 +406,8 @@
 		imagePickerController.delegate = self;
 		imagePickerController.dataSource = self.iconDateSource;
 		imagePickerController.imagePickerTitle = NSLocalizedString(@"Choose Icon", "title of choose icon view");
+        imagePickerController.monoColor = [self.theJob iconColor];
+        imagePickerController.monoProcessAllImage = YES;
 		
 		[self.navigationController presentModalViewController:imagePickerController animated:YES];
     }

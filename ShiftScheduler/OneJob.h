@@ -79,6 +79,7 @@
 - (void)addShiftdays:(NSSet *)values;
 - (void)removeShiftdays:(NSSet *)values;
 
+- (UIColor *) iconColor;
 
 @end
 

@@ -8,6 +8,7 @@
 //
 
 #import "JPImagePickerOverviewController.h"
+#import "UIImage+MonoImage.h"
 
 
 @implementation JPImagePickerOverviewController
@@ -50,6 +51,9 @@
 		thumbnail = [[imagePickerController.dataSource imagePicker:imagePickerController thumbnailForImageNumber:(NSInteger)i]
 					 scaleAndCropToSize:CGSizeMake(kJPImagePickerControllerThumbnailSizeWidth, kJPImagePickerControllerThumbnailSizeHeight)
 					 onlyIfNeeded:YES];
+        
+        if (self.imagePickerController.monoProcessAllImage)
+            thumbnail = [UIImage generateMonoImage:thumbnail withColor:self.imagePickerController.monoColor];
 		
 		button = [UIButton buttonWithType:UIButtonTypeCustom];
 		[button setImage:thumbnail forState:UIControlStateNormal];

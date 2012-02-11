@@ -12,7 +12,7 @@
 
 @implementation JPImagePickerController
 
-@synthesize overviewController, modalNavigationController, delegate, dataSource, originalStatusBarStyle;
+@synthesize overviewController, modalNavigationController, delegate, dataSource, originalStatusBarStyle, monoColor, monoProcessAllImage;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

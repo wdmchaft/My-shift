@@ -133,6 +133,9 @@ enum JPImagePickerControllerPreviewImageSize {
 	id<JPImagePickerControllerDelegate> delegate;
 	id<JPImagePickerControllerDataSource> dataSource;
 	NSString *imagePickerTitle;
+    
+    BOOL monoProcessAllImage;
+    UIColor *monoColor;
 }
 
 /*!
@@ -185,6 +188,13 @@ enum JPImagePickerControllerPreviewImageSize {
  @discussion You can set the title for the image overview here.
  */
 @property (nonatomic, retain) NSString *imagePickerTitle;
+
+/*!
+ @property monoProcessAllImage;
+ */
+@property BOOL monoProcessAllImage;
+
+@property (nonatomic, strong) UIColor *monoColor;
 
 /*!
  @method cancelPicking:

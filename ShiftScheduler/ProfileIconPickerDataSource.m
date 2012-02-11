@@ -24,7 +24,6 @@
     if (iconList == nil) {
         iconList = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:@"jobicons.bundle"];
     }
-    NSLog(@"%@", iconList);
     return iconList;
 }
 

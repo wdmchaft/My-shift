@@ -9,6 +9,7 @@
 #import "OneJob.h"
 #import "NSDateAdditions.h"
 #import "UIColor+HexCoding.h"
+#import "UIImage+MonoImage.h"
 
 #define WORKDAY_TYPE_FULL 0
 #define WORKDAY_TYPE_NOT  1
@@ -52,7 +53,7 @@
     return curCalender;
 }
 
-#define DEFAULT_ICON_FILE @"jobicons.bundle/smile32.png"
+#define DEFAULT_ICON_FILE @"jobicons.bundle/bag32.png"
 
 - (UIImage *) iconImage
 {
@@ -60,7 +61,6 @@
         || ![cachedJobOnIconID isEqualToString:self.jobOnIconID]
         || ![cachedJobOnIconColorOn isEqualToNumber:self.jobOnIconColorOn]) {
         NSString *iconpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"jobicons.bundle/%@", self.jobOnIconID] ofType:nil];
-        NSLog(@"show ing :%@", iconpath);
         
         if (iconpath == nil) {
             iconpath = [[NSBundle mainBundle] pathForResource:DEFAULT_ICON_FILE ofType:nil];
@@ -79,42 +79,10 @@
             iconImage = [OneJob processIconImageWithColor:iconImage withColor:self.iconColor];
         }
 #else
-        iconImage = [OneJob processIconImageWithColor:iconImage withColor:self.iconColor];
+        iconImage = [UIImage generateMonoImage:iconImage withColor:self.iconColor];
 #endif
     }
     return iconImage;
-}
-
-
-+ (UIImage *) processIconImageWithColor: (UIImage *)icon withColor: (UIColor *)color
-{
-    UIImage *finishImage;
-    CGImageRef alphaImage = CGImageRetain(icon.CGImage);
-    CGColorRef colorref = CGColorRetain(color.CGColor);
-    
-    UIGraphicsBeginImageContext(icon.size);
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    
-    CGRect imageArea = CGRectMake (0, 0,
-                              icon.size.width, icon.size.height);
-
-    // Don't know why if I don't translate the CTM, the image will be a *bottom* up
-    // aka, head on bottom shape, so I need use TranlateCTM and ScaleCTM to let
-    // all y-axis to be rotated.
-    CGFloat height = icon.size.height;
-	CGContextTranslateCTM(ctx, 0.0, height);
-	CGContextScaleCTM(ctx, 1.0, -1.0);
-
-    CGContextClipToMask(ctx, imageArea , alphaImage);
-
-    CGContextSetFillColorWithColor(ctx, colorref);
-    CGContextFillRect(ctx, imageArea);
-    CGImageRelease(icon.CGImage);
-    CGColorRelease(color.CGColor);
-
-    finishImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return finishImage;
 }
 
 // Always have a color of Icon,
