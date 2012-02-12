@@ -48,6 +48,19 @@
     [self.parentViewDelegate didFinishEditingSetting];
 }
 
+- (void)jobSwitchAction:(id) sender
+{
+    UISwitch *currentSwitch = sender;
+    OneJob *j = [self.fetchedResultsController.fetchedObjects objectAtIndex:currentSwitch.tag];
+    j.jobEnable = [NSNumber numberWithBool:currentSwitch.isOn];
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+}
+
 
 - (IBAction)insertNewProfile:(id) sender
 {
@@ -387,6 +400,21 @@
         OneJob *j = t;
         cell.textLabel.text = j.jobName;
         cell.imageView.image = j.iconImage;
+        
+        UISwitch *theSwitch;
+        CGRect frame = CGRectMake(200, 8.0, 120.0, 27.0);
+        theSwitch = [[UISwitch alloc] initWithFrame:frame];
+        [theSwitch addTarget:self action:@selector(jobSwitchAction:) forControlEvents:UIControlEventValueChanged];
+        
+        // in case the parent view draws with a custom color or gradient, use a transparent color
+        theSwitch.backgroundColor = [UIColor clearColor];
+        theSwitch.tag = indexPath.row;
+        theSwitch.on = j.jobEnable.boolValue;
+		
+		[theSwitch setAccessibilityLabel:NSLocalizedString(@"Shift Enable Display on Calender", @"")];
+        
+        [cell.contentView addSubview:theSwitch];
+        
     }
 }
 

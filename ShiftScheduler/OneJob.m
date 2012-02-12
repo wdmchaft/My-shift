@@ -32,7 +32,7 @@
 
 @implementation OneJob
 @dynamic jobName;
-//@dynamic jobEnableDisaplyCal; // bool enable the job display on the cal or not.
+@dynamic jobEnable; // bool enable the job display on the cal or not.
 @dynamic jobDescription;
 @dynamic jobOnDays;
 @dynamic jobOffDays;

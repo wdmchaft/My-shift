@@ -39,7 +39,6 @@
 
 @property (retain, nonatomic)     id <ProfileEditFinishDelegate> parentViewDelegate;
 
-
 - (id)initWithManagedContext:(NSManagedObjectContext *)context;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath ;
 

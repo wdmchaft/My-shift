@@ -25,7 +25,7 @@
     
 }
 @property (nonatomic, strong) NSString * jobName;       // the job's name
-                                                        //@property (nonatomic, retain) NSNumber * jobEnableDisaplyCal;
+@property (nonatomic, strong) NSNumber * jobEnable;
 @property (nonatomic, strong) NSString * jobDescription; //the detail describe of this job
 @property (nonatomic, strong) NSNumber * jobOnDays; // how long works once
 @property (nonatomic, strong) NSNumber * jobOffDays; // how long rest once.

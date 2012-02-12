@@ -2,7 +2,6 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="OneJob" representedClassName="OneJob">
         <attribute name="jobDescription" optional="YES" attributeType="String"/>
-        <attribute name="jobEnable" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="jobFinishDate" optional="YES" attributeType="Date"/>
         <attribute name="jobGeneratedData" optional="YES" attributeType="Binary"/>
         <attribute name="jobName" optional="YES" attributeType="String"/>
@@ -23,7 +22,7 @@
         <relationship name="whatJob" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OneJob" inverseName="shiftdays" inverseEntity="OneJob" syncable="YES"/>
     </entity>
     <elements>
-        <element name="OneJob" positionX="160" positionY="192" width="128" height="225"/>
+        <element name="OneJob" positionX="160" positionY="192" width="128" height="210"/>
         <element name="ShiftDay" positionX="-560" positionY="207" width="128" height="120"/>
     </elements>
 </model>

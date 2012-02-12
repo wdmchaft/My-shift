@@ -219,6 +219,7 @@
 		29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MonoImage.h"; sourceTree = "<group>"; };
 		29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MonoImage.m"; sourceTree = "<group>"; };
 		29F2147F14E68A9B008BEE92 /* ShiftScheduler 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 3.xcdatamodel"; sourceTree = "<group>"; };
+		29F89FEC14E8072D002BB665 /* ShiftScheduler 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 4.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -888,6 +889,7 @@
 		29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				29F89FEC14E8072D002BB665 /* ShiftScheduler 4.xcdatamodel */,
 				29F2147F14E68A9B008BEE92 /* ShiftScheduler 3.xcdatamodel */,
 				294E28FF148B2F3A00E6ED45 /* ShiftScheduler 2.xcdatamodel */,
 				2900DEC31483EEA100E588EE /* ShiftSchedulerModelBasic.xcdatamodel */,

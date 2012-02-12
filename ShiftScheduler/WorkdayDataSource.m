@@ -79,7 +79,8 @@
                                                         sortDescriptorWithKey:
 							       @"jobName"  
                                                         ascending:YES]];
-    request.predicate = nil;
+    request.predicate = [NSPredicate predicateWithFormat:@"jobEnable == YES"];
+
     request.fetchBatchSize = 20;
 
     self.theJobNameArray = [objectContext executeFetchRequest:request error:&error];
