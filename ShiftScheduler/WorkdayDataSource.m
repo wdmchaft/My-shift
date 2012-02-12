@@ -109,6 +109,7 @@
     OneJob *job = [self jobAtIndexPath: indexPath];
     
     cell.textLabel.text = job.jobName;
+    cell.imageView.image = job.iconImage;
     return cell;
 }
     

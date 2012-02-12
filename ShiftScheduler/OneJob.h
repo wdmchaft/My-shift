@@ -25,6 +25,7 @@
     
 }
 @property (nonatomic, strong) NSString * jobName;       // the job's name
+                                                        //@property (nonatomic, retain) NSNumber * jobEnableDisaplyCal;
 @property (nonatomic, strong) NSString * jobDescription; //the detail describe of this job
 @property (nonatomic, strong) NSNumber * jobOnDays; // how long works once
 @property (nonatomic, strong) NSNumber * jobOffDays; // how long rest once.
@@ -52,11 +53,6 @@
 - (BOOL) isDayWorkingDay:(NSDate *)theDate;
 - (NSInteger)daysBetweenDateV2:(NSDate *)fromDateTime andDate:(NSDate *)toDateTime;
 
-// This function create a Image Context and draw the image with mask
-// then clip the context to mask
-// then fill the color user choosed.
-// that can create a image shape with specify color icon.
-+ (UIImage *) processIconImageWithColor: (UIImage *)icon withColor: (UIColor *)color;
 
 
 @property (nonatomic, strong) NSSet *shiftdays;

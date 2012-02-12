@@ -32,6 +32,7 @@
 
 @implementation OneJob
 @dynamic jobName;
+//@dynamic jobEnableDisaplyCal; // bool enable the job display on the cal or not.
 @dynamic jobDescription;
 @dynamic jobOnDays;
 @dynamic jobOffDays;
@@ -97,7 +98,7 @@
     if (defaultIconColor == nil) {
         // 39814c is green one
         // B674C2 is light purple one
-        defaultIconColor = [UIColor colorWithHexString:@"B674C2" withAlpha:DEFAULT_ALPHA_VALUE_OF_JOB_ICON];
+        defaultIconColor = [UIColor colorWithHexString:@"25AA5C" withAlpha:DEFAULT_ALPHA_VALUE_OF_JOB_ICON];
     }
     return defaultIconColor;
 }

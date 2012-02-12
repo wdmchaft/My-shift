@@ -18,7 +18,5 @@
 @property (nonatomic, readonly) NSArray *itemsArray;
 @property (nonatomic, strong) NSURL *iTunesURL;
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
-
 
 @end
