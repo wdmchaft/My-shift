@@ -29,6 +29,7 @@
 	NSFetchedResultsController *fetchedResultsController;
 	UIBarButtonItem *addButton;
 	UIBarButtonItem *oldLeftItem;
+    NSMutableArray *switchArray;
     id <ProfileEditFinishDelegate> parentViewDelegate;
 }
 
@@ -41,6 +42,8 @@
 
 - (id)initWithManagedContext:(NSManagedObjectContext *)context;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath ;
+- (IBAction)insertNewProfile:(id) sender;
+- (NSInteger) profileuNumber;
 
 @end
 

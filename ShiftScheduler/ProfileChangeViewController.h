@@ -23,6 +23,7 @@
 @interface ProfileChangeViewController : UITableViewController  <UITextFieldDelegate, JPImagePickerControllerDelegate, InfColorPickerControllerDelegate>
 {
     int viewMode;
+    BOOL showColorAndIconPicker;
     UITextField *nameField;
     UILabel *nameLable;
     UISwitch *colorEnableSwitch;

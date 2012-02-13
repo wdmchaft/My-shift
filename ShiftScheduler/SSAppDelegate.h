@@ -15,7 +15,7 @@
 
 
 @interface SSAppDelegate : UIResponder <UIApplicationDelegate, 
-UIActionSheetDelegate,
+UIActionSheetDelegate,UIAlertViewDelegate,
 ProfileEditFinishDelegate>
 {
     UINavigationController *navController;
@@ -50,6 +50,5 @@ ProfileEditFinishDelegate>
 - (NSURL *)applicationDocumentsDirectory;
 - (void) didFinishEditingSetting;
 - (void)showRightActionSheet;
-
-
+- (void)popNotifyZeroProfile:(id) sender;
 @end

@@ -23,6 +23,11 @@
 @synthesize navController;
 @synthesize profileNVC, rightAS, changelistVC, settingVC, sskalDelegate;
 
+enum {
+    TAG_MENU,
+    TAG_ZERO_PROFILE,
+};
+
 //#define CONFIG_SS_ENABLE_SHIFT_CHANGE_FUNCTION
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -74,6 +79,7 @@
                NSLocalizedString(@"manage shift", "manage shift"),
                NSLocalizedString(@"Setting", "setting in action shift"),
                nil];
+    self.rightAS.tag = TAG_MENU;
     UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"More", "more") style:UIBarButtonItemStylePlain target:self action:@selector(showRightActionSheet)];
     
     [kal.navigationItem setRightBarButtonItem:settingItem];
@@ -85,10 +91,18 @@
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
     [self.managedObjectContext save:NULL];
+    
+    if ([self.profileView profileuNumber] == 0)
+        [self performSelector:@selector(popNotifyZeroProfile:) withObject:nil afterDelay:1];
     return YES;
 }
 
-
+- (void)popNotifyZeroProfile:(id) sender
+{
+   UIAlertView *a =  [[UIAlertView alloc] initWithTitle:nil message:@"Do you want create a shift profile?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Create one", nil];
+    a.tag = TAG_ZERO_PROFILE;
+    [a show];
+}
 
 - (void)showRightActionSheet
 {
@@ -139,9 +153,15 @@
     [self.navController pushViewController:self.settingVC animated:YES];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.navController pushViewController:self.profileView animated:YES];
+    [self.profileView insertNewProfile:self.navController];    
+}
 
 - (void)actionSheet:(UIAlertView *)sender clickedButtonAtIndex:(NSInteger)index
 {
+    
 #ifdef CONFIG_SS_ENABLE_SHIFT_CHANGE_FUNCTION
 #define MANAGEMENT_START_OFFSET 1
 #else
@@ -167,6 +187,7 @@
         default:
             break;
     }
+    
 }
 
 

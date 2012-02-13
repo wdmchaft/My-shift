@@ -9,6 +9,8 @@
 #import "ProfilesViewController.h"
 #import "ProfileChangeViewController.h"
 #import "OneJob.h"
+#import "UIColor+HexCoding.h"
+
 
 #define PROFILE_CACHE_INDIFITER @"ProfileCache"
 
@@ -21,7 +23,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -31,7 +32,8 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     self.title = NSLocalizedString(@"Management Shift", "shift management view");
     self.managedObjectContext = context;
-    [self.fetchedResultsController fetchRequest];
+    NSError *error;
+    [self.fetchedResultsController performFetch:&error];
     return self;
 }
 
@@ -46,6 +48,11 @@
 - (void) returnToHome
 {
     [self.parentViewDelegate didFinishEditingSetting];
+}
+
+- (NSInteger) profileuNumber
+{
+    return [self.fetchedResultsController.fetchedObjects count];
 }
 
 - (void)jobSwitchAction:(id) sender
@@ -121,6 +128,7 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+    [switchArray removeAllObjects];
 	[self.tableView beginUpdates];
 }
 
@@ -168,7 +176,6 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    
 	[self.tableView endUpdates];
 }
 
@@ -210,6 +217,9 @@
 		exit(-1);  // Fail
     }
     self.fetchedResultsController.delegate = self;
+    
+    switchArray = [[NSMutableArray alloc] init];
+    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -311,7 +321,7 @@
     // Configure the cell...
     if (indexPath.section == [self numberOfSectionsInTableView:self.tableView] - 1) { // last section
         cell.textLabel.text = NSLocalizedString(@"Adding new shift...", "add new shift");
-        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.textLabel.textColor = [UIColor colorWithHexString:@"283DA0"];
     } else {
         [self configureCell:cell atIndexPath:indexPath];
     }
@@ -361,10 +371,13 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
     [self.tableView setEditing:editing animated:YES];
-    if (editing) {
-        addButton.enabled = NO;
-    } else {
-        addButton.enabled = YES;
+    
+    
+    // hide all UISwitch when edting... since it will affect Detete UI.
+    for (id a in switchArray) {
+        UISwitch *s = a;
+        if (editing) s.hidden = YES;
+        else s.hidden = NO;
     }
 }
 
@@ -409,10 +422,16 @@
         // in case the parent view draws with a custom color or gradient, use a transparent color
         theSwitch.backgroundColor = [UIColor clearColor];
         theSwitch.tag = indexPath.row;
+        
+        //XXX: for complicate the old job data modole.
+        if (j.jobEnable == nil)
+            j.jobEnable = [NSNumber numberWithInt:1];
+
         theSwitch.on = j.jobEnable.boolValue;
 		
 		[theSwitch setAccessibilityLabel:NSLocalizedString(@"Shift Enable Display on Calender", @"")];
         
+        [switchArray addObject:theSwitch];
         [cell.contentView addSubview:theSwitch];
         
     }

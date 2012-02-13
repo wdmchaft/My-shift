@@ -194,7 +194,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.allowsSelectionDuringEditing = YES;
@@ -278,7 +278,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0)
-        return  3;
+        return  showColorAndIconPicker ? 3 : 1;
     else
         return [self.itemsArray count] - 3;
 }
@@ -369,6 +369,22 @@
         [self.managedObjectContext save:&error];
         [self.nameField resignFirstResponder];
     }
+    
+    // hide the color picker and icon picker.
+
+    NSArray *a = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:1 inSection:0], [NSIndexPath indexPathForRow:2 inSection:0], nil];
+    
+    if (editing) {
+        showColorAndIconPicker = YES;
+        [self.tableView insertRowsAtIndexPaths:a withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+    } else {
+        showColorAndIconPicker = NO;
+        [self.tableView deleteRowsAtIndexPaths:a withRowAnimation:UITableViewRowAnimationAutomatic];
+        // index paths for icon picker and color picker.
+    } 
+    
+    
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

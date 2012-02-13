@@ -69,6 +69,8 @@
 		29B9E1FB1472C72000DB2E1F /* Kal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1FA1472C72000DB2E1F /* Kal.bundle */; };
 		29B9E2071472C95800DB2E1F /* libKal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E2061472C94C00DB2E1F /* libKal.a */; };
 		29B9E21B1472D6FE00DB2E1F /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */; };
+		29C943B014E957F700122144 /* SSKalDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 29C943AF14E957F700122144 /* SSKalDelegate.h */; };
+		29C943B214E9581600122144 /* SSKalDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C943B114E9581600122144 /* SSKalDelegate.m */; };
 		29DDDAC314808F94004DC703 /* NSDateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 29DDDAC114808F94004DC703 /* NSDateAdditions.h */; };
 		29DDDAC414808F94004DC703 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DDDAC214808F94004DC703 /* NSDateAdditions.m */; };
 		29E128C41476C861008DDB53 /* calendar-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C11476C861008DDB53 /* calendar-2.png */; };
@@ -78,8 +80,6 @@
 		29E128CA1476CBCA008DDB53 /* calendar-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C91476CBC9008DDB53 /* calendar-114x114.png */; };
 		29E339D414CA955A0036EAED /* ProfileIconPickerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E339D214CA955A0036EAED /* ProfileIconPickerDataSource.h */; };
 		29E339D514CA955A0036EAED /* ProfileIconPickerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E339D314CA955A0036EAED /* ProfileIconPickerDataSource.m */; };
-		29ECA45114B04CFC00B3832D /* SSKalDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 29ECA44F14B04CFC00B3832D /* SSKalDelegate.h */; };
-		29ECA45214B04CFC00B3832D /* SSKalDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ECA45014B04CFC00B3832D /* SSKalDelegate.m */; };
 		29ECA45914B0514E00B3832D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
 		29ECA46014B0537300B3832D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
 		29ECA46114B0537300B3832D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
@@ -196,6 +196,8 @@
 		29B9E1FE1472C94C00DB2E1F /* Kal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Kal.xcodeproj; path = ../../Kal/src/Kal.xcodeproj; sourceTree = "<group>"; };
 		29B9E2191472D6FD00DB2E1F /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewAdditions.h; path = ../../Kal/src/UIViewAdditions.h; sourceTree = "<group>"; };
 		29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewAdditions.m; path = ../../Kal/src/UIViewAdditions.m; sourceTree = "<group>"; };
+		29C943AF14E957F700122144 /* SSKalDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKalDelegate.h; sourceTree = "<group>"; };
+		29C943B114E9581600122144 /* SSKalDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKalDelegate.m; sourceTree = "<group>"; };
 		29DDDAC114808F94004DC703 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateAdditions.h; sourceTree = "<group>"; };
 		29DDDAC214808F94004DC703 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
 		29E128C11476C861008DDB53 /* calendar-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-2.png"; sourceTree = "<group>"; };
@@ -207,8 +209,6 @@
 		29E128CC1476D431008DDB53 /* Kal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kal.h; path = ../../Kal/src/Kal.h; sourceTree = "<group>"; };
 		29E339D214CA955A0036EAED /* ProfileIconPickerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileIconPickerDataSource.h; sourceTree = "<group>"; };
 		29E339D314CA955A0036EAED /* ProfileIconPickerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileIconPickerDataSource.m; sourceTree = "<group>"; };
-		29ECA44F14B04CFC00B3832D /* SSKalDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKalDelegate.h; sourceTree = "<group>"; };
-		29ECA45014B04CFC00B3832D /* SSKalDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKalDelegate.m; sourceTree = "<group>"; };
 		29ECA45814B0514E00B3832D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		29ECA45F14B0537300B3832D /* ShiftSchedulerTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShiftSchedulerTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29ECA46514B0537300B3832D /* ShiftSchedulerTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShiftSchedulerTest-Info.plist"; sourceTree = "<group>"; };
@@ -300,13 +300,13 @@
 		293994B5147D25D30007320C /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				29C943AF14E957F700122144 /* SSKalDelegate.h */,
+				29C943B114E9581600122144 /* SSKalDelegate.m */,
 				29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */,
 				29B9E1E61472C39F00DB2E1F /* WorkdayDataSource.h */,
 				29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */,
 				294E2900148B302700E6ED45 /* ShiftDay.h */,
 				294E2901148B302700E6ED45 /* ShiftDay.m */,
-				29ECA44F14B04CFC00B3832D /* SSKalDelegate.h */,
-				29ECA45014B04CFC00B3832D /* SSKalDelegate.m */,
 				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
 				29B9E1DE1472C39F00DB2E1F /* OneJob.m */,
 				29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */,
@@ -476,7 +476,6 @@
 				290474E9148FC6DB0089A432 /* ShiftPickerDataSource.h in Headers */,
 				2987381F149917C300A2617F /* DatePickerViewController2.h in Headers */,
 				2919033C14A8CA2200EE1F32 /* ShiftChangeAddVC.h in Headers */,
-				29ECA45114B04CFC00B3832D /* SSKalDelegate.h in Headers */,
 				292DBCAA14CA943F00C87A70 /* JPImagePickerController.h in Headers */,
 				292DBCAC14CA943F00C87A70 /* JPImagePickerDetailController.h in Headers */,
 				292DBCAF14CA943F00C87A70 /* JPImagePickerOverviewController.h in Headers */,
@@ -493,6 +492,7 @@
 				2935514414E2BABA004D8FAC /* SSTurnShiftTVC.h in Headers */,
 				2935514D14E2E61F004D8FAC /* SSSettingTVC.h in Headers */,
 				29F2147D14E66DB7008BEE92 /* UIImage+MonoImage.h in Headers */,
+				29C943B014E957F700122144 /* SSKalDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,7 +651,6 @@
 				290474EA148FC6DB0089A432 /* ShiftPickerDataSource.m in Sources */,
 				29873820149917C300A2617F /* DatePickerViewController2.m in Sources */,
 				2919033D14A8CA2200EE1F32 /* ShiftChangeAddVC.m in Sources */,
-				29ECA45214B04CFC00B3832D /* SSKalDelegate.m in Sources */,
 				292DBCAB14CA943F00C87A70 /* JPImagePickerController.m in Sources */,
 				292DBCAD14CA943F00C87A70 /* JPImagePickerDetailController.m in Sources */,
 				292DBCB014CA943F00C87A70 /* JPImagePickerOverviewController.m in Sources */,
@@ -667,6 +666,7 @@
 				2935514514E2BABA004D8FAC /* SSTurnShiftTVC.m in Sources */,
 				2935514E14E2E61F004D8FAC /* SSSettingTVC.m in Sources */,
 				29F2147E14E66DB7008BEE92 /* UIImage+MonoImage.m in Sources */,
+				29C943B214E9581600122144 /* SSKalDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
