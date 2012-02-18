@@ -27,23 +27,23 @@
 @property (nonatomic, strong) NSString * jobName;       // the job's name
 @property (nonatomic, strong) NSNumber * jobEnable;   // bool enable the job display on the cal or not
 @property (nonatomic, strong) NSString * jobDescription; //the detail describe of this job
-@property (nonatomic, retain) NSNumber * jobEveryDayLengthSec;  // minites of every day work.
-@property (nonatomic, retain) NSDate * jobEverydayStartTime;
+@property (nonatomic, strong) NSNumber * jobEveryDayLengthSec;  // minites of every day work.
+@property (nonatomic, strong) NSDate * jobEverydayStartTime;
 @property (nonatomic, strong) NSNumber * jobOnDays; // how long works once
 @property (nonatomic, strong) NSNumber * jobOffDays; // how long rest once.
 @property (nonatomic, strong) NSDate * jobStartDate;
 @property (nonatomic, strong) NSDate * jobFinishDate;
-@property (nonatomic, retain) NSString * jobOnColorID;
-@property (nonatomic, retain) NSString * jobOnIconID;
+@property (nonatomic, strong) NSString * jobOnColorID;
+@property (nonatomic, strong) NSString * jobOnIconID;
 
-@property (nonatomic, retain) NSNumber * jobOnIconColorOn;
+@property (nonatomic, strong) NSNumber * jobOnIconColorOn;
 
 @property (nonatomic, strong) NSCalendar *curCalender;
-@property (nonatomic, readonly) UIImage  *iconImage;
-@property (nonatomic, readonly) UIColor  *iconColor;
-@property (nonatomic, readonly)  UIColor *defaultIconColor;
-@property (nonatomic, retain) NSNumber * jobRemindBeforeOff;
-@property (nonatomic, retain) NSNumber * jobRemindBeforeWork;
+@property (weak, nonatomic, readonly) UIImage  *iconImage;
+@property (weak, nonatomic, readonly) UIColor  *iconColor;
+@property (weak, nonatomic, readonly)  UIColor *defaultIconColor;
+@property (nonatomic, strong) NSNumber * jobRemindBeforeOff;
+@property (nonatomic, strong) NSNumber * jobRemindBeforeWork;
 
 
 // init the work date generator with these input.

@@ -95,6 +95,14 @@
 		29E98CAA14EFD8270048AF49 /* UIImage+SCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CA014EFD8270048AF49 /* UIImage+SCAdditions.m */; };
 		29E98CAB14EFD8270048AF49 /* UIView+SCAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CA114EFD8270048AF49 /* UIView+SCAdditions.h */; };
 		29E98CAC14EFD8270048AF49 /* UIView+SCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CA214EFD8270048AF49 /* UIView+SCAdditions.m */; };
+		29E98CB714EFDA340048AF49 /* SCArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CAF14EFDA340048AF49 /* SCArgument.h */; };
+		29E98CB814EFDA340048AF49 /* SCArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CB014EFDA340048AF49 /* SCArgument.m */; };
+		29E98CB914EFDA340048AF49 /* SCArgumentParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CB114EFDA340048AF49 /* SCArgumentParser.h */; };
+		29E98CBA14EFDA340048AF49 /* SCArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CB214EFDA340048AF49 /* SCArgumentParser.m */; };
+		29E98CBB14EFDA340048AF49 /* SCConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CB314EFDA340048AF49 /* SCConstants.h */; };
+		29E98CBC14EFDA340048AF49 /* SCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CB414EFDA340048AF49 /* SCConstants.m */; };
+		29E98CBD14EFDA340048AF49 /* SCPathUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CB514EFDA340048AF49 /* SCPathUtils.h */; };
+		29E98CBE14EFDA340048AF49 /* SCPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CB614EFDA340048AF49 /* SCPathUtils.m */; };
 		29ECA45914B0514E00B3832D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
 		29ECA46014B0537300B3832D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
 		29ECA46114B0537300B3832D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
@@ -239,6 +247,14 @@
 		29E98CA014EFD8270048AF49 /* UIImage+SCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SCAdditions.m"; sourceTree = "<group>"; };
 		29E98CA114EFD8270048AF49 /* UIView+SCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SCAdditions.h"; sourceTree = "<group>"; };
 		29E98CA214EFD8270048AF49 /* UIView+SCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SCAdditions.m"; sourceTree = "<group>"; };
+		29E98CAF14EFDA340048AF49 /* SCArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCArgument.h; sourceTree = "<group>"; };
+		29E98CB014EFDA340048AF49 /* SCArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCArgument.m; sourceTree = "<group>"; };
+		29E98CB114EFDA340048AF49 /* SCArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCArgumentParser.h; sourceTree = "<group>"; };
+		29E98CB214EFDA340048AF49 /* SCArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCArgumentParser.m; sourceTree = "<group>"; };
+		29E98CB314EFDA340048AF49 /* SCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCConstants.h; sourceTree = "<group>"; };
+		29E98CB414EFDA340048AF49 /* SCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCConstants.m; sourceTree = "<group>"; };
+		29E98CB514EFDA340048AF49 /* SCPathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPathUtils.h; sourceTree = "<group>"; };
+		29E98CB614EFDA340048AF49 /* SCPathUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPathUtils.m; sourceTree = "<group>"; };
 		29ECA45814B0514E00B3832D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		29ECA45F14B0537300B3832D /* ShiftSchedulerTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShiftSchedulerTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29ECA46514B0537300B3832D /* ShiftSchedulerTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShiftSchedulerTest-Info.plist"; sourceTree = "<group>"; };
@@ -483,6 +499,7 @@
 		29E98C9514EFD78F0048AF49 /* SCKit */ = {
 			isa = PBXGroup;
 			children = (
+				29E98CAD14EFDA340048AF49 /* Core */,
 				29E98C9614EFD8270048AF49 /* iOS */,
 			);
 			name = SCKit;
@@ -518,6 +535,30 @@
 				29E98CA014EFD8270048AF49 /* UIImage+SCAdditions.m */,
 				29E98CA114EFD8270048AF49 /* UIView+SCAdditions.h */,
 				29E98CA214EFD8270048AF49 /* UIView+SCAdditions.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		29E98CAD14EFDA340048AF49 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				29E98CAE14EFDA340048AF49 /* Classes */,
+			);
+			name = Core;
+			path = SCKit/Core;
+			sourceTree = "<group>";
+		};
+		29E98CAE14EFDA340048AF49 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				29E98CAF14EFDA340048AF49 /* SCArgument.h */,
+				29E98CB014EFDA340048AF49 /* SCArgument.m */,
+				29E98CB114EFDA340048AF49 /* SCArgumentParser.h */,
+				29E98CB214EFDA340048AF49 /* SCArgumentParser.m */,
+				29E98CB314EFDA340048AF49 /* SCConstants.h */,
+				29E98CB414EFDA340048AF49 /* SCConstants.m */,
+				29E98CB514EFDA340048AF49 /* SCPathUtils.h */,
+				29E98CB614EFDA340048AF49 /* SCPathUtils.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -578,6 +619,10 @@
 				29E98CA714EFD8270048AF49 /* SCViewController.h in Headers */,
 				29E98CA914EFD8270048AF49 /* UIImage+SCAdditions.h in Headers */,
 				29E98CAB14EFD8270048AF49 /* UIView+SCAdditions.h in Headers */,
+				29E98CB714EFDA340048AF49 /* SCArgument.h in Headers */,
+				29E98CB914EFDA340048AF49 /* SCArgumentParser.h in Headers */,
+				29E98CBB14EFDA340048AF49 /* SCConstants.h in Headers */,
+				29E98CBD14EFDA340048AF49 /* SCPathUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +805,10 @@
 				29E98CA814EFD8270048AF49 /* SCViewController.m in Sources */,
 				29E98CAA14EFD8270048AF49 /* UIImage+SCAdditions.m in Sources */,
 				29E98CAC14EFD8270048AF49 /* UIView+SCAdditions.m in Sources */,
+				29E98CB814EFDA340048AF49 /* SCArgument.m in Sources */,
+				29E98CBA14EFDA340048AF49 /* SCArgumentParser.m in Sources */,
+				29E98CBC14EFDA340048AF49 /* SCConstants.m in Sources */,
+				29E98CBE14EFDA340048AF49 /* SCPathUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,6 +927,7 @@
 		29B9E1CF1472C1D700DB2E1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -898,6 +948,7 @@
 		29B9E1D01472C1D700DB2E1F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

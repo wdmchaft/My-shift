@@ -38,7 +38,7 @@
 @property (nonatomic, strong) NSFetchedResultsController
 *fetchedResultsController;
 
-@property (retain, nonatomic)     id <ProfileEditFinishDelegate> parentViewDelegate;
+@property (strong, nonatomic)     id <ProfileEditFinishDelegate> parentViewDelegate;
 
 - (id)initWithManagedContext:(NSManagedObjectContext *)context;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath ;

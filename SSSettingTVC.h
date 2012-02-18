@@ -15,7 +15,7 @@
 }
 
 
-@property (nonatomic, readonly) NSArray *itemsArray;
+@property (weak, nonatomic, readonly) NSArray *itemsArray;
 @property (nonatomic, strong) NSURL *iTunesURL;
 
 

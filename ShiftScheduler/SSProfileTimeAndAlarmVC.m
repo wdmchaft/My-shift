@@ -19,17 +19,22 @@ enum {
 
 @implementation SSProfileTimeAndAlarmVC
 
-@synthesize dateFormatter, theJob, datePicker;
+@synthesize dateFormatter, theJob, datePicker, firstChooseIndexPath;
+
+
++ (NSArray *) returnItemArray {
+    return [[NSArray alloc] initWithObjects:
+            FROM_ITEM_STRING,
+            HOURS_ITEM_STRING,
+            REMIND_BEFORE_WORK,
+            REMIND_BEFORE_CLOCK_OFF,
+            nil];
+}
 
 - (NSArray *) itemsArray
 {
     if (!itemsArray) {
-        itemsArray = [[NSArray alloc] initWithObjects:
-					  FROM_ITEM_STRING,
-				      HOURS_ITEM_STRING,
-				      REMIND_BEFORE_WORK,
-				      REMIND_BEFORE_CLOCK_OFF,
-				      nil];
+        itemsArray = [[self class] returnItemArray];
     }
     return itemsArray;
 }
@@ -62,6 +67,28 @@ enum {
     // Release any cached data, images, etc that aren't in use.
 }
 
++ (BOOL) isItemInThisViewController: (NSString *) item
+{
+    for (id i  in [SSProfileTimeAndAlarmVC returnItemArray]) {
+        if ([i isKindOfClass: [NSString class]]) {
+            NSString *str = i;
+            if ([str isEqualToString:item])
+                return YES;
+        }
+        
+    }
+    return NO;
+}
+
+- (void) showUserChoosenSection
+{
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.firstChooseIndexPath.row inSection:0]
+                                animated:NO
+                          scrollPosition:UITableViewScrollPositionNone];
+    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:self.firstChooseIndexPath.row inSection:0]];
+}
+
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -73,6 +100,7 @@ enum {
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    modalPickerView = [[SCModalPickerView alloc] init];
 }
 
 - (void)viewDidUnload
@@ -90,6 +118,7 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self showUserChoosenSection];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -159,79 +188,53 @@ enum {
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
+
+- (void) showDatePickerView:(UIDatePicker *)pdatePicker
+{
+    __block UIDatePicker *tdatePicker = pdatePicker;
+    
+    [modalPickerView setPickerView:tdatePicker];
+    __block OneJob *job = self.theJob;
+    
+    NSIndexPath *pChoosedIndexPath = [self.tableView indexPathForSelectedRow];
+    __block NSDateFormatter *pDateFormatter = self.dateFormatter;
+    __block SSProfileTimeAndAlarmVC *safeSelf = self;
+    [modalPickerView setCompletionHandler:^(SCModalPickerViewResult result){
+        if (result == SCModalPickerViewResultDone)
+        { 
+            if (pChoosedIndexPath.row == CLOCK_IN_ITEM) {
+                job.jobEverydayStartTime = [[tdatePicker date] cc_convertToUTC];
+                NSLog(@"start time every date:%@ with Job:%@", [pDateFormatter stringFromDate:job.jobEverydayStartTime], job.jobName);
+            } else if (pChoosedIndexPath.row == HOURS_ITEM) {
+                job.jobEveryDayLengthSec =  [NSNumber numberWithInt:tdatePicker.countDownDuration];
+                NSLog(@"work every length:%@ with Job:%@", job.jobEveryDayLengthSec, job.jobName);
+            }
+            
+            [safeSelf.tableView reloadData];
+        }
+    }];
+    [modalPickerView show];
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.row == CLOCK_IN_ITEM) {
         self.datePicker.datePickerMode = UIDatePickerModeTime;
         lastChooseCell = indexPath.row;
         self.datePicker.date = self.theJob.jobEverydayStartTime;
-        [SSTurnShiftTVC showOrHideDatePickerView:YES datePicker:self.datePicker view:self.view];
+        [self showDatePickerView:self.datePicker];
+
     } else if (indexPath.row == HOURS_ITEM) {
         self.datePicker.datePickerMode = UIDatePickerModeCountDownTimer;
         self.datePicker.countDownDuration = [self.theJob.jobEveryDayLengthSec intValue];
         lastChooseCell = indexPath.row;
-        [SSTurnShiftTVC showOrHideDatePickerView:YES datePicker:self.datePicker view:self.view];
+        [self showDatePickerView:self.datePicker];
     } else if (indexPath.row == REMIND_BEFORE_WORK_ITEM) {
         
     } else if (indexPath.row == REMIND_BEFORE_OFF_ITEM) {
         
     }
 }
-
-- (IBAction)datePickerValueChanged:(id)sender
-{
-    UIDatePicker *picker = sender;
-    if (lastChooseCell == CLOCK_IN_ITEM) {
-        self.theJob.jobEverydayStartTime = [[picker date] cc_convertToUTC];
-        NSLog(@"start time every date:%@ with Job:%@", [self.dateFormatter stringFromDate:self.theJob.jobEverydayStartTime], self.theJob.jobName);
-    } else if (lastChooseCell == HOURS_ITEM) {
-        self.theJob.jobEveryDayLengthSec =  [NSNumber numberWithInt:picker.countDownDuration];
-        NSLog(@"work every length:%@ with Job:%@", self.theJob.jobEveryDayLengthSec, self.theJob.jobName);
-    }
-    
-    [self.tableView reloadData];
-}
-
 @end

@@ -13,13 +13,13 @@
 @class OneJob;
 @interface ShiftDay : NSManagedObject
 
-@property (nonatomic, retain) NSDate * shiftFromDay;
-@property (nonatomic, retain) NSDate * shiftToDay;
-@property (nonatomic, retain) NSNumber * otherInfo;
-@property (nonatomic, retain) NSString * notes;
+@property (nonatomic, strong) NSDate * shiftFromDay;
+@property (nonatomic, strong) NSDate * shiftToDay;
+@property (nonatomic, strong) NSNumber * otherInfo;
+@property (nonatomic, strong) NSString * notes;
 
-@property (nonatomic, retain) NSNumber * type;
-@property (nonatomic, retain) OneJob *whatJob;
+@property (nonatomic, strong) NSNumber * type;
+@property (nonatomic, strong) OneJob *whatJob;
 
 + (NSString *) returnStringForType:(NSNumber *)type;
 

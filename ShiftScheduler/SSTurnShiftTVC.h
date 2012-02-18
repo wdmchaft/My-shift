@@ -17,24 +17,25 @@
 #define PICKER_VIEW_ON 0
 #define PICKER_VIEW_OFF 1
 
+@class SCModalPickerView;
 @interface SSTurnShiftTVC : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 {
-    int lastChoosePicker;
     UIPickerView *picker;
     UIDatePicker *datePicker;
     NSArray *itemsArray;
     NSDateFormatter *dateFormatter;
     OneJob *theJob;
-    
+    NSIndexPath *firstChooseIndexPath; // the indexPath use choose when enter this UI.
+    SCModalPickerView *modalPickerView;
 }
 
-@property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
-@property (nonatomic, retain) IBOutlet UIPickerView *picker;
-@property (nonatomic, retain) OneJob *theJob;
+@property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
+@property (nonatomic, strong) IBOutlet UIPickerView *picker;
+@property (nonatomic, strong) OneJob *theJob;
+@property (nonatomic, strong) NSIndexPath *firstChooseIndexPath;
 
++ (BOOL) isItemInThisViewController: (NSString *) item;
++ (void) configureTimeCell: (UITableViewCell *)cell indexPath: (NSIndexPath *)indexPath Job: (OneJob *)theJob dateFormatter:(NSDateFormatter *)dateFormatter;
 
-- (IBAction)datePickerValueChanged:(id)sender;	
-
-+ (void) showOrHideDatePickerView: (BOOL) show datePicker:(UIDatePicker *)datePicker view:(UIView *)theView;
 
 @end

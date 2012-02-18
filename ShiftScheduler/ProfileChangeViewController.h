@@ -54,7 +54,7 @@
 
 @property int viewMode;
 
-@property (retain) OneJob *theJob;
+@property (strong) OneJob *theJob;
 
 - (void) cancel:(id)sender;
 - (void) saveProfile:(id) sender;

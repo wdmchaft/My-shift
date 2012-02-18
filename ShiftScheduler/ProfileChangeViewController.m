@@ -343,18 +343,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ProfileCell";
-    
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UITableViewCell *cell;
-    //    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    //    } else {
-    //        [cell prepareForReuse];
-    //    }
-    
 
-    
+    // here can't recycle tabelViewCell.
+    UITableViewCell *cell;
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     // setup cell text by index path
     NSString *item;
     item =  [self returnItemByIndexPath:indexPath];
@@ -375,19 +369,14 @@
         [self.nameField setText:self.theJob.jobName];
         [cell.contentView addSubview:self.nameField];
 
-    } else if ([item isEqualToString:WORKLEN_ITEM_STRING]) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", [self.theJob.jobOnDays intValue]];
-    } else if ([item isEqualToString:RESTLEN_ITEM_STRING]) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", [self.theJob.jobOffDays intValue]];
-        
-    } else if ([item isEqualToString:STARTWITH_ITEM_STRING]) {
-        cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.theJob.jobStartDate];
     }
     
-    if ([item isEqualToString:FROM_ITEM_STRING]
-        || [item isEqualToString:HOURS_ITEM_STRING]
-        || [item isEqualToString:REMIND_BEFORE_WORK]
-        || [item isEqualToString:REMIND_BEFORE_CLOCK_OFF])
+    
+    if ([SSTurnShiftTVC isItemInThisViewController:item]) {
+        [SSTurnShiftTVC configureTimeCell:cell indexPath:indexPath Job:self.theJob dateFormatter:self.dateFormatter];
+    }
+    
+    if ([SSProfileTimeAndAlarmVC isItemInThisViewController:item])
     {
         [SSProfileTimeAndAlarmVC configureTimeCell:cell indexPath:indexPath Job:self.theJob];
     }
@@ -489,29 +478,23 @@
     }
     
     
-    if ([item isEqualToString:WORKLEN_ITEM_STRING]
-	|| [item isEqualToString:RESTLEN_ITEM_STRING]
-	|| [item isEqualToString:STARTWITH_ITEM_STRING]) 
+    if ([SSTurnShiftTVC isItemInThisViewController:item])
 	{
 	    SSTurnShiftTVC *tstvc = [[SSTurnShiftTVC alloc] initWithNibName:@"SSTurnShiftTVC" bundle:nil];
         tstvc.theJob = self.theJob;
+        tstvc.firstChooseIndexPath = indexPath;
         [self.navigationController pushViewController:tstvc animated:YES];
+        
 	}
 
-    if ([item isEqualToString:FROM_ITEM_STRING]
-	|| [item isEqualToString:HOURS_ITEM_STRING]
-	|| [item isEqualToString:REMIND_BEFORE_WORK]
-	|| [item isEqualToString:REMIND_BEFORE_CLOCK_OFF])
+    if ([SSProfileTimeAndAlarmVC isItemInThisViewController:item])
 	{
 	    SSProfileTimeAndAlarmVC *taavc = [[SSProfileTimeAndAlarmVC alloc]
 						 initWithNibName:@"SSProfileTimeAndAlarmVC" bundle:nil];
 	    taavc.theJob = self.theJob;
+        taavc.firstChooseIndexPath = indexPath;
         [self.navigationController pushViewController:taavc animated:YES];
 	}
-		 
-	       
-
-    
 }
 
 - (IBAction)jobNameEditingDone:(id)sender
