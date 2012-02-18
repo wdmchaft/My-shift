@@ -10,13 +10,14 @@
 #import "UIColor+HexCoding.h"
 #import "InfColorPicker.h"
 #import "SSTurnShiftTVC.h"
+#import "SSProfileTimeAndAlarmVC.h"
 
 @implementation ProfileChangeViewController
 
 @synthesize itemsArray, saveButton, dateFormatter, cancelButton;
 @synthesize theJob, viewMode;
 @synthesize managedObjectContext, profileDelegate, iconDateSource, colorEnableSwitch;
-@synthesize  nameField;
+@synthesize  nameField, timeItemsArray;
 
 
 #pragma mark - "init values"
@@ -33,16 +34,31 @@
 {
     
     if (!itemsArray) {
-        itemsArray = [[NSArray alloc] initWithObjects:NAME_ITEM_STRING,
-                      ICON_ITEM_STRING,
+        itemsArray = [[NSArray alloc] initWithObjects:
+					  NAME_ITEM_STRING,
+				      ICON_ITEM_STRING,
+				      
 //                      COLOR_ENABLE_STRING,
-                      COLOR_PICKER_STRING,
+				      COLOR_PICKER_STRING,
 				      WORKLEN_ITEM_STRING,
 				      RESTLEN_ITEM_STRING,
 				      STARTWITH_ITEM_STRING ,
 				      nil];
     }
     return itemsArray;
+}
+
+- (NSArray *) timeItemsArray
+{
+    if (!timeItemArray) {
+	timeItemArray = [[NSArray alloc] initWithObjects:
+					     FROM_ITEM_STRING,
+					 HOURS_ITEM_STRING,
+					 REMIND_BEFORE_WORK,
+					 REMIND_BEFORE_CLOCK_OFF,
+					 nil];
+    }
+    return timeItemArray;
 }
 
 - (UIBarButtonItem *)saveButton
@@ -212,6 +228,10 @@
     
     [self.colorEnableSwitch setOn:self.theJob.jobOnIconColorOn.intValue];
 //    [self setUpUndoManager];
+    
+    // default value configure
+    if (self.viewMode == PCVC_ADDING_MODE)
+        [self defaultValueConfigure];
 }
 
 - (void)viewDidUnload
@@ -227,7 +247,7 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
-    self.editing = YES;
+    [self setEditing:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -255,7 +275,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
@@ -271,16 +291,27 @@
 {
     if (section == 0)
         return NSLocalizedString(@"Name and Icon", "name and icon title");
-    else
+    else if (section == 1)
         return  NSLocalizedString(@"Shift Detail", "Shift detail title");
+    else if (section == 2)
+        return NSLocalizedString(@"Time and Remind", "time and remind title");
+    return @"";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0)
-        return  showColorAndIconPicker ? 3 : 1;
-    else
+#if 0
+        return  self.editing ? 3 : 1;
+#else
+        return 3;
+#endif
+    else if (section == 1)
         return [self.itemsArray count] - 3;
+    else if (section == 2)
+        return self.timeItemsArray.count;
+    
+    return 0;
 }
 
 - (NSString *) returnItemByIndexPath: (NSIndexPath *)indexPath
@@ -288,42 +319,50 @@
     NSString *item;
     if (indexPath.section == 0)
         item = [self.itemsArray objectAtIndex:indexPath.row];
-    else
+    else if (indexPath.section == 1)
         item = [self.itemsArray objectAtIndex:(indexPath.row + 3)];
+    else if (indexPath.section == 2)
+        item = [self.timeItemsArray objectAtIndex:indexPath.row];
     return item;
+}
+
+- (void) defaultValueConfigure
+{
+        self.theJob.jobOnDays = [NSNumber numberWithInt:PCVC_DEFAULT_ON_DAYS];
+        self.theJob.jobOffDays = [NSNumber numberWithInt:PCVC_DEFAULT_OFF_DAYS];
+        self.theJob.jobStartDate = [NSDate date];
+        NSDateComponents *defaultOnTime = [[NSDateComponents alloc] init];
+        [defaultOnTime setHour:8];
+        [defaultOnTime setMinute:0];
+        self.theJob.jobEverydayStartTime =  [[NSCalendar currentCalendar] dateFromComponents:defaultOnTime];
+        self.theJob.jobEveryDayLengthSec = [NSNumber numberWithInt:60 * 60 * 8]; // 8 hour a day default
+        self.theJob.jobRemindBeforeOff = [NSNumber numberWithInt:0];
+        self.theJob.jobRemindBeforeWork = [NSNumber numberWithInt:10];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ProfileCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell;
+    //    if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    }
+    //    } else {
+    //        [cell prepareForReuse];
+    //    }
     
-    // setup the default value of on and off days;
-    if (self.viewMode == PCVC_ADDING_MODE) {
-        if (self.theJob.jobOnDays == nil 
-            || self.theJob.jobOnDays == [NSNumber numberWithInt:0]) {
-            self.theJob.jobOnDays = [NSNumber numberWithInt:PCVC_DEFAULT_ON_DAYS];
-        }
-        if (self.theJob.jobOnDays == nil
-            || [self.theJob jobOffDays] == [NSNumber numberWithInt:0]) {
-            self.theJob.jobOffDays = [NSNumber numberWithInt:PCVC_DEFAULT_OFF_DAYS];
-        }
-        
-        if (self.theJob.jobStartDate == nil) {
-            self.theJob.jobStartDate = [NSDate date];
-        }
-    }
+
     
     // setup cell text by index path
     NSString *item;
     item =  [self returnItemByIndexPath:indexPath];
     cell.textLabel.text = item;
+    cell.imageView.image = nil;
+    
+   
+    // the default value should configure when ViewWas loaded.
     
 //    if ([item isEqualToString:COLOR_ENABLE_STRING]) {
 //        [cell.contentView addSubview:self.colorEnableSwitch];
@@ -331,6 +370,7 @@
     
     if ([item isEqualToString:NAME_ITEM_STRING]) {
         cell.imageView.image = self.theJob.iconImage;
+        
         self.nameField.delegate = self;
         [self.nameField setText:self.theJob.jobName];
         [cell.contentView addSubview:self.nameField];
@@ -342,6 +382,14 @@
         
     } else if ([item isEqualToString:STARTWITH_ITEM_STRING]) {
         cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.theJob.jobStartDate];
+    }
+    
+    if ([item isEqualToString:FROM_ITEM_STRING]
+        || [item isEqualToString:HOURS_ITEM_STRING]
+        || [item isEqualToString:REMIND_BEFORE_WORK]
+        || [item isEqualToString:REMIND_BEFORE_CLOCK_OFF])
+    {
+        [SSProfileTimeAndAlarmVC configureTimeCell:cell indexPath:indexPath Job:self.theJob];
     }
 
     return cell;
@@ -372,7 +420,9 @@
     
     // hide the color picker and icon picker.
 
-    NSArray *a = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:1 inSection:0], [NSIndexPath indexPathForRow:2 inSection:0], nil];
+
+#if 0 // will crash if retrun from other view, disable it.
+        NSArray *a = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:1 inSection:0], [NSIndexPath indexPathForRow:2 inSection:0], nil];
     
     if (editing) {
         showColorAndIconPicker = YES;
@@ -383,7 +433,7 @@
         [self.tableView deleteRowsAtIndexPaths:a withRowAnimation:UITableViewRowAnimationAutomatic];
         // index paths for icon picker and color picker.
     } 
-    
+#endif
     
 }
 
@@ -447,6 +497,20 @@
         tstvc.theJob = self.theJob;
         [self.navigationController pushViewController:tstvc animated:YES];
 	}
+
+    if ([item isEqualToString:FROM_ITEM_STRING]
+	|| [item isEqualToString:HOURS_ITEM_STRING]
+	|| [item isEqualToString:REMIND_BEFORE_WORK]
+	|| [item isEqualToString:REMIND_BEFORE_CLOCK_OFF])
+	{
+	    SSProfileTimeAndAlarmVC *taavc = [[SSProfileTimeAndAlarmVC alloc]
+						 initWithNibName:@"SSProfileTimeAndAlarmVC" bundle:nil];
+	    taavc.theJob = self.theJob;
+        [self.navigationController pushViewController:taavc animated:YES];
+	}
+		 
+	       
+
     
 }
 

@@ -269,22 +269,22 @@
     }
 }
 
-- (void) showOrHideDatePickerView: (BOOL) show
++ (void) showOrHideDatePickerView: (BOOL) show datePicker:(UIDatePicker *)datePicker view:(UIView *)theView
 {
     if (show) {
-        if (self.datePicker.superview == nil) {
-            CGSize pickerSize = [self.datePicker sizeThatFits:CGSizeZero];
+        if (datePicker.superview == nil) {
+            CGSize pickerSize = [datePicker sizeThatFits:CGSizeZero];
             CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
             CGRect pickerRect = CGRectMake(0.0,
                                            screenRect.origin.y + screenRect.size.height - pickerSize.height - 60,
                                            pickerSize.width,
                                            pickerSize.height);
             
-            self.datePicker.frame = pickerRect;
-            [self.view.superview addSubview: self.datePicker];
+            datePicker.frame = pickerRect;
+            [theView.superview addSubview: datePicker];
         }
     } else {
-        [self.datePicker removeFromSuperview];
+        [datePicker removeFromSuperview];
     }
 }
 
@@ -308,7 +308,7 @@
     if ([item isEqualToString:STARTWITH_ITEM_STRING]) {
         [self showOrHidePickerView:NO];
         self.datePicker.date = self.theJob.jobStartDate;
-        [self showOrHideDatePickerView:YES];
+        [[self class ] showOrHideDatePickerView:YES datePicker:self.datePicker view:self.view];
     }
 }
 

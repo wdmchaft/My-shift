@@ -32,8 +32,10 @@
 
 @implementation OneJob
 @dynamic jobName;
-@dynamic jobEnable; // bool enable the job display on the cal or not.
+@dynamic jobEnable;
 @dynamic jobDescription;
+@dynamic jobEveryDayLengthSec;
+@dynamic jobEverydayStartTime;
 @dynamic jobOnDays;
 @dynamic jobOffDays;
 @dynamic jobStartDate;
@@ -41,10 +43,8 @@
 @dynamic shiftdays;
 @dynamic jobOnColorID,jobOnIconColorOn;
 @dynamic jobOnIconID;
-
+@dynamic jobRemindBeforeOff,jobRemindBeforeWork;
 @synthesize curCalender;
-
-
 
 - (NSCalendar *) curCalender
 {

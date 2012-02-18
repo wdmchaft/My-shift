@@ -69,9 +69,12 @@ enum {
     self.navController = navController;
     self.navController.modalPresentationStyle = UIModalPresentationFullScreen;
     
+    alertNoProfile = [[UIAlertView alloc] initWithTitle:nil message:@"Do you want create a shift profile?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Create one", nil];
+    alertNoProfile.tag = TAG_ZERO_PROFILE;
+
     
     // Setup Action Sheet
-    self.rightAS = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"More", "more in action sheet") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "cancel") destructiveButtonTitle:nil 
+    self.rightAS = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "cancel") destructiveButtonTitle:nil 
                                  otherButtonTitles:
 #ifdef CONFIG_SS_ENABLE_SHIFT_CHANGE_FUNCTION
                NSLocalizedString(@"change shift" , "change shift"), 
@@ -99,9 +102,7 @@ enum {
 
 - (void)popNotifyZeroProfile:(id) sender
 {
-   UIAlertView *a =  [[UIAlertView alloc] initWithTitle:nil message:@"Do you want create a shift profile?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Create one", nil];
-    a.tag = TAG_ZERO_PROFILE;
-    [a show];
+      [alertNoProfile show];
 }
 
 - (void)showRightActionSheet
@@ -161,6 +162,8 @@ enum {
 
 - (void)actionSheet:(UIAlertView *)sender clickedButtonAtIndex:(NSInteger)index
 {
+    [alertNoProfile dismissWithClickedButtonIndex:alertNoProfile.cancelButtonIndex animated:NO];
+     
     
 #ifdef CONFIG_SS_ENABLE_SHIFT_CHANGE_FUNCTION
 #define MANAGEMENT_START_OFFSET 1

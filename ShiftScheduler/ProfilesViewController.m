@@ -376,7 +376,10 @@
     // hide all UISwitch when edting... since it will affect Detete UI.
     for (id a in switchArray) {
         UISwitch *s = a;
-        if (editing) s.hidden = YES;
+        if (editing) { 
+            s.hidden = YES;
+            [s setNeedsDisplay];
+        }
         else s.hidden = NO;
     }
 }

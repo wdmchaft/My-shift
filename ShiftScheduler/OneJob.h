@@ -25,8 +25,10 @@
     
 }
 @property (nonatomic, strong) NSString * jobName;       // the job's name
-@property (nonatomic, strong) NSNumber * jobEnable;
+@property (nonatomic, strong) NSNumber * jobEnable;   // bool enable the job display on the cal or not
 @property (nonatomic, strong) NSString * jobDescription; //the detail describe of this job
+@property (nonatomic, retain) NSNumber * jobEveryDayLengthSec;  // minites of every day work.
+@property (nonatomic, retain) NSDate * jobEverydayStartTime;
 @property (nonatomic, strong) NSNumber * jobOnDays; // how long works once
 @property (nonatomic, strong) NSNumber * jobOffDays; // how long rest once.
 @property (nonatomic, strong) NSDate * jobStartDate;
@@ -40,6 +42,8 @@
 @property (nonatomic, readonly) UIImage  *iconImage;
 @property (nonatomic, readonly) UIColor  *iconColor;
 @property (nonatomic, readonly)  UIColor *defaultIconColor;
+@property (nonatomic, retain) NSNumber * jobRemindBeforeOff;
+@property (nonatomic, retain) NSNumber * jobRemindBeforeWork;
 
 
 // init the work date generator with these input.

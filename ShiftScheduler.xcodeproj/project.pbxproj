@@ -71,6 +71,11 @@
 		29B9E21B1472D6FE00DB2E1F /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */; };
 		29C943B014E957F700122144 /* SSKalDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 29C943AF14E957F700122144 /* SSKalDelegate.h */; };
 		29C943B214E9581600122144 /* SSKalDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C943B114E9581600122144 /* SSKalDelegate.m */; };
+		29C943B614E9642900122144 /* SSProfileTimeAndAlarmVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 29C943B314E9642800122144 /* SSProfileTimeAndAlarmVC.h */; };
+		29C943B714E9642900122144 /* SSProfileTimeAndAlarmVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C943B414E9642800122144 /* SSProfileTimeAndAlarmVC.m */; };
+		29C943B814E9642900122144 /* SSProfileTimeAndAlarmVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29C943B514E9642900122144 /* SSProfileTimeAndAlarmVC.xib */; };
+		29C943BB14EAB55200122144 /* UserReviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29C943B914EAB55200122144 /* UserReviewController.h */; };
+		29C943BC14EAB55200122144 /* UserReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C943BA14EAB55200122144 /* UserReviewController.m */; };
 		29DDDAC314808F94004DC703 /* NSDateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 29DDDAC114808F94004DC703 /* NSDateAdditions.h */; };
 		29DDDAC414808F94004DC703 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DDDAC214808F94004DC703 /* NSDateAdditions.m */; };
 		29E128C41476C861008DDB53 /* calendar-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C11476C861008DDB53 /* calendar-2.png */; };
@@ -80,6 +85,16 @@
 		29E128CA1476CBCA008DDB53 /* calendar-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C91476CBC9008DDB53 /* calendar-114x114.png */; };
 		29E339D414CA955A0036EAED /* ProfileIconPickerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E339D214CA955A0036EAED /* ProfileIconPickerDataSource.h */; };
 		29E339D514CA955A0036EAED /* ProfileIconPickerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E339D314CA955A0036EAED /* ProfileIconPickerDataSource.m */; };
+		29E98CA314EFD8270048AF49 /* SCAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98C9914EFD8270048AF49 /* SCAnimation.h */; };
+		29E98CA414EFD8270048AF49 /* SCAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98C9A14EFD8270048AF49 /* SCAnimation.m */; };
+		29E98CA514EFD8270048AF49 /* SCModalPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98C9B14EFD8270048AF49 /* SCModalPickerView.h */; };
+		29E98CA614EFD8270048AF49 /* SCModalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98C9C14EFD8270048AF49 /* SCModalPickerView.m */; };
+		29E98CA714EFD8270048AF49 /* SCViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98C9D14EFD8270048AF49 /* SCViewController.h */; };
+		29E98CA814EFD8270048AF49 /* SCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98C9E14EFD8270048AF49 /* SCViewController.m */; };
+		29E98CA914EFD8270048AF49 /* UIImage+SCAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98C9F14EFD8270048AF49 /* UIImage+SCAdditions.h */; };
+		29E98CAA14EFD8270048AF49 /* UIImage+SCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CA014EFD8270048AF49 /* UIImage+SCAdditions.m */; };
+		29E98CAB14EFD8270048AF49 /* UIView+SCAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CA114EFD8270048AF49 /* UIView+SCAdditions.h */; };
+		29E98CAC14EFD8270048AF49 /* UIView+SCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CA214EFD8270048AF49 /* UIView+SCAdditions.m */; };
 		29ECA45914B0514E00B3832D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
 		29ECA46014B0537300B3832D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
 		29ECA46114B0537300B3832D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
@@ -198,6 +213,11 @@
 		29B9E21A1472D6FE00DB2E1F /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewAdditions.m; path = ../../Kal/src/UIViewAdditions.m; sourceTree = "<group>"; };
 		29C943AF14E957F700122144 /* SSKalDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKalDelegate.h; sourceTree = "<group>"; };
 		29C943B114E9581600122144 /* SSKalDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKalDelegate.m; sourceTree = "<group>"; };
+		29C943B314E9642800122144 /* SSProfileTimeAndAlarmVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSProfileTimeAndAlarmVC.h; sourceTree = "<group>"; };
+		29C943B414E9642800122144 /* SSProfileTimeAndAlarmVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSProfileTimeAndAlarmVC.m; sourceTree = "<group>"; };
+		29C943B514E9642900122144 /* SSProfileTimeAndAlarmVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSProfileTimeAndAlarmVC.xib; sourceTree = "<group>"; };
+		29C943B914EAB55200122144 /* UserReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserReviewController.h; sourceTree = "<group>"; };
+		29C943BA14EAB55200122144 /* UserReviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserReviewController.m; sourceTree = "<group>"; };
 		29DDDAC114808F94004DC703 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateAdditions.h; sourceTree = "<group>"; };
 		29DDDAC214808F94004DC703 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
 		29E128C11476C861008DDB53 /* calendar-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-2.png"; sourceTree = "<group>"; };
@@ -209,6 +229,16 @@
 		29E128CC1476D431008DDB53 /* Kal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kal.h; path = ../../Kal/src/Kal.h; sourceTree = "<group>"; };
 		29E339D214CA955A0036EAED /* ProfileIconPickerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileIconPickerDataSource.h; sourceTree = "<group>"; };
 		29E339D314CA955A0036EAED /* ProfileIconPickerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileIconPickerDataSource.m; sourceTree = "<group>"; };
+		29E98C9914EFD8270048AF49 /* SCAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAnimation.h; sourceTree = "<group>"; };
+		29E98C9A14EFD8270048AF49 /* SCAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAnimation.m; sourceTree = "<group>"; };
+		29E98C9B14EFD8270048AF49 /* SCModalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCModalPickerView.h; sourceTree = "<group>"; };
+		29E98C9C14EFD8270048AF49 /* SCModalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCModalPickerView.m; sourceTree = "<group>"; };
+		29E98C9D14EFD8270048AF49 /* SCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCViewController.h; sourceTree = "<group>"; };
+		29E98C9E14EFD8270048AF49 /* SCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCViewController.m; sourceTree = "<group>"; };
+		29E98C9F14EFD8270048AF49 /* UIImage+SCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SCAdditions.h"; sourceTree = "<group>"; };
+		29E98CA014EFD8270048AF49 /* UIImage+SCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SCAdditions.m"; sourceTree = "<group>"; };
+		29E98CA114EFD8270048AF49 /* UIView+SCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SCAdditions.h"; sourceTree = "<group>"; };
+		29E98CA214EFD8270048AF49 /* UIView+SCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SCAdditions.m"; sourceTree = "<group>"; };
 		29ECA45814B0514E00B3832D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		29ECA45F14B0537300B3832D /* ShiftSchedulerTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShiftSchedulerTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29ECA46514B0537300B3832D /* ShiftSchedulerTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShiftSchedulerTest-Info.plist"; sourceTree = "<group>"; };
@@ -361,6 +391,9 @@
 				2935514114E2BABA004D8FAC /* SSTurnShiftTVC.h */,
 				2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */,
 				2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */,
+				29C943B314E9642800122144 /* SSProfileTimeAndAlarmVC.h */,
+				29C943B414E9642800122144 /* SSProfileTimeAndAlarmVC.m */,
+				29C943B514E9642900122144 /* SSProfileTimeAndAlarmVC.xib */,
 				29B9E1E31472C39F00DB2E1F /* ProfilesViewController.h */,
 				29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */,
 			);
@@ -371,6 +404,7 @@
 		29B9E1A61472C1D700DB2E1F = {
 			isa = PBXGroup;
 			children = (
+				29E98C9514EFD78F0048AF49 /* SCKit */,
 				29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */,
 				293994B5147D25D30007320C /* Module */,
 				2935514914E2E5EB004D8FAC /* SettingView */,
@@ -413,6 +447,8 @@
 				292DBC8014C952B300C87A70 /* jobicons.bundle */,
 				298B0167148B941900C013F5 /* Compile Need files */,
 				29B9E1C61472C1D700DB2E1F /* SSAppDelegate.h */,
+				29C943B914EAB55200122144 /* UserReviewController.h */,
+				29C943BA14EAB55200122144 /* UserReviewController.m */,
 				29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */,
 				29B9E1BE1472C1D700DB2E1F /* Supporting Files */,
 			);
@@ -442,6 +478,48 @@
 				29B9E2061472C94C00DB2E1F /* libKal.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		29E98C9514EFD78F0048AF49 /* SCKit */ = {
+			isa = PBXGroup;
+			children = (
+				29E98C9614EFD8270048AF49 /* iOS */,
+			);
+			name = SCKit;
+			sourceTree = "<group>";
+		};
+		29E98C9614EFD8270048AF49 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				29E98C9714EFD8270048AF49 /* Core */,
+			);
+			name = iOS;
+			path = SCKit/iOS;
+			sourceTree = "<group>";
+		};
+		29E98C9714EFD8270048AF49 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				29E98C9814EFD8270048AF49 /* Classes */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		29E98C9814EFD8270048AF49 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				29E98C9914EFD8270048AF49 /* SCAnimation.h */,
+				29E98C9A14EFD8270048AF49 /* SCAnimation.m */,
+				29E98C9B14EFD8270048AF49 /* SCModalPickerView.h */,
+				29E98C9C14EFD8270048AF49 /* SCModalPickerView.m */,
+				29E98C9D14EFD8270048AF49 /* SCViewController.h */,
+				29E98C9E14EFD8270048AF49 /* SCViewController.m */,
+				29E98C9F14EFD8270048AF49 /* UIImage+SCAdditions.h */,
+				29E98CA014EFD8270048AF49 /* UIImage+SCAdditions.m */,
+				29E98CA114EFD8270048AF49 /* UIView+SCAdditions.h */,
+				29E98CA214EFD8270048AF49 /* UIView+SCAdditions.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		29ECA46314B0537300B3832D /* ShiftSchedulerTest */ = {
@@ -493,6 +571,13 @@
 				2935514D14E2E61F004D8FAC /* SSSettingTVC.h in Headers */,
 				29F2147D14E66DB7008BEE92 /* UIImage+MonoImage.h in Headers */,
 				29C943B014E957F700122144 /* SSKalDelegate.h in Headers */,
+				29C943B614E9642900122144 /* SSProfileTimeAndAlarmVC.h in Headers */,
+				29C943BB14EAB55200122144 /* UserReviewController.h in Headers */,
+				29E98CA314EFD8270048AF49 /* SCAnimation.h in Headers */,
+				29E98CA514EFD8270048AF49 /* SCModalPickerView.h in Headers */,
+				29E98CA714EFD8270048AF49 /* SCViewController.h in Headers */,
+				29E98CA914EFD8270048AF49 /* UIImage+SCAdditions.h in Headers */,
+				29E98CAB14EFD8270048AF49 /* UIView+SCAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +688,7 @@
 				2935514614E2BABA004D8FAC /* SSTurnShiftTVC.xib in Resources */,
 				2935514814E2DDB0004D8FAC /* ProfileChangeViewController.xib in Resources */,
 				2935514F14E2E61F004D8FAC /* SSSettingTVC.xib in Resources */,
+				29C943B814E9642900122144 /* SSProfileTimeAndAlarmVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +753,13 @@
 				2935514E14E2E61F004D8FAC /* SSSettingTVC.m in Sources */,
 				29F2147E14E66DB7008BEE92 /* UIImage+MonoImage.m in Sources */,
 				29C943B214E9581600122144 /* SSKalDelegate.m in Sources */,
+				29C943B714E9642900122144 /* SSProfileTimeAndAlarmVC.m in Sources */,
+				29C943BC14EAB55200122144 /* UserReviewController.m in Sources */,
+				29E98CA414EFD8270048AF49 /* SCAnimation.m in Sources */,
+				29E98CA614EFD8270048AF49 /* SCModalPickerView.m in Sources */,
+				29E98CA814EFD8270048AF49 /* SCViewController.m in Sources */,
+				29E98CAA14EFD8270048AF49 /* UIImage+SCAdditions.m in Sources */,
+				29E98CAC14EFD8270048AF49 /* UIView+SCAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,6 +28,7 @@
     UILabel *nameLable;
     UISwitch *colorEnableSwitch;
     NSArray *itemsArray;
+    NSArray *timeItemArray;
     UIBarButtonItem *saveButton;
     UIBarButtonItem *cancelButton;
     NSDateFormatter *dateFormatter;
@@ -40,15 +41,16 @@
 }
 
 @property (nonatomic, strong) UISwitch *colorEnableSwitch;
-@property (nonatomic, retain) NSArray *itemsArray;
-@property (nonatomic, retain) UIBarButtonItem *saveButton;
+@property (nonatomic, strong) NSArray *itemsArray;
+@property (nonatomic, strong) NSArray *timeItemsArray;
+@property (nonatomic, strong) UIBarButtonItem *saveButton;
 @property (nonatomic, strong) UIBarButtonItem *cancelButton;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
-@property (retain) NSManagedObjectContext *managedObjectContext;
+@property (strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) UITextField *nameField;
 @property (assign, nonatomic)    id<ProfileViewDelegate> profileDelegate;
 
-@property (nonatomic, retain) ProfileIconPickerDataSource *iconDateSource;
+@property (nonatomic, strong) ProfileIconPickerDataSource *iconDateSource;
 
 @property int viewMode;
 
@@ -56,6 +58,7 @@
 
 - (void) cancel:(id)sender;
 - (void) saveProfile:(id) sender;
+- (void) defaultValueConfigure;
 
 - (void)textFieldDidEndEditing:(UITextField *)textField;
 -(BOOL)textFieldShouldReturn:(UITextField*)sender;

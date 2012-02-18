@@ -60,6 +60,23 @@
     return [cal dateFromComponents:parts];
 }
 
+- (NSDate *)cc_convertToUTC
+{
+    unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSDateComponents* parts = [[NSCalendar currentCalendar] components:flags fromDate:self];
+    return [[NSCalendar currentCalendar ] dateFromComponents:parts];
+}
+
+- (NSString *)cc_getHourMinitesFromDate
+{
+    
+    unsigned int flags =  NSHourCalendarUnit | NSMinuteCalendarUnit;
+    NSDateComponents* parts = [[NSCalendar currentCalendar] components:flags fromDate:self];
+    
+    return [NSString stringWithFormat:@"%d:%d", [parts hour], [parts minute]];
+}
+
+
 - (NSDate *)cc_dateByMovingToEndOfDayWithCalender:(NSCalendar *)cal
 {
     unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;

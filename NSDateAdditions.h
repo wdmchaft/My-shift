@@ -23,5 +23,7 @@
 - (NSDateComponents *)cc_componentsForMonthDayAndYear;
 - (NSUInteger)cc_weekday;
 - (NSUInteger)cc_numberOfDaysInMonth;
+- (NSString *)cc_getHourMinitesFromDate;
+- (NSDate *)cc_convertToUTC;
 
 @end

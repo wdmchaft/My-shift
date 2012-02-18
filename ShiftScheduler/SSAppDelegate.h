@@ -27,6 +27,7 @@ ProfileEditFinishDelegate>
     SSSettingTVC *settingVC;
     UITabBarController *tabBarVC;
     UIActionSheet *rightAS;
+    UIAlertView  *alertNoProfile;
     id dataSource;
     
 }

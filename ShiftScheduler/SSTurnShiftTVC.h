@@ -25,6 +25,7 @@
     NSArray *itemsArray;
     NSDateFormatter *dateFormatter;
     OneJob *theJob;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
@@ -34,6 +35,6 @@
 
 - (IBAction)datePickerValueChanged:(id)sender;	
 
-- (void)showOrHidePickerView:(BOOL) show;
++ (void) showOrHideDatePickerView: (BOOL) show datePicker:(UIDatePicker *)datePicker view:(UIView *)theView;
 
 @end
