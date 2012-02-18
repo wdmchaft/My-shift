@@ -13,7 +13,7 @@
 @interface SCViewController : UIViewController
 
 // A data-driven way to specify which ways a UIViewController is allowed to rotate.
-@property (nonatomic, retain) NSSet *allowedInterfaceOrientations;
+@property (nonatomic, strong) NSSet *allowedInterfaceOrientations;
 
 // A convenience method for allowing this view controller to rotate to all interface orientations.
 - (void)allowAllInterfaceOrientations;

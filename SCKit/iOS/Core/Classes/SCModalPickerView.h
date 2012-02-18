@@ -22,19 +22,19 @@ typedef void (^SCModalPickerViewCompletionHandler)(SCModalPickerViewResult resul
 // the SCModalPickerView. This should be a UIPickerView or a UIDatePicker. It's too bad that these
 // two classes do not share a common base class. Attempting to set something other than a
 // UIPickerView or UIDatePicker will result in an exception.
-@property (nonatomic, retain) UIView *pickerView;
+@property (nonatomic, strong) UIView *pickerView;
 
 // The main reason for using a UIWindow in this class is to dim the status bar. We would also use
 // a similar tactic if we wanted to create a custom alert view, or if we wanted to do something that
 // couldn't piggyback on top of UIResponder's inputView and inputAccessoryView.
-@property (nonatomic, readonly, retain) UIWindow *window;
+@property (nonatomic, readonly, strong) UIWindow *window;
 
 // This toolbar is displayed above the UIPickerView. It contains three UIToolbarItems:
 // 1) A cancel button.
 // 2) Flexible space.
 // 3) A done button.
 // You may reorder these buttons or add your own before calling show on the SCModalPickerView.
-@property (nonatomic, readonly, retain) UIToolbar *toolbar;
+@property (nonatomic, readonly, strong) UIToolbar *toolbar;
 
 // A block to execute upon dismissing the SCModalPickerView.
 @property (nonatomic, copy) SCModalPickerViewCompletionHandler completionHandler;

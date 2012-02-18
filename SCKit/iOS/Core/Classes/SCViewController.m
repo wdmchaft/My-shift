@@ -14,11 +14,6 @@
 
 #pragma mark - Controller Lifecycle
 
-- (void)dealloc
-{
-    [_allowedInterfaceOrientations release];
-    [super dealloc];
-}
 
 #pragma mark - Rotation Support
 

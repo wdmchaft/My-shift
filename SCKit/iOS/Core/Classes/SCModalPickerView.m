@@ -14,9 +14,9 @@
 @interface SCModalPickerView ()
 @property (nonatomic, readwrite, retain) UIWindow *window;
 @property (nonatomic, readwrite, retain) UIToolbar *toolbar;
-@property (nonatomic, retain) UIButton *dimmingButton;
-@property (nonatomic, assign) UIWindow *previousWindow;
-@property (nonatomic, retain) UITextField *textField;
+@property (nonatomic, strong) UIButton *dimmingButton;
+@property (nonatomic, weak) UIWindow *previousWindow;
+@property (nonatomic, strong) UITextField *textField;
 - (void)hideWithResult:(SCModalPickerViewResult)result;
 @end
 
@@ -44,13 +44,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [_completionHandler release];
-    [_dimmingButton release];
-    [_pickerView release];
-    [_textField release];
-    [_toolbar release];
-    [_window release];
-    [super dealloc];
 }
 
 #pragma mark - Accessors
@@ -77,7 +70,7 @@
     //    that Apple could change in a major iOS release.
     if (_dimmingButton == nil)
     {
-        _dimmingButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        _dimmingButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_dimmingButton setBackgroundColor:[UIColor blackColor]];
         [_dimmingButton setAlpha:0.0];
         [_dimmingButton setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
@@ -106,9 +99,6 @@
                                                                                   target:self
                                                                                   action:@selector(done:)];
         [_toolbar setItems:[NSArray arrayWithObjects:cancelItem, spaceItem, doneItem, nil]];
-        [cancelItem release];
-        [spaceItem release];
-        [doneItem release];
     }
     
     return _toolbar;
@@ -123,8 +113,6 @@
         [NSException raise:SCGenericException format:@"%@ is not a UIPickerView or a UIDatePicker.", pickerView];
     }
     
-    [pickerView retain];
-    [_pickerView release];
     _pickerView = pickerView;
     
     // Set the autoresizing mask to ensure that it resizes well on device rotation.
