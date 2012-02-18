@@ -25,11 +25,11 @@
     IBOutlet UIScrollView *scrollView;
 }
 
-@property (nonatomic, retain) IBOutlet UIImageView *previewImageView;
-@property (nonatomic, retain, readonly) JPImagePickerOverviewController *overviewController;
+@property (nonatomic, strong) IBOutlet UIImageView *previewImageView;
+@property (nonatomic, strong, readonly) JPImagePickerOverviewController *overviewController;
 @property (nonatomic) NSInteger imageNumber;
-@property (nonatomic, retain) UIImage * largeImage;
-@property (nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic, strong) UIImage * largeImage;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
 - (id)initWithOverviewController:(JPImagePickerOverviewController *)newOverviewController;
 - (void)prepareForImageNumber:(NSInteger)newImageNumber;

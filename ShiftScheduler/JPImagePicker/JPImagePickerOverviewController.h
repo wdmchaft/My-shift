@@ -21,9 +21,9 @@
 	IBOutlet UIScrollView *scrollView;
 }
 
-@property (nonatomic, retain, readonly) JPImagePickerController *imagePickerController;
-@property (nonatomic, retain) JPImagePickerDetailController *detailController;
-@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong, readonly) JPImagePickerController *imagePickerController;
+@property (nonatomic, strong) JPImagePickerDetailController *detailController;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 
 - (id)initWithImagePickerController:(JPImagePickerController *)newImagePickerController;
