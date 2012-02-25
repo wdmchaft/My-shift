@@ -44,7 +44,7 @@
 @dynamic jobOnColorID,jobOnIconColorOn;
 @dynamic jobOnIconID;
 @dynamic jobRemindBeforeOff,jobRemindBeforeWork;
-@synthesize curCalender;
+@synthesize curCalender, cachedJobOnIconColor, cachedJobOnIconID;
 
 - (NSCalendar *) curCalender
 {
@@ -54,21 +54,26 @@
     return curCalender;
 }
 
-#define DEFAULT_ICON_FILE @"jobicons.bundle/bag32.png"
+- (NSString *)jobEverydayOffTimeWithFormatter:(NSDateFormatter *)formatter
+{
+    return [formatter stringFromDate:[self.jobEverydayStartTime dateByAddingTimeInterval:
+                                   self.jobEveryDayLengthSec.intValue]];
+}
+
 
 - (UIImage *) iconImage
 {
     if (!iconImage 
         || ![cachedJobOnIconID isEqualToString:self.jobOnIconID]
-        || ![cachedJobOnIconColorOn isEqualToNumber:self.jobOnIconColorOn]) {
+#ifdef ENABLE_COLOR_ENABLE_CHOOSE
+        || ![cachedJobOnIconColorOn isEqualToNumber:self.jobOnIconColorOn]
+#endif
+        ) {
+        
         NSString *iconpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"jobicons.bundle/%@", self.jobOnIconID] ofType:nil];
         
-        if (iconpath == nil) {
-            iconpath = [[NSBundle mainBundle] pathForResource:DEFAULT_ICON_FILE ofType:nil];
-        }
-        
         iconImage = [UIImage imageWithContentsOfFile:iconpath];
-        cachedJobOnIconID = iconpath;
+        cachedJobOnIconID = self.jobOnIconID;
         if (!iconImage) {
             NSLog(@"ICON: can't found icon %@", self.jobOnIconID);
         }
@@ -98,20 +103,24 @@
     if (defaultIconColor == nil) {
         // 39814c is green one
         // B674C2 is light purple one
-        defaultIconColor = [UIColor colorWithHexString:@"25AA5C" withAlpha:DEFAULT_ALPHA_VALUE_OF_JOB_ICON];
+        defaultIconColor = [UIColor colorWithHexString:ONEJOB_DEFAULT_COLOR_VALUE withAlpha:DEFAULT_ALPHA_VALUE_OF_JOB_ICON];
     }
     return defaultIconColor;
 }
 
 - (UIColor *) iconColor
 {
-    if (!iconColor || ![cachedJonOnIconColor isEqualToString:self.jobOnColorID]) {
+    if (!iconColor || ![cachedJobOnIconColor isEqualToString:self.jobOnColorID]) {
         if (self.jobOnColorID == nil)
             return self.defaultIconColor;
         NSLog(@"%@", self.jobOnColorID);
         iconColor = [UIColor colorWithHexString:self.jobOnColorID 
                                       withAlpha:DEFAULT_ALPHA_VALUE_OF_JOB_ICON];
-        cachedJonOnIconColor = self.jobOnColorID;
+        
+        if (cachedJobOnIconColor != self.jobOnIconID) 
+            cachedJobOnIconID = nil;
+        cachedJobOnIconColor = self.jobOnColorID;
+        
     }
     
 #ifdef ENABLE_COLOR_ENABLE_CHOOSE

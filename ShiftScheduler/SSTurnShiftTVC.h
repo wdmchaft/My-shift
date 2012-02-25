@@ -27,6 +27,7 @@
     OneJob *theJob;
     NSIndexPath *firstChooseIndexPath; // the indexPath use choose when enter this UI.
     SCModalPickerView *modalPickerView;
+    SCModalPickerView *modalDatePickerView;
 }
 
 @property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;

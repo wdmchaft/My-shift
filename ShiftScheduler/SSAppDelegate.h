@@ -12,6 +12,7 @@
 #import "ShfitChangeList.h"
 #import "SSKalDelegate.h"
 #import "SSSettingTVC.h"
+#import "SSAlertController.h"
 
 
 @interface SSAppDelegate : UIResponder <UIApplicationDelegate, 
@@ -21,6 +22,7 @@ ProfileEditFinishDelegate>
     UINavigationController *navController;
     UINavigationController *profileNVC;
     KalViewController *kal;
+    SSAlertController *alertC;
     ProfilesViewController *profileView;
     ShfitChangeList *changelistVC;
     SSKalDelegate *sskalDelegate;

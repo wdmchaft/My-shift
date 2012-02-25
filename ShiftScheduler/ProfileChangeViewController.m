@@ -328,16 +328,18 @@
 
 - (void) defaultValueConfigure
 {
-        self.theJob.jobOnDays = [NSNumber numberWithInt:PCVC_DEFAULT_ON_DAYS];
-        self.theJob.jobOffDays = [NSNumber numberWithInt:PCVC_DEFAULT_OFF_DAYS];
-        self.theJob.jobStartDate = [NSDate date];
-        NSDateComponents *defaultOnTime = [[NSDateComponents alloc] init];
-        [defaultOnTime setHour:8];
-        [defaultOnTime setMinute:0];
-        self.theJob.jobEverydayStartTime =  [[NSCalendar currentCalendar] dateFromComponents:defaultOnTime];
-        self.theJob.jobEveryDayLengthSec = [NSNumber numberWithInt:60 * 60 * 8]; // 8 hour a day default
-        self.theJob.jobRemindBeforeOff = [NSNumber numberWithInt:0];
-        self.theJob.jobRemindBeforeWork = [NSNumber numberWithInt:10];
+    self.theJob.jobOnDays = [NSNumber numberWithInt:PCVC_DEFAULT_ON_DAYS];
+    self.theJob.jobOffDays = [NSNumber numberWithInt:PCVC_DEFAULT_OFF_DAYS];
+    self.theJob.jobStartDate = [NSDate date];
+    self.theJob.jobOnIconID = ONEJOB_DEFAULT_ICON_FILE;
+    self.theJob.jobOnColorID = ONEJOB_DEFAULT_COLOR_VALUE;
+    NSDateComponents *defaultOnTime = [[NSDateComponents alloc] init];
+    [defaultOnTime setHour:8];
+    [defaultOnTime setMinute:0];
+    self.theJob.jobEverydayStartTime =  [[NSCalendar currentCalendar] dateFromComponents:defaultOnTime];
+    self.theJob.jobEveryDayLengthSec = [NSNumber numberWithInt:60 * 60 * 8]; // 8 hour a day default
+    self.theJob.jobRemindBeforeOff = [NSNumber numberWithInt:-1];
+    self.theJob.jobRemindBeforeWork = [NSNumber numberWithInt: -1];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -490,7 +492,7 @@
     if ([SSProfileTimeAndAlarmVC isItemInThisViewController:item])
 	{
 	    SSProfileTimeAndAlarmVC *taavc = [[SSProfileTimeAndAlarmVC alloc]
-						 initWithNibName:@"SSProfileTimeAndAlarmVC" bundle:nil];
+                                          initWithStyle:UITableViewStyleGrouped];
 	    taavc.theJob = self.theJob;
         taavc.firstChooseIndexPath = indexPath;
         [self.navigationController pushViewController:taavc animated:YES];
@@ -541,7 +543,10 @@
 - (void) colorPickerControllerDidFinish: (InfColorPickerController*) color_picker
 {
 	self.theJob.jobOnColorID = [color_picker.resultColor hexStringFromColor];
+    self.theJob.cachedJobOnIconID = nil;
+    self.theJob.cachedJobOnIconColor = nil;
 	[self dismissModalViewControllerAnimated:YES];
+    [self.tableView reloadData];
 }
 
 
@@ -553,7 +558,8 @@
     // only store last path component
     self.theJob.jobOnIconID = [[self.iconDateSource.iconList objectAtIndex:imageNumber] lastPathComponent];
     NSLog(@"choose icon :%@",self.theJob.jobOnIconID);
-    
+    self.theJob.cachedJobOnIconID = nil;
+    self.theJob.cachedJobOnIconColor = nil;
     [self.tableView reloadData];
     [self.modalViewController dismissModalViewControllerAnimated:YES];
 }

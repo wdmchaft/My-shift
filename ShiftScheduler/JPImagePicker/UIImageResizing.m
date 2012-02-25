@@ -86,8 +86,8 @@
 + (UIImage *)image:(UIImage *)sourceImage scaleToSize:(CGSize)targetSize {
 	
 	CGFloat scaleFactor = 0.0;
-	CGFloat scaledWidth = targetSize.width;
-	CGFloat scaledHeight = targetSize.height;
+	CGFloat scaledWidth;
+	CGFloat scaledHeight;
 	
 	CGFloat widthFactor = targetSize.width / sourceImage.size.width;
 	CGFloat heightFactor = targetSize.height / sourceImage.size.height;

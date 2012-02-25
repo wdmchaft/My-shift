@@ -5,15 +5,14 @@
 //  Created by Sebastian Celis on 8/25/11.
 //  Copyright (c) 2011 Sebastian Celis. All rights reserved.
 //
-
 #import "SCModalPickerView.h"
 
 #import "SCAnimation.h"
 #import "SCConstants.h"
 
 @interface SCModalPickerView ()
-@property (nonatomic, readwrite, retain) UIWindow *window;
-@property (nonatomic, readwrite, retain) UIToolbar *toolbar;
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) UIToolbar *toolbar;
 @property (nonatomic, strong) UIButton *dimmingButton;
 @property (nonatomic, weak) UIWindow *previousWindow;
 @property (nonatomic, strong) UITextField *textField;

@@ -122,6 +122,8 @@ enum {
     picker.delegate = self;
     picker.dataSource = self;
     modalPickerView = [[SCModalPickerView alloc] init];
+    modalDatePickerView = [[SCModalPickerView alloc] init];
+
 }
 
 - (void)viewDidUnload
@@ -182,7 +184,7 @@ enum {
     return 3;
 }
 
-- (NSString *) returnItemByIndexPath: (NSIndexPath *)indexPath
+- (NSString *)returnItemByIndexPath: (NSIndexPath *)indexPath
 {
     NSString *item;
     item = [self.itemsArray objectAtIndex:indexPath.row];
@@ -226,45 +228,6 @@ enum {
     return NSLocalizedString(@"Shift Detail", "Shift detail title");
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animate
@@ -289,8 +252,8 @@ enum {
 
 - (void) showPickerView:(UIPickerView *)pPickerView
 {
-    __block UIPickerView *tPickerView = pPickerView;
-    [modalPickerView setPickerView:tPickerView];
+    //__block UIPickerView *tPickerView = pPickerView;
+    [modalPickerView setPickerView:pPickerView];
     __block OneJob *job = self.theJob;
     NSIndexPath *pChoosedIndexPath = [self.tableView indexPathForSelectedRow];
     __block UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:pChoosedIndexPath];
@@ -298,7 +261,7 @@ enum {
     [modalPickerView setCompletionHandler:^(SCModalPickerViewResult result){
         if (result == SCModalPickerViewResultDone)
         { 
-            int value = [tPickerView selectedRowInComponent:0] + 1;
+            int value = [pPickerView selectedRowInComponent:0] + 1;
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", value];
             [cell setSelected:YES];
 
@@ -315,22 +278,22 @@ enum {
 
 - (void) showDatePickerView:(UIDatePicker *)pdatePicker
 {
-    __block UIDatePicker *tdatePicker = pdatePicker;
+    //    __block UIDatePicker *tdatePicker = pdatePicker;
     
-    [modalPickerView setPickerView:tdatePicker];
+    [modalDatePickerView setPickerView:pdatePicker];
     __block OneJob *job = self.theJob;
     
     NSIndexPath *pChoosedIndexPath = [self.tableView indexPathForSelectedRow];
     __block UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:pChoosedIndexPath];
     __block NSDateFormatter *pDateFormatter = self.dateFormatter;
-    [modalPickerView setCompletionHandler:^(SCModalPickerViewResult result){
+    [modalDatePickerView setCompletionHandler:^(SCModalPickerViewResult result){
         if (result == SCModalPickerViewResultDone)
         { 
             job.jobStartDate = pdatePicker.date;   
             cell.detailTextLabel.text = [pDateFormatter stringFromDate:job.jobStartDate];
         }
     }];
-    [modalPickerView show];
+    [modalDatePickerView show];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -389,7 +352,5 @@ enum {
 {
     return 1;
 }
-
-#pragma mark - "Date/Number Picker Save events"
 
 @end

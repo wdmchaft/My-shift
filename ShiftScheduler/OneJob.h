@@ -11,6 +11,10 @@
 
 #include "ShiftDay.h"
 
+#define ONEJOB_DEFAULT_ICON_FILE @"bag32.png"
+#define ONEJOB_DEFAULT_COLOR_VALUE @"25AA5C"
+
+
 
 @interface OneJob : NSManagedObject {
     NSCalendar *curCalender;
@@ -20,7 +24,7 @@
     UIColor *iconColor;
     UIColor *defaultIconColor;
     NSString *cachedJobOnIconID;
-    NSString *cachedJonOnIconColor;
+    NSString *cachedJobOnIconColor;
     NSNumber *cachedJobOnIconColorOn;
     
 }
@@ -41,6 +45,9 @@
 @property (nonatomic, strong) NSCalendar *curCalender;
 @property (weak, nonatomic, readonly) UIImage  *iconImage;
 @property (weak, nonatomic, readonly) UIColor  *iconColor;
+@property (nonatomic, strong) NSString *cachedJobOnIconColor;
+@property (nonatomic, strong) NSString *cachedJobOnIconID;
+
 @property (weak, nonatomic, readonly)  UIColor *defaultIconColor;
 @property (nonatomic, strong) NSNumber * jobRemindBeforeOff;
 @property (nonatomic, strong) NSNumber * jobRemindBeforeWork;
@@ -78,8 +85,8 @@
 - (void)removeShiftdaysObject:(ShiftDay *)value;
 - (void)addShiftdays:(NSSet *)values;
 - (void)removeShiftdays:(NSSet *)values;
-
 - (UIColor *) iconColor;
+- (NSString *) jobEverydayOffTimeWithFormatter:(NSDateFormatter *) formatter;
 
 @end
 

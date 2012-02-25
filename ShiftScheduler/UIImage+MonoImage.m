@@ -33,8 +33,8 @@
     
     CGContextSetFillColorWithColor(ctx, colorref);
     CGContextFillRect(ctx, imageArea);
-    CGImageRelease(icon.CGImage);
-    CGColorRelease(color.CGColor);
+    CGImageRelease(alphaImage);
+    CGColorRelease(colorref);
     
     finishImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

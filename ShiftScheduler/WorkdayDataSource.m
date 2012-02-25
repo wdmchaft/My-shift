@@ -15,6 +15,7 @@
 
 @synthesize fetchedRequestController;
 @synthesize theJobNameArray;
+@synthesize timeFormatter;
 
 - (id)init
 {
@@ -24,6 +25,15 @@
     }
     
     return self;
+}
+
+- (NSDateFormatter *) timeFormatter
+{
+    if (timeFormatter == nil) {
+        timeFormatter = [[NSDateFormatter alloc] init];
+        timeFormatter.timeStyle = NSDateFormatterShortStyle;
+    }
+    return timeFormatter;
 }
 
 
@@ -102,7 +112,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WorkCell"];
     if (!cell) {
-	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
 				      reuseIdentifier:@"WorkCell"];
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -110,6 +120,9 @@
     OneJob *job = [self jobAtIndexPath: indexPath];
     
     cell.textLabel.text = job.jobName;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@",
+    [self.timeFormatter stringFromDate:job.jobEverydayStartTime],
+                                 [job jobEverydayOffTimeWithFormatter:self.timeFormatter]];
     cell.imageView.image = job.iconImage;
     return cell;
 }

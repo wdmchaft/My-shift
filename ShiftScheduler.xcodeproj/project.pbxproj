@@ -50,6 +50,9 @@
 		2935514F14E2E61F004D8FAC /* SSSettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935514C14E2E61F004D8FAC /* SSSettingTVC.xib */; };
 		294E2902148B302700E6ED45 /* ShiftDay.h in Headers */ = {isa = PBXBuildFile; fileRef = 294E2900148B302700E6ED45 /* ShiftDay.h */; };
 		294E2903148B302700E6ED45 /* ShiftDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E2901148B302700E6ED45 /* ShiftDay.m */; };
+		2968BECC14F9050F00DF1CCF /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2968BECB14F9050F00DF1CCF /* notify.caf */; };
+		2968BECE14F9076400DF1CCF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2968BECD14F9076400DF1CCF /* AVFoundation.framework */; };
+		2968BED014F907BB00DF1CCF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2968BECF14F907BB00DF1CCF /* AudioToolbox.framework */; };
 		2987381F149917C300A2617F /* DatePickerViewController2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2987381C149917C200A2617F /* DatePickerViewController2.h */; };
 		29873820149917C300A2617F /* DatePickerViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2987381D149917C200A2617F /* DatePickerViewController2.m */; };
 		29873821149917C300A2617F /* DatePickerViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2987381E149917C300A2617F /* DatePickerViewController2.xib */; };
@@ -103,6 +106,7 @@
 		29E98CBC14EFDA340048AF49 /* SCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CB414EFDA340048AF49 /* SCConstants.m */; };
 		29E98CBD14EFDA340048AF49 /* SCPathUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CB514EFDA340048AF49 /* SCPathUtils.h */; };
 		29E98CBE14EFDA340048AF49 /* SCPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CB614EFDA340048AF49 /* SCPathUtils.m */; };
+		29E98CD314EFF3FF0048AF49 /* SSProfileReminderDateSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CD114EFF3FF0048AF49 /* SSProfileReminderDateSource.h */; };
 		29ECA45914B0514E00B3832D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
 		29ECA46014B0537300B3832D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
 		29ECA46114B0537300B3832D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
@@ -111,6 +115,8 @@
 		29ECA46B14B0537300B3832D /* ShiftSchedulerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ECA46A14B0537300B3832D /* ShiftSchedulerTest.m */; };
 		29F2147D14E66DB7008BEE92 /* UIImage+MonoImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */; };
 		29F2147E14E66DB7008BEE92 /* UIImage+MonoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */; };
+		29FA9AF314F48DAE00717505 /* SSAlertController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29FA9AF114F48DAE00717505 /* SSAlertController.h */; };
+		29FA9AF414F48DAE00717505 /* SSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FA9AF214F48DAE00717505 /* SSAlertController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +195,9 @@
 		294E28FF148B2F3A00E6ED45 /* ShiftScheduler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 2.xcdatamodel"; sourceTree = "<group>"; };
 		294E2900148B302700E6ED45 /* ShiftDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftDay.h; sourceTree = "<group>"; };
 		294E2901148B302700E6ED45 /* ShiftDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftDay.m; sourceTree = "<group>"; };
+		2968BECB14F9050F00DF1CCF /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
+		2968BECD14F9076400DF1CCF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2968BECF14F907BB00DF1CCF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2987381C149917C200A2617F /* DatePickerViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController2.h; sourceTree = "<group>"; };
 		2987381D149917C200A2617F /* DatePickerViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController2.m; sourceTree = "<group>"; };
 		2987381E149917C300A2617F /* DatePickerViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController2.xib; sourceTree = "<group>"; };
@@ -255,6 +264,7 @@
 		29E98CB414EFDA340048AF49 /* SCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCConstants.m; sourceTree = "<group>"; };
 		29E98CB514EFDA340048AF49 /* SCPathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPathUtils.h; sourceTree = "<group>"; };
 		29E98CB614EFDA340048AF49 /* SCPathUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPathUtils.m; sourceTree = "<group>"; };
+		29E98CD114EFF3FF0048AF49 /* SSProfileReminderDateSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSProfileReminderDateSource.h; sourceTree = "<group>"; };
 		29ECA45814B0514E00B3832D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		29ECA45F14B0537300B3832D /* ShiftSchedulerTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShiftSchedulerTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29ECA46514B0537300B3832D /* ShiftSchedulerTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShiftSchedulerTest-Info.plist"; sourceTree = "<group>"; };
@@ -266,6 +276,8 @@
 		29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MonoImage.m"; sourceTree = "<group>"; };
 		29F2147F14E68A9B008BEE92 /* ShiftScheduler 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 3.xcdatamodel"; sourceTree = "<group>"; };
 		29F89FEC14E8072D002BB665 /* ShiftScheduler 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 4.xcdatamodel"; sourceTree = "<group>"; };
+		29FA9AF114F48DAE00717505 /* SSAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSAlertController.h; sourceTree = "<group>"; };
+		29FA9AF214F48DAE00717505 /* SSAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSAlertController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +285,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2968BED014F907BB00DF1CCF /* AudioToolbox.framework in Frameworks */,
+				2968BECE14F9076400DF1CCF /* AVFoundation.framework in Frameworks */,
 				29ECA45914B0514E00B3832D /* SenTestingKit.framework in Frameworks */,
 				29B9E2071472C95800DB2E1F /* libKal.a in Frameworks */,
 				29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */,
@@ -355,6 +369,8 @@
 				294E2901148B302700E6ED45 /* ShiftDay.m */,
 				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
 				29B9E1DE1472C39F00DB2E1F /* OneJob.m */,
+				29FA9AF114F48DAE00717505 /* SSAlertController.h */,
+				29FA9AF214F48DAE00717505 /* SSAlertController.m */,
 				29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */,
 				29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */,
 			);
@@ -409,6 +425,7 @@
 				2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */,
 				29C943B314E9642800122144 /* SSProfileTimeAndAlarmVC.h */,
 				29C943B414E9642800122144 /* SSProfileTimeAndAlarmVC.m */,
+				29E98CD114EFF3FF0048AF49 /* SSProfileReminderDateSource.h */,
 				29C943B514E9642900122144 /* SSProfileTimeAndAlarmVC.xib */,
 				29B9E1E31472C39F00DB2E1F /* ProfilesViewController.h */,
 				29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */,
@@ -420,6 +437,9 @@
 		29B9E1A61472C1D700DB2E1F = {
 			isa = PBXGroup;
 			children = (
+				2968BECF14F907BB00DF1CCF /* AudioToolbox.framework */,
+				2968BECD14F9076400DF1CCF /* AVFoundation.framework */,
+				2968BECB14F9050F00DF1CCF /* notify.caf */,
 				29E98C9514EFD78F0048AF49 /* SCKit */,
 				29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */,
 				293994B5147D25D30007320C /* Module */,
@@ -463,9 +483,9 @@
 				292DBC8014C952B300C87A70 /* jobicons.bundle */,
 				298B0167148B941900C013F5 /* Compile Need files */,
 				29B9E1C61472C1D700DB2E1F /* SSAppDelegate.h */,
+				29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */,
 				29C943B914EAB55200122144 /* UserReviewController.h */,
 				29C943BA14EAB55200122144 /* UserReviewController.m */,
-				29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */,
 				29B9E1BE1472C1D700DB2E1F /* Supporting Files */,
 			);
 			path = ShiftScheduler;
@@ -623,6 +643,8 @@
 				29E98CB914EFDA340048AF49 /* SCArgumentParser.h in Headers */,
 				29E98CBB14EFDA340048AF49 /* SCConstants.h in Headers */,
 				29E98CBD14EFDA340048AF49 /* SCPathUtils.h in Headers */,
+				29E98CD314EFF3FF0048AF49 /* SSProfileReminderDateSource.h in Headers */,
+				29FA9AF314F48DAE00717505 /* SSAlertController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,6 +756,7 @@
 				2935514814E2DDB0004D8FAC /* ProfileChangeViewController.xib in Resources */,
 				2935514F14E2E61F004D8FAC /* SSSettingTVC.xib in Resources */,
 				29C943B814E9642900122144 /* SSProfileTimeAndAlarmVC.xib in Resources */,
+				2968BECC14F9050F00DF1CCF /* notify.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,6 +832,7 @@
 				29E98CBA14EFDA340048AF49 /* SCArgumentParser.m in Sources */,
 				29E98CBC14EFDA340048AF49 /* SCConstants.m in Sources */,
 				29E98CBE14EFDA340048AF49 /* SCPathUtils.m in Sources */,
+				29FA9AF414F48DAE00717505 /* SSAlertController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
