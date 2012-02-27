@@ -69,7 +69,11 @@ enum {
     self.navController = navController;
     self.navController.modalPresentationStyle = UIModalPresentationFullScreen;
     
-    alertNoProfile = [[UIAlertView alloc] initWithTitle:nil message:@"Do you want create a shift profile?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Create one", nil];
+#define CREATE_PROFILE_PROMPT NSLocalizedString(@"__NO_PROFILE_MESSAGE__", "")
+#define CREATE_PROFILE_NO  NSLocalizedString(@"__NO_PROFILE_NO__", "no create one")
+#define CREATE_PROFILE_YES  NSLocalizedString(@"__NO_PROFILE_YES__", "create one")
+    
+    alertNoProfile = [[UIAlertView alloc] initWithTitle:nil message:CREATE_PROFILE_PROMPT delegate:self cancelButtonTitle:CREATE_PROFILE_NO otherButtonTitles:CREATE_PROFILE_YES, nil];
     alertNoProfile.tag = TAG_ZERO_PROFILE;
 
     alertC = [[SSAlertController alloc] initWithManagedContext:self.managedObjectContext];

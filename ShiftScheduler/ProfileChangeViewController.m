@@ -258,6 +258,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    NSError *error;
+    [self.managedObjectContext save:&error];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
