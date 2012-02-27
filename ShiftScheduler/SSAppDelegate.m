@@ -219,7 +219,7 @@ enum {
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
     
-    [alertC setupAlarm];
+    [alertC setupAlarm:NO];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -236,7 +236,7 @@ enum {
      */
     NSError *error;
     [self.managedObjectContext save:&error];
-    [alertC setupAlarm];
+    [alertC setupAlarm:NO];
     [alertC clearBadgeNumber];
 }
 
@@ -257,7 +257,7 @@ enum {
     dispatch_queue_t queue = dispatch_queue_create("start setup", nil);
     dispatch_async(queue, ^{
         [alertC clearBadgeNumber];
-        [alertC setupAlarm];
+        [alertC setupAlarm:YES];
     });
 }
 

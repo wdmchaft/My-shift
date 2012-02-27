@@ -36,7 +36,7 @@
 - (id) initWithManagedContext: (NSManagedObjectContext *) thecontext;
 
 - (void) clearBadgeNumber;
-- (void) setupAlarm;
+- (void) setupAlarm:(BOOL)isShort;
 - (void) playAlarmSound;
 
 @end

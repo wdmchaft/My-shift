@@ -186,7 +186,9 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
     return alarmCount;
 }
 
-- (void) setupAlarm
+
+
+- (void) setupAlarm: (BOOL)isShort
 {
     
     // clear the alarm set before.
@@ -196,16 +198,23 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
     if (self.jobArray.count <= 0)
         return;
     
-    int max_notify = ((self.jobArray.count * 7) > MAX_NOTIFY_COUNT) ? MAX_NOTIFY_COUNT : self.jobArray.count * 7;
-    int used = 0;
+   
     
-    // try our best to eat all the notify
-    // and only set 7 days laters for each job.
-    for (int i = 0; i < max_notify; i++) {
-        if (used > max_notify)
-            break;
+    if (isShort) {
+        // if short, only update today's 
         for (OneJob *j in self.jobArray)
-            used += [self setupAlarmForJob:j daysLater:i];
+            [self setupAlarmForJob:j daysLater:0];
+    } else {
+        int max_notify = ((self.jobArray.count * 7) > MAX_NOTIFY_COUNT) ? MAX_NOTIFY_COUNT : self.jobArray.count * 7;
+        int used = 0;
+        // try our best to eat all the notify
+        // and only set 7 days laters for each job.
+        for (int i = 0; i < max_notify; i++) {
+            if (used > max_notify)
+                break;
+            for (OneJob *j in self.jobArray)
+                used += [self setupAlarmForJob:j daysLater:i];
+        }
     }
 }
 
@@ -223,18 +232,17 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
 
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    [NSFetchedResultsController deleteCacheWithName:JOB_CACHE_INDEFITER];
-    self.jobArray = nil;
+
     
-    [self setupAlarm];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change
 	// notifications, so tell the table view to process all
 	// updates.
-    
-    
+    [NSFetchedResultsController deleteCacheWithName:JOB_CACHE_INDEFITER];
+    self.jobArray = nil;
+    [self setupAlarm:YES];
 }
 
 @end
