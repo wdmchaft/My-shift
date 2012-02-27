@@ -138,21 +138,30 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
+#define TIME_STR_ALARM_BEFORE_HOURS NSLocalizedString(@"will start in %d Hour", "will start in %d Hour")
+#define TIME_STR_ALARM_BEFORE_MINITES NSLocalizedString(@"will start in %d Minutes", "will start in %d Minutes")
+#define TIME_STR_ALARM_BEFORE_NOW NSLocalizedString(@"is start now", "is start now")
+
+#define TIME_STR_ALARM_OFF_HOURS NSLocalizedString(@"will off in %d Hour", "will start in %d Hour")
+#define TIME_STR_ALARM_OFF_MINITES NSLocalizedString(@"will off in %d Minutes", "will start in %d Minutes")
+#define TIME_STR_ALARM_OFF_NOW NSLocalizedString(@"is off now", "is start now")
+
+
 - (int) setupAlarmForJob: (OneJob *) job daysLater:(int) daysLater
 {
     NSString *timestr;
-    NSString *defaultActionTitle = NSLocalizedString(@"Got it", "got it");
+    NSString *defaultActionTitle = NSLocalizedString(@"I Know", "I Know");
     int alarmCount = 0;
     BOOL ret;
  
     if (job.jobRemindBeforeWork && job.jobRemindBeforeWork.intValue != -1) {
         
-        if (job.jobRemindBeforeWork > [NSNumber numberWithInt:60*60])
-            timestr = [NSString stringWithFormat:@"will start in %d Hour", job.jobRemindBeforeWork.intValue / 60 / 60];
+        if (job.jobRemindBeforeWork.intValue > 60*60)
+            timestr = [NSString stringWithFormat:TIME_STR_ALARM_BEFORE_HOURS, job.jobRemindBeforeWork.intValue / 60 / 60];
         else
-            timestr = [NSString stringWithFormat:@"will start in %d Minutes", job.jobRemindBeforeWork.intValue / 60];
+            timestr = [NSString stringWithFormat:TIME_STR_ALARM_BEFORE_MINITES, job.jobRemindBeforeWork.intValue / 60];
         if (job.jobRemindBeforeWork.intValue == 0)
-            timestr = @"is start now";
+            timestr = TIME_STR_ALARM_BEFORE_NOW;
         NSString *workRemindString = [NSString stringWithFormat:@"%@ %@.", job.jobName, timestr]; 
         ret = [self scheduleNotificationWithItem:job.jobEverydayStartTime withDaysLater:daysLater interval:job.jobRemindBeforeWork.intValue alarmBody:workRemindString alarmActionTitle:defaultActionTitle TimeAfter:0 job:job];
         if (ret) alarmCount ++;
@@ -162,12 +171,12 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
         
         
         if (job.jobRemindBeforeOff.intValue > 60*60)
-            timestr = [NSString stringWithFormat:@"will off in %d Hour", job.jobRemindBeforeOff.intValue / 60 / 60];
+            timestr = [NSString stringWithFormat:TIME_STR_ALARM_OFF_HOURS, job.jobRemindBeforeOff.intValue / 60 / 60];
         else
-            timestr = [NSString stringWithFormat:@"will of in %d Minutes", job.jobRemindBeforeOff.intValue / 60];
+            timestr = [NSString stringWithFormat:TIME_STR_ALARM_OFF_MINITES, job.jobRemindBeforeOff.intValue / 60];
         
         if (job.jobRemindBeforeOff.intValue == 0)
-            timestr = @"is off now";
+            timestr = TIME_STR_ALARM_OFF_NOW;
         NSString *offRemindString = [NSString stringWithFormat:@"%@ %@.", job.jobName, timestr]; 
         
         ret = [self scheduleNotificationWithItem:job.jobEverydayStartTime withDaysLater:daysLater interval:job.jobRemindBeforeOff.intValue alarmBody:offRemindString alarmActionTitle:defaultActionTitle TimeAfter:job.jobEveryDayLengthSec.intValue
@@ -186,11 +195,14 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
 #define MAX_NOTIFY_COUNT 24
     if (self.jobArray.count <= 0)
         return;
+    
+    int max_notify = ((self.jobArray.count * 7) > MAX_NOTIFY_COUNT) ? MAX_NOTIFY_COUNT : self.jobArray.count * 7;
     int used = 0;
     
     // try our best to eat all the notify
-    for (int i = 0; i < 6; i++) {
-        if (used > MAX_NOTIFY_COUNT)
+    // and only set 7 days laters for each job.
+    for (int i = 0; i < max_notify; i++) {
+        if (used > max_notify)
             break;
         for (OneJob *j in self.jobArray)
             used += [self setupAlarmForJob:j daysLater:i];
