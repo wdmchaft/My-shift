@@ -11,8 +11,6 @@
 
 #include "ShiftDay.h"
 
-#define ONEJOB_DEFAULT_ICON_FILE @"bag32.png"
-#define ONEJOB_DEFAULT_COLOR_VALUE @"25AA5C"
 
 
 
@@ -80,6 +78,7 @@
 // return value:
 // failed: return -X; is error number
 // success: return 0;
+- (void) defaultSetting;
 - (NSInteger)addShiftdaysObject:(ShiftDay *)value;
 
 - (void)removeShiftdaysObject:(ShiftDay *)value;

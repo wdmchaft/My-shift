@@ -120,7 +120,10 @@
     OneJob *job = [self jobAtIndexPath: indexPath];
     
     cell.textLabel.text = job.jobName;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@",
+    
+    if (job.jobEverydayStartTime != Nil)
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@",
+
     [self.timeFormatter stringFromDate:job.jobEverydayStartTime],
                                  [job jobEverydayOffTimeWithFormatter:self.timeFormatter]];
     cell.imageView.image = job.iconImage;

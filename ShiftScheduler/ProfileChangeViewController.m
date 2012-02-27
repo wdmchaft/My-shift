@@ -330,18 +330,7 @@
 
 - (void) defaultValueConfigure
 {
-    self.theJob.jobOnDays = [NSNumber numberWithInt:PCVC_DEFAULT_ON_DAYS];
-    self.theJob.jobOffDays = [NSNumber numberWithInt:PCVC_DEFAULT_OFF_DAYS];
-    self.theJob.jobStartDate = [NSDate date];
-    self.theJob.jobOnIconID = ONEJOB_DEFAULT_ICON_FILE;
-    self.theJob.jobOnColorID = ONEJOB_DEFAULT_COLOR_VALUE;
-    NSDateComponents *defaultOnTime = [[NSDateComponents alloc] init];
-    [defaultOnTime setHour:8];
-    [defaultOnTime setMinute:0];
-    self.theJob.jobEverydayStartTime =  [[NSCalendar currentCalendar] dateFromComponents:defaultOnTime];
-    self.theJob.jobEveryDayLengthSec = [NSNumber numberWithInt:60 * 60 * 8]; // 8 hour a day default
-    self.theJob.jobRemindBeforeOff = [NSNumber numberWithInt:-1];
-    self.theJob.jobRemindBeforeWork = [NSNumber numberWithInt: -1];
+    [self.theJob defaultSetting];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

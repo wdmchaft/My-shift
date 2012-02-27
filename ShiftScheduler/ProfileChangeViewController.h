@@ -16,9 +16,6 @@
 #define PCVC_ADDING_MODE 1
 
 // default working days and off days when adding new profile.
-#define PCVC_DEFAULT_OFF_DAYS 2
-#define PCVC_DEFAULT_ON_DAYS 5        
-
 
 @interface ProfileChangeViewController : UITableViewController  <UITextFieldDelegate, JPImagePickerControllerDelegate, InfColorPickerControllerDelegate>
 {

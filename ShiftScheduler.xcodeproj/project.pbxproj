@@ -381,6 +381,7 @@
 		298B0167148B941900C013F5 /* Compile Need files */ = {
 			isa = PBXGroup;
 			children = (
+				2968BECB14F9050F00DF1CCF /* notify.caf */,
 				29E128CB1476D408008DDB53 /* KalViewController.h */,
 				29E128CC1476D431008DDB53 /* Kal.h */,
 				29B9E2191472D6FD00DB2E1F /* UIViewAdditions.h */,
@@ -437,9 +438,6 @@
 		29B9E1A61472C1D700DB2E1F = {
 			isa = PBXGroup;
 			children = (
-				2968BECF14F907BB00DF1CCF /* AudioToolbox.framework */,
-				2968BECD14F9076400DF1CCF /* AVFoundation.framework */,
-				2968BECB14F9050F00DF1CCF /* notify.caf */,
 				29E98C9514EFD78F0048AF49 /* SCKit */,
 				29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */,
 				293994B5147D25D30007320C /* Module */,
@@ -466,6 +464,8 @@
 		29B9E1B41472C1D700DB2E1F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2968BECF14F907BB00DF1CCF /* AudioToolbox.framework */,
+				2968BECD14F9076400DF1CCF /* AVFoundation.framework */,
 				29ECA45814B0514E00B3832D /* SenTestingKit.framework */,
 				29B9E1B51472C1D700DB2E1F /* UIKit.framework */,
 				29B9E1B71472C1D700DB2E1F /* Foundation.framework */,

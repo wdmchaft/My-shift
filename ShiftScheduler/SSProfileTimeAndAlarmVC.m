@@ -193,6 +193,13 @@ enum {
 
 + (void) configureTimeCell: (UITableViewCell *)cell indexPath: (NSIndexPath *)indexPath Job: (OneJob *)theJob
 {
+
+    // this is for compitable with old version witch not adding such information. 
+    if (theJob.jobEveryDayLengthSec == Nil
+        || theJob.jobEverydayStartTime == Nil
+        || theJob.jobRemindBeforeOff == Nil
+        || theJob.jobRemindBeforeWork == Nil)
+        [theJob defaultSetting];
     
     if (indexPath.row == CLOCK_IN_ITEM) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

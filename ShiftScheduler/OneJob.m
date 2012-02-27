@@ -46,6 +46,49 @@
 @dynamic jobRemindBeforeOff,jobRemindBeforeWork;
 @synthesize curCalender, cachedJobOnIconColor, cachedJobOnIconID;
 
+#define JOB_DEFAULT_ON_DAYS 5
+#define JOB_DEFAULT_OFF_DAYS 2
+#define JOB_DEFAULT_ICON_FILE @"bag32.png"
+#define JOB_DEFAULT_COLOR_VALUE @"25AA5C"
+
+#define JOB_DEFAULT_EVERYDAY_ON_LENGTH (60*60*8)
+#define JOB_DEFAULT_REMIND_TIME_BEFORE_WORK -1
+#define JOB_DEFAULT_REMIND_TIME_BEFORE_OFF -1
+
+- (void) defaultSetting
+// will reset to default setting if not set.
+{
+    if (!self.jobOnDays)
+        self.jobOnDays = [NSNumber numberWithInt:JOB_DEFAULT_ON_DAYS];
+    
+    if (!self.jobOffDays)
+        self.jobOffDays = [NSNumber numberWithInt:JOB_DEFAULT_OFF_DAYS];
+    
+    if (!self.jobStartDate)
+        self.jobStartDate = [NSDate date];
+    
+    if (!self.jobOnIconID)
+    self.jobOnIconID = JOB_DEFAULT_ICON_FILE;
+    
+    if (!self.jobOnColorID)
+        self.jobOnColorID = JOB_DEFAULT_COLOR_VALUE;
+    
+    NSDateComponents *defaultOnTime = [[NSDateComponents alloc] init];
+    [defaultOnTime setHour:8];
+    [defaultOnTime setMinute:0];
+    if (!self.jobEverydayStartTime)
+        self.jobEverydayStartTime =  [[NSCalendar currentCalendar] dateFromComponents:defaultOnTime];
+    
+    if (!self.jobEveryDayLengthSec)
+        self.jobEveryDayLengthSec = [NSNumber numberWithInt: JOB_DEFAULT_EVERYDAY_ON_LENGTH]; // 8 hour a day default
+    
+    if (!self.jobRemindBeforeOff)
+        self.jobRemindBeforeOff = [NSNumber numberWithInt:JOB_DEFAULT_REMIND_TIME_BEFORE_OFF];
+    
+    if (!self.jobRemindBeforeWork)
+        self.jobRemindBeforeWork = [NSNumber numberWithInt:JOB_DEFAULT_REMIND_TIME_BEFORE_WORK];
+}
+
 - (NSCalendar *) curCalender
 {
     if (!curCalender) {
@@ -69,6 +112,9 @@
         || ![cachedJobOnIconColorOn isEqualToNumber:self.jobOnIconColorOn]
 #endif
         ) {
+        
+        if (self.jobOnIconID == nil)
+            self.jobOnIconID = JOB_DEFAULT_ICON_FILE;
         
         NSString *iconpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"jobicons.bundle/%@", self.jobOnIconID] ofType:nil];
         
@@ -103,7 +149,7 @@
     if (defaultIconColor == nil) {
         // 39814c is green one
         // B674C2 is light purple one
-        defaultIconColor = [UIColor colorWithHexString:ONEJOB_DEFAULT_COLOR_VALUE withAlpha:DEFAULT_ALPHA_VALUE_OF_JOB_ICON];
+        defaultIconColor = [UIColor colorWithHexString:JOB_DEFAULT_COLOR_VALUE withAlpha:DEFAULT_ALPHA_VALUE_OF_JOB_ICON];
     }
     return defaultIconColor;
 }
