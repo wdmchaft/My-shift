@@ -293,6 +293,7 @@ enum {
         [self showDatePickerView:self.datePicker];
     } else if (indexPath.row == HOURS_ITEM) {
         self.datePicker.datePickerMode = UIDatePickerModeCountDownTimer;
+        self.datePicker.minuteInterval = 10;
         self.datePicker.countDownDuration = [self.theJob.jobEveryDayLengthSec intValue];
         [self showDatePickerView:self.datePicker];
     } else if (indexPath.row == REMIND_BEFORE_WORK_ITEM) {
