@@ -55,7 +55,7 @@
 #define JOB_DEFAULT_REMIND_TIME_BEFORE_WORK -1
 #define JOB_DEFAULT_REMIND_TIME_BEFORE_OFF -1
 
-- (void) defaultSetting
+- (void) trydDfaultSetting
 // will reset to default setting if not set.
 {
     if (!self.jobOnDays)
@@ -69,6 +69,9 @@
     
     if (!self.jobOnIconID)
     self.jobOnIconID = JOB_DEFAULT_ICON_FILE;
+    
+    if (!self.jobEnable)
+        self.jobEnable = [NSNumber numberWithBool:YES];
     
     if (!self.jobOnColorID)
         self.jobOnColorID = JOB_DEFAULT_COLOR_VALUE;
@@ -88,6 +91,34 @@
     if (!self.jobRemindBeforeWork)
         self.jobRemindBeforeWork = [NSNumber numberWithInt:JOB_DEFAULT_REMIND_TIME_BEFORE_WORK];
 }
+
+
+
+- (void) forceDefaultSetting
+// will reset to default setting if not set.
+{
+    self.jobOnDays = [NSNumber numberWithInt:JOB_DEFAULT_ON_DAYS];
+    
+    self.jobOffDays = [NSNumber numberWithInt:JOB_DEFAULT_OFF_DAYS];
+    
+    self.jobStartDate = [NSDate date];
+    
+    self.jobOnIconID = JOB_DEFAULT_ICON_FILE;
+    
+    self.jobOnColorID = JOB_DEFAULT_COLOR_VALUE;
+    
+    self.jobEnable = [NSNumber numberWithBool:YES];
+    
+    NSDateComponents *defaultOnTime = [[NSDateComponents alloc] init];
+    [defaultOnTime setHour:8];
+    [defaultOnTime setMinute:0];
+    self.jobEverydayStartTime =  [[NSCalendar currentCalendar] dateFromComponents:defaultOnTime];
+    
+    self.jobEveryDayLengthSec = [NSNumber numberWithInt: JOB_DEFAULT_EVERYDAY_ON_LENGTH]; // 8 hour a day default
+    self.jobRemindBeforeOff = [NSNumber numberWithInt:JOB_DEFAULT_REMIND_TIME_BEFORE_OFF];
+    self.jobRemindBeforeWork = [NSNumber numberWithInt:JOB_DEFAULT_REMIND_TIME_BEFORE_WORK];
+}
+
 
 - (NSCalendar *) curCalender
 {

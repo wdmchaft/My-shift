@@ -12,10 +12,12 @@
 {
     NSArray *itemsArray;
     NSURL *iTunesURL;
+    NSArray * alarmSettingsArray;
 }
 
 
-@property (weak, nonatomic, readonly) NSArray *itemsArray;
+@property (strong, nonatomic, readonly) NSArray *itemsArray;
+@property (strong, nonatomic, readonly) NSArray *alarmSettingsArray;
 @property (nonatomic, strong) NSURL *iTunesURL;
 
 

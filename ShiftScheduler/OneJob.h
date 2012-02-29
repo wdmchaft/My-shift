@@ -78,7 +78,8 @@
 // return value:
 // failed: return -X; is error number
 // success: return 0;
-- (void) defaultSetting;
+- (void) trydDfaultSetting;
+- (void) forceDefaultSetting;
 - (NSInteger)addShiftdaysObject:(ShiftDay *)value;
 
 - (void)removeShiftdaysObject:(ShiftDay *)value;

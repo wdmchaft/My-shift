@@ -102,6 +102,23 @@ enum {
     
     if ([self.profileView profileuNumber] == 0)
         [self performSelector:@selector(popNotifyZeroProfile:) withObject:nil afterDelay:1];
+    
+    
+    // default perferences
+    
+    
+    NSDictionary *appDefaults = [NSDictionary
+                                 dictionaryWithObjects:
+                                 [NSArray arrayWithObjects:
+                                  [NSNumber numberWithBool:YES],
+                                  [NSNumber numberWithBool:NO], Nil]
+                                 forKeys:[NSArray arrayWithObjects:
+                                          @"enableAlertSound", 
+                                          @"systemDefalutAlertSound",
+                                           Nil]];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+
+    
     return YES;
 }
 

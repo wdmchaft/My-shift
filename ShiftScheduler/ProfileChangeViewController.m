@@ -230,8 +230,7 @@
 //    [self setUpUndoManager];
     
     // default value configure
-    if (self.viewMode == PCVC_ADDING_MODE)
-        [self defaultValueConfigure];
+    [self.theJob trydDfaultSetting];
 }
 
 - (void)viewDidUnload
@@ -328,11 +327,6 @@
     return item;
 }
 
-- (void) defaultValueConfigure
-{
-    [self.theJob defaultSetting];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ProfileCell";
@@ -397,7 +391,10 @@
     {
         NSError *error;
         [self.managedObjectContext save:&error];
+        self.nameField.enabled = NO;
         [self.nameField resignFirstResponder];
+    } else {
+        self.nameField.enabled = YES;
     }
     
     // hide the color picker and icon picker.

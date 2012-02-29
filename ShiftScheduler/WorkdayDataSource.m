@@ -50,7 +50,7 @@
                                                         sortDescriptorWithKey:@"jobName"  
                                                         ascending:YES]];
     
-    request.predicate = nil;
+    request.predicate = [NSPredicate predicateWithFormat:@"jobEnable == YES"];
     request.fetchBatchSize = 20;
     
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] 
@@ -79,24 +79,12 @@
     if (theJobNameArray != 0)
         return theJobNameArray;
     
-    
-    NSError *error = nil;
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"OneJob" 
-                                              inManagedObjectContext:objectContext];
-    [request setEntity:entity];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor 
-                                                        sortDescriptorWithKey:
-							       @"jobName"  
-                                                        ascending:YES]];
-    request.predicate = [NSPredicate predicateWithFormat:@"jobEnable == YES"];
-
-    request.fetchBatchSize = 20;
-
-    self.theJobNameArray = [objectContext executeFetchRequest:request error:&error];
-   if (error) {
-        NSLog(@"get job name list failed)");
-   }
+    if (self.fetchedRequestController.fetchedObjects != Nil)
+        theJobNameArray = self.fetchedRequestController.fetchedObjects;
+    else {
+        [self.fetchedRequestController performFetch:NULL];
+        theJobNameArray = self.fetchedRequestController.fetchedObjects;
+    }
     return theJobNameArray;
 }
 
@@ -252,8 +240,6 @@
 
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    [NSFetchedResultsController deleteCacheWithName:JOB_CACHE_INDEFITER];
-    self.theJobNameArray = nil;
 	[callback loadedDataSource:self];
 }
 
@@ -267,7 +253,7 @@
 	// notifications, so tell the table view to process all
 	// updates.
     
-    
+    self.theJobNameArray = nil;
 }
 
 @end

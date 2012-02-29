@@ -12,7 +12,7 @@
 #import "UIColor+HexCoding.h"
 
 
-#define PROFILE_CACHE_INDIFITER @"ProfileCache"
+#define PROFILE_CACHE_INDIFITER @"ProfileListCache"
 
 @implementation ProfilesViewController
 
@@ -82,8 +82,7 @@
     addViewController.managedObjectContext = addingContext;
     // use same manage object context can auto update the frc.
     OneJob *job = [NSEntityDescription insertNewObjectForEntityForName:@"OneJob" inManagedObjectContext:addingContext];
-    job.jobOnDays = [NSNumber numberWithInt:5];
-    job.jobOffDays = [NSNumber numberWithInt:2];
+    [job forceDefaultSetting];
 
     addViewController.theJob = job;
     addViewController.profileDelegate = self;
@@ -114,9 +113,9 @@
     request.fetchBatchSize = 20;
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] 
                                        initWithFetchRequest:request 
-                                       managedObjectContext:managedObjectContext
+                                       managedObjectContext:self.managedObjectContext
                                        sectionNameKeyPath:nil 
-                                       cacheName:PROFILE_CACHE_INDIFITER];
+                                       cacheName:Nil];
     fetchedResultsController = frc;
     return frc;
 }
@@ -181,7 +180,6 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
 	[self.tableView endUpdates];
-    
     
     // update all contexts if same change happens, don't change it if editing 
     if (!self.editing)
@@ -461,10 +459,12 @@
  */
 - (void)addControllerContextDidSave:(NSNotification*)saveNotification {
 	
-	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+	NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
 	// Merging changes causes the fetched results controller to update its results
-	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
+	[context mergeChangesFromContextDidSaveNotification:saveNotification];
 	[context save:nil];
+    [self.fetchedResultsController performFetch:NULL];
+    [self.tableView reloadData];
 }
 
 
@@ -474,7 +474,7 @@
 {
     if (finishWithSave) {
 	// merge the add context to the main context
-//	[NSFetchedResultsController deleteCacheWithName:PROFILE_CACHE_INDIFITER];
+    //cache	[NSFetchedResultsController deleteCacheWithName:PROFILE_CACHE_INDIFITER];
 // cache delete maybe don't needed, rfc will controller this
 
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];

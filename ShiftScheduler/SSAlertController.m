@@ -45,9 +45,15 @@
     
     alert_sound_url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
                                                      pathForResource:@"notify" ofType:@"caf"]];
-    
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc addObserver:self selector:@selector(managedContextDataChanged:) name:NSManagedObjectContextDidSaveNotification object:self.managedcontext];
     
     return self;
+}
+
+- (void) managedContextDataChanged:(NSNotification *) saveNotifaction
+{
+    [self setupAlarm:YES];   
 }
 
 - (NSArray *)jobArray
@@ -62,6 +68,16 @@
         jobArray = a;
     }
     return jobArray;
+}
+
+- (BOOL) shouldAlertWithSound
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"enableAlertSound"];
+}
+
+- (BOOL) shouldUseSystemSound
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"systemDefalutAlertSound"];
 }
 
 static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
@@ -126,7 +142,13 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
     localNotif.hasAction = YES;
     localNotif.alertBody = alarmBody;
     localNotif.alertAction = actionTitle;
-    localNotif.soundName = @"notify.caf";
+    
+    if ([self shouldAlertWithSound]) {
+        if ([self shouldUseSystemSound])
+            localNotif.soundName = UILocalNotificationDefaultSoundName;
+        else
+            localNotif.soundName = @"notify.caf";
+    }
     localNotif.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
     return YES;
@@ -242,7 +264,7 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
 	// updates.
     [NSFetchedResultsController deleteCacheWithName:JOB_CACHE_INDEFITER];
     self.jobArray = nil;
-    [self setupAlarm:YES];
+
 }
 
 @end

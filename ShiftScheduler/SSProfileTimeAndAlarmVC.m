@@ -199,7 +199,7 @@ enum {
         || theJob.jobEverydayStartTime == Nil
         || theJob.jobRemindBeforeOff == Nil
         || theJob.jobRemindBeforeWork == Nil)
-        [theJob defaultSetting];
+        [theJob trydDfaultSetting];
     
     if (indexPath.row == CLOCK_IN_ITEM) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
