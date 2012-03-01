@@ -127,11 +127,6 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-    for (UISwitch *s in switchArray) {
-        [s removeFromSuperview];
-    }
-    [switchArray removeAllObjects];
-    
 	[self.tableView beginUpdates];
 }
 
@@ -224,8 +219,6 @@
 		exit(-1);  // Fail
     }
     self.fetchedResultsController.delegate = self;
-    
-    switchArray = [[NSMutableArray alloc] init];
     
 }
 
@@ -321,6 +314,9 @@
     static NSString *CellIdentifier = @"CellOfProfileCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (indexPath.section == 1) // never reuse for section 2
+        cell = nil;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]; 
     }
@@ -381,14 +377,16 @@
     
     
     // hide all UISwitch when edting... since it will affect Detete UI.
-    for (id a in switchArray) {
-        UISwitch *s = a;
-        if (editing) { 
-            s.hidden = YES;
-            [s setNeedsDisplay];
+    
+    for (id a  in self.tableView.visibleCells)
+        if ([a isKindOfClass:[UITableViewCell class]]) {
+            UITableViewCell *c = a;
+            for  (id s in c.contentView.subviews)
+                if ([s isKindOfClass:[UISwitch class]]) {
+                    if (editing)   [s setHidden:YES];
+                    else           [s setHidden:NO];
+                }
         }
-        else s.hidden = NO;
-    }
     
     if (!editing) {
         [self.tableView reloadData];
@@ -446,7 +444,12 @@
 		
 		[theSwitch setAccessibilityLabel:NSLocalizedString(@"Shift Enable Display on Calender", @"")];
         
-        [switchArray addObject:theSwitch];
+        for  (id a in cell.contentView.subviews) {
+            if ([a isKindOfClass:theSwitch.class]) {
+                [a removeFromSuperview];
+            }
+        }
+
         [cell.contentView addSubview:theSwitch];
         
     }

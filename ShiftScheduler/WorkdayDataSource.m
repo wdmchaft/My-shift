@@ -15,7 +15,7 @@
 
 @synthesize fetchedRequestController;
 @synthesize theJobNameArray;
-@synthesize timeFormatter;
+@synthesize timeFormatter, objectContext;
 
 - (id)init
 {
@@ -40,11 +40,11 @@
 - (id) initWithManagedContext:(NSManagedObjectContext *)thecontext
 {
     self = [self init];
-    objectContext = thecontext;
+    self.objectContext = thecontext;
 
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"OneJob" 
-                                              inManagedObjectContext:objectContext];
+                                              inManagedObjectContext:self.objectContext];
     [request setEntity:entity];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor 
                                                         sortDescriptorWithKey:@"jobName"  
@@ -55,7 +55,7 @@
     
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] 
                                        initWithFetchRequest:request 
-                                       managedObjectContext:objectContext
+                                       managedObjectContext:self.objectContext
                                        sectionNameKeyPath:@"jobName" 
                                        cacheName:JOB_CACHE_INDEFITER];
     NSError *error = 0;
@@ -64,8 +64,23 @@
     if (error)
         NSLog(@"fetch request error:%@", error.userInfo);
     self.fetchedRequestController.delegate = self;
+    
+    
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc addObserver:self selector:@selector(managedContextDataChanged:) name:NSManagedObjectContextDidSaveNotification object:self.objectContext];
+ 
+
 
     return  self;
+}
+
+- (void) managedContextDataChanged:(NSNotification *) saveNotifaction
+{
+    
+    [self.fetchedRequestController performFetch:nil];
+    theJobNameArray = nil;
+    [callback loadedDataSource:self];
+    
 }
 
 //- (NSArray *) theJobNameArray
@@ -76,15 +91,12 @@
 
 - (NSArray *)theJobNameArray 
 {
-    if (theJobNameArray != 0)
+    if (theJobNameArray != 0 && ![self.objectContext hasChanges])
         return theJobNameArray;
     
-    if (self.fetchedRequestController.fetchedObjects != Nil)
-        theJobNameArray = self.fetchedRequestController.fetchedObjects;
-    else {
-        [self.fetchedRequestController performFetch:NULL];
-        theJobNameArray = self.fetchedRequestController.fetchedObjects;
-    }
+    [self.fetchedRequestController performFetch:NULL];
+    theJobNameArray = self.fetchedRequestController.fetchedObjects;
+
     return theJobNameArray;
 }
 
@@ -241,10 +253,6 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 	[callback loadedDataSource:self];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    [callback loadedDataSource:self];
 }
 
 

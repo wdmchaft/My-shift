@@ -98,7 +98,7 @@ enum {
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
-    [self.managedObjectContext save:NULL];
+    //    [self.managedObjectContext save:NULL];
     
     if ([self.profileView profileuNumber] == 0)
         [self performSelector:@selector(popNotifyZeroProfile:) withObject:nil afterDelay:1];

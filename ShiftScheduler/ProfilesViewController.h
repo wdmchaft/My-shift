@@ -29,7 +29,6 @@
 	NSFetchedResultsController *fetchedResultsController;
 	UIBarButtonItem *addButton;
 	UIBarButtonItem *oldLeftItem;
-    NSMutableArray *switchArray;
     id <ProfileEditFinishDelegate> parentViewDelegate;
 }
 

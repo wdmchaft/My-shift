@@ -55,7 +55,6 @@
 
 - (void) cancel:(id)sender;
 - (void) saveProfile:(id) sender;
-- (void) defaultValueConfigure;
 
 - (void)textFieldDidEndEditing:(UITextField *)textField;
 -(BOOL)textFieldShouldReturn:(UITextField*)sender;
