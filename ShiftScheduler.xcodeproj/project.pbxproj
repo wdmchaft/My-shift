@@ -107,12 +107,6 @@
 		29E98CBD14EFDA340048AF49 /* SCPathUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CB514EFDA340048AF49 /* SCPathUtils.h */; };
 		29E98CBE14EFDA340048AF49 /* SCPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E98CB614EFDA340048AF49 /* SCPathUtils.m */; };
 		29E98CD314EFF3FF0048AF49 /* SSProfileReminderDateSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CD114EFF3FF0048AF49 /* SSProfileReminderDateSource.h */; };
-		29ECA45914B0514E00B3832D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
-		29ECA46014B0537300B3832D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
-		29ECA46114B0537300B3832D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
-		29ECA46214B0537300B3832D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
-		29ECA46814B0537300B3832D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29ECA46614B0537300B3832D /* InfoPlist.strings */; };
-		29ECA46B14B0537300B3832D /* ShiftSchedulerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ECA46A14B0537300B3832D /* ShiftSchedulerTest.m */; };
 		29F2147D14E66DB7008BEE92 /* UIImage+MonoImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */; };
 		29F2147E14E66DB7008BEE92 /* UIImage+MonoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */; };
 		29FA9AF314F48DAE00717505 /* SSAlertController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29FA9AF114F48DAE00717505 /* SSAlertController.h */; };
@@ -133,13 +127,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = Kal;
-		};
-		29ECA47014B0539700B3832D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B9E1A81472C1D700DB2E1F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 29B9E1B01472C1D700DB2E1F;
-			remoteInfo = ShiftScheduler;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -266,7 +253,6 @@
 		29E98CB614EFDA340048AF49 /* SCPathUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPathUtils.m; sourceTree = "<group>"; };
 		29E98CD114EFF3FF0048AF49 /* SSProfileReminderDateSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSProfileReminderDateSource.h; sourceTree = "<group>"; };
 		29ECA45814B0514E00B3832D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		29ECA45F14B0537300B3832D /* ShiftSchedulerTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShiftSchedulerTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29ECA46514B0537300B3832D /* ShiftSchedulerTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShiftSchedulerTest-Info.plist"; sourceTree = "<group>"; };
 		29ECA46714B0537300B3832D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		29ECA46914B0537300B3832D /* ShiftSchedulerTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShiftSchedulerTest.h; sourceTree = "<group>"; };
@@ -287,22 +273,11 @@
 			files = (
 				2968BED014F907BB00DF1CCF /* AudioToolbox.framework in Frameworks */,
 				2968BECE14F9076400DF1CCF /* AVFoundation.framework in Frameworks */,
-				29ECA45914B0514E00B3832D /* SenTestingKit.framework in Frameworks */,
 				29B9E2071472C95800DB2E1F /* libKal.a in Frameworks */,
 				29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */,
 				29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */,
 				29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */,
 				29B9E1BC1472C1D700DB2E1F /* CoreData.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		29ECA45B14B0537300B3832D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				29ECA46014B0537300B3832D /* SenTestingKit.framework in Frameworks */,
-				29ECA46114B0537300B3832D /* UIKit.framework in Frameworks */,
-				29ECA46214B0537300B3832D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,7 +431,6 @@
 			isa = PBXGroup;
 			children = (
 				29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */,
-				29ECA45F14B0537300B3832D /* ShiftSchedulerTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -670,25 +644,6 @@
 			productReference = 29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */;
 			productType = "com.apple.product-type.application";
 		};
-		29ECA45E14B0537300B3832D /* ShiftSchedulerTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 29ECA46D14B0537300B3832D /* Build configuration list for PBXNativeTarget "ShiftSchedulerTest" */;
-			buildPhases = (
-				29ECA45A14B0537300B3832D /* Sources */,
-				29ECA45B14B0537300B3832D /* Frameworks */,
-				29ECA45C14B0537300B3832D /* Resources */,
-				29ECA45D14B0537300B3832D /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				29ECA47114B0539700B3832D /* PBXTargetDependency */,
-			);
-			name = ShiftSchedulerTest;
-			productName = ShiftSchedulerTest;
-			productReference = 29ECA45F14B0537300B3832D /* ShiftSchedulerTest.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -717,7 +672,6 @@
 			projectRoot = "";
 			targets = (
 				29B9E1B01472C1D700DB2E1F /* ShiftScheduler */,
-				29ECA45E14B0537300B3832D /* ShiftSchedulerTest */,
 			);
 		};
 /* End PBXProject section */
@@ -760,31 +714,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		29ECA45C14B0537300B3832D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				29ECA46814B0537300B3832D /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		29ECA45D14B0537300B3832D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		29B9E1AD1472C1D700DB2E1F /* Sources */ = {
@@ -836,14 +766,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		29ECA45A14B0537300B3832D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				29ECA46B14B0537300B3832D /* ShiftSchedulerTest.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -851,11 +773,6 @@
 			isa = PBXTargetDependency;
 			name = Kal;
 			targetProxy = 29B9E2081472C95D00DB2E1F /* PBXContainerItemProxy */;
-		};
-		29ECA47114B0539700B3832D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 29B9E1B01472C1D700DB2E1F /* ShiftScheduler */;
-			targetProxy = 29ECA47014B0539700B3832D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -991,36 +908,6 @@
 			};
 			name = Release;
 		};
-		29ECA46E14B0537300B3832D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ShiftSchedulerTest/ShiftSchedulerTest-Prefix.pch";
-				INFOPLIST_FILE = "ShiftSchedulerTest/ShiftSchedulerTest-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		29ECA46F14B0537300B3832D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ShiftSchedulerTest/ShiftSchedulerTest-Prefix.pch";
-				INFOPLIST_FILE = "ShiftSchedulerTest/ShiftSchedulerTest-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1038,15 +925,6 @@
 			buildConfigurations = (
 				29B9E1CF1472C1D700DB2E1F /* Debug */,
 				29B9E1D01472C1D700DB2E1F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		29ECA46D14B0537300B3832D /* Build configuration list for PBXNativeTarget "ShiftSchedulerTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				29ECA46E14B0537300B3832D /* Debug */,
-				29ECA46F14B0537300B3832D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

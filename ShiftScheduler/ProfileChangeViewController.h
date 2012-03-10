@@ -53,7 +53,7 @@
 
 @property (strong) OneJob *theJob;
 
-- (void) cancel:(id)sender;
+- (IBAction) cancel:(id)sender;
 - (void) saveProfile:(id) sender;
 
 - (void)textFieldDidEndEditing:(UITextField *)textField;
