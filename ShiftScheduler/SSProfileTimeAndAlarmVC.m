@@ -329,6 +329,7 @@ enum {
                             [NSNumber numberWithInt:15 * 60],
                             [NSNumber numberWithInt:30 * 60],
                             [NSNumber numberWithInt:60 * 60],
+                            [NSNumber numberWithInt:1.5 * 60 * 60],
                             [NSNumber numberWithInt:2 *60 * 60],
                             nil];
     NSArray *keysArray = [NSArray arrayWithObjects: [NSNumber numberWithInt:REMIND_NO_ITEM],
@@ -337,6 +338,7 @@ enum {
                           [NSNumber numberWithInt:REMIND_15_MIN_ITEM],
                           [NSNumber numberWithInt:REMIND_30_MIN_ITEM],
                           [NSNumber numberWithInt:REMIND_1_HOUR_ITEM],
+                          [NSNumber numberWithInt:REMIND_1_5_HOUR_ITEM],
                           [NSNumber numberWithInt:REMIND_2_HOUR_ITEM],
                           nil];
     return [[NSDictionary alloc] initWithObjects:objectArray forKeys:keysArray];
@@ -361,6 +363,7 @@ enum {
     REMIND_15_MIN_ITEM_STR,
     REMIND_30_MIN_ITEM_STR,
     REMIND_1_HOUR_ITEM_STR,
+    REMIND_1_5_HOUR_ITEM_STR,
     REMIND_2_HOUR_ITEM_STR, 
     nil];
 

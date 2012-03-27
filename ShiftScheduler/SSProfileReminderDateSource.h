@@ -16,6 +16,7 @@ enum {
     REMIND_15_MIN_ITEM,
     REMIND_30_MIN_ITEM,
     REMIND_1_HOUR_ITEM,
+    REMIND_1_5_HOUR_ITEM,
     REMIND_2_HOUR_ITEM,
 };
 
@@ -25,5 +26,6 @@ enum {
 #define REMIND_15_MIN_ITEM_STR NSLocalizedString(@"15 minutes before", "15 Minutes")
 #define REMIND_30_MIN_ITEM_STR NSLocalizedString(@"30 minutes before", "30 Minutes")
 #define REMIND_1_HOUR_ITEM_STR NSLocalizedString(@"1 hour before", "1 Hour")
+#define REMIND_1_5_HOUR_ITEM_STR NSLocalizedString(@"1.5 hour before", "1.5 Hour")
 #define REMIND_2_HOUR_ITEM_STR NSLocalizedString(@"2 hour before", "2 Hour")
 

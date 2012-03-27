@@ -178,6 +178,8 @@ enum {
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (buttonIndex == 0) return; // 0 is cancel.
+
     [self.navController pushViewController:self.profileView animated:YES];
     [self.profileView insertNewProfile:self.navController];    
 }

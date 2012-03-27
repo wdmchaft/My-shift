@@ -650,7 +650,7 @@
 		29B9E1A81472C1D700DB2E1F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 29B9E1AB1472C1D700DB2E1F /* Build configuration list for PBXProject "ShiftScheduler" */;
 			compatibilityVersion = "Xcode 3.2";

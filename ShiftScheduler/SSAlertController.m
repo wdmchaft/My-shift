@@ -100,6 +100,7 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
                     alarmActionTitle: (NSString *) actionTitle
                            TimeAfter: (NSTimeInterval) after
                                  job: (OneJob *)job
+                            isOffDay: (boolean_t) isOffday
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     NSCalendar *currentCal = [NSCalendar currentCalendar];
@@ -114,6 +115,9 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
     NSDate *fireDate = [[[NSDate date] cc_dateByMovingToBeginningOfDay] dateByAddingTimeInterval:offset];
     
     fireDate = [fireDate cc_dateByMovingToNextOrBackwardsFewDays:daysInFurther withCalender:currentCal];
+    
+    NSDate *firedayWorkDate = [fireDate copy];
+    
     // 工作时长， 这里加上, 为了解决隔夜工作的问题。
     fireDate = [fireDate dateByAddingTimeInterval:after];
 
@@ -124,15 +128,28 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
     UILocalNotification *localNotif = [[UILocalNotification alloc] init];
     if (localNotif == nil)
         return NO;
+    
+    if (job.jobEnable.boolValue == NO)
+        return NO;
+
     if ([fireDate timeIntervalSinceDate:[NSDate date]] < 0) {
         NSLog(@"drop a notify since it out of date: when:%@ now:%@", [formatter stringFromDate:fireDate], [formatter stringFromDate:[NSDate date]]);
         return NO;
     }
     
-    if (![job isDayWorkingDay:fireDate]) {
-        NSLog(@"drop a notify since it was not %@ 's working day: %@",job.jobName, [formatter stringFromDate:fireDate]);
-        return NO;
-        
+//    因为下班的时间的那天并不上班， 所以隔天会提醒可能会被取消， 这样可以避免这个问题。
+//  因为过夜的工作完全有可能是到了第二天， 而这一天也不工作，所以必须查看开始工作的那一天是否是工作日。
+    
+    if (isOffday) {
+        if (![job isDayWorkingDay:firedayWorkDate]) {
+            NSLog(@"drop a notify since it was not %@ 's working day: %@",job.jobName, [formatter stringFromDate:fireDate]);
+            return NO;
+        } 
+    } else {
+        if (![job isDayWorkingDay:fireDate]) {
+            NSLog(@"drop a notify since it was not %@ 's working day: %@",job.jobName, [formatter stringFromDate:fireDate]);
+            return NO;
+        }
     }
     
     NSLog(@"add one local notify for:%@ firedate: %@",job.jobName, [formatter stringFromDate:fireDate]);
@@ -185,7 +202,7 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
         if (job.jobRemindBeforeWork.intValue == 0)
             timestr = TIME_STR_ALARM_BEFORE_NOW;
         NSString *workRemindString = [NSString stringWithFormat:@"%@ %@.", job.jobName, timestr]; 
-        ret = [self scheduleNotificationWithItem:job.jobEverydayStartTime withDaysLater:daysLater interval:job.jobRemindBeforeWork.intValue alarmBody:workRemindString alarmActionTitle:defaultActionTitle TimeAfter:0 job:job];
+        ret = [self scheduleNotificationWithItem:job.jobEverydayStartTime withDaysLater:daysLater interval:job.jobRemindBeforeWork.intValue alarmBody:workRemindString alarmActionTitle:defaultActionTitle TimeAfter:0 job:job isOffDay:NO];
         if (ret) alarmCount ++;
     }
     
@@ -202,7 +219,7 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
         NSString *offRemindString = [NSString stringWithFormat:@"%@ %@.", job.jobName, timestr]; 
         
         ret = [self scheduleNotificationWithItem:job.jobEverydayStartTime withDaysLater:daysLater interval:job.jobRemindBeforeOff.intValue alarmBody:offRemindString alarmActionTitle:defaultActionTitle TimeAfter:job.jobEveryDayLengthSec.intValue
-         job:job];
+         job:job isOffDay:YES];
         if (ret) alarmCount += 1;
     }
     return alarmCount;
@@ -224,8 +241,10 @@ static void alertSoundPlayingCallback( SystemSoundID sound_id, void *user_data)
     
     if (isShort) {
         // if short, only update today's 
-        for (OneJob *j in self.jobArray)
+        for (OneJob *j in self.jobArray) {
             [self setupAlarmForJob:j daysLater:0];
+            [self setupAlarmForJob:j daysLater:1];
+        }
     } else {
         int max_notify = ((self.jobArray.count * 7) > MAX_NOTIFY_COUNT) ? MAX_NOTIFY_COUNT : self.jobArray.count * 7;
         int used = 0;
