@@ -22,8 +22,6 @@
 				<string>calendar-57x57.png</string>
 				<string>calendar-114x114.png</string>
 			</array>
-			<key>UIPrerenderedIcon</key>
-			<false/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
@@ -35,11 +33,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.1.1</string>
+	<string>2.1.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.1.1</string>
+	<string>2.1.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -52,8 +50,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIPrerenderedIcon</key>
-	<true/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
