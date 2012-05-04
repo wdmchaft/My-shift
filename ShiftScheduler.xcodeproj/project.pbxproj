@@ -56,6 +56,15 @@
 		2987381F149917C300A2617F /* DatePickerViewController2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2987381C149917C200A2617F /* DatePickerViewController2.h */; };
 		29873820149917C300A2617F /* DatePickerViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2987381D149917C200A2617F /* DatePickerViewController2.m */; };
 		29873821149917C300A2617F /* DatePickerViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2987381E149917C300A2617F /* DatePickerViewController2.xib */; };
+		29AEBD691554146F0010F27D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
+		29AEBD6A1554146F0010F27D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
+		29AEBD6B1554146F0010F27D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
+		29AEBD711554146F0010F27D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29AEBD6F1554146F0010F27D /* InfoPlist.strings */; };
+		29AEBD741554146F0010F27D /* OneJobModuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBD731554146F0010F27D /* OneJobModuleTest.m */; };
+		29AEBD79155418490010F27D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1BB1472C1D700DB2E1F /* CoreData.framework */; };
+		29AEBD7B155418890010F27D /* OneJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1DE1472C39F00DB2E1F /* OneJob.m */; };
+		29AEBD7C155418E60010F27D /* ShiftScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */; };
+		29AEBD8F15541C720010F27D /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DDDAC214808F94004DC703 /* NSDateAdditions.m */; };
 		29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
 		29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
 		29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */; };
@@ -169,7 +178,6 @@
 		292DBCA714CA943F00C87A70 /* JPImagePickerOverviewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = JPImagePickerOverviewController.xib; path = JPImagePicker/JPImagePickerOverviewController.xib; sourceTree = "<group>"; };
 		292DBCA814CA943F00C87A70 /* UIImageResizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageResizing.h; path = JPImagePicker/UIImageResizing.h; sourceTree = "<group>"; };
 		292DBCA914CA943F00C87A70 /* UIImageResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageResizing.m; path = JPImagePicker/UIImageResizing.m; sourceTree = "<group>"; };
-		2932F71514B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftSchedulerTest/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
 		2932F71614B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
 		2932F71714B2237E00BE7A9E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/zhangjeef/Developer/ShiftScheduler2/ShiftScheduler/ShiftScheduler/ja.lproj/Localizable.strings; sourceTree = "<absolute>"; };
 		2935514114E2BABA004D8FAC /* SSTurnShiftTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTurnShiftTVC.h; sourceTree = "<group>"; };
@@ -188,6 +196,12 @@
 		2987381C149917C200A2617F /* DatePickerViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController2.h; sourceTree = "<group>"; };
 		2987381D149917C200A2617F /* DatePickerViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController2.m; sourceTree = "<group>"; };
 		2987381E149917C300A2617F /* DatePickerViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController2.xib; sourceTree = "<group>"; };
+		29AEBD681554146F0010F27D /* OneJobModuleTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneJobModuleTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		29AEBD6E1554146F0010F27D /* OneJobModuleTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OneJobModuleTest-Info.plist"; sourceTree = "<group>"; };
+		29AEBD701554146F0010F27D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		29AEBD721554146F0010F27D /* OneJobModuleTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneJobModuleTest.h; sourceTree = "<group>"; };
+		29AEBD731554146F0010F27D /* OneJobModuleTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneJobModuleTest.m; sourceTree = "<group>"; };
+		29AEBD751554146F0010F27D /* OneJobModuleTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OneJobModuleTest-Prefix.pch"; sourceTree = "<group>"; };
 		29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B9E1B51472C1D700DB2E1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B9E1B71472C1D700DB2E1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -253,11 +267,6 @@
 		29E98CB614EFDA340048AF49 /* SCPathUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPathUtils.m; sourceTree = "<group>"; };
 		29E98CD114EFF3FF0048AF49 /* SSProfileReminderDateSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSProfileReminderDateSource.h; sourceTree = "<group>"; };
 		29ECA45814B0514E00B3832D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		29ECA46514B0537300B3832D /* ShiftSchedulerTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShiftSchedulerTest-Info.plist"; sourceTree = "<group>"; };
-		29ECA46714B0537300B3832D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		29ECA46914B0537300B3832D /* ShiftSchedulerTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShiftSchedulerTest.h; sourceTree = "<group>"; };
-		29ECA46A14B0537300B3832D /* ShiftSchedulerTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShiftSchedulerTest.m; sourceTree = "<group>"; };
-		29ECA46C14B0537300B3832D /* ShiftSchedulerTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShiftSchedulerTest-Prefix.pch"; sourceTree = "<group>"; };
 		29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MonoImage.h"; sourceTree = "<group>"; };
 		29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MonoImage.m"; sourceTree = "<group>"; };
 		29F2147F14E68A9B008BEE92 /* ShiftScheduler 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -267,6 +276,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		29AEBD641554146F0010F27D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29AEBD79155418490010F27D /* CoreData.framework in Frameworks */,
+				29AEBD691554146F0010F27D /* SenTestingKit.framework in Frameworks */,
+				29AEBD6A1554146F0010F27D /* UIKit.framework in Frameworks */,
+				29AEBD6B1554146F0010F27D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29B9E1AE1472C1D700DB2E1F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,6 +430,26 @@
 			path = ShiftScheduler;
 			sourceTree = "<group>";
 		};
+		29AEBD6C1554146F0010F27D /* OneJobModuleTest */ = {
+			isa = PBXGroup;
+			children = (
+				29AEBD721554146F0010F27D /* OneJobModuleTest.h */,
+				29AEBD731554146F0010F27D /* OneJobModuleTest.m */,
+				29AEBD6D1554146F0010F27D /* Supporting Files */,
+			);
+			path = OneJobModuleTest;
+			sourceTree = "<group>";
+		};
+		29AEBD6D1554146F0010F27D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				29AEBD6E1554146F0010F27D /* OneJobModuleTest-Info.plist */,
+				29AEBD6F1554146F0010F27D /* InfoPlist.strings */,
+				29AEBD751554146F0010F27D /* OneJobModuleTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		29B9E1A61472C1D700DB2E1F = {
 			isa = PBXGroup;
 			children = (
@@ -420,7 +460,7 @@
 				299D8D0D147948B900E20DAE /* ProfileView */,
 				298B0168148B946500C013F5 /* ChangeShiftView */,
 				29B9E1FA1472C72000DB2E1F /* Kal.bundle */,
-				29ECA46314B0537300B3832D /* ShiftSchedulerTest */,
+				29AEBD6C1554146F0010F27D /* OneJobModuleTest */,
 				29B9E1B41472C1D700DB2E1F /* Frameworks */,
 				29B9E1B21472C1D700DB2E1F /* Products */,
 				29B9E1FE1472C94C00DB2E1F /* Kal.xcodeproj */,
@@ -431,6 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */,
+				29AEBD681554146F0010F27D /* OneJobModuleTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -557,26 +598,6 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		29ECA46314B0537300B3832D /* ShiftSchedulerTest */ = {
-			isa = PBXGroup;
-			children = (
-				29ECA46914B0537300B3832D /* ShiftSchedulerTest.h */,
-				29ECA46A14B0537300B3832D /* ShiftSchedulerTest.m */,
-				29ECA46414B0537300B3832D /* Supporting Files */,
-			);
-			path = ShiftSchedulerTest;
-			sourceTree = "<group>";
-		};
-		29ECA46414B0537300B3832D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				29ECA46514B0537300B3832D /* ShiftSchedulerTest-Info.plist */,
-				29ECA46614B0537300B3832D /* InfoPlist.strings */,
-				29ECA46C14B0537300B3832D /* ShiftSchedulerTest-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -625,6 +646,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		29AEBD671554146F0010F27D /* OneJobModuleTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29AEBD761554146F0010F27D /* Build configuration list for PBXNativeTarget "OneJobModuleTest" */;
+			buildPhases = (
+				29AEBD631554146F0010F27D /* Sources */,
+				29AEBD641554146F0010F27D /* Frameworks */,
+				29AEBD651554146F0010F27D /* Resources */,
+				29AEBD661554146F0010F27D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneJobModuleTest;
+			productName = OneJobModuleTest;
+			productReference = 29AEBD681554146F0010F27D /* OneJobModuleTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		29B9E1B01472C1D700DB2E1F /* ShiftScheduler */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29B9E1CE1472C1D700DB2E1F /* Build configuration list for PBXNativeTarget "ShiftScheduler" */;
@@ -672,6 +711,7 @@
 			projectRoot = "";
 			targets = (
 				29B9E1B01472C1D700DB2E1F /* ShiftScheduler */,
+				29AEBD671554146F0010F27D /* OneJobModuleTest */,
 			);
 		};
 /* End PBXProject section */
@@ -687,6 +727,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		29AEBD651554146F0010F27D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29AEBD711554146F0010F27D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29B9E1AF1472C1D700DB2E1F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -716,7 +764,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		29AEBD661554146F0010F27D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		29AEBD631554146F0010F27D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29AEBD8F15541C720010F27D /* NSDateAdditions.m in Sources */,
+				29AEBD7C155418E60010F27D /* ShiftScheduler.xcdatamodeld in Sources */,
+				29AEBD7B155418890010F27D /* OneJob.m in Sources */,
+				29AEBD741554146F0010F27D /* OneJobModuleTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29B9E1AD1472C1D700DB2E1F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -777,6 +852,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		29AEBD6F1554146F0010F27D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29AEBD701554146F0010F27D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		29B9E1C01472C1D700DB2E1F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -799,18 +882,45 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		29ECA46614B0537300B3832D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				29ECA46714B0537300B3832D /* en */,
-				2932F71514B2237E00BE7A9E /* ja */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		29AEBD771554146F0010F27D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OneJobModuleTest/OneJobModuleTest-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "OneJobModuleTest/OneJobModuleTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		29AEBD781554146F0010F27D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OneJobModuleTest/OneJobModuleTest-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "OneJobModuleTest/OneJobModuleTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		29B9E1CC1472C1D700DB2E1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -911,6 +1021,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		29AEBD761554146F0010F27D /* Build configuration list for PBXNativeTarget "OneJobModuleTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29AEBD771554146F0010F27D /* Debug */,
+				29AEBD781554146F0010F27D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		29B9E1AB1472C1D700DB2E1F /* Build configuration list for PBXProject "ShiftScheduler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

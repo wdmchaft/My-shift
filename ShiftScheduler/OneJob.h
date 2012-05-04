@@ -12,7 +12,13 @@
 #include "ShiftDay.h"
 
 
-
+#define JOB_DEFAULT_ON_DAYS 5
+#define JOB_DEFAULT_OFF_DAYS 2
+#define JOB_DEFAULT_ICON_FILE @"bag32.png"
+#define JOB_DEFAULT_COLOR_VALUE @"25AA5C"
+#define JOB_DEFAULT_EVERYDAY_ON_LENGTH (60*60*8)
+#define JOB_DEFAULT_REMIND_TIME_BEFORE_WORK -1
+#define JOB_DEFAULT_REMIND_TIME_BEFORE_OFF -1
 
 @interface OneJob : NSManagedObject {
     NSCalendar *curCalender;
@@ -62,7 +68,10 @@
 - (BOOL) isDayWorkingDay:(NSDate *)theDate;
 - (NSInteger)daysBetweenDateV2:(NSDate *)fromDateTime andDate:(NSDate *)toDateTime;
 
-
+- (UIColor *) iconColor;
+- (void) trydDfaultSetting;
+- (void) forceDefaultSetting;
+- (NSString *) jobEverydayOffTimeWithFormatter:(NSDateFormatter *) formatter;
 
 @property (nonatomic, strong) NSSet *shiftdays;
 @end
@@ -78,15 +87,11 @@
 // return value:
 // failed: return -X; is error number
 // success: return 0;
-- (void) trydDfaultSetting;
-- (void) forceDefaultSetting;
 - (NSInteger)addShiftdaysObject:(ShiftDay *)value;
 
 - (void)removeShiftdaysObject:(ShiftDay *)value;
 - (void)addShiftdays:(NSSet *)values;
 - (void)removeShiftdays:(NSSet *)values;
-- (UIColor *) iconColor;
-- (NSString *) jobEverydayOffTimeWithFormatter:(NSDateFormatter *) formatter;
 
 @end
 

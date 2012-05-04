@@ -46,14 +46,7 @@
 @dynamic jobRemindBeforeOff,jobRemindBeforeWork;
 @synthesize curCalender, cachedJobOnIconColor, cachedJobOnIconID;
 
-#define JOB_DEFAULT_ON_DAYS 5
-#define JOB_DEFAULT_OFF_DAYS 2
-#define JOB_DEFAULT_ICON_FILE @"bag32.png"
-#define JOB_DEFAULT_COLOR_VALUE @"25AA5C"
 
-#define JOB_DEFAULT_EVERYDAY_ON_LENGTH (60*60*8)
-#define JOB_DEFAULT_REMIND_TIME_BEFORE_WORK -1
-#define JOB_DEFAULT_REMIND_TIME_BEFORE_OFF -1
 
 - (void) trydDfaultSetting
 // will reset to default setting if not set.

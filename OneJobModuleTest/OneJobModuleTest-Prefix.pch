@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'OneJobModuleTest' target in the 'OneJobModuleTest' project
+//
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
