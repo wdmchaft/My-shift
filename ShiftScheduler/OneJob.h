@@ -20,6 +20,13 @@
 #define JOB_DEFAULT_REMIND_TIME_BEFORE_WORK -1
 #define JOB_DEFAULT_REMIND_TIME_BEFORE_OFF -1
 
+enum JobShiftAlgoType {
+  JOB_SHIFT_ALGO_NON_TYPE = 0,	// Report assert here.
+  JOB_SHIFT_ALGO_FREE_ROUND = 1, // X on X off round robin shift.
+  JOB_SHIFT_ALGO_FREE_JUMP,	 // X on/off self check in Y days.
+  JOB_SHIFT_ALGO_THREE_SHIFT,	 // three shift system. 
+};
+
 @interface OneJob : NSManagedObject {
     NSCalendar *curCalender;
     NSCalendar *timezoneCalender;
