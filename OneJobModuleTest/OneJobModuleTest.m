@@ -52,8 +52,8 @@
     onOffJob = [NSEntityDescription insertNewObjectForEntityForName:@"OneJob" 
                                              inManagedObjectContext:self.moc];
     [onOffJob forceDefaultSetting];
-    
-    
+    onOffJob.jobShiftType = [NSNumber numberWithInt:JOB_SHIFT_ALGO_FREE_ROUND];
+
     NSDate *today = [NSDate date];
     onOffJob.jobStartDate = today; // start from today... 
     

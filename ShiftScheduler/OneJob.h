@@ -50,6 +50,8 @@ enum JobShiftAlgoType {
 @property (nonatomic, strong) NSDate * jobFinishDate;
 @property (nonatomic, strong) NSString * jobOnColorID;
 @property (nonatomic, strong) NSString * jobOnIconID;
+@property (nonatomic, retain) NSNumber * jobShiftType;
+
 
 @property (nonatomic, strong) NSNumber * jobOnIconColorOn;
 

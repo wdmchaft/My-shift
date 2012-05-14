@@ -12,6 +12,7 @@
 #import "UIImage+MonoImage.h"
 
 #import "ShiftAlgoBase.h"
+#import "ShiftAlgoFreeRound.h"
 
 #define WORKDAY_TYPE_FULL 0
 #define WORKDAY_TYPE_NOT  1
@@ -31,11 +32,10 @@
 @synthesize theDate;
 @end
 
-@interface OneJob : NSManagedObject {
-@private
+@interface OneJob()
+{
     ShiftAlgoBase *shiftAlgo;
 }
-
 @property (strong) ShiftAlgoBase *shiftAlgo;
 
 @end
@@ -53,15 +53,16 @@
 @dynamic shiftdays;
 @dynamic jobOnColorID,jobOnIconColorOn;
 @dynamic jobOnIconID;
+@dynamic jobShiftType;
 @dynamic jobRemindBeforeOff,jobRemindBeforeWork;
-@synthesize curCalender, cachedJobOnIconColor, cachedJobOnIconID;
+@synthesize curCalender, cachedJobOnIconColor, cachedJobOnIconID, shiftAlgo;
 
 - (ShiftAlgoBase *)shiftAlgo;
 {
     if (shiftAlgo == nil) {
-	JobShiftAlgoType type = (JobShiftAlgoType)self.jobShiftType.intValue;
+	enum JobShiftAlgoType type = (enum JobShiftAlgoType)self.jobShiftType.intValue;
 	switch(type) {
-	  case JOB_SHIFT_FREE_ROUND:
+	  case JOB_SHIFT_ALGO_FREE_ROUND:
 	      shiftAlgo = [[ShiftAlgoFreeRound alloc] initWithContext:self];
 	      break;
 	default:
@@ -106,6 +107,9 @@
     
     if (!self.jobRemindBeforeWork)
         self.jobRemindBeforeWork = [NSNumber numberWithInt:JOB_DEFAULT_REMIND_TIME_BEFORE_WORK];
+    
+    if (!self.jobShiftType)
+        self.jobShiftType = [NSNumber numberWithInt:JOB_SHIFT_ALGO_FREE_ROUND];
 }
 
 
@@ -136,13 +140,7 @@
 }
 
 
-- (NSCalendar *) curCalender
-{
-    if (!curCalender) {
-        curCalender = [NSCalendar currentCalendar];
-    }
-    return curCalender;
-}
+
 
 - (NSString *)jobEverydayOffTimeWithFormatter:(NSDateFormatter *)formatter
 {
@@ -264,12 +262,12 @@ static BOOL IsDateBetweenInclusive(NSDate *date, NSDate *begin, NSDate *end)
 
 - (NSArray *)returnWorkdaysWithInStartDate:(NSDate *) beginDate endDate:(NSDate *) endDate
 {
-    return [self.shiftAlgo returnWorkdaysWithInStartDate: beginDate endDate: endDate];
- }
+    return [self.shiftAlgo shiftCalcWorkdayBetweenStartDate:beginDate endDate:endDate];
+}
 
 - (BOOL) isDayWorkingDay:(NSDate *)theDate
 {
-    return [self.shiftAlgo isDayWorkingDay: theDate];
+    return [self.shiftAlgo shiftIsWorkingDay:theDate];
 }
 
 @end

@@ -3,7 +3,7 @@
 
 @implementation ShiftAlgoFreeRound : ShiftAlgoBase
 
-- (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) startDate endDate: (NSDate *) endDate
+- (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) beginDate endDate: (NSDate *) endDate
 {
   //     输入： 两个UTC的时间。
 //     输出： 一个加上了时区的nsdate的数组。
@@ -15,7 +15,7 @@
     
     // 计算的时候使用gmt时间， 在要把date加入到时区里面的时候， 加上时区的秒数。
 
-    NSDate *jobStartGMT = [self.jobStartDate cc_dateByMovingToBeginningOfDayWithCalender:self.curCalender];
+    NSDate *jobStartGMT = [self.JobContext.jobStartDate cc_dateByMovingToBeginningOfDayWithCalender:self.curCalendar];
     
     NSInteger diffBeginAndJobStartGMT = [self daysBetweenDateV2:jobStartGMT andDate:beginDate];
     NSInteger diffEndAndJobStartGMT = [self daysBetweenDateV2:jobStartGMT  andDate:endDate];
@@ -33,7 +33,7 @@
 //    目前只计算工作的天数， 半天的那种需要后面加上。
     for (int i = 0;
          i < range;
-         i++, workingDate = [workingDate cc_dateByMovingToNextDayWithCalender:self.curCalender]) 
+         i++, workingDate = [workingDate cc_dateByMovingToNextDayWithCalender:self.curCalendar]) 
     {
 //    先计算出当前这个临时时间和工作开始时间的差别    
         int days = [self daysBetweenDateV2:jobStartGMT andDate:workingDate];
@@ -46,8 +46,14 @@
             continue;
         }
 //      剩下就是最通常的情况，用余数来计算工作的天数，如果小雨jobOnDays，那天以前都是工作日。
-        int t = days % ([self.jobOnDays intValue]+ [self.jobOffDays intValue]);
-        if (t < [self.jobOnDays intValue]) {
+        int jobOnDays = [self.JobContext.jobOnDays intValue];
+        int jobOffDays = [self.JobContext.jobOffDays intValue];
+        
+        int totaldays = jobOnDays + jobOffDays;
+        
+        int t = days % totaldays;
+        
+        if (t < jobOnDays) {
             [matchedArray addObject:[[workingDate copy] dateByAddingTimeInterval:timeZoneDiff]];
         }
     }
@@ -63,14 +69,19 @@
 
 - (BOOL) shiftIsWorkingDay: (NSDate *)theDate
 {
-     NSDate *jobStartGMT = [self.jobStartDate cc_dateByMovingToBeginningOfDayWithCalender:self.curCalender];
+    int jobOnDays = [self.JobContext.jobOnDays intValue];
+    int jobOffDays = [self.JobContext.jobOffDays intValue];
+
+    
+    NSDate *jobStartGMT = [self.JobContext.jobStartDate
+                            cc_dateByMovingToBeginningOfDayWithCalender:self.curCalendar];
     int days = [self daysBetweenDateV2:jobStartGMT andDate:theDate];
    
     if (days < 0) return  NO;
     if (days == 0) return YES;
     
-    int t = days % ([self.jobOnDays intValue]+ [self.jobOffDays intValue]);
-    if (t < [self.jobOnDays intValue])
+    int t = days % (jobOnDays + jobOffDays);
+    if (t < jobOnDays)
         return YES;
     else
         return NO;

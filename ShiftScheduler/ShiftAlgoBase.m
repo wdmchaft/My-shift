@@ -1,18 +1,28 @@
 #import "ShiftAlgoBase.h"
+#import "OneJob.h"
 
-@interface ShiftAlgoBase : Nsobject {
-@private
-  	JobShiftAlgoType shiftType;
+@interface ShiftAlgoBase()
+{
+  	enum JobShiftAlgoType shiftType;
 	OneJob *JobContext;
+    NSCalendar *curCalendar;
 }
 
-@property JobShiftAlgoType shiftType;
-@property (assign) OneJob *JobContext;
+@property enum JobShiftAlgoType shiftType;
+
 @end
 
 @implementation ShiftAlgoBase
-@synthesize shiftType;
-@synthesize jobContext;
+@synthesize shiftType, JobContext, curCalendar;
+
+
+- (NSCalendar *) curCalendar
+{
+    if (!curCalendar) {
+        curCalendar = [NSCalendar currentCalendar];
+    }
+    return curCalendar;
+}
 
 - (id) initWithContext: (OneJob *)context
 {
@@ -35,7 +45,7 @@
 - (NSInteger)daysBetweenDateV2:(NSDate *)fromDateTime andDate:(NSDate *)toDateTime
 {
 
-    NSDateComponents *difference = [self.curCalender components:NSDayCalendarUnit
+    NSDateComponents *difference = [self.curCalendar components:NSDayCalendarUnit
                                                        fromDate:fromDateTime toDate:toDateTime options:0];
     
     return [difference day];

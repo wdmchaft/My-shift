@@ -1,9 +1,15 @@
-#import <Function/Function.h>
+
 #import <CoreData/CoreData.h>
 
 #import "OneJob.h"
 
 @interface ShiftAlgoBase : NSObject
+{
+}
+
+@property (strong) OneJob *JobContext;
+@property (readonly) NSCalendar *curCalendar;
+
 
 - (id) initWithContext: (OneJob *)context;
 - (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) startDate endDate: (NSDate *) endDate;

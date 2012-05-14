@@ -65,12 +65,25 @@
 		29AEBD7B155418890010F27D /* OneJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1DE1472C39F00DB2E1F /* OneJob.m */; };
 		29AEBD7C155418E60010F27D /* ShiftScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */; };
 		29AEBD8F15541C720010F27D /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DDDAC214808F94004DC703 /* NSDateAdditions.m */; };
+		29AEBDB015612CBA0010F27D /* ShiftAlgoBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 29AEBDAC15612CBA0010F27D /* ShiftAlgoBase.h */; };
+		29AEBDB115612CBA0010F27D /* ShiftAlgoBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDAD15612CBA0010F27D /* ShiftAlgoBase.m */; };
+		29AEBDB215612CBA0010F27D /* ShiftAlgoFreeRound.h in Headers */ = {isa = PBXBuildFile; fileRef = 29AEBDAE15612CBA0010F27D /* ShiftAlgoFreeRound.h */; };
+		29AEBDB315612CBA0010F27D /* ShiftAlgoFreeRound.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDAF15612CBA0010F27D /* ShiftAlgoFreeRound.m */; };
+		29AEBDB41561340A0010F27D /* ShiftAlgoBase.h in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDAC15612CBA0010F27D /* ShiftAlgoBase.h */; };
+		29AEBDB51561340A0010F27D /* ShiftAlgoBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDAD15612CBA0010F27D /* ShiftAlgoBase.m */; };
+		29AEBDB61561340A0010F27D /* ShiftAlgoFreeRound.h in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDAE15612CBA0010F27D /* ShiftAlgoFreeRound.h */; };
+		29AEBDB71561340A0010F27D /* ShiftAlgoFreeRound.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDAF15612CBA0010F27D /* ShiftAlgoFreeRound.m */; };
+		29AEBDBA1561340A0010F27D /* WorkdayDataSource.h in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E61472C39F00DB2E1F /* WorkdayDataSource.h */; };
+		29AEBDBB1561340A0010F27D /* WorkdayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */; };
+		29AEBDBC1561340A0010F27D /* ShiftDay.h in Sources */ = {isa = PBXBuildFile; fileRef = 294E2900148B302700E6ED45 /* ShiftDay.h */; };
+		29AEBDBD1561340A0010F27D /* ShiftDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E2901148B302700E6ED45 /* ShiftDay.m */; };
+		29AEBDBE1561340A0010F27D /* OneJob.h in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1DD1472C39F00DB2E1F /* OneJob.h */; };
+		29AEBDC3156134340010F27D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C31472C1D700DB2E1F /* main.m */; };
 		29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
 		29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
 		29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */; };
 		29B9E1BC1472C1D700DB2E1F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1BB1472C1D700DB2E1F /* CoreData.framework */; };
 		29B9E1C21472C1D700DB2E1F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1C01472C1D700DB2E1F /* InfoPlist.strings */; };
-		29B9E1C41472C1D700DB2E1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C31472C1D700DB2E1F /* main.m */; };
 		29B9E1C81472C1D700DB2E1F /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */; };
 		29B9E1CB1472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */; };
 		29B9E1D41472C2B000DB2E1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29B9E1D61472C2B000DB2E1F /* Localizable.strings */; };
@@ -202,6 +215,10 @@
 		29AEBD721554146F0010F27D /* OneJobModuleTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneJobModuleTest.h; sourceTree = "<group>"; };
 		29AEBD731554146F0010F27D /* OneJobModuleTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneJobModuleTest.m; sourceTree = "<group>"; };
 		29AEBD751554146F0010F27D /* OneJobModuleTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OneJobModuleTest-Prefix.pch"; sourceTree = "<group>"; };
+		29AEBDAC15612CBA0010F27D /* ShiftAlgoBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftAlgoBase.h; sourceTree = "<group>"; };
+		29AEBDAD15612CBA0010F27D /* ShiftAlgoBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftAlgoBase.m; sourceTree = "<group>"; };
+		29AEBDAE15612CBA0010F27D /* ShiftAlgoFreeRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftAlgoFreeRound.h; sourceTree = "<group>"; };
+		29AEBDAF15612CBA0010F27D /* ShiftAlgoFreeRound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftAlgoFreeRound.m; sourceTree = "<group>"; };
 		29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B9E1B51472C1D700DB2E1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B9E1B71472C1D700DB2E1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -352,30 +369,21 @@
 			name = SettingView;
 			sourceTree = "<group>";
 		};
-		293994B5147D25D30007320C /* Module */ = {
+		293994B5147D25D30007320C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				29C943AF14E957F700122144 /* SSKalDelegate.h */,
-				29C943B114E9581600122144 /* SSKalDelegate.m */,
-				29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */,
-				29B9E1E61472C39F00DB2E1F /* WorkdayDataSource.h */,
-				29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */,
-				294E2900148B302700E6ED45 /* ShiftDay.h */,
-				294E2901148B302700E6ED45 /* ShiftDay.m */,
-				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
-				29B9E1DE1472C39F00DB2E1F /* OneJob.m */,
-				29FA9AF114F48DAE00717505 /* SSAlertController.h */,
-				29FA9AF214F48DAE00717505 /* SSAlertController.m */,
-				29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */,
-				29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */,
+				29AEBDC71561356C0010F27D /* KalRelated */,
+				29AEBDC6156134DF0010F27D /* AlertModel */,
+				29AEBDC4156134B50010F27D /* ShiftModel */,
 			);
-			name = Module;
+			name = Model;
 			path = ShiftScheduler;
 			sourceTree = "<group>";
 		};
 		298B0167148B941900C013F5 /* Compile Need files */ = {
 			isa = PBXGroup;
 			children = (
+				29B9E1FA1472C72000DB2E1F /* Kal.bundle */,
 				2968BECB14F9050F00DF1CCF /* notify.caf */,
 				29E128CB1476D408008DDB53 /* KalViewController.h */,
 				29E128CC1476D431008DDB53 /* Kal.h */,
@@ -385,7 +393,6 @@
 				29DDDAC214808F94004DC703 /* NSDateAdditions.m */,
 			);
 			name = "Compile Need files";
-			path = ..;
 			sourceTree = "<group>";
 		};
 		298B0168148B946500C013F5 /* ChangeShiftView */ = {
@@ -450,17 +457,71 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		29B9E1A61472C1D700DB2E1F = {
+		29AEBDC4156134B50010F27D /* ShiftModel */ = {
 			isa = PBXGroup;
 			children = (
-				29E98C9514EFD78F0048AF49 /* SCKit */,
-				29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */,
-				293994B5147D25D30007320C /* Module */,
+				29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */,
+				29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */,
+				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
+				29B9E1DE1472C39F00DB2E1F /* OneJob.m */,
+				29B9E1C91472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld */,
+				29AEBDAC15612CBA0010F27D /* ShiftAlgoBase.h */,
+				29AEBDAD15612CBA0010F27D /* ShiftAlgoBase.m */,
+				294E2900148B302700E6ED45 /* ShiftDay.h */,
+				294E2901148B302700E6ED45 /* ShiftDay.m */,
+				29AEBDAE15612CBA0010F27D /* ShiftAlgoFreeRound.h */,
+				29AEBDAF15612CBA0010F27D /* ShiftAlgoFreeRound.m */,
+			);
+			name = ShiftModel;
+			sourceTree = "<group>";
+		};
+		29AEBDC6156134DF0010F27D /* AlertModel */ = {
+			isa = PBXGroup;
+			children = (
+				29FA9AF114F48DAE00717505 /* SSAlertController.h */,
+				29FA9AF214F48DAE00717505 /* SSAlertController.m */,
+			);
+			name = AlertModel;
+			sourceTree = "<group>";
+		};
+		29AEBDC71561356C0010F27D /* KalRelated */ = {
+			isa = PBXGroup;
+			children = (
+				29B9E1E61472C39F00DB2E1F /* WorkdayDataSource.h */,
+				29B9E1E71472C39F00DB2E1F /* WorkdayDataSource.m */,
+				29C943AF14E957F700122144 /* SSKalDelegate.h */,
+				29C943B114E9581600122144 /* SSKalDelegate.m */,
+			);
+			name = KalRelated;
+			sourceTree = "<group>";
+		};
+		29AEBDC8156136830010F27D /* GUI */ = {
+			isa = PBXGroup;
+			children = (
 				2935514914E2E5EB004D8FAC /* SettingView */,
 				299D8D0D147948B900E20DAE /* ProfileView */,
 				298B0168148B946500C013F5 /* ChangeShiftView */,
-				29B9E1FA1472C72000DB2E1F /* Kal.bundle */,
+				29E98C9514EFD78F0048AF49 /* SCKit */,
+				29B9E1BD1472C1D700DB2E1F /* ShiftScheduler */,
+			);
+			name = GUI;
+			sourceTree = "<group>";
+		};
+		29AEBDC91561369D0010F27D /* Test */ = {
+			isa = PBXGroup;
+			children = (
 				29AEBD6C1554146F0010F27D /* OneJobModuleTest */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
+		29B9E1A61472C1D700DB2E1F = {
+			isa = PBXGroup;
+			children = (
+				29AEBDC8156136830010F27D /* GUI */,
+				293994B5147D25D30007320C /* Model */,
+				298B0167148B941900C013F5 /* Compile Need files */,
+				29AEBDC91561369D0010F27D /* Test */,
 				29B9E1B41472C1D700DB2E1F /* Frameworks */,
 				29B9E1B21472C1D700DB2E1F /* Products */,
 				29B9E1FE1472C94C00DB2E1F /* Kal.xcodeproj */,
@@ -496,7 +557,6 @@
 				2929A45414D04C7B0059728D /* UIColor+HexCoding.h */,
 				2929A45514D04C7B0059728D /* UIColor+HexCoding.m */,
 				292DBC8014C952B300C87A70 /* jobicons.bundle */,
-				298B0167148B941900C013F5 /* Compile Need files */,
 				29B9E1C61472C1D700DB2E1F /* SSAppDelegate.h */,
 				29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */,
 				29C943B914EAB55200122144 /* UserReviewController.h */,
@@ -640,6 +700,8 @@
 				29E98CBD14EFDA340048AF49 /* SCPathUtils.h in Headers */,
 				29E98CD314EFF3FF0048AF49 /* SSProfileReminderDateSource.h in Headers */,
 				29FA9AF314F48DAE00717505 /* SSAlertController.h in Headers */,
+				29AEBDB015612CBA0010F27D /* ShiftAlgoBase.h in Headers */,
+				29AEBDB215612CBA0010F27D /* ShiftAlgoFreeRound.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,6 +847,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29AEBDB41561340A0010F27D /* ShiftAlgoBase.h in Sources */,
+				29AEBDB51561340A0010F27D /* ShiftAlgoBase.m in Sources */,
+				29AEBDB61561340A0010F27D /* ShiftAlgoFreeRound.h in Sources */,
+				29AEBDB71561340A0010F27D /* ShiftAlgoFreeRound.m in Sources */,
+				29AEBDBA1561340A0010F27D /* WorkdayDataSource.h in Sources */,
+				29AEBDBB1561340A0010F27D /* WorkdayDataSource.m in Sources */,
+				29AEBDBC1561340A0010F27D /* ShiftDay.h in Sources */,
+				29AEBDBD1561340A0010F27D /* ShiftDay.m in Sources */,
+				29AEBDBE1561340A0010F27D /* OneJob.h in Sources */,
 				29AEBD8F15541C720010F27D /* NSDateAdditions.m in Sources */,
 				29AEBD7C155418E60010F27D /* ShiftScheduler.xcdatamodeld in Sources */,
 				29AEBD7B155418890010F27D /* OneJob.m in Sources */,
@@ -796,7 +867,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29B9E1C41472C1D700DB2E1F /* main.m in Sources */,
+				29AEBDC3156134340010F27D /* main.m in Sources */,
 				29B9E1C81472C1D700DB2E1F /* SSAppDelegate.m in Sources */,
 				29B9E1CB1472C1D700DB2E1F /* ShiftScheduler.xcdatamodeld in Sources */,
 				29B9E1EB1472C39F00DB2E1F /* OneJob.m in Sources */,
@@ -838,6 +909,8 @@
 				29E98CBC14EFDA340048AF49 /* SCConstants.m in Sources */,
 				29E98CBE14EFDA340048AF49 /* SCPathUtils.m in Sources */,
 				29FA9AF414F48DAE00717505 /* SSAlertController.m in Sources */,
+				29AEBDB115612CBA0010F27D /* ShiftAlgoBase.m in Sources */,
+				29AEBDB315612CBA0010F27D /* ShiftAlgoFreeRound.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

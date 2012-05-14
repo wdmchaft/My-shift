@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11D50d" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="OneJob" representedClassName="OneJob">
         <attribute name="jobDescription" optional="YES" attributeType="String"/>
         <attribute name="jobEnable" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -15,6 +15,7 @@
         <attribute name="jobOnIconID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jobRemindBeforeOff" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="jobRemindBeforeWork" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="jobShiftType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="jobStartDate" optional="YES" attributeType="Date"/>
         <relationship name="shiftdays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShiftDay" inverseName="whatJob" inverseEntity="ShiftDay" syncable="YES"/>
     </entity>
@@ -27,7 +28,7 @@
         <relationship name="whatJob" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OneJob" inverseName="shiftdays" inverseEntity="OneJob" syncable="YES"/>
     </entity>
     <elements>
-        <element name="OneJob" positionX="160" positionY="192" width="128" height="285"/>
+        <element name="OneJob" positionX="160" positionY="192" width="128" height="300"/>
         <element name="ShiftDay" positionX="-560" positionY="207" width="128" height="120"/>
     </elements>
 </model>
