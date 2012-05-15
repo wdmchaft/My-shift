@@ -35,7 +35,7 @@
     calender = [NSCalendar currentCalendar];
     
     formatter = [[NSDateFormatter alloc] init];
-    [formatter setTimeStyle:NSDateFormatterFullStyle];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
     // Set-up code here.
 }
 
@@ -47,7 +47,7 @@
 }
 
 // the default on and off is 5/2
-- (void)testADefaultOnDay
+- (void)testFreesRoundADefaultOnDay
 {
     onOffJob = [NSEntityDescription insertNewObjectForEntityForName:@"OneJob" 
                                              inManagedObjectContext:self.moc];
@@ -100,10 +100,53 @@
                           [formatter stringFromDate:target_time]);
         }
     }
-    
-    
-
 }
+
+- (void) testFreeJumpShift
+{
+    OneJob *freejumpJob;
+
+    freejumpJob = [NSEntityDescription insertNewObjectForEntityForName:@"OneJob" 
+                                             inManagedObjectContext:self.moc];
+    [freejumpJob forceDefaultSetting];
+    freejumpJob.jobShiftType = [NSNumber numberWithInt:JOB_SHIFT_ALGO_FREE_JUMP];
+    
+    NSDate *today = [NSDate date];
+    
+    // test case is inside of Jump Shift model
+    // and the model is 
+    // 1, 2, working
+    // 3, 4, off
+    // 6 days on
+    // 6 days off.
+    
+    int testround = 2;
+    
+    for (int i = 0; i < testround; i++) {
+        int each_round = 16;
+        for (int j = 0; j < each_round; j++) {
+            int t = (each_round * i) + j;
+            NSDate *target_time = [today cc_dateByMovingToNextOrBackwardsFewDays:t withCalender:calender];
+            
+            NSArray *a = [freejumpJob returnWorkdaysWithInStartDate:today endDate:target_time];
+            STAssertTrue(( [a count] > 0), @"count: %d of target time not > 0, %d %@", a.count, t, [formatter stringFromDate:target_time]);
+            
+            if (j == 0 
+                || j == 1 
+                || (j >= 4 && j < 10)) {
+                STAssertTrue([freejumpJob isDayWorkingDay:target_time],
+                             @"%d day working: %@", t, [formatter stringFromDate:target_time]);
+            } else {
+                STAssertFalse([freejumpJob isDayWorkingDay:target_time],
+                             @"%d day off: %@", t, [formatter stringFromDate:target_time]);
+            }
+            
+            
+        }
+    }
+}
+
+
 
 
 @end

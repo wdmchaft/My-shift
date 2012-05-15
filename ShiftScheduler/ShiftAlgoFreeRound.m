@@ -39,7 +39,7 @@
 //    目前只计算工作的天数， 半天的那种需要后面加上。
     for (int i = 0; i < range; i++)
     {
-	workingDate = [workingDate cc_dateByMovingToNextDayWithCalender:self.curCalendar]) 
+        workingDate = [workingDate cc_dateByMovingToNextDayWithCalender:self.curCalendar]; 
 //    先计算出当前这个临时时间和工作开始时间的差别    
         int days = [self daysBetweenDateV2:jobStartGMT andDate:workingDate];
 //    如果这个临时时间小于工作开始的时间，就直接进行下一个

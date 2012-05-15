@@ -2,9 +2,9 @@
 #import "NSDateAdditions.h"
 
 
-@interface ShiftAlgoFreeJump()
-
-NSArray *testArray;
+@interface ShiftAlgoFreeJump() {
+    NSArray *testArray;
+}
 
 @end
 
@@ -13,7 +13,16 @@ NSArray *testArray;
  */
 @implementation ShiftAlgoFreeJump : ShiftAlgoBase
 
-- (void) testInit()
+- (id) initWithContext: (OneJob *) job
+{
+     self = [super initWithContext:job];
+
+     [self testInit];
+#warning "remove test Init"
+      return self;
+}
+
+- (void) testInit
 {
     // Setup a test array for flowing case:
     // 1. 2 on 2 off, and 6 on 6 off.
@@ -29,7 +38,7 @@ NSArray *testArray;
     for (int i = 0; i < 6; i++)
 	[ma addObject: [NSNumber numberWithInt: 0]];
 	
-    testArray = [ma array];
+    testArray = [ma copy];
 }
 
 - (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) beginDate
@@ -38,9 +47,10 @@ NSArray *testArray;
     // 计算的时候使用gmt时间， 在要把date加入到时区里面的时候， 加上时区的秒数。
     NSInteger timeZoneDiff = [[NSTimeZone defaultTimeZone] secondsFromGMTForDate:beginDate];
 
+        
     NSDate *jobStartGMT = [self.JobContext.jobStartDate
-			      cc_dateByMovingToBeginningOfDayWithCalender:self.curCalendar];
-    
+                           cc_dateByMovingToBeginningOfDayWithCalender:self.curCalendar];
+
     NSInteger diffBeginAndJobStartGMT = [self daysBetweenDateV2:jobStartGMT
 							andDate:beginDate];
     NSInteger diffEndAndJobStartGMT = [self daysBetweenDateV2:jobStartGMT  andDate:endDate];
@@ -65,7 +75,7 @@ NSArray *testArray;
 	if (days < 0)
 	    continue;
 	if ([self shiftIsWorkingDay: workingDate])
-	    [matchedArray addObject:[[workingDate copy] dateByAddingTimeinterval:timeZoneDiff]];
+	    [matchedArray addObject:[[workingDate copy] dateByAddingTimeInterval:timeZoneDiff]];
     }
 
     return matchedArray;
@@ -73,13 +83,21 @@ NSArray *testArray;
 
 - (BOOL)shiftIsWorkingDay: (NSDate *)theDate
 {
-    int days = [self daysBetweenDateV2:jobStartGMT andDate:workingDate];
+    NSAssert([self getCountOfJumpArray] > 0, @"The jump array must > 0");
+    NSDate *jobStartGMT = [self.JobContext.jobStartDate
+                           cc_dateByMovingToBeginningOfDayWithCalender:self.curCalendar];
+    int days = [self daysBetweenDateV2:jobStartGMT andDate:theDate];
     if (days < 0)
-	return NO;
-    if (days == 0)
-	return [self isWorkingInFreeJumpArray: days];
+        return NO;
+    else
+        return [self isWorkInFreeJumpArray:days % [self getCountOfJumpArray]];
 }
 
+- (int)getCountOfJumpArray
+{
+    return testArray.count;
+}
+                
 /**
    this function is special for this algorithm, return the array if a
    working day by checking the object in the array.
@@ -89,8 +107,9 @@ NSArray *testArray;
 - (BOOL)isWorkInFreeJumpArray: (int) offset
 {
     // Test version !!!
-    NSAssrt (offset > testArray.size(), @"offset is biggger than array!");
-    return [testArray objectAtIndex:offset].intValue == TRUE;
+    NSAssert(offset < [testArray count], @"offset is biggger than array!offset:%d count:%d ", offset, [testArray count]);
+    return [[testArray objectAtIndex:offset] intValue] == TRUE;
 }
 	
 	
+@end

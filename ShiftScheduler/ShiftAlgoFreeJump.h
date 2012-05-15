@@ -4,4 +4,6 @@
 
 @interface ShiftAlgoFreeJump : ShiftAlgoBase
 
+- (void) testInit;
+
 @end

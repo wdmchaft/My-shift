@@ -79,6 +79,9 @@
 		29AEBDBD1561340A0010F27D /* ShiftDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E2901148B302700E6ED45 /* ShiftDay.m */; };
 		29AEBDBE1561340A0010F27D /* OneJob.h in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1DD1472C39F00DB2E1F /* OneJob.h */; };
 		29AEBDC3156134340010F27D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9E1C31472C1D700DB2E1F /* main.m */; };
+		29AEBDE715628BAB0010F27D /* ShiftAlgoFreeJump.h in Headers */ = {isa = PBXBuildFile; fileRef = 29AEBDE515628BAB0010F27D /* ShiftAlgoFreeJump.h */; };
+		29AEBDE815628BAB0010F27D /* ShiftAlgoFreeJump.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDE615628BAB0010F27D /* ShiftAlgoFreeJump.m */; };
+		29AEBDE9156291360010F27D /* ShiftAlgoFreeJump.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDE615628BAB0010F27D /* ShiftAlgoFreeJump.m */; };
 		29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
 		29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
 		29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */; };
@@ -219,6 +222,8 @@
 		29AEBDAD15612CBA0010F27D /* ShiftAlgoBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftAlgoBase.m; sourceTree = "<group>"; };
 		29AEBDAE15612CBA0010F27D /* ShiftAlgoFreeRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftAlgoFreeRound.h; sourceTree = "<group>"; };
 		29AEBDAF15612CBA0010F27D /* ShiftAlgoFreeRound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftAlgoFreeRound.m; sourceTree = "<group>"; };
+		29AEBDE515628BAB0010F27D /* ShiftAlgoFreeJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftAlgoFreeJump.h; sourceTree = "<group>"; };
+		29AEBDE615628BAB0010F27D /* ShiftAlgoFreeJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftAlgoFreeJump.m; sourceTree = "<group>"; };
 		29B9E1B11472C1D700DB2E1F /* ShiftScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B9E1B51472C1D700DB2E1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B9E1B71472C1D700DB2E1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -460,6 +465,8 @@
 		29AEBDC4156134B50010F27D /* ShiftModel */ = {
 			isa = PBXGroup;
 			children = (
+				29AEBDE515628BAB0010F27D /* ShiftAlgoFreeJump.h */,
+				29AEBDE615628BAB0010F27D /* ShiftAlgoFreeJump.m */,
 				29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */,
 				29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */,
 				29B9E1DD1472C39F00DB2E1F /* OneJob.h */,
@@ -520,6 +527,7 @@
 			children = (
 				29AEBDC8156136830010F27D /* GUI */,
 				293994B5147D25D30007320C /* Model */,
+				29B9E1BE1472C1D700DB2E1F /* Supporting Files */,
 				298B0167148B941900C013F5 /* Compile Need files */,
 				29AEBDC91561369D0010F27D /* Test */,
 				29B9E1B41472C1D700DB2E1F /* Frameworks */,
@@ -561,7 +569,6 @@
 				29B9E1C71472C1D700DB2E1F /* SSAppDelegate.m */,
 				29C943B914EAB55200122144 /* UserReviewController.h */,
 				29C943BA14EAB55200122144 /* UserReviewController.m */,
-				29B9E1BE1472C1D700DB2E1F /* Supporting Files */,
 			);
 			path = ShiftScheduler;
 			sourceTree = "<group>";
@@ -581,6 +588,7 @@
 				29B9E1C51472C1D700DB2E1F /* ShiftScheduler-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = ShiftScheduler;
 			sourceTree = "<group>";
 		};
 		29B9E1FF1472C94C00DB2E1F /* Products */ = {
@@ -702,6 +710,7 @@
 				29FA9AF314F48DAE00717505 /* SSAlertController.h in Headers */,
 				29AEBDB015612CBA0010F27D /* ShiftAlgoBase.h in Headers */,
 				29AEBDB215612CBA0010F27D /* ShiftAlgoFreeRound.h in Headers */,
+				29AEBDE715628BAB0010F27D /* ShiftAlgoFreeJump.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29AEBDE9156291360010F27D /* ShiftAlgoFreeJump.m in Sources */,
 				29AEBDB41561340A0010F27D /* ShiftAlgoBase.h in Sources */,
 				29AEBDB51561340A0010F27D /* ShiftAlgoBase.m in Sources */,
 				29AEBDB61561340A0010F27D /* ShiftAlgoFreeRound.h in Sources */,
@@ -911,6 +921,7 @@
 				29FA9AF414F48DAE00717505 /* SSAlertController.m in Sources */,
 				29AEBDB115612CBA0010F27D /* ShiftAlgoBase.m in Sources */,
 				29AEBDB315612CBA0010F27D /* ShiftAlgoFreeRound.m in Sources */,
+				29AEBDE815628BAB0010F27D /* ShiftAlgoFreeJump.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
