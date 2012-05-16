@@ -1,10 +1,18 @@
 #import "ShiftAlgoFreeJump.h"
 #import "NSDateAdditions.h"
 
+#define SAFDEBUG
+
+#ifdef SAFDEBUG
+#define dbg(x...) NSLog(x)
+#else
+#define dbg(x...) do {} while (0)
+#endif
 
 @interface ShiftAlgoFreeJump()
 
 NSArray *testArray;
+NSDateFormatter formatter;
 
 @end
 
@@ -30,12 +38,20 @@ NSArray *testArray;
 	[ma addObject: [NSNumber numberWithInt: 0]];
 	
     testArray = [ma array];
+
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeStyle:NSDateFormatterFullStyle];
 }
 
 - (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) beginDate
 					enDate: (NSDate *) endDate
 {
     // 计算的时候使用gmt时间， 在要把date加入到时区里面的时候， 加上时区的秒数。
+
+    dbg("shiftCalcWorkday: begin:%@ end:%@",
+	[formatter stringFromDate:beginDate],
+	[formatter stringFromDate:endDate]);
+    
     NSInteger timeZoneDiff = [[NSTimeZone defaultTimeZone] secondsFromGMTForDate:beginDate];
 
     NSDate *jobStartGMT = [self.JobContext.jobStartDate
@@ -58,14 +74,13 @@ NSArray *testArray;
     // 2. Use "which day = Total days" % "ShiftsArray.size()"
     // 3. if  ShiftArray[WhichDay] == 1 , add the "Test Day to result array."
 
+    dbg(@"range: %d\n", range);
     for (int i = 0; i < range; i++) {
-	int days;
 	workingDate = [workingDate cc_dateByMovingToNextDayWithCalender:self.curCalendar];
-	days = [self daysBetweenDateV2:jobStartGMT andDate:workingDate];
-	if (days < 0)
-	    continue;
+
 	if ([self shiftIsWorkingDay: workingDate])
-	    [matchedArray addObject:[[workingDate copy] dateByAddingTimeinterval:timeZoneDiff]];
+	    [matchedArray addObject:[[workingDate copy]
+					dateByAddingTimeinterval:timeZoneDiff]];
     }
 
     return matchedArray;
