@@ -8,6 +8,8 @@
 
 #import "OneJobModuleTest.h"
 #import "NSDateAdditions.h"
+#import "ShiftAlgoFreeJump.h"
+#import "ShiftAlgoFreeRound.h"
 
 @implementation OneJobModuleTest
 
@@ -111,6 +113,26 @@
     [freejumpJob forceDefaultSetting];
     freejumpJob.jobShiftType = [NSNumber numberWithInt:JOB_SHIFT_ALGO_FREE_JUMP];
     
+    
+        // Setup a test array for flowing case:
+        // 1. 2 on 2 off, and 6 on 6 off.
+        // Totally 12+4 = 16 days.
+    NSMutableArray *ma = [[NSMutableArray alloc] init];
+    
+    [ma addObject: [NSNumber numberWithInt: 1]];
+    [ma addObject: [NSNumber numberWithInt: 1]];
+    [ma addObject: [NSNumber numberWithInt: 0]];
+    [ma addObject: [NSNumber numberWithInt: 0]];
+    for (int i = 0; i < 6; i++)
+        [ma addObject: [NSNumber numberWithInt: 1]];
+    for (int i = 0; i < 6; i++)
+        [ma addObject: [NSNumber numberWithInt: 0]];
+    
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeStyle:NSDateFormatterFullStyle];
+    
+    freejumpJob.jobFreejumpTable = ma;
+
     NSDate *today = [NSDate date];
     
     // test case is inside of Jump Shift model
@@ -129,7 +151,8 @@
             NSDate *target_time = [today cc_dateByMovingToNextOrBackwardsFewDays:t withCalender:calender];
             
             NSArray *a = [freejumpJob returnWorkdaysWithInStartDate:today endDate:target_time];
-            STAssertTrue(( [a count] > 0), @"count: %d of target time not > 0, %d %@", a.count, t, [formatter stringFromDate:target_time]);
+            if (t != 0)
+                STAssertTrue(( [a count] > 0), @"%d count: %d of target time not > 0, %d %@",t, a.count, t, [formatter stringFromDate:target_time]);
             
             if (j == 0 
                 || j == 1 

@@ -37,7 +37,7 @@
 {
     ShiftAlgoBase *shiftAlgo;
 }
-@property (readonly) ShiftAlgoBase *shiftAlgo;
+@property (strong, nonatomic) ShiftAlgoBase *shiftAlgo;
 
 @end
 
@@ -68,11 +68,26 @@
             break;
         case JOB_SHIFT_ALGO_FREE_JUMP:
             shiftAlgo = [[ShiftAlgoFreeJump alloc] initWithContext:self];
+            break;
 	default:
 	    assert (-1);
 	}
     }
     return shiftAlgo;
+}
+
+- (void) setJobFreejumpTable:(NSArray *) array
+{
+    jobFreejumpTable = [array copy];
+    
+    // archive the table to the core date also do here.
+    // *TODO* add later.
+}
+
+- (NSArray *) jobFreejumpTable
+{
+#warning add later.
+    return jobFreejumpTable;
 }
 
 - (void) trydDfaultSetting
@@ -257,8 +272,6 @@ static BOOL IsDateBetweenInclusive(NSDate *date, NSDate *begin, NSDate *end)
     return [date compare:begin] != NSOrderedAscending && [date compare:end] != NSOrderedDescending;
 }
 
-
-
 - (NSDate *) dateByMovingForwardDays:(NSInteger) i withDate:(NSDate *) theDate
 {
     NSDateComponents *c = [[NSDateComponents alloc] init];
@@ -276,5 +289,4 @@ static BOOL IsDateBetweenInclusive(NSDate *date, NSDate *begin, NSDate *end)
 {
     return [self.shiftAlgo shiftIsWorkingDay:theDate];
 }
-
 @end

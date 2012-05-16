@@ -82,6 +82,7 @@
 		29AEBDE715628BAB0010F27D /* ShiftAlgoFreeJump.h in Headers */ = {isa = PBXBuildFile; fileRef = 29AEBDE515628BAB0010F27D /* ShiftAlgoFreeJump.h */; };
 		29AEBDE815628BAB0010F27D /* ShiftAlgoFreeJump.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDE615628BAB0010F27D /* ShiftAlgoFreeJump.m */; };
 		29AEBDE9156291360010F27D /* ShiftAlgoFreeJump.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDE615628BAB0010F27D /* ShiftAlgoFreeJump.m */; };
+		29AEBDEA1563CE1A0010F27D /* ShiftAlgoFreeJump.h in Sources */ = {isa = PBXBuildFile; fileRef = 29AEBDE515628BAB0010F27D /* ShiftAlgoFreeJump.h */; };
 		29B9E1B61472C1D700DB2E1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
 		29B9E1B81472C1D700DB2E1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
 		29B9E1BA1472C1D700DB2E1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B91472C1D700DB2E1F /* CoreGraphics.framework */; };
@@ -856,6 +857,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29AEBDEA1563CE1A0010F27D /* ShiftAlgoFreeJump.h in Sources */,
 				29AEBDE9156291360010F27D /* ShiftAlgoFreeJump.m in Sources */,
 				29AEBDB41561340A0010F27D /* ShiftAlgoBase.h in Sources */,
 				29AEBDB51561340A0010F27D /* ShiftAlgoBase.m in Sources */,

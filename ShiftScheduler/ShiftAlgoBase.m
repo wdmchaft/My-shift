@@ -8,7 +8,7 @@
     NSCalendar *curCalendar;
 }
 
-@property enum JobShiftAlgoType shiftType;
+@property (nonatomic)enum JobShiftAlgoType shiftType;
 
 @end
 
@@ -33,14 +33,20 @@
   return self;
 }
 
+- (void) setShiftType:(enum JobShiftAlgoType)mshiftType
+{
+    shiftType = mshiftType;
+}
+
+
 - (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) startDate endDate: (NSDate *) endDate
 {
-    NSAssert(-1, @"should not call here");
+    NSAssert(NO, @"should not call here");
     return nil;
 }
 - (BOOL) shiftIsWorkingDay: (NSDate *)theDate
 {
-    NSAssert(-1, @"should not call here");
+    NSAssert(NO, @"should not call here");
     return NO;
 }
 

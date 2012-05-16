@@ -1,5 +1,6 @@
 #import "ShiftAlgoFreeRound.h"
 #import "NSDateAdditions.h"
+#import "OneJob.h"
 
 /**
    Free Round shift is the shift with 
@@ -8,6 +9,13 @@
    It widely used in China.
 */
 @implementation ShiftAlgoFreeRound : ShiftAlgoBase
+
+- (id)initWithContext:(OneJob *)context
+{
+    self = [super initWithContext:context];
+    [self setShiftType:JOB_SHIFT_ALGO_FREE_ROUND];
+    return self;
+}
 
 - (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) beginDate endDate: (NSDate *) endDate
 {
@@ -37,9 +45,9 @@
 //    这个循环从第一天开始，中间每次循环计算一个从beginDate开始的临时时间和工作开始时间的差距，
 //    然后用这个差距所算出来的时间来计算工作的类型。
 //    目前只计算工作的天数， 半天的那种需要后面加上。
-    for (int i = 0; i < range; i++)
+    for (int i = 0; i < range; i++,workingDate = [workingDate cc_dateByMovingToNextDayWithCalender:self.curCalendar])
     {
-        workingDate = [workingDate cc_dateByMovingToNextDayWithCalender:self.curCalendar]; 
+
 //    先计算出当前这个临时时间和工作开始时间的差别    
         int days = [self daysBetweenDateV2:jobStartGMT andDate:workingDate];
 //    如果这个临时时间小于工作开始的时间，就直接进行下一个
@@ -61,6 +69,7 @@
         if (t < jobOnDays) {
             [matchedArray addObject:[[workingDate copy] dateByAddingTimeInterval:timeZoneDiff]];
         }
+        
     }
     
 //    NSDate *date = [self.curCalender ]; 
@@ -91,6 +100,5 @@
     else
         return NO;
 }
-
 
 @end

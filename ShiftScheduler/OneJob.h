@@ -30,7 +30,7 @@ enum JobShiftAlgoType {
 @interface OneJob : NSManagedObject {
     NSCalendar *curCalender;
     NSCalendar *timezoneCalender;
-    
+    NSArray *jobFreejumpTable;
     UIImage *iconImage;
     UIColor *iconColor;
     UIColor *defaultIconColor;
@@ -62,9 +62,9 @@ enum JobShiftAlgoType {
 @property (nonatomic, strong) NSString *cachedJobOnIconID;
 
 @property (weak, nonatomic, readonly)  UIColor *defaultIconColor;
-@property (nonatomic, strong) NSNumber * jobRemindBeforeOff;
-@property (nonatomic, strong) NSNumber * jobRemindBeforeWork;
-
+@property (nonatomic, strong) NSNumber *jobRemindBeforeOff;
+@property (nonatomic, strong) NSNumber *jobRemindBeforeWork;
+@property (nonatomic, strong) NSArray  *jobFreejumpTable;
 
 // init the work date generator with these input.
 - (id) initWithWorkConfigWithStartDate: (NSDate *) startDate
