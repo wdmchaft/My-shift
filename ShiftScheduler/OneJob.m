@@ -13,6 +13,7 @@
 
 #import "ShiftAlgoBase.h"
 #import "ShiftAlgoFreeRound.h"
+#import "ShiftAlgoFreeJump.h"
 
 #define WORKDAY_TYPE_FULL 0
 #define WORKDAY_TYPE_NOT  1
@@ -36,7 +37,7 @@
 {
     ShiftAlgoBase *shiftAlgo;
 }
-@property (strong) ShiftAlgoBase *shiftAlgo;
+@property (readonly) ShiftAlgoBase *shiftAlgo;
 
 @end
 
@@ -62,9 +63,11 @@
     if (shiftAlgo == nil) {
 	enum JobShiftAlgoType type = (enum JobShiftAlgoType)self.jobShiftType.intValue;
 	switch(type) {
-	  case JOB_SHIFT_ALGO_FREE_ROUND:
-	      shiftAlgo = [[ShiftAlgoFreeRound alloc] initWithContext:self];
-	      break;
+        case JOB_SHIFT_ALGO_FREE_ROUND:
+            shiftAlgo = [[ShiftAlgoFreeRound alloc] initWithContext:self];
+            break;
+        case JOB_SHIFT_ALGO_FREE_JUMP:
+            shiftAlgo = [[ShiftAlgoFreeJump alloc] initWithContext:self];
 	default:
 	    assert (-1);
 	}
@@ -137,6 +140,10 @@
     self.jobEveryDayLengthSec = [NSNumber numberWithInt: JOB_DEFAULT_EVERYDAY_ON_LENGTH]; // 8 hour a day default
     self.jobRemindBeforeOff = [NSNumber numberWithInt:JOB_DEFAULT_REMIND_TIME_BEFORE_OFF];
     self.jobRemindBeforeWork = [NSNumber numberWithInt:JOB_DEFAULT_REMIND_TIME_BEFORE_WORK];
+    
+#warning  remove this test message
+    self.jobShiftType = [NSNumber numberWithInt:JOB_SHIFT_ALGO_FREE_JUMP];
+#warning  remove this test message
 }
 
 

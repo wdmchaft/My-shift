@@ -35,11 +35,13 @@
 
 - (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) startDate endDate: (NSDate *) endDate
 {
-  return nil;
+    NSAssert(-1, @"should not call here");
+    return nil;
 }
 - (BOOL) shiftIsWorkingDay: (NSDate *)theDate
 {
-  return NO;
+    NSAssert(-1, @"should not call here");
+    return NO;
 }
 
 - (NSInteger)daysBetweenDateV2:(NSDate *)fromDateTime andDate:(NSDate *)toDateTime
