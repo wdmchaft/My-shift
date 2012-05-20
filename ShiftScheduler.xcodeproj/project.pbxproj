@@ -50,6 +50,8 @@
 		2935514F14E2E61F004D8FAC /* SSSettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935514C14E2E61F004D8FAC /* SSSettingTVC.xib */; };
 		294E2902148B302700E6ED45 /* ShiftDay.h in Headers */ = {isa = PBXBuildFile; fileRef = 294E2900148B302700E6ED45 /* ShiftDay.h */; };
 		294E2903148B302700E6ED45 /* ShiftDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E2901148B302700E6ED45 /* ShiftDay.m */; };
+		2958CFBA1568DAAE00E273C3 /* calendar-red-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 2958CFB91568DAAE00E273C3 /* calendar-red-57x57.png */; };
+		2958CFBC1568DAB500E273C3 /* calendar-red-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 2958CFBB1568DAB500E273C3 /* calendar-red-114x114.png */; };
 		2968BECC14F9050F00DF1CCF /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2968BECB14F9050F00DF1CCF /* notify.caf */; };
 		2968BECE14F9076400DF1CCF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2968BECD14F9076400DF1CCF /* AVFoundation.framework */; };
 		2968BED014F907BB00DF1CCF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2968BECF14F907BB00DF1CCF /* AudioToolbox.framework */; };
@@ -107,11 +109,6 @@
 		29C943BC14EAB55200122144 /* UserReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C943BA14EAB55200122144 /* UserReviewController.m */; };
 		29DDDAC314808F94004DC703 /* NSDateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 29DDDAC114808F94004DC703 /* NSDateAdditions.h */; };
 		29DDDAC414808F94004DC703 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DDDAC214808F94004DC703 /* NSDateAdditions.m */; };
-		29E128C41476C861008DDB53 /* calendar-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C11476C861008DDB53 /* calendar-2.png */; };
-		29E128C51476C861008DDB53 /* calendar-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C21476C861008DDB53 /* calendar-1.png */; };
-		29E128C61476C861008DDB53 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C31476C861008DDB53 /* calendar.png */; };
-		29E128C81476CB53008DDB53 /* calendar-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C71476CB53008DDB53 /* calendar-57x57.png */; };
-		29E128CA1476CBCA008DDB53 /* calendar-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E128C91476CBC9008DDB53 /* calendar-114x114.png */; };
 		29E339D414CA955A0036EAED /* ProfileIconPickerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E339D214CA955A0036EAED /* ProfileIconPickerDataSource.h */; };
 		29E339D514CA955A0036EAED /* ProfileIconPickerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E339D314CA955A0036EAED /* ProfileIconPickerDataSource.m */; };
 		29E98CA314EFD8270048AF49 /* SCAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98C9914EFD8270048AF49 /* SCAnimation.h */; };
@@ -207,6 +204,8 @@
 		294E28FF148B2F3A00E6ED45 /* ShiftScheduler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 2.xcdatamodel"; sourceTree = "<group>"; };
 		294E2900148B302700E6ED45 /* ShiftDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftDay.h; sourceTree = "<group>"; };
 		294E2901148B302700E6ED45 /* ShiftDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftDay.m; sourceTree = "<group>"; };
+		2958CFB91568DAAE00E273C3 /* calendar-red-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-red-57x57.png"; path = "../calendar-red-57x57.png"; sourceTree = "<group>"; };
+		2958CFBB1568DAB500E273C3 /* calendar-red-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-red-114x114.png"; path = "../calendar-red-114x114.png"; sourceTree = "<group>"; };
 		2968BECB14F9050F00DF1CCF /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
 		2968BECD14F9076400DF1CCF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2968BECF14F907BB00DF1CCF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -261,11 +260,6 @@
 		29C943BA14EAB55200122144 /* UserReviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserReviewController.m; sourceTree = "<group>"; };
 		29DDDAC114808F94004DC703 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateAdditions.h; sourceTree = "<group>"; };
 		29DDDAC214808F94004DC703 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
-		29E128C11476C861008DDB53 /* calendar-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-2.png"; sourceTree = "<group>"; };
-		29E128C21476C861008DDB53 /* calendar-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-1.png"; sourceTree = "<group>"; };
-		29E128C31476C861008DDB53 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
-		29E128C71476CB53008DDB53 /* calendar-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-57x57.png"; path = "../calendar-57x57.png"; sourceTree = "<group>"; };
-		29E128C91476CBC9008DDB53 /* calendar-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-114x114.png"; path = "../calendar-114x114.png"; sourceTree = "<group>"; };
 		29E128CB1476D408008DDB53 /* KalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KalViewController.h; path = ../../Kal/src/KalViewController.h; sourceTree = "<group>"; };
 		29E128CC1476D431008DDB53 /* Kal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kal.h; path = ../../Kal/src/Kal.h; sourceTree = "<group>"; };
 		29E339D214CA955A0036EAED /* ProfileIconPickerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileIconPickerDataSource.h; sourceTree = "<group>"; };
@@ -577,11 +571,8 @@
 		29B9E1BE1472C1D700DB2E1F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				29E128C91476CBC9008DDB53 /* calendar-114x114.png */,
-				29E128C71476CB53008DDB53 /* calendar-57x57.png */,
-				29E128C11476C861008DDB53 /* calendar-2.png */,
-				29E128C21476C861008DDB53 /* calendar-1.png */,
-				29E128C31476C861008DDB53 /* calendar.png */,
+				2958CFBB1568DAB500E273C3 /* calendar-red-114x114.png */,
+				2958CFB91568DAAE00E273C3 /* calendar-red-57x57.png */,
 				29B9E1D61472C2B000DB2E1F /* Localizable.strings */,
 				29B9E1BF1472C1D700DB2E1F /* ShiftScheduler-Info.plist */,
 				29B9E1C01472C1D700DB2E1F /* InfoPlist.strings */,
@@ -814,11 +805,6 @@
 				29B9E1FB1472C72000DB2E1F /* Kal.bundle in Resources */,
 				29B9E1C21472C1D700DB2E1F /* InfoPlist.strings in Resources */,
 				29B9E1D41472C2B000DB2E1F /* Localizable.strings in Resources */,
-				29E128C41476C861008DDB53 /* calendar-2.png in Resources */,
-				29E128C51476C861008DDB53 /* calendar-1.png in Resources */,
-				29E128C61476C861008DDB53 /* calendar.png in Resources */,
-				29E128C81476CB53008DDB53 /* calendar-57x57.png in Resources */,
-				29E128CA1476CBCA008DDB53 /* calendar-114x114.png in Resources */,
 				290474CE148E7A4E0089A432 /* ShfitChangeList.xib in Resources */,
 				29873821149917C300A2617F /* DatePickerViewController2.xib in Resources */,
 				2919033E14A8CA2200EE1F32 /* ShiftChangeAddVC.xib in Resources */,
@@ -831,6 +817,8 @@
 				2935514F14E2E61F004D8FAC /* SSSettingTVC.xib in Resources */,
 				29C943B814E9642900122144 /* SSProfileTimeAndAlarmVC.xib in Resources */,
 				2968BECC14F9050F00DF1CCF /* notify.caf in Resources */,
+				2958CFBA1568DAAE00E273C3 /* calendar-red-57x57.png in Resources */,
+				2958CFBC1568DAB500E273C3 /* calendar-red-114x114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

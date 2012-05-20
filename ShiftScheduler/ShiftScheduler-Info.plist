@@ -10,8 +10,8 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>calendar-57x57.png</string>
-		<string>calendar-114x114.png</string>
+		<string>calendar-red-57x57.png</string>
+		<string>calendar-red-114x114.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -19,9 +19,11 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>calendar-57x57.png</string>
-				<string>calendar-114x114.png</string>
+				<string>calendar-red-57x57.png</string>
+				<string>calendar-red-114x114.png</string>
 			</array>
+			<key>UIPrerenderedIcon</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
@@ -39,6 +41,8 @@
 	<key>CFBundleVersion</key>
 	<string>2.1.2</string>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
