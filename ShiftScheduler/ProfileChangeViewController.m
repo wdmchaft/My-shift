@@ -257,8 +257,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    NSError *error;
-    [self.managedObjectContext save:&error];
+    // should not save any managed context here...
 }
 
 - (void)viewDidDisappear:(BOOL)animated

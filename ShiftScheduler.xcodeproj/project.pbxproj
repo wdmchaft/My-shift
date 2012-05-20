@@ -342,7 +342,7 @@
 			name = "Color Picker";
 			sourceTree = "<group>";
 		};
-		292DBC8A14CA931800C87A70 /* JPImagePicker */ = {
+		292DBC8A14CA931800C87A70 /* JPImage Picker */ = {
 			isa = PBXGroup;
 			children = (
 				292DBCA014CA943F00C87A70 /* JPImagePickerController.h */,
@@ -356,7 +356,7 @@
 				292DBCA814CA943F00C87A70 /* UIImageResizing.h */,
 				292DBCA914CA943F00C87A70 /* UIImageResizing.m */,
 			);
-			name = JPImagePicker;
+			name = "JPImage Picker";
 			sourceTree = "<group>";
 		};
 		2935514914E2E5EB004D8FAC /* SettingView */ = {
@@ -378,6 +378,13 @@
 			);
 			name = Model;
 			path = ShiftScheduler;
+			sourceTree = "<group>";
+		};
+		2958CFBD1568DC2A00E273C3 /* Free Jump Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Free Jump Profile";
 			sourceTree = "<group>";
 		};
 		298B0167148B941900C013F5 /* Compile Need files */ = {
@@ -416,13 +423,14 @@
 		299D8D0D147948B900E20DAE /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
+				2958CFBD1568DC2A00E273C3 /* Free Jump Profile */,
 				29057D1D14D0477C00155E12 /* Color Picker */,
-				292DBC8A14CA931800C87A70 /* JPImagePicker */,
+				292DBC8A14CA931800C87A70 /* JPImage Picker */,
 				29E339D214CA955A0036EAED /* ProfileIconPickerDataSource.h */,
 				29E339D314CA955A0036EAED /* ProfileIconPickerDataSource.m */,
 				29B9E1E01472C39F00DB2E1F /* ProfileChangeViewController.h */,
-				2935514714E2DDB0004D8FAC /* ProfileChangeViewController.xib */,
 				29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */,
+				2935514714E2DDB0004D8FAC /* ProfileChangeViewController.xib */,
 				2935514114E2BABA004D8FAC /* SSTurnShiftTVC.h */,
 				2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */,
 				2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */,
@@ -1062,6 +1070,7 @@
 				GCC_PREFIX_HEADER = "ShiftScheduler/ShiftScheduler-Prefix.pch";
 				INFOPLIST_FILE = "ShiftScheduler/ShiftScheduler-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1083,6 +1092,7 @@
 				GCC_PREFIX_HEADER = "ShiftScheduler/ShiftScheduler-Prefix.pch";
 				INFOPLIST_FILE = "ShiftScheduler/ShiftScheduler-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;

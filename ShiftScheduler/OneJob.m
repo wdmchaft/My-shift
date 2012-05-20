@@ -84,6 +84,9 @@
     // *TODO* add later.
 }
 
+/** this function should do the job convert all jump work information
+ * to an array can be process by the modale
+ */
 - (NSArray *) jobFreejumpTable
 {
 #warning add later.
@@ -156,9 +159,9 @@
     self.jobRemindBeforeOff = [NSNumber numberWithInt:JOB_DEFAULT_REMIND_TIME_BEFORE_OFF];
     self.jobRemindBeforeWork = [NSNumber numberWithInt:JOB_DEFAULT_REMIND_TIME_BEFORE_WORK];
     
-#warning  remove this test message
-    self.jobShiftType = [NSNumber numberWithInt:JOB_SHIFT_ALGO_FREE_JUMP];
-#warning  remove this test message
+//#warning  remove this test message
+//    self.jobShiftType = [NSNumber numberWithInt:JOB_SHIFT_ALGO_FREE_JUMP];
+//#warning  remove this test message
 }
 
 

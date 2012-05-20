@@ -345,7 +345,7 @@ enum {
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return 30;
+    return 45;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
