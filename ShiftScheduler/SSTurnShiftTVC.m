@@ -303,10 +303,11 @@ enum {
     
     NSString *item = [self returnItemByIndexPath:indexPath];
 
-    if ([item isEqualToString:WORKLEN_ITEM_STRING] || [item isEqualToString:RESTLEN_ITEM_STRING]) {
+    if ([item isEqualToString:WORKLEN_ITEM_STRING] 
+        || [item isEqualToString:RESTLEN_ITEM_STRING]) {
         
         NSInteger n  =  [targetCell.detailTextLabel.text intValue];
-        [self.picker selectRow:n-1 inComponent:0 animated:YES];        
+        [self.picker selectRow:(n - 1) inComponent:0 animated:YES];        
         [self showPickerView:self.picker];
     }
 
@@ -345,7 +346,7 @@ enum {
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return 45;
+    return 46;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView

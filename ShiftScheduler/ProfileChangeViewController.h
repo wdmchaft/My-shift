@@ -11,13 +11,17 @@
 #import "ProfilesViewController.h"
 #import "ProfileIconPickerDataSource.h"
 #import "InfColorPickerController.h"
+#import "SSShiftTypePickerTVC.h"
+
 
 #define PCVC_EDITING_MODE 0
 #define PCVC_ADDING_MODE 1
 
 // default working days and off days when adding new profile.
 
-@interface ProfileChangeViewController : UITableViewController  <UITextFieldDelegate, JPImagePickerControllerDelegate, InfColorPickerControllerDelegate>
+@interface ProfileChangeViewController : 
+UITableViewController  
+<UITextFieldDelegate, JPImagePickerControllerDelegate, InfColorPickerControllerDelegate, SSShiftTypePickerDelegate>
 {
     int viewMode;
     BOOL showColorAndIconPicker;
@@ -43,15 +47,13 @@
 @property (nonatomic, strong) UIBarButtonItem *saveButton;
 @property (nonatomic, strong) UIBarButtonItem *cancelButton;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
-@property (strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) UITextField *nameField;
-@property (assign, nonatomic)    id<ProfileViewDelegate> profileDelegate;
-
 @property (nonatomic, strong) ProfileIconPickerDataSource *iconDateSource;
-
 @property int viewMode;
+@property (nonatomic, strong) OneJob *theJob;
 
-@property (strong) OneJob *theJob;
+@property (assign, nonatomic)    id<ProfileViewDelegate> profileDelegate;
 
 - (IBAction) cancel:(id)sender;
 - (void) saveProfile:(id) sender;

@@ -58,6 +58,8 @@
 		2987381F149917C300A2617F /* DatePickerViewController2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2987381C149917C200A2617F /* DatePickerViewController2.h */; };
 		29873820149917C300A2617F /* DatePickerViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2987381D149917C200A2617F /* DatePickerViewController2.m */; };
 		29873821149917C300A2617F /* DatePickerViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2987381E149917C300A2617F /* DatePickerViewController2.xib */; };
+		299E33A2156A74820066E843 /* SSShiftTypePickerTVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 299E33A0156A74820066E843 /* SSShiftTypePickerTVC.h */; };
+		299E33A3156A74820066E843 /* SSShiftTypePickerTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 299E33A1156A74820066E843 /* SSShiftTypePickerTVC.m */; };
 		29AEBD691554146F0010F27D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ECA45814B0514E00B3832D /* SenTestingKit.framework */; };
 		29AEBD6A1554146F0010F27D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B51472C1D700DB2E1F /* UIKit.framework */; };
 		29AEBD6B1554146F0010F27D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B9E1B71472C1D700DB2E1F /* Foundation.framework */; };
@@ -212,6 +214,8 @@
 		2987381C149917C200A2617F /* DatePickerViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController2.h; sourceTree = "<group>"; };
 		2987381D149917C200A2617F /* DatePickerViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController2.m; sourceTree = "<group>"; };
 		2987381E149917C300A2617F /* DatePickerViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController2.xib; sourceTree = "<group>"; };
+		299E33A0156A74820066E843 /* SSShiftTypePickerTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSShiftTypePickerTVC.h; sourceTree = "<group>"; };
+		299E33A1156A74820066E843 /* SSShiftTypePickerTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSShiftTypePickerTVC.m; sourceTree = "<group>"; };
 		29AEBD681554146F0010F27D /* OneJobModuleTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneJobModuleTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29AEBD6E1554146F0010F27D /* OneJobModuleTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OneJobModuleTest-Info.plist"; sourceTree = "<group>"; };
 		29AEBD701554146F0010F27D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -434,6 +438,8 @@
 				2935514114E2BABA004D8FAC /* SSTurnShiftTVC.h */,
 				2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */,
 				2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */,
+				299E33A0156A74820066E843 /* SSShiftTypePickerTVC.h */,
+				299E33A1156A74820066E843 /* SSShiftTypePickerTVC.m */,
 				29C943B314E9642800122144 /* SSProfileTimeAndAlarmVC.h */,
 				29C943B414E9642800122144 /* SSProfileTimeAndAlarmVC.m */,
 				29E98CD114EFF3FF0048AF49 /* SSProfileReminderDateSource.h */,
@@ -711,6 +717,7 @@
 				29AEBDB015612CBA0010F27D /* ShiftAlgoBase.h in Headers */,
 				29AEBDB215612CBA0010F27D /* ShiftAlgoFreeRound.h in Headers */,
 				29AEBDE715628BAB0010F27D /* ShiftAlgoFreeJump.h in Headers */,
+				299E33A2156A74820066E843 /* SSShiftTypePickerTVC.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,6 +927,7 @@
 				29AEBDB115612CBA0010F27D /* ShiftAlgoBase.m in Sources */,
 				29AEBDB315612CBA0010F27D /* ShiftAlgoFreeRound.m in Sources */,
 				29AEBDE815628BAB0010F27D /* ShiftAlgoFreeJump.m in Sources */,
+				299E33A3156A74820066E843 /* SSShiftTypePickerTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

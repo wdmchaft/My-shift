@@ -24,7 +24,7 @@ enum JobShiftAlgoType {
   JOB_SHIFT_ALGO_NON_TYPE = 0,	// Report assert here.
   JOB_SHIFT_ALGO_FREE_ROUND = 1, // X on X off round robin shift.
   JOB_SHIFT_ALGO_FREE_JUMP,	 // X on/off self check in Y days.
-  JOB_SHIFT_ALGO_THREE_SHIFT,	 // three shift system. 
+  JOB_SHIFT_ALGO_HOUR_ROUND ,	 // three shift system. 
 };
 
 @interface OneJob : NSManagedObject {
@@ -50,7 +50,8 @@ enum JobShiftAlgoType {
 @property (nonatomic, strong) NSDate * jobFinishDate;
 @property (nonatomic, strong) NSString * jobOnColorID;
 @property (nonatomic, strong) NSString * jobOnIconID;
-@property (nonatomic, retain) NSNumber * jobShiftType;
+@property (nonatomic, strong) NSNumber * jobShiftType;
+@property (nonatomic, readonly) NSString * jobShiftTypeString;
 
 
 @property (nonatomic, strong) NSNumber * jobOnIconColorOn;
@@ -81,6 +82,9 @@ enum JobShiftAlgoType {
 - (void) trydDfaultSetting;
 - (void) forceDefaultSetting;
 - (NSString *) jobEverydayOffTimeWithFormatter:(NSDateFormatter *) formatter;
+
+- (NSArray *) jobShiftAllTypesString;
+- (Boolean) shiftTypeValied;
 
 @property (nonatomic, strong) NSSet *shiftdays;
 @end

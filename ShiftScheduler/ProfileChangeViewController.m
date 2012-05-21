@@ -29,6 +29,8 @@
 #define WORKLEN_ITEM_STRING NSLocalizedString(@"Work Length", "how long work days")
 #define RESTLEN_ITEM_STRING NSLocalizedString(@"Rest Length", "how long rest days")
 #define STARTWITH_ITEM_STRING NSLocalizedString(@"Start With", "start with this date")
+#define SHIFTTYPE_ITEM_STRING NSLocalizedString(@"Shift Type", "shift type")
+#define SHIFTCONFIG_ITEM_STRING NSLocalizedString(@"Detail Config", "config  detail of shift")
 
 - (NSArray *) itemsArray
 {
@@ -37,12 +39,9 @@
         itemsArray = [[NSArray alloc] initWithObjects:
 					  NAME_ITEM_STRING,
 				      ICON_ITEM_STRING,
-				      
-//                      COLOR_ENABLE_STRING,
 				      COLOR_PICKER_STRING,
-				      WORKLEN_ITEM_STRING,
-				      RESTLEN_ITEM_STRING,
-				      STARTWITH_ITEM_STRING ,
+				      SHIFTTYPE_ITEM_STRING,
+				      SHIFTCONFIG_ITEM_STRING,
 				      nil];
     }
     return itemsArray;
@@ -105,7 +104,6 @@
 #define kTopMargin				20.0
 #define kRightMargin			20.0
 #define kTweenMargin			10.0
-
 #define kTextFieldHeight		30.0
 #define kViewTag 1
 - (UITextField *)nameField
@@ -211,6 +209,8 @@
 {
     [super viewDidLoad];
     
+    NSAssert(self.theJob, @"the job should not nil");
+    
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.allowsSelectionDuringEditing = YES;
@@ -298,6 +298,7 @@
     return @"";
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0)
@@ -307,7 +308,7 @@
         return 3;
 #endif
     else if (section == 1)
-        return [self.itemsArray count] - 3;
+        return 2;
     else if (section == 2)
         return self.timeItemsArray.count;
     
@@ -329,28 +330,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ProfileCell";
-
+    NSString *item;
+    
     // here can't recycle tabelViewCell.
     UITableViewCell *cell;
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     // setup cell text by index path
-    NSString *item;
+
     item =  [self returnItemByIndexPath:indexPath];
+
     cell.textLabel.text = item;
     cell.imageView.image = nil;
     
    
-    // the default value should configure when ViewWas loaded.
-    
-//    if ([item isEqualToString:COLOR_ENABLE_STRING]) {
-//        [cell.contentView addSubview:self.colorEnableSwitch];
-//    }
-    
     if ([item isEqualToString:NAME_ITEM_STRING]) {
         cell.imageView.image = self.theJob.iconImage;
-        
         self.nameField.delegate = self;
         [self.nameField setText:self.theJob.jobName];
         [cell.contentView addSubview:self.nameField];
@@ -358,14 +354,11 @@
     }
     
     
-    if ([SSTurnShiftTVC isItemInThisViewController:item]) {
-        [SSTurnShiftTVC configureTimeCell:cell indexPath:indexPath Job:self.theJob dateFormatter:self.dateFormatter];
-    }
+    if ([item isEqualToString:SHIFTTYPE_ITEM_STRING])
+        cell.detailTextLabel.text = self.theJob.jobShiftTypeString;
     
     if ([SSProfileTimeAndAlarmVC isItemInThisViewController:item])
-    {
         [SSProfileTimeAndAlarmVC configureTimeCell:cell indexPath:indexPath Job:self.theJob];
-    }
 
     return cell;
 }
@@ -431,6 +424,19 @@
     return NO;
 }
 
+- (void)shiftConfigChooseRightShiftConfigure
+{
+    if (![self.theJob shiftTypeValied]) {
+        // do some thing , alart ?
+    }
+
+    if (self.theJob.jobShiftType.intValue == JOB_SHIFT_ALGO_FREE_ROUND) {
+        SSTurnShiftTVC *tstvc = [[SSTurnShiftTVC alloc] initWithNibName:@"SSTurnShiftTVC" bundle:nil];
+        tstvc.theJob = self.theJob;
+        [self.navigationController pushViewController:tstvc animated:YES];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -462,19 +468,19 @@
         UIColor *color = self.theJob.iconColor;
         if (color != nil)
             color_picker.sourceColor = self.theJob.iconColor;
-
         [color_picker presentModallyOverViewController:self];
     }
     
+    if ([item isEqualToString:SHIFTTYPE_ITEM_STRING]) {
+        SSShiftTypePickerTVC *stp = [[SSShiftTypePickerTVC alloc] initWithStyle:UITableViewStyleGrouped];
+        stp.pickDelegate = self;
+        stp.items = self.theJob.jobShiftAllTypesString;
+        [self.navigationController pushViewController:stp animated:YES];
+    }
     
-    if ([SSTurnShiftTVC isItemInThisViewController:item])
-	{
-	    SSTurnShiftTVC *tstvc = [[SSTurnShiftTVC alloc] initWithNibName:@"SSTurnShiftTVC" bundle:nil];
-        tstvc.theJob = self.theJob;
-        tstvc.firstChooseIndexPath = indexPath;
-        [self.navigationController pushViewController:tstvc animated:YES];
-        
-	}
+    
+    if ([item isEqualToString:SHIFTCONFIG_ITEM_STRING])
+        [self shiftConfigChooseRightShiftConfigure];
 
     if ([SSProfileTimeAndAlarmVC isItemInThisViewController:item])
 	{
@@ -493,6 +499,8 @@
 
 - (void)saveProfile:(id) sender
 {
+
+    // No profile name not allow save.
     if (self.theJob.jobName == nil || self.theJob.jobName.length == 0) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Input Job Name", "alart title in editing profile view")
 				     message:NSLocalizedString(@"Please input Job Name", "alert string in editing profile view to let user input job name")
@@ -500,6 +508,16 @@
 			   cancelButtonTitle:NSLocalizedString(@"I Know", @"I Know") otherButtonTitles:nil, nil] show];
         return;
     }
+
+    // No Shift Type don't allow save.
+    if (self.theJob.jobShiftType == nil || self.theJob.jobShiftType.intValue == JOB_SHIFT_ALGO_NON_TYPE) {
+	[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Needs Shift Type", "alart shift type in editing profile view")
+				    message:NSLocalizedString(@"Please Choose a shift type", "alert string in editing profile view to let user input shift type")
+				   delegate:self
+			  cancelButtonTitle:NSLocalizedString(@"I Know", @"I Know") otherButtonTitles:nil, nil] show];
+        return;
+    }
+
     NSError *error = nil;
     if (self.theJob.jobStartDate == nil) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"incomplete input", "alart title start profile view")
@@ -508,8 +526,7 @@
                           cancelButtonTitle:NSLocalizedString(@"I Know", @"I Know") otherButtonTitles:nil, nil] show];
         return;
     }
-        
-    
+
     [self.profileDelegate didChangeProfile:self didFinishWithSave:YES];
     [self.managedObjectContext save:&error];
 
@@ -555,5 +572,14 @@
 {
     [self dismissModalViewControllerAnimated:YES];   
 }
+
+#pragma - mark - ShiftTypePickerDelegate
+- (void) SSItemPickerChoosewithController: (SSShiftTypePickerTVC *) sender itemIndex: (NSInteger) index
+{
+    self.theJob.jobShiftType = [NSNumber numberWithInt:(index + 1)];
+    [sender.navigationController popViewControllerAnimated:YES];
+    [self.tableView reloadData];
+}
+
 
 @end

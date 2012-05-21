@@ -36,6 +36,7 @@
 @interface OneJob()
 {
     ShiftAlgoBase *shiftAlgo;
+    NSArray *jobShiftAllTypesString;
 }
 @property (strong, nonatomic) ShiftAlgoBase *shiftAlgo;
 
@@ -56,7 +57,7 @@
 @dynamic jobOnIconID;
 @dynamic jobShiftType;
 @dynamic jobRemindBeforeOff,jobRemindBeforeWork;
-@synthesize curCalender, cachedJobOnIconColor, cachedJobOnIconID, shiftAlgo;
+@synthesize curCalender, cachedJobOnIconColor, cachedJobOnIconID, shiftAlgo, jobShiftTypeString;
 
 - (ShiftAlgoBase *)shiftAlgo;
 {
@@ -91,6 +92,43 @@
 {
 #warning add later.
     return jobFreejumpTable;
+}
+
+#define FREE_JUMP_STRING NSLocalizedString(@"Free Jump", "")
+#define FREE_ROUND_STRING NSLocalizedString(@"Day Round", "")
+#define HOUR_ROUND_STRING NSLocalizedString(@"Hour Round", "")
+#define NA_SHITF_STRING   NSLocalizedString(@"N/A", "")
+
+- (NSArray *) jobShiftAllTypesString
+{
+    
+    if (jobShiftAllTypesString == nil) {
+        jobShiftAllTypesString = [[NSArray alloc] initWithObjects:
+                                  FREE_ROUND_STRING,
+                                  FREE_JUMP_STRING,
+                                  HOUR_ROUND_STRING,
+                                  nil];
+    }
+    return jobShiftAllTypesString;
+}
+
+- (Boolean) shiftTypeValied
+{
+    NSInteger n = self.jobShiftType.intValue;
+    if (n > 0 && n < [[self jobShiftAllTypesString] count]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (NSString *) jobShiftTypeString
+{
+    
+    if ([self shiftTypeValied])
+        return [[self jobShiftAllTypesString]
+		   objectAtIndex:(self.jobShiftType.intValue - 1)];
+    //    NSAssert(NO, @"shiftType return with empty string, should not happen");
+    return [NSString string];
 }
 
 - (void) trydDfaultSetting
