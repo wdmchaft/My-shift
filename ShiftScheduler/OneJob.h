@@ -27,18 +27,8 @@ enum JobShiftAlgoType {
   JOB_SHIFT_ALGO_HOUR_ROUND ,	 // three shift system. 
 };
 
-@interface OneJob : NSManagedObject {
-    NSCalendar *curCalender;
-    NSCalendar *timezoneCalender;
-    NSArray *jobFreejumpTable;
-    UIImage *iconImage;
-    UIColor *iconColor;
-    UIColor *defaultIconColor;
-    NSString *cachedJobOnIconID;
-    NSString *cachedJobOnIconColor;
-    NSNumber *cachedJobOnIconColorOn;
-    
-}
+@interface OneJob : NSManagedObject
+
 @property (nonatomic, strong) NSString * jobName;       // the job's name
 @property (nonatomic, strong) NSNumber * jobEnable;   // bool enable the job display on the cal or not
 @property (nonatomic, strong) NSString * jobDescription; //the detail describe of this job
@@ -52,16 +42,12 @@ enum JobShiftAlgoType {
 @property (nonatomic, strong) NSString * jobOnIconID;
 @property (nonatomic, strong) NSNumber * jobShiftType;
 @property (nonatomic, readonly) NSString * jobShiftTypeString;
-
-
 @property (nonatomic, strong) NSNumber * jobOnIconColorOn;
-
 @property (nonatomic, strong) NSCalendar *curCalender;
 @property (weak, nonatomic, readonly) UIImage  *iconImage;
 @property (weak, nonatomic, readonly) UIColor  *iconColor;
 @property (nonatomic, strong) NSString *cachedJobOnIconColor;
 @property (nonatomic, strong) NSString *cachedJobOnIconID;
-
 @property (weak, nonatomic, readonly)  UIColor *defaultIconColor;
 @property (nonatomic, strong) NSNumber *jobRemindBeforeOff;
 @property (nonatomic, strong) NSNumber *jobRemindBeforeWork;
@@ -85,6 +71,8 @@ enum JobShiftAlgoType {
 
 - (NSArray *) jobShiftAllTypesString;
 - (Boolean) shiftTypeValied;
+- (NSNumber *) shiftTotalCycle;
++ (BOOL) IsDateBetweenInclusive:(NSDate *)date begin: (NSDate *) begin end: (NSDate *)end;
 
 @property (nonatomic, strong) NSSet *shiftdays;
 @end

@@ -17,6 +17,11 @@
     return self;
 }
 
+- (NSNumber *) shiftTotalCycle
+{
+    return [NSNumber numberWithInt:(self.JobContext.jobOnDays.intValue + self.JobContext.jobOffDays.intValue)];
+}
+
 - (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) beginDate endDate: (NSDate *) endDate
 {
   //     输入： 两个UTC的时间。
@@ -30,7 +35,8 @@
     // 计算的时候使用gmt时间， 在要把date加入到时区里面的时候， 加上时区的秒数。
 
     NSDate *jobStartGMT = [self.JobContext.jobStartDate cc_dateByMovingToBeginningOfDayWithCalender:self.curCalendar];
-    
+    NSDate *jobFinishGMT = [self.JobContext.jobFinishDate cc_dateByMovingToBeginningOfDayWithCalender:self.curCalendar];
+
     NSInteger diffBeginAndJobStartGMT = [self daysBetweenDateV2:jobStartGMT andDate:beginDate];
     NSInteger diffEndAndJobStartGMT = [self daysBetweenDateV2:jobStartGMT  andDate:endDate];
     NSInteger range  = [self daysBetweenDateV2:beginDate andDate:endDate];
@@ -53,6 +59,11 @@
 //    如果这个临时时间小于工作开始的时间，就直接进行下一个
         if (days < 0)
             continue;
+        
+        // 如果有结束日期， 就在这里检查结束日期和这个时间的差别， 如果已经结束， 就退出循环。
+        if (jobFinishGMT && ([self daysBetweenDateV2:workingDate andDate:jobFinishGMT] < 0))
+            break;
+
 //     恰好是工作当天，就直接加上了
         if (days == 0) {
             [matchedArray addObject:[[workingDate copy] dateByAddingTimeInterval:timeZoneDiff]];
@@ -88,17 +99,27 @@
 
     
     NSDate *jobStartGMT = [self.JobContext.jobStartDate
+                           cc_dateByMovingToBeginningOfDayWithCalender:self.curCalendar];
+    NSDate *jobFinishGMT = [self.JobContext.jobFinishDate
                             cc_dateByMovingToBeginningOfDayWithCalender:self.curCalendar];
+    
+
     int days = [self daysBetweenDateV2:jobStartGMT andDate:theDate];
-   
+    
     if (days < 0) return  NO;
     if (days == 0) return YES;
     
     int t = days % (jobOnDays + jobOffDays);
-    if (t < jobOnDays)
+    
+    // handle the case we have limite the time.
+    if (jobFinishGMT) {
+    if (t < jobOnDays && [OneJob IsDateBetweenInclusive: theDate begin:jobStartGMT end:jobFinishGMT])
         return YES;
-    else
+    else 
         return NO;
+    }
+    
+    return t < jobOnDays ? YES : NO;
 }
 
 @end

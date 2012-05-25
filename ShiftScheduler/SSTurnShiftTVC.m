@@ -9,19 +9,38 @@
 #import "SSTurnShiftTVC.h"
 #import "SCViewController.h"
 #import "SCModalPickerView.h"
+#import "SSTurnFinishDatePickerTVC.h"
+
+@interface SSTurnShiftTVC()
+{
+    UIPickerView *picker;
+    UIDatePicker *datePicker;
+    NSArray *itemsArray;
+    NSDateFormatter *dateFormatter;
+    NSIndexPath *firstChooseIndexPath; // the indexPath use choose when enter this UI.
+
+    SCModalPickerView *modalPickerView;
+    SCModalPickerView *modalDatePickerView;
+    OneJob *theJob;
+}
+
+@end
 
 @implementation SSTurnShiftTVC
 
 @synthesize datePicker, picker, theJob, firstChooseIndexPath;
 
-#define WORKLEN_ITEM_STRING NSLocalizedString(@"Work Length", "how long work days")
-#define RESTLEN_ITEM_STRING NSLocalizedString(@"Rest Length", "how long rest days")
-#define STARTWITH_ITEM_STRING NSLocalizedString(@"Start With", "start with this date")
+#define WORKLEN_ITEM_STRING   NSLocalizedString(@"Work Length", "how long work days")
+#define RESTLEN_ITEM_STRING   NSLocalizedString(@"Rest Length", "how long rest days")
+#define STARTWITH_ITEM_STRING NSLocalizedString(@"Start at", "start with this date")
+#define REPEAT_ITEM_STRING    NSLocalizedString(@"Repeat Until", "finish at this date")
+#define REPEAT_FOREVER_STRING NSLocalizedString(@"Repeat forever", "repeart forever string")
 
 enum {
     WORKLEN_ITEM = 0,
     RESETLEN_ITEM,
-    STARTWITH_ITEM
+    STARTWITH_ITEM,
+    FINISH_ITEM,
 };
 
 + (NSArray *) returnItemsArray
@@ -29,7 +48,8 @@ enum {
     return  [[NSArray alloc] initWithObjects:
              WORKLEN_ITEM_STRING,
              RESTLEN_ITEM_STRING,
-             STARTWITH_ITEM_STRING ,
+             STARTWITH_ITEM_STRING,
+             REPEAT_ITEM_STRING,
              nil];
 }
 
@@ -146,7 +166,7 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self showUserChoosenSection];
+    // [self showUserChoosenSection];
     
 }
 
@@ -181,7 +201,7 @@ enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    return [self itemsArray].count;
 }
 
 - (NSString *)returnItemByIndexPath: (NSIndexPath *)indexPath
@@ -193,13 +213,22 @@ enum {
 
 + (void) configureTimeCell: (UITableViewCell *)cell indexPath: (NSIndexPath *)indexPath Job: (OneJob *)theJob dateFormatter:(NSDateFormatter *)dateFormatter
 {
-    if (indexPath.row == WORKLEN_ITEM) {
+    if (indexPath.row == WORKLEN_ITEM)
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", [theJob.jobOnDays intValue]];
-    } else if (indexPath.row == RESETLEN_ITEM) {
+    else if (indexPath.row == RESETLEN_ITEM)
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%2d", [theJob.jobOffDays intValue]];
-        
-    } else if (indexPath.row == STARTWITH_ITEM) {
+    else if (indexPath.row == STARTWITH_ITEM)
         cell.detailTextLabel.text = [dateFormatter stringFromDate:theJob.jobStartDate];
+    
+    else if (indexPath.row == FINISH_ITEM) {
+        NSString *text;
+        if (theJob.jobFinishDate == nil) {
+            text = REPEAT_FOREVER_STRING;
+        } else {
+            text = [dateFormatter stringFromDate:theJob.jobFinishDate];
+        }
+        cell.detailTextLabel.text = text;
+        cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 }
 
@@ -212,7 +241,6 @@ enum {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
 	cell.editingAccessoryType = UITableViewCellAccessoryNone;
     }
-    
     // Configure the cell...
     NSString *item;
     item =  [self returnItemByIndexPath:indexPath];
@@ -265,10 +293,10 @@ enum {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", value];
             [cell setSelected:YES];
 
-            if (pChoosedIndexPath.row == PICKER_VIEW_ON) // on day
+            if (pPickerView.tag == WORKLEN_ITEM) // on day
                 job.jobOnDays = [NSNumber numberWithInt:value];
             
-            if (pChoosedIndexPath.row == PICKER_VIEW_OFF) //off day
+            if (pPickerView.tag == RESETLEN_ITEM) //off day
                 job.jobOffDays = [NSNumber numberWithInt:value];
         }
     }];
@@ -289,8 +317,13 @@ enum {
     [modalDatePickerView setCompletionHandler:^(SCModalPickerViewResult result){
         if (result == SCModalPickerViewResultDone)
         { 
-            job.jobStartDate = pdatePicker.date;   
-            cell.detailTextLabel.text = [pDateFormatter stringFromDate:job.jobStartDate];
+            
+            if (pdatePicker.tag == STARTWITH_ITEM) {
+                job.jobStartDate = pdatePicker.date;
+            }
+            else if (pdatePicker.tag == FINISH_ITEM)
+                job.jobFinishDate = pdatePicker.date;
+            cell.detailTextLabel.text = [pDateFormatter stringFromDate:pdatePicker.date];
         }
     }];
     [modalDatePickerView show];
@@ -307,13 +340,23 @@ enum {
         || [item isEqualToString:RESTLEN_ITEM_STRING]) {
         
         NSInteger n  =  [targetCell.detailTextLabel.text intValue];
-        [self.picker selectRow:(n - 1) inComponent:0 animated:YES];        
+        [self.picker selectRow:(n - 1) inComponent:0 animated:YES];
+        self.picker.tag = 
+        ([item isEqualToString:WORKLEN_ITEM_STRING])  ? WORKLEN_ITEM : RESETLEN_ITEM;
         [self showPickerView:self.picker];
     }
 
     if ([item isEqualToString:STARTWITH_ITEM_STRING]) {
+        self.datePicker.tag = STARTWITH_ITEM;
         self.datePicker.date = self.theJob.jobStartDate;
         [self showDatePickerView:self.datePicker];
+    }
+    
+    if ([item isEqualToString:REPEAT_ITEM_STRING]) {
+        
+        SSTurnFinishDatePickerTVC *finishpicker = [[SSTurnFinishDatePickerTVC alloc] initWithStyle:UITableViewStyleGrouped];
+        finishpicker.job = self.theJob;
+        [self.navigationController pushViewController:finishpicker animated:YES];
     }
 }
 

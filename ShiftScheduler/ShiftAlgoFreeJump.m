@@ -28,6 +28,10 @@
      return self;
 }
 
+- (NSNumber *) shiftTotalCycle
+{
+    return [NSNumber numberWithInt:[self getCountOfJumpArray]];
+}
 
 - (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) beginDate endDate: (NSDate *) endDate
 {

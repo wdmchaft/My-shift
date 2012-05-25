@@ -19,16 +19,6 @@
 
 @class SCModalPickerView;
 @interface SSTurnShiftTVC : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>
-{
-    UIPickerView *picker;
-    UIDatePicker *datePicker;
-    NSArray *itemsArray;
-    NSDateFormatter *dateFormatter;
-    OneJob *theJob;
-    NSIndexPath *firstChooseIndexPath; // the indexPath use choose when enter this UI.
-    SCModalPickerView *modalPickerView;
-    SCModalPickerView *modalDatePickerView;
-}
 
 @property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic, strong) IBOutlet UIPickerView *picker;

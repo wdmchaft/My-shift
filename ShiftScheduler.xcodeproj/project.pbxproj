@@ -134,6 +134,10 @@
 		29E98CD314EFF3FF0048AF49 /* SSProfileReminderDateSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E98CD114EFF3FF0048AF49 /* SSProfileReminderDateSource.h */; };
 		29F2147D14E66DB7008BEE92 /* UIImage+MonoImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */; };
 		29F2147E14E66DB7008BEE92 /* UIImage+MonoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */; };
+		29F49CA6156FDAD900C76EFC /* FreeJumpProfileConfigTVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 29F49CA4156FDAD900C76EFC /* FreeJumpProfileConfigTVC.h */; };
+		29F49CA7156FDAD900C76EFC /* FreeJumpProfileConfigTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F49CA5156FDAD900C76EFC /* FreeJumpProfileConfigTVC.m */; };
+		29F49CAA156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 29F49CA8156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.h */; };
+		29F49CAB156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F49CA9156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.m */; };
 		29FA9AF314F48DAE00717505 /* SSAlertController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29FA9AF114F48DAE00717505 /* SSAlertController.h */; };
 		29FA9AF414F48DAE00717505 /* SSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FA9AF214F48DAE00717505 /* SSAlertController.m */; };
 /* End PBXBuildFile section */
@@ -291,6 +295,10 @@
 		29F2147B14E66DB7008BEE92 /* UIImage+MonoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MonoImage.h"; sourceTree = "<group>"; };
 		29F2147C14E66DB7008BEE92 /* UIImage+MonoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MonoImage.m"; sourceTree = "<group>"; };
 		29F2147F14E68A9B008BEE92 /* ShiftScheduler 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 3.xcdatamodel"; sourceTree = "<group>"; };
+		29F49CA4156FDAD900C76EFC /* FreeJumpProfileConfigTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeJumpProfileConfigTVC.h; sourceTree = "<group>"; };
+		29F49CA5156FDAD900C76EFC /* FreeJumpProfileConfigTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeJumpProfileConfigTVC.m; sourceTree = "<group>"; };
+		29F49CA8156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTurnFinishDatePickerTVC.h; sourceTree = "<group>"; };
+		29F49CA9156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTurnFinishDatePickerTVC.m; sourceTree = "<group>"; };
 		29F89FEC14E8072D002BB665 /* ShiftScheduler 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShiftScheduler 4.xcdatamodel"; sourceTree = "<group>"; };
 		29FA9AF114F48DAE00717505 /* SSAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSAlertController.h; sourceTree = "<group>"; };
 		29FA9AF214F48DAE00717505 /* SSAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSAlertController.m; sourceTree = "<group>"; };
@@ -387,6 +395,8 @@
 		2958CFBD1568DC2A00E273C3 /* Free Jump Profile */ = {
 			isa = PBXGroup;
 			children = (
+				29F49CA4156FDAD900C76EFC /* FreeJumpProfileConfigTVC.h */,
+				29F49CA5156FDAD900C76EFC /* FreeJumpProfileConfigTVC.m */,
 			);
 			name = "Free Jump Profile";
 			sourceTree = "<group>";
@@ -438,6 +448,8 @@
 				2935514114E2BABA004D8FAC /* SSTurnShiftTVC.h */,
 				2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */,
 				2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */,
+				29F49CA8156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.h */,
+				29F49CA9156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.m */,
 				299E33A0156A74820066E843 /* SSShiftTypePickerTVC.h */,
 				299E33A1156A74820066E843 /* SSShiftTypePickerTVC.m */,
 				29C943B314E9642800122144 /* SSProfileTimeAndAlarmVC.h */,
@@ -718,6 +730,8 @@
 				29AEBDB215612CBA0010F27D /* ShiftAlgoFreeRound.h in Headers */,
 				29AEBDE715628BAB0010F27D /* ShiftAlgoFreeJump.h in Headers */,
 				299E33A2156A74820066E843 /* SSShiftTypePickerTVC.h in Headers */,
+				29F49CA6156FDAD900C76EFC /* FreeJumpProfileConfigTVC.h in Headers */,
+				29F49CAA156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,6 +942,8 @@
 				29AEBDB315612CBA0010F27D /* ShiftAlgoFreeRound.m in Sources */,
 				29AEBDE815628BAB0010F27D /* ShiftAlgoFreeJump.m in Sources */,
 				299E33A3156A74820066E843 /* SSShiftTypePickerTVC.m in Sources */,
+				29F49CA7156FDAD900C76EFC /* FreeJumpProfileConfigTVC.m in Sources */,
+				29F49CAB156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

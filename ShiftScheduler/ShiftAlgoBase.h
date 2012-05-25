@@ -15,6 +15,7 @@
 - (NSArray *) shiftCalcWorkdayBetweenStartDate: (NSDate *) startDate endDate: (NSDate *) endDate;
 - (BOOL) shiftIsWorkingDay: (NSDate *)theDate;
 - (void) setShiftType:(enum JobShiftAlgoType)mshiftType;
+- (NSNumber *) shiftTotalCycle;
 - (NSInteger)daysBetweenDateV2:(NSDate *)fromDateTime andDate:(NSDate *)toDateTime;
 
 @end

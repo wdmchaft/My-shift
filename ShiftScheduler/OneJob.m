@@ -37,6 +37,15 @@
 {
     ShiftAlgoBase *shiftAlgo;
     NSArray *jobShiftAllTypesString;
+    NSCalendar *curCalender;
+    NSCalendar *timezoneCalender;
+    NSArray *jobFreejumpTable;
+    UIImage *iconImage;
+    UIColor *iconColor;
+    UIColor *defaultIconColor;
+    NSString *cachedJobOnIconID;
+    NSString *cachedJobOnIconColor;
+    NSNumber *cachedJobOnIconColorOn;
 }
 @property (strong, nonatomic) ShiftAlgoBase *shiftAlgo;
 
@@ -119,6 +128,11 @@
         return YES;
     }
     return NO;
+}
+
+- (NSNumber *) shiftTotalCycle
+{
+    return [self.shiftAlgo shiftTotalCycle];
 }
 
 - (NSString *) jobShiftTypeString
@@ -308,7 +322,7 @@
 }
 
 
-static BOOL IsDateBetweenInclusive(NSDate *date, NSDate *begin, NSDate *end)
++ (BOOL) IsDateBetweenInclusive:(NSDate *)date begin: (NSDate *) begin end: (NSDate *)end;
 {
     return [date compare:begin] != NSOrderedAscending && [date compare:end] != NSOrderedDescending;
 }
