@@ -22,24 +22,6 @@
 @interface ProfileChangeViewController : 
 UITableViewController  
 <UITextFieldDelegate, JPImagePickerControllerDelegate, InfColorPickerControllerDelegate, SSShiftTypePickerDelegate>
-{
-    int viewMode;
-    BOOL showColorAndIconPicker;
-    UITextField *nameField;
-    UILabel *nameLable;
-    UISwitch *colorEnableSwitch;
-    NSArray *itemsArray;
-    NSArray *timeItemArray;
-    UIBarButtonItem *saveButton;
-    UIBarButtonItem *cancelButton;
-    NSDateFormatter *dateFormatter;
-    NSManagedObjectContext *managedObjectContext;
-    NSIndexPath *colorChooseCellIndexPath;
-    id<ProfileViewDelegate>  __unsafe_unretained profileDelegate;
-    ProfileIconPickerDataSource *iconDateSource;
-    JPImagePickerController *imagePickerVC;
-    OneJob *theJob;
-}
 
 @property (nonatomic, strong) UISwitch *colorEnableSwitch;
 @property (nonatomic, strong) NSArray *itemsArray;

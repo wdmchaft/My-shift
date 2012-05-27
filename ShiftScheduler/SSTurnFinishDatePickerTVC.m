@@ -63,16 +63,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
 
     NSAssert(self.job, @"job much be set");
+    
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.editing = YES;
+    self.tableView.allowsSelectionDuringEditing = YES;
 
     self.job.jobFinishDate = [self minValildDate];
-    
-    // add date picker into windows.
-
  }
 
 - (void)viewDidUnload
@@ -83,11 +81,12 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+  
     UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 250, 325, 250)];
     
-   CGSize pickerSize = [datePicker sizeThatFits:CGSizeZero];
-   CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-   CGRect pickerRect = CGRectMake(0.0, screenRect.origin.y + screenRect.size.height - pickerSize.height - 65, pickerSize.width, pickerSize.height);
+    CGSize pickerSize = [datePicker sizeThatFits:CGSizeZero];
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    CGRect pickerRect = CGRectMake(0.0, screenRect.origin.y + screenRect.size.height - pickerSize.height - 65, pickerSize.width, pickerSize.height);
     datePicker.frame = pickerRect;
     [self.view addSubview: datePicker];
     
@@ -95,15 +94,27 @@
     
     [datePicker setDatePickerMode:UIDatePickerModeDate];
     [datePicker addTarget:self
-                        action:@selector(changeDateInLabel:)
-              forControlEvents:UIControlEventValueChanged];
-    datePicker.hidden = NO;
+		   action:@selector(changeDateInLabel:)
+	 forControlEvents:UIControlEventValueChanged];
 
+    datePicker.hidden = NO;
 }
 
-- (void)setEditing:(BOOL)editing
+- (void)setEditing:(BOOL)editing animated:(BOOL)animate
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [super setEditing:editing animated:animate];
+
+    if (!editing)
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleNone;
+}
+
+- (BOOL) tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -146,6 +157,7 @@
     if (indexPath.section == 1) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.textLabel.text = REPEAT_FOREVER_STRING;
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
     }
     
     return cell;

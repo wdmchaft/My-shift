@@ -20,7 +20,6 @@
 @class SCModalPickerView;
 @interface SSTurnShiftTVC : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic, strong) IBOutlet UIPickerView *picker;
 @property (nonatomic, strong) OneJob *theJob;
 @property (nonatomic, strong) NSIndexPath *firstChooseIndexPath;

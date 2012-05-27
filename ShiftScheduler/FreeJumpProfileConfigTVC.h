@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OneJob.h"
 
 @interface FreeJumpProfileConfigTVC : UITableViewController
 
+@property (nonatomic, strong) OneJob *theJob;
 @end

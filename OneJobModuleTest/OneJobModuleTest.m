@@ -33,7 +33,7 @@
                  ? YES : NO, @"Should be able to add in-memory store");
     self.moc = [[NSManagedObjectContext alloc] init];
     self.moc.persistentStoreCoordinator = psc;
-
+    
     calender = [NSCalendar currentCalendar];
     
     formatter = [[NSDateFormatter alloc] init];
@@ -51,55 +51,72 @@
 // the default on and off is 5/2
 - (void)testFreesRoundADefaultOnDay
 {
+    int testround = 50;
+    int totalloop = 7;
+    int testroundafterEnd = 5;
+    int default_on = JOB_DEFAULT_ON_DAYS;
+    int default_off = JOB_DEFAULT_OFF_DAYS;
+    
+    
     onOffJob = [NSEntityDescription insertNewObjectForEntityForName:@"OneJob" 
                                              inManagedObjectContext:self.moc];
     [onOffJob forceDefaultSetting];
     onOffJob.jobShiftType = [NSNumber numberWithInt:JOB_SHIFT_ALGO_FREE_ROUND];
-
+    
     NSDate *today = [NSDate date];
-    onOffJob.jobStartDate = today; // start from today... 
+    onOffJob.jobStartDate = today; // start from today...
+    onOffJob.jobFinishDate = [today cc_dateByMovingToNextOrBackwardsFewDays: (testround * totalloop)
+                                                               withCalender:calender];
     
-    int testround = 50;
-    int totalloop = 7;
-    int default_on = JOB_DEFAULT_ON_DAYS;
-    int default_off = JOB_DEFAULT_OFF_DAYS;
-    
-    STAssertTrue(onOffJob.jobOnDays.intValue == default_on, 
-                 @"default on not equal to 5");
-    STAssertTrue(onOffJob.jobOffDays.intValue == default_off, 
-                 @"defualt off not equla to 2");
+    STAssertTrue(onOffJob.jobOnDays.intValue == default_on, @"default on not equal to 5");
+    STAssertTrue(onOffJob.jobOffDays.intValue == default_off, @"defualt off not equla to 2");
     
     NSLog(@"start Date: %@", [formatter stringFromDate:today]);
-
+    
     int workdays = 0;
     // start test isDayWorking Day...
-    for (int j = 0 ; j < testround; j++) {
-    
+    for (int j = 0 ; j < (testround + testroundafterEnd) ; j++) {
+        
         for (int i = 0 + (totalloop*j); i < default_on + (totalloop * j); i++) {
             NSDate *target_time = [today cc_dateByMovingToNextOrBackwardsFewDays:i
-                                                            withCalender:calender];
-            STAssertTrue([onOffJob isDayWorkingDay:target_time], 
-                         @"%d day is working day: date: %@", 
-                         i, 
-                         [formatter stringFromDate:target_time]);
-            workdays++;
+                                                                    withCalender:calender];
+            
+            if (j < testround)  {
+                STAssertTrue([onOffJob isDayWorkingDay:target_time], @"%d day is working day: date: %@", 
+                             i, [formatter stringFromDate:target_time]);
+                workdays++;
+            } else
+                STAssertFalse([onOffJob isDayWorkingDay:target_time], @"%d day is not working day: date: %@", 
+                              i, [formatter stringFromDate:target_time]);
+
             
             // this function is return the work days between start and target, if it was same day, it means no work days. so it return 0.
-            // this is a special case... 
+            // this is a special case...
+            
+            // start testing returnWorkdaysWithInStartDate() API
             NSArray *a = [onOffJob returnWorkdaysWithInStartDate:today endDate:target_time];
-            STAssertTrue( a.count == workdays - 1,
-                          @"work days not equal count:%d loop:%d, array:%@  ",
-                         a.count, workdays, a);
+            STAssertTrue( a.count == workdays - 1,@"work days not equal count:%d loop:%d, array:%@  ",
+                             a.count, workdays, a);
+
         }
-        for (int i = 0 + (totalloop*j); i < default_off + (totalloop * j); i++) {
+        
+        
+        
+        // start testing isDayWorkingDay() API
+        // testing the work off days.
+        for (int i = 0 + (totalloop * j); i < default_off + (totalloop * j); i++) {
             
             i = default_on + i;
             NSDate *target_time = [today cc_dateByMovingToNextOrBackwardsFewDays:i
                                                                     withCalender:calender];
-            STAssertFalse([onOffJob isDayWorkingDay:target_time], 
-                          @"%d day is off day: date: %@", 
-                          i, 
-                          [formatter stringFromDate:target_time]);
+            
+            if (j < testround) 
+                STAssertFalse([onOffJob isDayWorkingDay:target_time], @"%d day is off day: date: %@", 
+                              i, [formatter stringFromDate:target_time]);
+            else
+                STAssertFalse([onOffJob isDayWorkingDay:target_time], @"%d day is off day, job already finished. date: %@", 
+                             i, [formatter stringFromDate:target_time]);
+            
         }
     }
 }
@@ -107,16 +124,16 @@
 - (void) testFreeJumpShift
 {
     OneJob *freejumpJob;
-
+    
     freejumpJob = [NSEntityDescription insertNewObjectForEntityForName:@"OneJob" 
-                                             inManagedObjectContext:self.moc];
+                                                inManagedObjectContext:self.moc];
     [freejumpJob forceDefaultSetting];
     freejumpJob.jobShiftType = [NSNumber numberWithInt:JOB_SHIFT_ALGO_FREE_JUMP];
     
     
-        // Setup a test array for flowing case:
-        // 1. 2 on 2 off, and 6 on 6 off.
-        // Totally 12+4 = 16 days.
+    // Setup a test array for flowing case:
+    // 1. 2 on 2 off, and 6 on 6 off.
+    // Totally 12+4 = 16 days.
     NSMutableArray *ma = [[NSMutableArray alloc] init];
     
     [ma addObject: [NSNumber numberWithInt: 1]];
@@ -132,7 +149,7 @@
     [formatter setTimeStyle:NSDateFormatterFullStyle];
     
     freejumpJob.jobFreejumpTable = ma;
-
+    
     NSDate *today = [NSDate date];
     
     // test case is inside of Jump Shift model
@@ -161,7 +178,7 @@
                              @"%d day working: %@", t, [formatter stringFromDate:target_time]);
             } else {
                 STAssertFalse([freejumpJob isDayWorkingDay:target_time],
-                             @"%d day off: %@", t, [formatter stringFromDate:target_time]);
+                              @"%d day off: %@", t, [formatter stringFromDate:target_time]);
             }
             
             

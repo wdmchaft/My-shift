@@ -418,7 +418,8 @@
         pcvc.profileDelegate = self;
         pcvc.managedObjectContext = self.managedObjectContext;
         pcvc.viewMode = PCVC_EDITING_MODE;
-        [self.navigationController pushViewController:pcvc animated:YES];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pcvc];
+	[self.navigationController presentModalViewController:navController animated:YES];
     }
     // Navigation logic may go here. Create and push another view controller.
     /*

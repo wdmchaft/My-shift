@@ -11,6 +11,39 @@
 #import "InfColorPicker.h"
 #import "SSTurnShiftTVC.h"
 #import "SSProfileTimeAndAlarmVC.h"
+#import "FreeJumpProfileConfigTVC.h"
+#import "SSTurnFinishDatePickerTVC.h"
+#import "SCModalPickerView.h"
+
+@interface ProfileChangeViewController() 
+{
+    int viewMode;
+    BOOL showColorAndIconPicker;
+    UITextField *nameField;
+    UILabel *nameLable;
+    UISwitch *colorEnableSwitch;
+    NSArray *itemsArray;
+    NSArray *timeItemArray;
+    UIBarButtonItem *saveButton;
+    UIBarButtonItem *cancelButton;
+    NSDateFormatter *dateFormatter;
+    NSManagedObjectContext *managedObjectContext;
+    NSIndexPath *colorChooseCellIndexPath;
+    id<ProfileViewDelegate>  __unsafe_unretained profileDelegate;
+    ProfileIconPickerDataSource *iconDateSource;
+    JPImagePickerController *imagePickerVC;
+
+    UIDatePicker *datePicker;
+    SCModalPickerView *modalDatePickerView;
+    
+    Boolean enterConfig;
+
+    OneJob *theJob;
+}
+
+@property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
+
+@end
 
 @implementation ProfileChangeViewController
 
@@ -19,6 +52,9 @@
 @synthesize managedObjectContext, profileDelegate, iconDateSource, colorEnableSwitch;
 @synthesize  nameField, timeItemsArray;
 
+@synthesize datePicker;
+
+
 
 #pragma mark - "init values"
 
@@ -26,11 +62,14 @@
 #define ICON_ITEM_STRING  NSLocalizedString(@"Change Icon", "choose a icon")
 #define COLOR_ENABLE_STRING NSLocalizedString(@"Enable color icon", "enable color icon")
 #define COLOR_PICKER_STRING NSLocalizedString(@"Change Color", "choose a color to show icon")
-#define WORKLEN_ITEM_STRING NSLocalizedString(@"Work Length", "how long work days")
-#define RESTLEN_ITEM_STRING NSLocalizedString(@"Rest Length", "how long rest days")
-#define STARTWITH_ITEM_STRING NSLocalizedString(@"Start With", "start with this date")
+#define STARTWITH_ITEM_STRING NSLocalizedString(@"Start with", "start with this date")
+#define REPEAT_ITEM_STRING    NSLocalizedString(@"Repeat Until", "finish at this date")
+#define REPEAT_FOREVER_STRING NSLocalizedString(@"Repeat forever", "repeart forever string")
 #define SHIFTTYPE_ITEM_STRING NSLocalizedString(@"Shift Type", "shift type")
-#define SHIFTCONFIG_ITEM_STRING NSLocalizedString(@"Detail Config", "config  detail of shift")
+#define SHIFTCONFIG_ITEM_STRING NSLocalizedString(@"Detail Configure", "config  detail of shift")
+
+#define STARTWITH_ITEM 1
+#define FINISH_ITEM 2
 
 - (NSArray *) itemsArray
 {
@@ -41,7 +80,9 @@
 				      ICON_ITEM_STRING,
 				      COLOR_PICKER_STRING,
 				      SHIFTTYPE_ITEM_STRING,
-				      SHIFTCONFIG_ITEM_STRING,
+				      STARTWITH_ITEM_STRING,
+				      REPEAT_ITEM_STRING,
+                      SHIFTCONFIG_ITEM_STRING,
 				      nil];
     }
     return itemsArray;
@@ -211,32 +252,40 @@
     
     NSAssert(self.theJob, @"the job should not nil");
     
+    enterConfig = NO;
+    
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.allowsSelectionDuringEditing = YES;
  
-    if (self.viewMode == PCVC_ADDING_MODE) {
-        self.navigationItem.rightBarButtonItem = self.saveButton;
-    } else {
-        // not support profile editing yet!
-        self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    }
-    
-    if (self.viewMode == PCVC_ADDING_MODE) 
-        self.navigationItem.leftBarButtonItem = self.cancelButton;
+    self.navigationItem.rightBarButtonItem = self.saveButton;
+
+    // cancel button only appear in adding mode, because we can not cancel the date in editing mode, it use save data context.
+    if (self.viewMode == PCVC_ADDING_MODE)
+	self.navigationItem.leftBarButtonItem = self.cancelButton;
     // in editing mode, only show return.
     
-    [self.colorEnableSwitch setOn:self.theJob.jobOnIconColorOn.intValue];
+//    [self.colorEnableSwitch setOn:self.theJob.jobOnIconColorOn.intValue];
 //    [self setUpUndoManager];
-    
-    // default value configure
-    [self.theJob trydDfaultSetting];
+
+    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 250, 325, 250)];
+    CGSize pickerSize = [datePicker sizeThatFits:CGSizeZero];
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    CGRect pickerRect = CGRectMake(0.0, screenRect.origin.y + screenRect.size.height - pickerSize.height - 65, pickerSize.width, pickerSize.height);
+   datePicker.frame = pickerRect;
+   [datePicker setDatePickerMode:UIDatePickerModeDate];
+
+// default value configure
+   [self.theJob trydDfaultSetting];
+   modalDatePickerView = [[SCModalPickerView alloc] init];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     self.cancelButton = nil;
+    self.datePicker = nil;
+
     // Release any retained subviews of the main view.
 //    [self cleanUpunDoManager];
     // e.g. self.myOutlet = nil;
@@ -308,10 +357,9 @@
         return 3;
 #endif
     else if (section == 1)
-        return 2;
+        return 4;
     else if (section == 2)
         return self.timeItemsArray.count;
-    
     return 0;
 }
 
@@ -326,6 +374,25 @@
         item = [self.timeItemsArray objectAtIndex:indexPath.row];
     return item;
 }
+
+- (void)configureStartRepeatItems:(NSString *)item withCell:(UITableViewCell *)cell
+{
+    if ([item isEqualToString:STARTWITH_ITEM_STRING])
+	cell.detailTextLabel.text = [self.dateFormatter stringFromDate:theJob.jobStartDate];
+
+    if ([item isEqualToString:REPEAT_ITEM_STRING]) {
+	NSString *text;
+
+	if ([self.theJob isShiftDateValied] == NO) {
+	    cell.detailTextLabel.textColor = [UIColor redColor];
+    }
+
+	text = (theJob.jobFinishDate == nil) ? REPEAT_FOREVER_STRING : [self.dateFormatter stringFromDate:theJob.jobFinishDate];
+	cell.detailTextLabel.text = text;
+        cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -352,11 +419,19 @@
         [cell.contentView addSubview:self.nameField];
 
     }
-    
-    
-    if ([item isEqualToString:SHIFTTYPE_ITEM_STRING])
+
+    if ([item isEqualToString:SHIFTTYPE_ITEM_STRING]) {
         cell.detailTextLabel.text = self.theJob.jobShiftTypeString;
+        cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     
+    if ([item isEqualToString:SHIFTCONFIG_ITEM_STRING]) {
+        cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    }
+    
+    
+    [self configureStartRepeatItems:item withCell:cell];
+
     if ([SSProfileTimeAndAlarmVC isItemInThisViewController:item])
         [SSProfileTimeAndAlarmVC configureTimeCell:cell indexPath:indexPath Job:self.theJob];
 
@@ -385,6 +460,7 @@
         [self.managedObjectContext save:&error];
         self.nameField.enabled = NO;
         [self.nameField resignFirstResponder];
+        [self saveProfile:nil];
     } else {
         self.nameField.enabled = YES;
     }
@@ -435,6 +511,12 @@
         tstvc.theJob = self.theJob;
         [self.navigationController pushViewController:tstvc animated:YES];
     }
+
+    if (self.theJob.jobShiftType.intValue == JOB_SHIFT_ALGO_FREE_JUMP) {
+	FreeJumpProfileConfigTVC *fjmp = [[FreeJumpProfileConfigTVC alloc] initWithStyle:UITableViewStyleGrouped];
+	fjmp.theJob = self.theJob;
+	[self.navigationController pushViewController:fjmp animated:YES];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -479,8 +561,23 @@
     }
     
     
-    if ([item isEqualToString:SHIFTCONFIG_ITEM_STRING])
+    if ([item isEqualToString:SHIFTCONFIG_ITEM_STRING]) {
+        enterConfig = YES;
         [self shiftConfigChooseRightShiftConfigure];
+    }
+
+    if ([item isEqualToString:STARTWITH_ITEM_STRING]) {
+        self.datePicker.tag = STARTWITH_ITEM;
+        self.datePicker.date = self.theJob.jobStartDate;
+        [self showDatePickerView:self.datePicker];
+    }
+    
+    if ([item isEqualToString:REPEAT_ITEM_STRING]) {
+        SSTurnFinishDatePickerTVC *finishpicker = [[SSTurnFinishDatePickerTVC alloc] initWithStyle:UITableViewStyleGrouped];
+        finishpicker.job = self.theJob;
+        [self.navigationController pushViewController:finishpicker animated:YES];
+    }
+
 
     if ([SSProfileTimeAndAlarmVC isItemInThisViewController:item])
 	{
@@ -491,6 +588,7 @@
         [self.navigationController pushViewController:taavc animated:YES];
 	}
 }
+
 
 - (IBAction)jobNameEditingDone:(id)sender
 {
@@ -517,6 +615,21 @@
 			  cancelButtonTitle:NSLocalizedString(@"I Know", @"I Know") otherButtonTitles:nil, nil] show];
         return;
     }
+    
+    // shift start date > shift < date.
+    if ([self.theJob isShiftDateValied] == NO) {
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Shift Invalied", "alart shift type in editing profile view")
+                                    message:NSLocalizedString(@"Please choose shift endDate", "alert string in editing profile view to let user input shift type")
+                                   delegate:self
+                          cancelButtonTitle:NSLocalizedString(@"I Know", @"I Know") otherButtonTitles:nil, nil] show];
+        return;
+    }
+    
+    // must have configure the shift once.
+    if (self.viewMode == PCVC_ADDING_MODE && enterConfig == NO) {
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Not Configure shift", "alert for not configure shift yet.") message:@"please have a configure of your shift." delegate:self cancelButtonTitle:NSLocalizedString(@"I Know", @"I know") otherButtonTitles:nil, nil] show];
+        return;
+    }
 
     NSError *error = nil;
     if (self.theJob.jobStartDate == nil) {
@@ -527,8 +640,17 @@
         return;
     }
 
-    [self.profileDelegate didChangeProfile:self didFinishWithSave:YES];
-    [self.managedObjectContext save:&error];
+
+    
+    if (self.viewMode == PCVC_ADDING_MODE)
+        [self.profileDelegate didChangeProfile:self didFinishWithSave:YES];
+
+    else {
+        // here: we don't save the data by delegate, it will merge the date, and cause crash.
+        // in edit mode, save it by managedContext is fine.
+        [self.profileDelegate didChangeProfile:self didFinishWithSave:NO];
+        [self.managedObjectContext save:&error];
+    }
 
     if (error != nil) {
         NSLog(@"save error happens when save profile: %@", [error userInfo]);
@@ -542,14 +664,38 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma - mark DatePicker
+
+- (void) showDatePickerView:(UIDatePicker *)pdatePicker
+{
+    //    __block UIDatePicker *tdatePicker = pdatePicker;
+    
+    [modalDatePickerView setPickerView:pdatePicker];
+    __block OneJob *job = self.theJob;
+
+    [modalDatePickerView setCompletionHandler:^(SCModalPickerViewResult result){
+	    if (result == SCModalPickerViewResultDone)
+		{ 
+		    if (pdatePicker.tag == STARTWITH_ITEM)
+			job.jobStartDate = pdatePicker.date;
+		    else if (pdatePicker.tag == FINISH_ITEM)
+			job.jobFinishDate = pdatePicker.date;
+
+		    dispatch_async(dispatch_get_main_queue(), ^{
+			    [self.tableView reloadData];
+			});
+		}}];
+    [modalDatePickerView show];
+}
+
 #pragma - mark - ColorPicker
 
 - (void) colorPickerControllerDidFinish: (InfColorPickerController*) color_picker
 {
-	self.theJob.jobOnColorID = [color_picker.resultColor hexStringFromColor];
+    self.theJob.jobOnColorID = [color_picker.resultColor hexStringFromColor];
     self.theJob.cachedJobOnIconID = nil;
     self.theJob.cachedJobOnIconColor = nil;
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
     [self.tableView reloadData];
 }
 
@@ -558,7 +704,6 @@
 
 - (void)imagePicker:(JPImagePickerController *)picker didFinishPickingWithImageNumber:(NSInteger)imageNumber
 {
-
     // only store last path component
     self.theJob.jobOnIconID = [[self.iconDateSource.iconList objectAtIndex:imageNumber] lastPathComponent];
     NSLog(@"choose icon :%@",self.theJob.jobOnIconID);

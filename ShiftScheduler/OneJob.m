@@ -130,6 +130,11 @@
     return NO;
 }
 
+- (Boolean) isShiftDateValied
+{
+    return  self.jobFinishDate == nil || ([self.jobStartDate compare:self.jobFinishDate] == NSOrderedAscending) ;
+}
+
 - (NSNumber *) shiftTotalCycle
 {
     return [self.shiftAlgo shiftTotalCycle];

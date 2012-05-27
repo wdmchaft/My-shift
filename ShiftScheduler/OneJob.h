@@ -53,6 +53,7 @@ enum JobShiftAlgoType {
 @property (nonatomic, strong) NSNumber *jobRemindBeforeWork;
 @property (nonatomic, strong) NSArray  *jobFreejumpTable;
 
+
 // init the work date generator with these input.
 - (id) initWithWorkConfigWithStartDate: (NSDate *) startDate
                      workdayLengthWith: (int) workdaylength
@@ -71,6 +72,7 @@ enum JobShiftAlgoType {
 
 - (NSArray *) jobShiftAllTypesString;
 - (Boolean) shiftTypeValied;
+- (Boolean) isShiftDateValied;
 - (NSNumber *) shiftTotalCycle;
 + (BOOL) IsDateBetweenInclusive:(NSDate *)date begin: (NSDate *) begin end: (NSDate *)end;
 
