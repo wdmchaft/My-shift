@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OneJob.h"
 
-@interface FreeJumpProfileConfigTVC : UITableViewController
+@interface FreeJumpProfileConfigTVC : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) OneJob *theJob;
 @end

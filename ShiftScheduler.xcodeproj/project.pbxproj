@@ -354,6 +354,38 @@
 			name = "Color Picker";
 			sourceTree = "<group>";
 		};
+		290885F01573D90000465EE1 /* DayRound */ = {
+			isa = PBXGroup;
+			children = (
+				2935514114E2BABA004D8FAC /* SSTurnShiftTVC.h */,
+				2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */,
+				2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */,
+				29F49CA8156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.h */,
+				29F49CA9156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.m */,
+			);
+			name = DayRound;
+			sourceTree = "<group>";
+		};
+		290885F11573D93D00465EE1 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				29C943B314E9642800122144 /* SSProfileTimeAndAlarmVC.h */,
+				29C943B414E9642800122144 /* SSProfileTimeAndAlarmVC.m */,
+				29E98CD114EFF3FF0048AF49 /* SSProfileReminderDateSource.h */,
+				29C943B514E9642900122144 /* SSProfileTimeAndAlarmVC.xib */,
+			);
+			name = Alarm;
+			sourceTree = "<group>";
+		};
+		290885F21573D95500465EE1 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				29E339D214CA955A0036EAED /* ProfileIconPickerDataSource.h */,
+				29E339D314CA955A0036EAED /* ProfileIconPickerDataSource.m */,
+			);
+			name = Icon;
+			sourceTree = "<group>";
+		};
 		292DBC8A14CA931800C87A70 /* JPImage Picker */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,25 +469,17 @@
 		299D8D0D147948B900E20DAE /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
+				290885F21573D95500465EE1 /* Icon */,
+				290885F11573D93D00465EE1 /* Alarm */,
+				290885F01573D90000465EE1 /* DayRound */,
 				2958CFBD1568DC2A00E273C3 /* Free Jump Profile */,
 				29057D1D14D0477C00155E12 /* Color Picker */,
 				292DBC8A14CA931800C87A70 /* JPImage Picker */,
-				29E339D214CA955A0036EAED /* ProfileIconPickerDataSource.h */,
-				29E339D314CA955A0036EAED /* ProfileIconPickerDataSource.m */,
 				29B9E1E01472C39F00DB2E1F /* ProfileChangeViewController.h */,
 				29B9E1E11472C39F00DB2E1F /* ProfileChangeViewController.m */,
 				2935514714E2DDB0004D8FAC /* ProfileChangeViewController.xib */,
-				2935514114E2BABA004D8FAC /* SSTurnShiftTVC.h */,
-				2935514214E2BABA004D8FAC /* SSTurnShiftTVC.m */,
-				2935514314E2BABA004D8FAC /* SSTurnShiftTVC.xib */,
-				29F49CA8156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.h */,
-				29F49CA9156FE2A500C76EFC /* SSTurnFinishDatePickerTVC.m */,
 				299E33A0156A74820066E843 /* SSShiftTypePickerTVC.h */,
 				299E33A1156A74820066E843 /* SSShiftTypePickerTVC.m */,
-				29C943B314E9642800122144 /* SSProfileTimeAndAlarmVC.h */,
-				29C943B414E9642800122144 /* SSProfileTimeAndAlarmVC.m */,
-				29E98CD114EFF3FF0048AF49 /* SSProfileReminderDateSource.h */,
-				29C943B514E9642900122144 /* SSProfileTimeAndAlarmVC.xib */,
 				29B9E1E31472C39F00DB2E1F /* ProfilesViewController.h */,
 				29B9E1E41472C39F00DB2E1F /* ProfilesViewController.m */,
 			);

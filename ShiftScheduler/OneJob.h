@@ -51,7 +51,8 @@ enum JobShiftAlgoType {
 @property (weak, nonatomic, readonly)  UIColor *defaultIconColor;
 @property (nonatomic, strong) NSNumber *jobRemindBeforeOff;
 @property (nonatomic, strong) NSNumber *jobRemindBeforeWork;
-@property (nonatomic, strong) NSArray  *jobFreejumpTable;
+@property (nonatomic, strong) NSArray  *jobFreeJumpTable;
+@property (nonatomic, strong) NSNumber *jobFreeJumpCycle;
 
 
 // init the work date generator with these input.

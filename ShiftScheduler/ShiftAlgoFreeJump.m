@@ -89,7 +89,7 @@
 
 - (int)getCountOfJumpArray
 {
-    return self.JobContext.jobFreejumpTable.count;
+    return self.JobContext.jobFreeJumpTable.count;
 }
                 
 /**
@@ -101,8 +101,8 @@
 - (BOOL)isWorkInFreeJumpArray: (int) offset
 {
     // Test version !!!
-    NSAssert(offset < [self.JobContext.jobFreejumpTable count], @"offset is biggger than array!offset:%d count:%d ", offset, [self.JobContext.jobFreejumpTable count]);
-    return [[self.JobContext.jobFreejumpTable objectAtIndex:offset] intValue] == TRUE;
+    NSAssert(offset < [self.JobContext.jobFreeJumpTable count], @"offset is biggger than array!offset:%d count:%d ", offset, [self.JobContext.jobFreeJumpTable count]);
+    return [[self.JobContext.jobFreeJumpTable objectAtIndex:offset] intValue] == TRUE;
 }
 	
 	

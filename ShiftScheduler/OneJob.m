@@ -66,6 +66,7 @@
 @dynamic jobOnIconID;
 @dynamic jobShiftType;
 @dynamic jobRemindBeforeOff,jobRemindBeforeWork;
+@dynamic jobFreeJumpCycle;
 @synthesize curCalender, cachedJobOnIconColor, cachedJobOnIconID, shiftAlgo, jobShiftTypeString;
 
 - (ShiftAlgoBase *)shiftAlgo;
